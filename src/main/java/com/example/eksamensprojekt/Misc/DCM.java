@@ -7,24 +7,25 @@ import java.sql.SQLException;
 public class DCM {
 
     private static String hostname, username, password;
+    private static Connection conn;
 
-    private static Connection conn = createConnection();
+    public static Connection getConnection(){
 
-    private static Connection createConnection(){
-
+        if (conn != null){
+            return conn;
+        }
         hostname = System.getenv("hostname");
         username = System.getenv("username");
         password = System.getenv("password");
 
         try {
             conn = DriverManager.getConnection(hostname,username,password);
+
         } catch (SQLException e) {
+            System.out.println("Connection failed");
             throw new RuntimeException(e);
         }
-
-        return conn;
-    }
-    public static Connection getConn(){
+        System.out.println("Connection established");
         return conn;
     }
 }
