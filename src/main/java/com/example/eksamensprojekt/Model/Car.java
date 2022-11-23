@@ -7,11 +7,11 @@ public class Car {
     private int carID;
     private int VIN;
     private int regFee;
-    private int co2Emm;
+    private String co2Emm;
     // private AddedFeatures;
 
 
-    public Car(String carModel, String carBrand, int carID, int VIN, int regFee, int co2Emm) {
+    public Car(String carModel, String carBrand, int carID, int VIN, int regFee, String co2Emm) {
         this.carModel = carModel;
         this.carBrand = carBrand;
         this.carID = carID;
@@ -60,11 +60,11 @@ public class Car {
         this.regFee = regFee;
     }
 
-    public int getCo2Emm() {
+    public String getCo2Emm() {
         return co2Emm;
     }
 
-    public void setCo2Emm(int co2Emm) {
+    public void setCo2Emm(String co2Emm) {
         this.co2Emm = co2Emm;
     }
 }
