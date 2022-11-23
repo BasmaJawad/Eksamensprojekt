@@ -1,6 +1,7 @@
 package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Misc.DCM;
+import com.example.eksamensprojekt.Model.Car;
 import com.example.eksamensprojekt.Model.User;
 import com.example.eksamensprojekt.Model.UserType;
 import com.example.eksamensprojekt.Service.UsersService;

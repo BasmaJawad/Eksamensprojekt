@@ -20,6 +20,14 @@ public class Car {
         this.co2Emm = co2Emm;
     }
 
+    public Car(String carModel, String carBrand, int carID, int VIN, String co2Emm) {
+        this.carModel = carModel;
+        this.carBrand = carBrand;
+        this.carID = carID;
+        this.VIN = VIN;
+        this.co2Emm = co2Emm;
+    }
+
     public String getCarModel() {
         return carModel;
     }

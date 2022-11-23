@@ -8,17 +8,25 @@ import org.springframework.web.context.request.WebRequest;
 public class DataService {
 
   public void addContract(WebRequest req){
-    String name = req.getParameter("name");
-    String cpr = req.getParameter("cpr");
-    String email = req.getParameter("email");
-    String address = req.getParameter("address");
-    String phoneNumber = req.getParameter("phonenumber");
-    int ZIPCode = Integer.parseInt(req.getParameter("ZIPcode"));
 
-   // Car car = new Car()
+    Customer customer = new Customer(req.getParameter("name"),
+                                    req.getParameter("cpr"),
+                                      req.getParameter("email"),
+                                    req.getParameter("address"),
+                                  req.getParameter("phonenumber"),
+                                    Integer.parseInt(req.getParameter("ZIPcode")));
 
-    Customer customer = new Customer(name, cpr, email, address, phoneNumber, ZIPCode);
-  //  Contract contract = new Contract()
+    //reads specific Car with CarID
+    Car car = (Car) dataRepository.readSingle(Integer.parseInt(req.getParameter("car")));
+
+
+    Contract contract = new Contract(car,
+                             SubLenght.valueOf((req.getParameter("subLength"))),
+                              Integer.parseInt(req.getParameter("finalPrice")),
+                                     customer,
+                        PickupDestination.valueOf(req.getParameter("pickupDestination")));
+
+    System.out.println(car);
     System.out.println(customer);
 
   }

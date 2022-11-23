@@ -15,4 +15,6 @@ public class dataController {
      dataService.addContract(req);
     return "dataHomepage";
   }
+
+
 }

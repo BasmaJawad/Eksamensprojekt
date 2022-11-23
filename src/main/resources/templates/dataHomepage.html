@@ -14,15 +14,37 @@
     <label> phonenumber: <input type="text" name="phonenumber" > </label><br>
     <label> ZIPcode: <input type="number" name="ZIPcode" > </label><br>
     <h1>Car information </h1> <br>
-    <label> cartype: <input type="text" name="cartype"> </label><br>
-    <label> carID: <input type="text" name="carID"> </label><br>
-    <label> carmodel: <input type="text" name="carmodel"> </label><br>
-    <label> carmodel: <input type="text" name="carmodel"> </label><br>
 
-    <label for="car" >Vælg bil:</label>
-    <select th:each="car : ${cars}" name="car" id="car">
-        <option th:text="${car.carId} ${car.carModel} ${car.brand} ${car.VIN} ${car.co2Emission}"></option>
+    <select name="car">
+        <option th:each="car : ${cars}" th:value="${car.carID}" th:text="${car}"></option>
     </select>
+
+    <label> SubLength:
+        <select name="subLength">
+            <option value="THREE_MONTHS">3 måneder</option>
+            <option value="SIX_MONTHS">6 måneder</option>
+            <option value="TWELVE_MONTHS">12 måneder</option>
+            <option value="TWENTYFOUR_MONTHS">24 måneder</option>
+            <option value="THIRTYSIX_MONTHS">36 måneder</option>
+        </select>
+    </label><br>
+
+    <label> Afhentningsted <br>
+        <select name="pickupDestination">
+            <option value="FDM_AARHUS">Århus</option>
+            <option value="FMD_VEJLE">Vejle</option>
+            <option value="FDM_SOENDERBORG">Sønderborg</option>
+            <option value="FDM_SILKEBORG">Silkeborg</option>
+            <option value="FDM_ODENSE">Odense</option>
+            <option value="FDM_NAESTVED">Næstved</option>
+            <option value="FDM_FREDERICIA">Fredericia</option>
+            <option value="FDM_AALBORG">Aalborg</option>
+            <option value="FDM_HILLEROED">Hillerød</option>
+            <option value="KW_BRUUN">K.W Bruun</option>
+        </select>
+    </label>
+    <h1>Price </h1> <br>
+    <label> finalPrice: <input type="number" name="finalPrice" > </label><br>
 
     <button type="submit"> submit </button>
 
