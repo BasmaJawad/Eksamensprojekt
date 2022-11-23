@@ -2,9 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Bilabonnement</title>
+
 </head>
 <body>
+
+<div class="form-container sign-in-container">
+
+    <form action="/login" method ="post">
+        <h1>Log in</h1>
+
+        <label for ="username"></label>
+        <input type="text" name="username" placeholder="Username" required />
+
+        <label for ="password"></label>
+        <input type="password"  name="password" placeholder="Password" required />
+
+        <button type="submit">Log in</button>
+    </form>
+
+    <button onclick="window.location='/logout';" id="button2">logout</button>
+
+</div>
 
 </body>
 </html>
