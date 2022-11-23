@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>DataHomepage</title>
 </head>
 <body>
+<form action="/addContract" method="post">
+    <h1> Customer information </h1> <br>
+    <label> name: <input type="text" name="name" > </label><br>
+    <label> cpr: <input type="text" name="cpr" > </label><br>
+    <label> email: <input type="text" name="email" > </label><br>
+    <label> address: <input type="text" name="address" > </label><br>
+    <label> phonenumber: <input type="text" name="phonenumber" > </label><br>
+    <label> ZIPcode: <input type="number" name="ZIPcode" > </label><br>
+    <h1>Car information </h1> <br>
+    <label> cartype: <input type="text" name="cartype"> </label><br>
+    <label> carID: <input type="text" name="carID"> </label><br>
+    <label> carmodel: <input type="text" name="carmodel"> </label><br>
+    <label> carmodel: <input type="text" name="carmodel"> </label><br>
 
+    <label for="car" >Vælg bil:</label>
+    <select th:each="car : ${cars}" name="car" id="car">
+        <option th:text="${car.carId} ${car.carModel} ${car.brand} ${car.VIN} ${car.co2Emission}"></option>
+    </select>
+
+    <button type="submit"> submit </button>
+
+
+
+
+
+
+
+</form>
 </body>
 </html>
