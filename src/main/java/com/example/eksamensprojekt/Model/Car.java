@@ -75,4 +75,9 @@ public class Car {
     public void setCo2Emm(String co2Emm) {
         this.co2Emm = co2Emm;
     }
+
+    @Override
+    public String toString() {
+        return carID + " " + carBrand + " " + carModel;
+    }
 }

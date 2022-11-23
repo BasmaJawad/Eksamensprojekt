@@ -1,11 +1,12 @@
 package com.example.eksamensprojekt.Repository;
 
+import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
 
 public interface IRepository {
 
     //Read
-    Object readSingle(Object o, ArrayList<Object> conditions);
+    Object readSingle(Object o);
     ArrayList<Object> readMultiple(ArrayList<Object> conditions);
 
     //Write
