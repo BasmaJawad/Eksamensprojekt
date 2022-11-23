@@ -8,9 +8,15 @@ public class Contract {
     private int finalPrice;
     private Customer customer;
 
-
     public Contract(int contractID, Car car, SubLenght subLenght, int finalPrice, Customer customer) {
         this.contractID = contractID;
+        this.car = car;
+        this.subLenght = subLenght;
+        this.finalPrice = finalPrice;
+        this.customer = customer;
+    }
+
+    public Contract(Car car, SubLenght subLenght, int finalPrice, Customer customer) {
         this.car = car;
         this.subLenght = subLenght;
         this.finalPrice = finalPrice;
