@@ -1,5 +1,7 @@
 package com.example.eksamensprojekt.Model;
 
+import com.example.eksamensprojekt.Model.Cars.Car;
+
 public class Contract {
 
     private int contractID;

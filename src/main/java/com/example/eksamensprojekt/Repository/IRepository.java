@@ -3,21 +3,25 @@ package com.example.eksamensprojekt.Repository;
 import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
 
-public interface IRepository {
+public interface IRepository<E> {
 
     //Read
-    Object readSingle(Object o);
-    ArrayList<Object> readMultiple(ArrayList<Object> conditions);
+    E readSingle(E param);
+
+    ArrayList<E> readMultiple(ArrayList<E> conditions);
 
     //Write
-    void writeSingle(Object o);
-    void writeMultiple(ArrayList<Object> object);
+    void writeSingle(E param);
+
+    void writeMultiple(ArrayList<E> objects);
 
     //Update
-    void updateSingle(Object o);
-    void updateMultiple(ArrayList<Object> objects);
+    void updateSingle(E param);
+
+    void updateMultiple(ArrayList<E> objects);
 
     //delete
-    void deleteSingle(Object o);
-    void deleteMultiple(ArrayList<Object> objects);
+    void deleteSingle(E param);
+
+    void deleteMultiple(ArrayList<E> objects);
 }

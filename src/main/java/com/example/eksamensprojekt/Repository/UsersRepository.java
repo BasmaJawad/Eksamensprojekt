@@ -26,7 +26,7 @@ public class UsersRepository implements IGenericRepository {
             PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.users");
             ResultSet resultSet = psts.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 users.add(new User(
                         resultSet.getString("username"),
                         resultSet.getString("password"),
