@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Damages for car in report
+
+<tr th:each="damage: ${session.damages}">
+
+
+<td th:text="${damage.getReportID}"/>
+
+    <td th:text="${damage.getDesciption}"/>
+
+    <td th:text="${damage.getCost}"/>
+
+</body>
+</html>

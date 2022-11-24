@@ -14,6 +14,15 @@ public class CarDamage {
     }
 
 
+    public int getReportID() {
+        return reportID;
+    }
+
+    public void setReportID(int reportID) {
+        this.reportID = reportID;
+    }
+
+
     public String getDesciption() {
         return desciption;
     }

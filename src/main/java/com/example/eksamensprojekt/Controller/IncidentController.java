@@ -18,7 +18,7 @@ public class IncidentController {
 
     @GetMapping("/incidentReport")
     public String findIncidentReport(){
-        return "incidentReport";
+        return "/DamageRegister/incidentReport";
     }
 
     @PostMapping("/incidentReport")
@@ -26,6 +26,7 @@ public class IncidentController {
         List<CarDamage> carDamages =
     incidentsService.findIncidentReport(Integer.parseInt(req.getParameter("contractID")));
         session.setAttribute("damages", carDamages);
-        return "incidentReport";
+
+        return "redirect:/DamageRegister/showCarDamages";
     }
 }
