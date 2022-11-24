@@ -2,28 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="login.css">
     <title>Bilabonnement</title>
 
 </head>
 <body>
 
-<div class="form-container sign-in-container">
+<div class="container">
 
-    <form action="/" method ="post">
-        <h1>Log in</h1>
+    <div id="login_img">
+        <img id="carimg"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fill,q_80,w_1280/v1/Frontpage/UnlimitedBanner_1600x990_kpfpy3.png">
+    </div>
 
-        <label for ="username"></label>
-        <input id="username" type="text" name="username" placeholder="Username" required />
+    <div id="imgCol">
 
-        <label for ="password"></label>
-        <input id="password" type="password"  name="password" placeholder="Password" required />
+        <div id="logIn">
+            <h1>LOG IN</h1>
+        </div>
 
-        <button type="submit">Log in</button>
-    </form>
+        <div id="overlay">
+            <div id="logoImg">
+                <img src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_448/v1/Logos/BILABONNEMENT_rgb_mmahqw.png" width="300px">
+            </div>
+            <br> <br>
+            <div id="formcontainer">
+                <form action="/" method="post">
+                    <h2>Velkommen til din nye login side</h2>
+                    <br><br>
+                    <label for="username"></label>
+                    <input id="username" type="text" name="username" placeholder="Username" required/>
 
-    <br><br>
+                    <label for="password"></label>
+                    <input id="password" type="password" name="password" placeholder="Password" required/>
 
+                    <button type="submit">Log in</button>
+                </form>
+            </div>
+
+
+
+        </div>
+
+    </div>
     <button onclick="window.location='/logout';" id="button2">logout</button>
+
 
 </div>
 
