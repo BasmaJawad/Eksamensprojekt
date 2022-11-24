@@ -2,9 +2,8 @@ package com.example.eksamensprojekt.Repository;
 
 import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.Contract;
-import com.example.eksamensprojekt.Model.Customer;
-import com.example.eksamensprojekt.Model.PickupDestination;
-import com.example.eksamensprojekt.Model.SubLenght;
+import com.example.eksamensprojekt.Model.Enums.PickupDestination;
+import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +44,7 @@ public class ContractRepository implements IRepository {
 
             while (resultSet.next()) {
 
-                long VIN = resultSet.getLong("VIN");
+                String VIN = resultSet.getString("VIN");
                 SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
                 int customerID = resultSet.getInt("customerID");
                 PickupDestination pickup = PickupDestination.valueOf(resultSet.getString("pickupDestination"));
@@ -67,8 +66,27 @@ public class ContractRepository implements IRepository {
     @Override
     public void writeSingle(Object param) {
 
+        Contract c = (Contract) param;
         //Insert Contract to database
+        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance) VALUES (?,?,?,?,?,?,?,?)";
 
+        try {
+            PreparedStatement ptsd = conn.prepareStatement(QUARY);
+
+            ptsd.setString(1, c.getVIN());
+            ptsd.setString(2, c.getSubLenght().name());
+            ptsd.setString(3, c.getPickupDestination().name());
+            ptsd.setInt(4, c.getCustomerID());
+            ptsd.setBoolean(5, c.isWinterTires());
+            ptsd.setBoolean(6, c.isVikingHelp());
+            ptsd.setBoolean(7, c.isLowDeductible());
+            ptsd.setBoolean(8, c.isDeliveryInsurance());
+
+            ptsd.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

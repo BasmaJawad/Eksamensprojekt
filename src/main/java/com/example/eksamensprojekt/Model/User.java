@@ -1,5 +1,7 @@
 package com.example.eksamensprojekt.Model;
 
+import com.example.eksamensprojekt.Model.Enums.UserType;
+
 public class User {
 
     private String username;

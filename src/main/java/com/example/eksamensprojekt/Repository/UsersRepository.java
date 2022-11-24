@@ -2,7 +2,7 @@ package com.example.eksamensprojekt.Repository;
 
 import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.User;
-import com.example.eksamensprojekt.Model.UserType;
+import com.example.eksamensprojekt.Model.Enums.UserType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -2,22 +2,21 @@ package com.example.eksamensprojekt.Model.Cars;
 
 public class Car {
 
-    private String carModel, carBrand;
+    private String carModel, carBrand,VIN;
     private int carID;
-    private long VIN;
 
     //Addons
 
 // private AddedFeatures;
 
 
-    public Car(String carModel, String carBrand, int carID, long VIN) {
+    public Car(String carModel, String carBrand, int carID, String VIN) {
         this.carModel = carModel;
         this.carBrand = carBrand;
         this.carID = carID;
         this.VIN = VIN;
     }
-    public Car(String carModel, String carBrand, int carID, long VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires){
+    public Car(String carModel, String carBrand, int carID, String VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires){
         this.carModel = carModel;
         this.carBrand = carBrand;
         this.carID = carID;
@@ -50,11 +49,11 @@ public class Car {
         this.carID = carID;
     }
 
-    public long getVIN() {
+    public String getVIN() {
         return VIN;
     }
 
-    public void setVIN(long VIN) {
+    public void setVIN(String VIN) {
         this.VIN = VIN;
     }
     @Override

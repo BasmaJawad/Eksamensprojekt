@@ -1,6 +1,7 @@
 package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.Cars.Car;
+import com.example.eksamensprojekt.Model.Cars.GasCar;
 import com.example.eksamensprojekt.Service.DataService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +26,12 @@ public class dataController {
   @GetMapping("/contractPage")
   public String contractPage(Model model){
 
-    Car car1 = new Car("HK 69", "Peugeut", 1, 65474);
-    Car car2 = new Car("HK 69", "Peugeut", 2, 65474);
+    Car car = new GasCar("model", "model1", 1, "abcdefg", 30);
 
     ArrayList<Car> cars = new ArrayList<>();
 
-    cars.add(car1);
-    cars.add(car2);
+    cars.add(car);
+
 
     model.addAttribute("cars", cars);
 

@@ -1,7 +1,7 @@
 package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.User;
-import com.example.eksamensprojekt.Model.UserType;
+import com.example.eksamensprojekt.Model.Enums.UserType;
 import com.example.eksamensprojekt.Service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +28,7 @@ public class HomeController {
             session.setAttribute("user", user);
 
             if (user.getUserType().equals(UserType.DATA))
-                return "dataHomepage";
+                return "/DataRegister/dataHomepage";
             else if (user.getUserType().equals(UserType.INCIDENT))
                 return "incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))

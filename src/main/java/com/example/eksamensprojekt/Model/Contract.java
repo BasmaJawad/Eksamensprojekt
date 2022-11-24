@@ -1,18 +1,19 @@
 package com.example.eksamensprojekt.Model;
 
-import com.example.eksamensprojekt.Model.Cars.Car;
+import com.example.eksamensprojekt.Model.Enums.PickupDestination;
+import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
 public class Contract {
 
     private int contractID;
-    private long VIN;
+    private String VIN;
     private SubLenght subLenght; //months
     private int finalPrice;
     private int customerID;
     private PickupDestination pickupDestination;
     private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
-    public Contract(long VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination) {
+    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination) {
         this.VIN = VIN;
         this.subLenght = subLenght;
         this.customerID = customerID;
@@ -20,7 +21,7 @@ public class Contract {
     }
 
   
-    public Contract(long VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
         this.VIN = VIN;
         this.subLenght = subLenght;
         this.customerID = customerID;
@@ -55,11 +56,11 @@ public class Contract {
         this.contractID = contractID;
     }
 
-    public long getVIN() {
+    public String getVIN() {
         return VIN;
     }
 
-    public void setVIN(long VIN) {
+    public void setVIN(String VIN) {
         this.VIN = VIN;
     }
 
