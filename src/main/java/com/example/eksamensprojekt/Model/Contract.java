@@ -5,32 +5,45 @@ import com.example.eksamensprojekt.Model.Cars.Car;
 public class Contract {
 
     private int contractID;
-    private Car car;
+    private long VIN;
     private SubLenght subLenght; //months
     private int finalPrice;
     private int customerID;
     private PickupDestination pickupDestination;
     private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
-    public Contract(Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
-        this.car = car;
+    public Contract(long VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination) {
+        this.VIN = VIN;
         this.subLenght = subLenght;
-        this.finalPrice = finalPrice;
         this.customerID = customerID;
         this.pickupDestination = pickupDestination;
     }
 
   
-    public Contract(Car car, SubLenght subLenght, int finalPrice, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
-        this.car = car;
+    public Contract(long VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+        this.VIN = VIN;
         this.subLenght = subLenght;
-        this.finalPrice = finalPrice;
         this.customerID = customerID;
         this.pickupDestination = pickupDestination;
         this.vikingHelp = vikingHelp;
         this.deliveryInsurance = deliveryInsurance;
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
+
+        finalPrice = calculatePrice();
+    }
+
+    private int calculatePrice(){
+
+        int totalPrice = 0;
+
+        if (vikingHelp) totalPrice += 49;
+        if (deliveryInsurance) totalPrice += 119;
+        if (lowDeductible) totalPrice += 64;
+        if (winterTires) totalPrice += 0;
+
+        //needs more
+        return totalPrice;
     }
 
 
@@ -42,12 +55,12 @@ public class Contract {
         this.contractID = contractID;
     }
 
-    public Car getCar() {
-        return car;
+    public long getVIN() {
+        return VIN;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setVIN(long VIN) {
+        this.VIN = VIN;
     }
 
     public SubLenght getSubLenght() {
@@ -117,6 +130,6 @@ public class Contract {
 
     @Override
     public String toString() {
-        return customerID + "\n" + car + "\n" + finalPrice + "\n" + subLenght.toString();
+        return customerID + "\n" + VIN + "\n" + finalPrice + "\n" + subLenght.toString();
     }
 }

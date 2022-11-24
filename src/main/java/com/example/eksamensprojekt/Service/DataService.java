@@ -26,18 +26,18 @@ public class DataService {
                 Integer.parseInt(req.getParameter("ZIPcode")));
 
         customerRepo.writeSingle(customer);
-        //reads specific Car with CarID
-        Car car = carRepository.readSingle(Integer.parseInt(req.getParameter("car")));
+        //reads carVIN
+        long VIN = (long) carRepository.readSingle(req.getParameter("VIN"));
 
-
-        Contract contract = new Contract(car,
-                SubLenght.valueOf((req.getParameter("subLength"))),
-                Integer.parseInt(req.getParameter("finalPrice")),
-                customerRepo.readID(customer),
-                PickupDestination.valueOf(req.getParameter("pickupDestination")));
+        /*
+        Contract contract = new Contract(VIN,
+                                        req.getParameter("subLength"),
+                                        );
 
         //Database
         contractRepo.writeSingle(contract);
+
+         */
 
     }
     public ArrayList<Contract> getAllContracts(){
