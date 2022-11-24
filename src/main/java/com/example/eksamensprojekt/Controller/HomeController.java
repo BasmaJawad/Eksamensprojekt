@@ -19,18 +19,13 @@ public class HomeController {
 
     UsersService us = new UsersService();
 
+
     @GetMapping("/")
-    public String Index() {
-        return "index";
-    }
-
-
-    @GetMapping("/login")
     public String login() {
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/")
     public String validateLogin(HttpSession session, WebRequest req) {
         User user = us.validateUserLogin(req);
 
