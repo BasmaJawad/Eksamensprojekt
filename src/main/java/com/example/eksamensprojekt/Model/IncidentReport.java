@@ -4,26 +4,14 @@ import java.util.List;
 
 public class IncidentReport {
 
-    private List<CarDamage> damages;
     private int contractID;
-    private int carVIN;
+    private long VIN;
     private int reportID;
 
-
-    public IncidentReport(List<CarDamage> damages, int contractID, int carVIN, int reportID) {
-        this.damages = damages;
+    public IncidentReport(int contractID, long VIN, int reportID) {
         this.contractID = contractID;
-        this.carVIN = carVIN;
+        this.VIN = VIN;
         this.reportID = reportID;
-
-    }
-
-    public List<CarDamage> getDamages() {
-        return damages;
-    }
-
-    public void setDamages(List<CarDamage> damages) {
-        this.damages = damages;
     }
 
     public int getContractID() {
@@ -34,11 +22,19 @@ public class IncidentReport {
         this.contractID = contractID;
     }
 
-    public int getCarVIN() {
-        return carVIN;
+    public long getVIN() {
+        return VIN;
     }
 
-    public void setCarVIN(int carVIN) {
-        this.carVIN = carVIN;
+    public void setVIN(long VIN) {
+        this.VIN = VIN;
+    }
+
+    public int getReportID() {
+        return reportID;
+    }
+
+    public void setReportID(int reportID) {
+        this.reportID = reportID;
     }
 }
