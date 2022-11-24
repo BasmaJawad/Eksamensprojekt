@@ -1,12 +1,16 @@
 package com.example.eksamensprojekt.Model;
 
 public class CarDamage {
+
+    private int reportID;
     private String desciption;
     private int cost;
 
-    public CarDamage(String desciption, int cost) {
+
+    public CarDamage(int reportID, String desciption, int cost) {
         this.desciption = desciption;
         this.cost = cost;
+        this.reportID = reportID;
     }
 
 

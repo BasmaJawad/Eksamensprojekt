@@ -7,12 +7,15 @@ public class IncidentReport {
     private List<CarDamage> damages;
     private int contractID;
     private int carVIN;
+    private int reportID;
 
 
-    public IncidentReport(List<CarDamage> damages, int contractID, int carVIN) {
+    public IncidentReport(List<CarDamage> damages, int contractID, int carVIN, int reportID) {
         this.damages = damages;
         this.contractID = contractID;
         this.carVIN = carVIN;
+        this.reportID = reportID;
+
     }
 
     public List<CarDamage> getDamages() {
