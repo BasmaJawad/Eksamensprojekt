@@ -27,6 +27,6 @@ public class IncidentController {
     incidentsService.findIncidentReport(Integer.parseInt(req.getParameter("contractID")));
         session.setAttribute("damages", carDamages);
 
-        return "redirect:/DamageRegister/showCarDamages";
+        return "/DamageRegister/showCarDamages";
     }
 }

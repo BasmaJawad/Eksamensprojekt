@@ -8,6 +8,8 @@
 
 Damages for car in report
 
+<br> <br><br>
+
 <tr th:each="damage: ${session.damages}">
 
 
@@ -16,6 +18,6 @@ Damages for car in report
     <td th:text="${damage.getDesciption}"/>
 
     <td th:text="${damage.getCost}"/>
-
+    <br><br>
 </body>
 </html>

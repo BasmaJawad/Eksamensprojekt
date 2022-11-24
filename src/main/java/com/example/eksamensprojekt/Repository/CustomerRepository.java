@@ -44,6 +44,11 @@ public class CustomerRepository implements IRepository{
   }
 
   @Override
+  public ArrayList readMultiple() {
+    return null;
+  }
+
+  @Override
   public void writeSingle(Object param) {
 
   }
