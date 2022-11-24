@@ -1,32 +1,30 @@
-package com.example.eksamensprojekt.Model;
+package com.example.eksamensprojekt.Model.Cars;
 
 public class Car {
 
-    private String carModel;
-    private String carBrand;
+    private String carModel, carBrand;
     private int carID;
-    private int VIN;
-    private int regFee;
-    private String co2Emm;
-    // private AddedFeatures;
+    private long VIN;
+
+    //Addons
+
+// private AddedFeatures;
 
 
-    public Car(String carModel, String carBrand, int carID, int VIN, int regFee, String co2Emm) {
+    public Car(String carModel, String carBrand, int carID, long VIN) {
         this.carModel = carModel;
         this.carBrand = carBrand;
         this.carID = carID;
         this.VIN = VIN;
-        this.regFee = regFee;
-        this.co2Emm = co2Emm;
     }
-
-    public Car(String carModel, String carBrand, int carID, int VIN, String co2Emm) {
+    public Car(String carModel, String carBrand, int carID, long VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires){
         this.carModel = carModel;
         this.carBrand = carBrand;
         this.carID = carID;
         this.VIN = VIN;
-        this.co2Emm = co2Emm;
+
     }
+
 
     public String getCarModel() {
         return carModel;
@@ -52,30 +50,13 @@ public class Car {
         this.carID = carID;
     }
 
-    public int getVIN() {
+    public long getVIN() {
         return VIN;
     }
 
-    public void setVIN(int VIN) {
+    public void setVIN(long VIN) {
         this.VIN = VIN;
     }
-
-    public int getRegFee() {
-        return regFee;
-    }
-
-    public void setRegFee(int regFee) {
-        this.regFee = regFee;
-    }
-
-    public String getCo2Emm() {
-        return co2Emm;
-    }
-
-    public void setCo2Emm(String co2Emm) {
-        this.co2Emm = co2Emm;
-    }
-
     @Override
     public String toString() {
         return carID + " " + carBrand + " " + carModel;

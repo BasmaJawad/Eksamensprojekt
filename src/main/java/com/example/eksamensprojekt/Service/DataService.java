@@ -1,37 +1,47 @@
 package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.*;
-import com.example.eksamensprojekt.Repository.DataRepository;
+import com.example.eksamensprojekt.Model.Cars.Car;
+import com.example.eksamensprojekt.Repository.CarRepository;
+import com.example.eksamensprojekt.Repository.ContractRepository;
+import com.example.eksamensprojekt.Repository.CustomerRepository;
 import org.springframework.web.context.request.WebRequest;
+
+import java.util.ArrayList;
 
 public class DataService {
 
-  DataRepository dataRepository = new DataRepository();
+    CarRepository carRepository = new CarRepository();
+    ContractRepository contractRepo = new ContractRepository();
 
-  public void addContract(WebRequest req){
+    CustomerRepository customerRepo = new CustomerRepository();
 
-    Customer customer = new Customer(req.getParameter("name"),
-                                    req.getParameter("cpr"),
-                                      req.getParameter("email"),
-                                    req.getParameter("address"),
-                                  req.getParameter("phonenumber"),
-                                    Integer.parseInt(req.getParameter("ZIPcode")));
+    public void addContract(WebRequest req) {
 
-    //reads specific Car with CarID
-    Car car = (Car) dataRepository.readSingle(Integer.parseInt(req.getParameter("car")));
+        Customer customer = new Customer(req.getParameter("name"),
+                req.getParameter("cpr"),
+                req.getParameter("email"),
+                req.getParameter("address"),
+                req.getParameter("phonenumber"),
+                Integer.parseInt(req.getParameter("ZIPcode")));
 
-
-    Contract contract = new Contract(car,
-                             SubLenght.valueOf((req.getParameter("subLength"))),
-                              Integer.parseInt(req.getParameter("finalPrice")),
-                                     customer,
-                        PickupDestination.valueOf(req.getParameter("pickupDestination")));
-
-    System.out.println(car);
-    System.out.println(customer);
-    System.out.println(contract);
+        customerRepo.writeSingle(customer);
+        //reads specific Car with CarID
+        Car car = carRepository.readSingle(Integer.parseInt(req.getParameter("car")));
 
 
+        Contract contract = new Contract(car,
+                SubLenght.valueOf((req.getParameter("subLength"))),
+                Integer.parseInt(req.getParameter("finalPrice")),
+                customerRepo.readID(customer),
+                PickupDestination.valueOf(req.getParameter("pickupDestination")));
 
-  }
+        //Database
+        contractRepo.writeSingle(contract);
+
+    }
+    public ArrayList<Contract> getAllContracts(){
+
+        return contractRepo.readMultiple();
+    }
 }

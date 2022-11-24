@@ -2,17 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>DataHomepage</title>
+    <title>Here you can add a new contract</title>
 </head>
 <body>
-<form action="/addContract" method="get">
+
+<form action="/addContract">
     <h1> Customer information </h1> <br>
-    <label> name: <input type="text" name="name" > </label><br>
-    <label> cpr: <input type="text" name="cpr" > </label><br>
-    <label> email: <input type="text" name="email" > </label><br>
-    <label> address: <input type="text" name="address" > </label><br>
-    <label> phonenumber: <input type="text" name="phonenumber" > </label><br>
-    <label> ZIPcode: <input type="number" name="ZIPcode" > </label><br>
+    <label> name: <input type="text" name="name" required> </label><br>
+    <label> cpr: <input type="text" name="cpr" required> </label><br>
+    <label> email: <input type="text" name="email" required> </label><br>
+    <label> address: <input type="text" name="address" required> </label><br>
+    <label> phonenumber: <input type="text" name="phonenumber" required> </label><br>
+    <label> ZIPcode: <input type="number" name="ZIPcode" required> </label><br>
     <h1>Car information </h1> <br>
 
     <select name="car">
@@ -44,16 +45,10 @@
         </select>
     </label>
     <h1>Price </h1> <br>
-    <label> finalPrice: <input type="number" name="finalPrice" > </label><br>
+    <label> finalPrice: <input type="number" name="finalPrice" required> </label><br>
 
     <button type="submit"> submit </button>
-
-
-
-
-
-
-
 </form>
+
 </body>
 </html>

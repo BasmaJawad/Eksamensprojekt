@@ -1,28 +1,36 @@
 package com.example.eksamensprojekt.Model;
 
+import com.example.eksamensprojekt.Model.Cars.Car;
+
 public class Contract {
 
     private int contractID;
     private Car car;
     private SubLenght subLenght; //months
     private int finalPrice;
-    private Customer customer;
+    private int customerID;
     private PickupDestination pickupDestination;
-
-    public Contract(int contractID, Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
-        this.contractID = contractID;
-        this.car = car;
-        this.finalPrice = finalPrice;
-        this.customer = customer;
-        this.pickupDestination = pickupDestination;
-    }
+    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
     public Contract(Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
         this.car = car;
         this.subLenght = subLenght;
         this.finalPrice = finalPrice;
-        this.customer = customer;
+        this.customerID = customerID;
         this.pickupDestination = pickupDestination;
+    }
+
+  
+    public Contract(Car car, SubLenght subLenght, int finalPrice, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+        this.car = car;
+        this.subLenght = subLenght;
+        this.finalPrice = finalPrice;
+        this.customerID = customerID;
+        this.pickupDestination = pickupDestination;
+        this.vikingHelp = vikingHelp;
+        this.deliveryInsurance = deliveryInsurance;
+        this.lowDeductible = lowDeductible;
+        this.winterTires = winterTires;
     }
 
 
@@ -58,16 +66,57 @@ public class Contract {
         this.finalPrice = finalPrice;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(int customerID) {
+        this.customerID = customerID;
+    }
+
+
+    public PickupDestination getPickupDestination() {
+        return pickupDestination;
+    }
+
+    public void setPickupDestination(PickupDestination pickupDestination) {
+        this.pickupDestination = pickupDestination;
+    }
+
+    public boolean isVikingHelp() {
+        return vikingHelp;
+    }
+
+    public void setVikingHelp(boolean vikingHelp) {
+        this.vikingHelp = vikingHelp;
+    }
+
+    public boolean isDeliveryInsurance() {
+        return deliveryInsurance;
+    }
+
+    public void setDeliveryInsurance(boolean deliveryInsurance) {
+        this.deliveryInsurance = deliveryInsurance;
+    }
+
+    public boolean isLowDeductible() {
+        return lowDeductible;
+    }
+
+    public void setLowDeductible(boolean lowDeductible) {
+        this.lowDeductible = lowDeductible;
+    }
+
+    public boolean isWinterTires() {
+        return winterTires;
+    }
+
+    public void setWinterTires(boolean winterTires) {
+        this.winterTires = winterTires;
     }
 
     @Override
     public String toString() {
-        return customer + "\n" + car + "\n" + finalPrice + "\n" + subLenght.toString();
+        return customerID + "\n" + car + "\n" + finalPrice + "\n" + subLenght.toString();
     }
 }
