@@ -8,22 +8,22 @@ public class Contract {
     private Car car;
     private SubLenght subLenght; //months
     private int finalPrice;
-    private Customer customer;
+    private int customerID;
     private PickupDestination pickupDestination;
 
-    public Contract(int contractID, Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
+    public Contract(int contractID, Car car, SubLenght subLenght, int finalPrice, int CustomerID, PickupDestination pickupDestination) {
         this.contractID = contractID;
         this.car = car;
         this.finalPrice = finalPrice;
-        this.customer = customer;
+        this.customerID = customerID;
         this.pickupDestination = pickupDestination;
     }
 
-    public Contract(Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
+    public Contract(Car car, SubLenght subLenght, int finalPrice, int customerID, PickupDestination pickupDestination) {
         this.car = car;
         this.subLenght = subLenght;
         this.finalPrice = finalPrice;
-        this.customer = customer;
+        this.customerID = customerID;
         this.pickupDestination = pickupDestination;
     }
 
@@ -60,16 +60,16 @@ public class Contract {
         this.finalPrice = finalPrice;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomer(int customerID) {
+        this.customerID = customerID;
     }
 
     @Override
     public String toString() {
-        return customer + "\n" + car + "\n" + finalPrice + "\n" + subLenght.toString();
+        return customerID + "\n" + car + "\n" + finalPrice + "\n" + subLenght.toString();
     }
 }
