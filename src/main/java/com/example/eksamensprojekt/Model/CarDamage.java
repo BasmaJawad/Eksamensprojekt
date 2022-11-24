@@ -1,21 +1,21 @@
 package com.example.eksamensprojekt.Model;
 
 public class CarDamage {
-    private String desciption;
+    private String description;
     private int cost;
 
-    public CarDamage(String desciption, int cost) {
-        this.desciption = desciption;
+    public CarDamage(String description, int cost) {
+        this.description = description;
         this.cost = cost;
     }
 
 
-    public String getDesciption() {
-        return desciption;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesciption(String desciption) {
-        this.desciption = desciption;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getCost() {
