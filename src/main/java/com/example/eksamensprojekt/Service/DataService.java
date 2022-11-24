@@ -42,6 +42,6 @@ public class DataService {
     }
     public ArrayList<Contract> getAllContracts(){
 
-        return contractRepo.readMultiple(null);
+        return contractRepo.readMultiple();
     }
 }

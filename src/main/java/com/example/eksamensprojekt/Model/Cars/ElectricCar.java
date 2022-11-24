@@ -13,8 +13,8 @@ public class ElectricCar extends Car{
 
     }
 
-    public ElectricCar(String carModel, String carBrand, int carID, long VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires,int kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
-        super(carModel, carBrand, carID, VIN, vikingHelp, deliveryInsurance, lowDeductible, winterTires);
+    public ElectricCar(String carModel, String carBrand, int carID, long VIN, int kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
+        super(carModel, carBrand, carID, VIN);
         this.kmPrCharge = kmPrCharge;
         this.cleverCharging = cleverCharging;
         this.cleverNetworkCharging = cleverNetworkCharging;
