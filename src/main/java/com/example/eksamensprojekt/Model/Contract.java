@@ -10,14 +10,7 @@ public class Contract {
     private int finalPrice;
     private Customer customer;
     private PickupDestination pickupDestination;
-
-    public Contract(int contractID, Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
-        this.contractID = contractID;
-        this.car = car;
-        this.finalPrice = finalPrice;
-        this.customer = customer;
-        this.pickupDestination = pickupDestination;
-    }
+    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
     public Contract(Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination) {
         this.car = car;
@@ -25,6 +18,18 @@ public class Contract {
         this.finalPrice = finalPrice;
         this.customer = customer;
         this.pickupDestination = pickupDestination;
+    }
+
+    public Contract(Car car, SubLenght subLenght, int finalPrice, Customer customer, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+        this.car = car;
+        this.subLenght = subLenght;
+        this.finalPrice = finalPrice;
+        this.customer = customer;
+        this.pickupDestination = pickupDestination;
+        this.vikingHelp = vikingHelp;
+        this.deliveryInsurance = deliveryInsurance;
+        this.lowDeductible = lowDeductible;
+        this.winterTires = winterTires;
     }
 
 
@@ -66,6 +71,47 @@ public class Contract {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+    }
+
+
+    public PickupDestination getPickupDestination() {
+        return pickupDestination;
+    }
+
+    public void setPickupDestination(PickupDestination pickupDestination) {
+        this.pickupDestination = pickupDestination;
+    }
+
+    public boolean isVikingHelp() {
+        return vikingHelp;
+    }
+
+    public void setVikingHelp(boolean vikingHelp) {
+        this.vikingHelp = vikingHelp;
+    }
+
+    public boolean isDeliveryInsurance() {
+        return deliveryInsurance;
+    }
+
+    public void setDeliveryInsurance(boolean deliveryInsurance) {
+        this.deliveryInsurance = deliveryInsurance;
+    }
+
+    public boolean isLowDeductible() {
+        return lowDeductible;
+    }
+
+    public void setLowDeductible(boolean lowDeductible) {
+        this.lowDeductible = lowDeductible;
+    }
+
+    public boolean isWinterTires() {
+        return winterTires;
+    }
+
+    public void setWinterTires(boolean winterTires) {
+        this.winterTires = winterTires;
     }
 
     @Override

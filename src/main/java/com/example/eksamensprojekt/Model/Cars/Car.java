@@ -22,10 +22,7 @@ public class Car {
         this.carBrand = carBrand;
         this.carID = carID;
         this.VIN = VIN;
-        this.vikingHelp = vikingHelp;
-        this.deliveryInsurance = deliveryInsurance;
-        this.lowDeductible = lowDeductible;
-        this.winterTires = winterTires;
+
     }
 
 
@@ -59,40 +56,6 @@ public class Car {
 
     public void setVIN(long VIN) {
         this.VIN = VIN;
-    }
-
-    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
-
-    public boolean isVikingHelp() {
-        return vikingHelp;
-    }
-
-    public void setVikingHelp(boolean vikingHelp) {
-        this.vikingHelp = vikingHelp;
-    }
-
-    public boolean isDeliveryInsurance() {
-        return deliveryInsurance;
-    }
-
-    public void setDeliveryInsurance(boolean deliveryInsurance) {
-        this.deliveryInsurance = deliveryInsurance;
-    }
-
-    public boolean isLowDeductible() {
-        return lowDeductible;
-    }
-
-    public void setLowDeductible(boolean lowDeductible) {
-        this.lowDeductible = lowDeductible;
-    }
-
-    public boolean isWinterTires() {
-        return winterTires;
-    }
-
-    public void setWinterTires(boolean winterTires) {
-        this.winterTires = winterTires;
     }
     @Override
     public String toString() {

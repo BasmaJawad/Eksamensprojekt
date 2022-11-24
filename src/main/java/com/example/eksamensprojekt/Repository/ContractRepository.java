@@ -24,6 +24,15 @@ public class ContractRepository implements IRepository {
     }
 
     @Override
+    public ArrayList<Contract> readMultiple() {
+
+        ArrayList<Contract> contracts = new ArrayList<>();
+
+
+        return contracts;
+    }
+
+    @Override
     public void writeSingle(Object param) {
 
         //Insert Contract to database

@@ -34,6 +34,11 @@ public class CarRepository implements IRepository {
     }
 
     @Override
+    public ArrayList<Car> readMultiple() {
+        return null;
+    }
+
+    @Override
     public void writeSingle(Object param) {
 
     }
