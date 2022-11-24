@@ -17,7 +17,7 @@
     <h1>Car information </h1> <br>
 
     <select name="car">
-        <option th:each="car : ${cars}" th:value="${car.carID}" th:text="${car}"></option>
+        <option th:each="car : ${cars}" th:value="${car.VIN}" th:text="${car}"></option>
     </select>
 
     <label> SubLength:
