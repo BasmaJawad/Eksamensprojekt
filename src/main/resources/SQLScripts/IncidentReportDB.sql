@@ -8,7 +8,7 @@ CREATE TABLE  IF NOT EXISTS incidentsReports(
 );
 
 insert into incidentsReports(contractID,VIN,reportID)
-values (100,1648463896837495,10);
+values (100, 1648463896837495, 10);
 
 truncate incidentsReports;
 
