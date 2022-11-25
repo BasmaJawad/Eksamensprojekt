@@ -2,13 +2,15 @@ USE data;
 
 CREATE TABLE IF NOT EXISTS incidentsReports
 (
-    reportID   int unique,
+    reportID   int unique auto_increment,
     contractID int REFERENCES contracts (contractID),
-    VIN        long,
+    VIN        VARCHAR(100),
+    date       VARCHAR(100),
     PRIMARY KEY (reportID)
 
 );
 
 
-insert into incidentsReports(contractID, VIN, reportID)
-values (100, 1648463896837495, 10);
+
+insert into incidentsReports(contractID, VIN, date)
+values (100, '164846389683749', '2022-11-24');

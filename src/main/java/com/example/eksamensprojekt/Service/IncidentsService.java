@@ -6,6 +6,9 @@ import com.example.eksamensprojekt.Repository.CarDamageRepository;
 import com.example.eksamensprojekt.Repository.IncidentRepository;
 import org.springframework.web.context.request.WebRequest;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -20,14 +23,11 @@ public class IncidentsService {
     public List<CarDamage> findIncidentReport(int contractID){
 
         IncidentReport inRep = incidentReport.readOneReport(contractID);
-        return carDamageRepository.readDamagesInContract(inRep.getReportID());
+       // return carDamageRepository.readDamagesInContract(inRep.getReportID());
+        return null;
 
     }
 
-    public void generateReportID (){
-       int reportID = 0;
-
-    }
 
     public void createDamage(WebRequest req) {
 
@@ -39,6 +39,20 @@ public class IncidentsService {
 
         carDamageRepository.createDamage(damage);
 
+    }
+
+
+
+
+    public void createIncidentReport(WebRequest req){
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+
+        IncidentReport report = new IncidentReport(
+            parseInt(req.getParameter("ContractID")),
+            req.getParameter("VIN"), //find VIN fra contract via ContractId
+            LocalDate.now().format(df));
+
+        incidentReport.createIncidentReport(report);
     }
 
 

@@ -17,6 +17,10 @@ public class IncidentController {
 
     IncidentsService incidentsService = new IncidentsService();
 
+
+    //Mangler at indlæse contracts først
+
+
     @GetMapping("/incidentReport")
     public String findIncidentReport(){
         return "/DamageRegister/incidentReport";
@@ -31,6 +35,21 @@ public class IncidentController {
         return "/DamageRegister/showCarDamages";
     }
 
+
+
+   @PostMapping("/createReport")
+   public String createReport(WebRequest req, Model model){
+
+      //create rapport når man søger på contractID
+        model.addAttribute("ContractID", req.getParameter("contractID"));
+        //brug ID til at finde Contract og derefter hente VIN
+        // set VIN i model
+     incidentsService.createIncidentReport(req);
+
+
+
+       return "/";
+   }
 
     @PostMapping ("/damagepopup")
     public String writeDamage(WebRequest req, Model model){
