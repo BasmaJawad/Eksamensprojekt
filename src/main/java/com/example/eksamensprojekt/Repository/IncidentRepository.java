@@ -1,17 +1,12 @@
 package com.example.eksamensprojekt.Repository;
 
 import com.example.eksamensprojekt.Misc.DCM;
-import com.example.eksamensprojekt.Model.CarDamage;
 import com.example.eksamensprojekt.Model.IncidentReport;
-import com.example.eksamensprojekt.Model.User;
-import com.example.eksamensprojekt.Model.UserType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class IncidentRepository {
 

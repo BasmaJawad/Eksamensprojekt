@@ -7,13 +7,13 @@ public class ElectricCar extends Car{
     private int kmPrCharge;
 
 
-    public ElectricCar(String carModel, String carBrand, int carID, long VIN, int kmPrCharge) {
+    public ElectricCar(String carModel, String carBrand, int carID, String VIN, int kmPrCharge) {
         super(carModel, carBrand, carID, VIN);
         this.kmPrCharge = kmPrCharge;
 
     }
 
-    public ElectricCar(String carModel, String carBrand, int carID, long VIN, int kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
+    public ElectricCar(String carModel, String carBrand, int carID, String VIN, int kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
         super(carModel, carBrand, carID, VIN);
         this.kmPrCharge = kmPrCharge;
         this.cleverCharging = cleverCharging;

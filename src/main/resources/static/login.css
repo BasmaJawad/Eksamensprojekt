@@ -1,0 +1,112 @@
+body{
+    font: normal 15px "Avenir Next";
+    color: white;
+    padding: 0;
+    margin: 0;
+
+
+}
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+#login_img{
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+
+}
+
+#carimg{
+    filter: grayscale(100%);
+    height: 100%;
+    width: 100%;
+
+}
+
+#imgCol{
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 76, 153, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 50px;
+    margin: 0;
+
+}
+
+#logIn{
+
+    padding: 0px;
+    margin: 0px;
+    font-size: 30px;
+    float: left;
+    top: 0;
+}
+
+hr{
+    font-weight: 900;
+
+}
+
+
+#overlay{
+
+    width: 60%;
+    height: 110%;
+    position: relative;
+    top: -130px;
+    left: 25%;
+    background-color: white;
+    margin-right: 0px;
+    float: left;
+
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+   padding-top: 230px;
+
+}
+
+form {
+    background-color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+input {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 50%;
+    height: 30px;
+}
+
+button{
+    color: #fff;
+    text-transform: uppercase;
+    background: rgb(0, 76, 153);
+    border: 1px solid rgb(0, 76, 153);
+    margin: 40px;
+    border-radius: 3px;
+    height: 40px;
+    width: 200px;
+    font-size: 15px;
+}
+button:hover{
+    background-color: cornflowerblue;
+}
+
+h2{
+    color: black;
+
+}

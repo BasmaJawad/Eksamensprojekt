@@ -2,8 +2,6 @@ package com.example.eksamensprojekt.Repository;
 
 import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.Customer;
-import com.example.eksamensprojekt.Model.User;
-import com.example.eksamensprojekt.Model.UserType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

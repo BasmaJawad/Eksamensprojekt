@@ -5,7 +5,7 @@ public class GasCar extends Car{
     private int kmPrLiter, co2PrKm;
 
 
-    public GasCar(String carModel, String carBrand, int carID, long VIN, int co2PrKm) {
+    public GasCar(String carModel, String carBrand, int carID, String VIN, int co2PrKm) {
         super(carModel, carBrand, carID, VIN);
         this.co2PrKm = co2PrKm;
     }
