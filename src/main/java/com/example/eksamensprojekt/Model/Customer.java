@@ -1,8 +1,6 @@
 package com.example.eksamensprojekt.Model;
 
 public class Customer {
-
-    private int customerID;
     private String name;
     private String cprNum;
     private String email;
@@ -68,9 +66,6 @@ public class Customer {
         this.zipCode = zipCode;
     }
 
-    public void setCustomerID(int customerID){
-        this.customerID = customerID;
-    }
 
     @Override
     public String toString() {

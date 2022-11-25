@@ -3,8 +3,11 @@ package com.example.eksamensprojekt.Model;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
+import java.time.LocalDate;
+
 public class Contract {
 
+    private LocalDate date;
     private int contractID;
     private String VIN;
     private SubLenght subLenght; //months
@@ -16,6 +19,7 @@ public class Contract {
     public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination) {
         this.VIN = VIN;
         this.subLenght = subLenght;
+        this.finalPrice = finalPrice;
         this.customerID = customerID;
         this.pickupDestination = pickupDestination;
     }
@@ -24,6 +28,7 @@ public class Contract {
     public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
         this.VIN = VIN;
         this.subLenght = subLenght;
+        this.finalPrice = finalPrice;
         this.customerID = customerID;
         this.pickupDestination = pickupDestination;
         this.vikingHelp = vikingHelp;

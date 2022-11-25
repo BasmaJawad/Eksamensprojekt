@@ -1,15 +1,9 @@
 create table contracts
 (
     contractID        int,
-    carID             int unique,
-    customerName      VARCHAR(50),
-    customerEmail     VARCHAR(50),
-    customerAddress   varchar(50),
-    customerPhone     varchar(50),
-    cpr               varchar(50),
-    zipcode           int,
     subLength         ENUM ('THREE_MONTHS','SIX_MONTHS','TWELVE_MONTHS','TWENTYFOUR_MONTHS','THIRTYSIX_MONTHS'),
     finalPrice        int,
+    VIN varchar(50),
     pickupDestination ENUM ('FDM_AARHUS',
         'FMD_VEJLE',
         'FDM_SOENDERBORG',
