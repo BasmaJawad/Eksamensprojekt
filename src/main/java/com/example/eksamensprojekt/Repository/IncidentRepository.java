@@ -46,4 +46,22 @@ public class IncidentRepository {
 
 
 
+
+
+    public void createIncidentReport(IncidentReport incidentReport){
+        try {
+            PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports VALUES (?,?,?)");
+            psts.setInt(2, incidentReport.getContractID());
+            psts.setLong(3, incidentReport.getVIN());
+
+            psts.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
 }
