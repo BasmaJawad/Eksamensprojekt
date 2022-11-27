@@ -6,5 +6,25 @@
 </head>
 <body>
 
+<div class="form-container sign-in-container">
+
+    <form action="/createReport" method ="post">
+        <h1> Find lejekontrakt </h1>
+
+        <label for ="contractID"></label>
+        <input id="contractID" type="text" name="contractID" placeholder="KontraktID" required />
+
+        <button type="submit">Søg</button>
+
+        <button onclick="window.location='/DamagePopup';"> + tilføj Skade</button>
+
+    </form>
+
+    <br><br>
+
+    <button onclick="window.location='/logout';" id="button2">logout</button>
+
+</div>
+
 </body>
 </html>

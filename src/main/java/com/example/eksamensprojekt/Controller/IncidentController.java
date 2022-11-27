@@ -37,19 +37,28 @@ public class IncidentController {
 
 
 
+
+    @GetMapping ("createReport")
+    public String createReport(){
+    return "/DamageRegister/createReport";
+    }
+
+
    @PostMapping("/createReport")
    public String createReport(WebRequest req, Model model){
 
       //create rapport når man søger på contractID
-        model.addAttribute("ContractID", req.getParameter("contractID"));
+        model.addAttribute("contractID", req.getParameter("contractID"));
         //brug ID til at finde Contract og derefter hente VIN
         // set VIN i model
      incidentsService.createIncidentReport(req);
-
-
-
-       return "/";
+       return "/DamageRegister/createReport";
    }
+
+    @GetMapping("/DamagePopup")
+    public String inputDamage(){
+      return "/DamageRegister/DamagePopup";
+    }
 
     @PostMapping ("/damagepopup")
     public String writeDamage(WebRequest req, Model model){
@@ -57,7 +66,6 @@ public class IncidentController {
         model.addAttribute("pris", req.getParameter("pris"));
         incidentsService.createDamage(req);
 
-
-        return "/";
+        return "redirect:/incidentshomepage";
     }
 }
