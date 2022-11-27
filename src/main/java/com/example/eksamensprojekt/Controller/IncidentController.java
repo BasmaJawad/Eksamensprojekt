@@ -17,6 +17,13 @@ public class IncidentController {
 
     IncidentsService incidentsService = new IncidentsService();
 
+    @GetMapping("incidentsHomepage")
+    public String incidentHome(){
+      return "/DamageRegister/incidentsHomepage";
+    }
+
+
+
 
     //Mangler at indlæse contracts først
 

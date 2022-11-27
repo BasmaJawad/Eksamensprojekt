@@ -1,0 +1,88 @@
+body{
+    font: normal 15px "Avenir Next";
+    color: white;
+    padding: 0;
+    margin: 0;
+
+
+}
+.container{
+    height: 100%;
+    width: 100%;
+}
+
+#login_img{
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+
+}
+
+#carimg{
+    filter: grayscale(100%);
+    height: 100%;
+    width: 100%;
+
+}
+
+.content{
+    padding: 0.4%;
+    padding-top: 220px;
+    margin:0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.card{
+    background-color: #f5f4f1;
+    float: left;
+    margin-right: 60px;
+
+    position: relative;
+    border-radius: 10px;
+    width: 20%;
+    padding: 30px;
+    height: 300px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 70px;
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
