@@ -21,6 +21,7 @@ public class IncidentController {
     // STARTSIDE
     @GetMapping("incidentsHomepage")
     public String incidentHome() {
+
         return "/DamageRegister/incidentsHomepage";
     }
 
@@ -38,12 +39,12 @@ public class IncidentController {
         //tjekker om contract id eksisterer
         int ContractID = Integer.parseInt(req.getParameter("contractID"));
         boolean validID = incidentsService.verifyContractID(ContractID);
-        System.out.println(validID);
+
 
         if (validID) {
 
             List<CarDamage> carDamages = incidentsService.findCarDamages(ContractID);
-            System.out.println(carDamages.size());
+
             session.setAttribute("damages", carDamages);
 
             return "/DamageRegister/showCarDamages";
@@ -51,8 +52,6 @@ public class IncidentController {
         }
         return "/DamageRegister/NoContractError";
     }
-
-
 
     // LAV RAPPORT
     @GetMapping("createReport")
@@ -75,7 +74,7 @@ public class IncidentController {
 
 
     // INDTAST SKADE
-    @GetMapping("/DamagePopup")
+    @GetMapping("/damagePopup")
     public String inputDamage() {
         return "/DamageRegister/DamagePopup";
     }
@@ -86,6 +85,6 @@ public class IncidentController {
         model.addAttribute("pris", req.getParameter("pris"));
         incidentsService.createDamage(req);
 
-        return "redirect:/incidentshomepage";
+        return "redirect:/showCarDamages";
     }
 }
