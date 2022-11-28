@@ -1,26 +1,22 @@
 package com.example.eksamensprojekt.Model.Cars;
 
+import com.example.eksamensprojekt.Model.Enums.CarStatus;
+
 public class Car {
 
     private String carModel, carBrand,VIN;
+    private CarStatus carStatus;
 
     //Addons
 
 // private AddedFeatures;
 
 
-    public Car(String carModel, String carBrand, String VIN) {
+    public Car(String carModel, String carBrand, String VIN, CarStatus carStatus) {
         this.carModel = carModel;
         this.carBrand = carBrand;
-
         this.VIN = VIN;
-    }
-    public Car(String carModel, String carBrand, String VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires){
-        this.carModel = carModel;
-        this.carBrand = carBrand;
-
-        this.VIN = VIN;
-
+        this.carStatus = carStatus;
     }
 
 
