@@ -39,7 +39,7 @@ public class CarDamageRepository{
     }
 
 
-    public int readID(){
+    public int readID(){ // For at lave damages
 
       try{
           PreparedStatement psts = conn.prepareStatement("SELECT MAX(reportID) FROM incidentsreports");

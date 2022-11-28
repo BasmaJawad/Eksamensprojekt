@@ -11,6 +11,5 @@ CREATE TABLE IF NOT EXISTS incidentsReports
 );
 
 
-
 insert into incidentsReports(contractID, VIN, date)
-values (100, '164846389683749', '2022-11-24');
+values (1, '164846389683749', '2022-11-24');

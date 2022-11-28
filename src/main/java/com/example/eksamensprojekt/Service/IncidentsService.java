@@ -16,7 +16,6 @@ import static java.lang.Integer.parseInt;
 
 public class IncidentsService {
 
-    private int reportID;
 
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
@@ -27,8 +26,11 @@ public class IncidentsService {
     public boolean verifyContractID(int ContractID) {
 
         List<Contract> contracts = contractRepository.readMultiple();
+        System.out.println(contracts.size());
 
         for (Contract contract : contracts) {
+            System.out.println("Id fra liste" + contract.getContractID());
+            System.out.println( "Id fra req" + ContractID);
             if (contract.getContractID() == ContractID)
                 return true;
 
@@ -40,8 +42,6 @@ public class IncidentsService {
 
         IncidentReport inRep = incidentReport.readOneReport(contractID);
 
-        System.out.println();
-
         return carDamageRepository.readDamagesInContract(inRep.getReportID());
 
     }
@@ -51,7 +51,7 @@ public class IncidentsService {
 
         CarDamage damage = new CarDamage(
 
-                reportID,
+                carDamageRepository.readID(),
                 req.getParameter("Beskrivelse"),
                 parseInt(req.getParameter("pris")));
 
@@ -60,16 +60,26 @@ public class IncidentsService {
     }
 
 
-    public void createIncidentReport(WebRequest req) {
+    public String getVIN(int contractID){
+
+        Contract contract = contractRepository.readSingle(contractID);
+
+        return contract.getVIN();
+    }
+
+    public void createIncidentReport(int contractID) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 
         IncidentReport report = new IncidentReport(
-                parseInt(req.getParameter("ContractID")),
-                req.getParameter("VIN"), //find VIN fra contract via ContractId
+                contractID,
+                getVIN(contractID),
                 LocalDate.now().format(df));
 
         incidentReport.createIncidentReport(report);
     }
 
 
+    public ContractRepository getContractRepository() {
+        return contractRepository;
+    }
 }
