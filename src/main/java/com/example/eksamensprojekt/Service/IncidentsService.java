@@ -1,6 +1,7 @@
 package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.CarDamage;
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.IncidentReport;
 import com.example.eksamensprojekt.Repository.CarDamageRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
