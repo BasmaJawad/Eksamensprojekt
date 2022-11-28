@@ -1,6 +1,7 @@
 package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.CarDamage;
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.IncidentReport;

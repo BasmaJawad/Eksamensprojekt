@@ -28,7 +28,6 @@ public class Contract {
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
 
-        finalPrice = calculatePrice();
     }
     //Constructor with contractID, used when displaying all contracts
     public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
@@ -42,10 +41,9 @@ public class Contract {
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
 
-        finalPrice = calculatePrice();
     }
 
-    private int calculatePrice(){
+    private void calculatePrice(){
 
         int totalPrice = 0;
 
@@ -55,7 +53,6 @@ public class Contract {
         if (winterTires) totalPrice += 50;
 
         //needs more
-        return totalPrice;
     }
 
 

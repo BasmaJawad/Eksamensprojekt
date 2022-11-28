@@ -32,6 +32,7 @@ public class ContractRepository implements IRepository {
         return contracts;
     }
 
+
     @Override
     public ArrayList<Contract> readMultiple() {
 

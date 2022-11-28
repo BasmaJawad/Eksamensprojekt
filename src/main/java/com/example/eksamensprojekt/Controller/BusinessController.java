@@ -13,7 +13,7 @@ public class BusinessController {
     @GetMapping("/listOfRentedCars")
     public String listOfRentedCars(Model model){
 
-
+        model.addAttribute("rentedCars", bs.getRentedCars());
 
         return "/BusinessUser/listOfRentedCars";
     }

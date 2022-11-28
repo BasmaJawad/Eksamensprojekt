@@ -13,6 +13,7 @@ public class BusinessService {
     public ArrayList<Car> getRentedCars(){
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
+
         conditions.add(CarStatus.RENTED);
 
         return carRepo.readMultiple(conditions);
