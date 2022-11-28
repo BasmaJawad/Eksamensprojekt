@@ -43,7 +43,7 @@ public class ContractRepository implements IRepository {
             ResultSet resultSet = ptsd.executeQuery();
 
             while (resultSet.next()) {
-
+                int contractID = resultSet.getInt("contractID");
                 String VIN = resultSet.getString("VIN");
                 SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
                 int customerID = resultSet.getInt("customerID");
@@ -53,7 +53,7 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
 
-                contracts.add(new Contract(VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires));
+                contracts.add(new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires));
             }
 
         } catch (SQLException e) {

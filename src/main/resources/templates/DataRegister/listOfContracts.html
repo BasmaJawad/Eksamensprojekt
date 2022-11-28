@@ -6,5 +6,38 @@
 </head>
 <body>
 
+
+<table>
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>StelNummer</td>
+        <td>Kende nr</td>
+        <td>Leje periode</td>
+        <td>Afhentnings-sted</td>
+        <td>Vinter-hjul</td>
+        <td>Viking-hjælp</td>
+        <td>Lav selvrisiko</td>
+        <td>Afhentnings-forsikring</td>
+    </tr>
+
+    </thead>
+    <tbody>
+        <tr th:each="contract : ${contracts}">
+            <td th:text="${contractStat.index}"></td>
+            <td th:text="${contract.VIN}"></td>
+            <td th:text="${contract.customerID}"></td>
+            <td th:text="${T(contract.subLength)}"></td>
+            <td th:text="${T(contract.pickupDestination)}"></td>
+            <td th:text="${contract.winterTires}"></td>
+            <td th:text="${contract.vikingHelp}"></td>
+            <td th:text="${contract.lowDeductible}"></td>
+            <td th:text="${contract.deliveryInsurance}"></td>
+        </tr>
+    </tbody>
+
+
+</table>
+
 </body>
 </html>

@@ -38,7 +38,7 @@ public class DataController {
   public String contractList(Model model){
 
     //ThymeLeaf
-    model.addAttribute(dataService.getAllContracts());
+    model.addAttribute("contracts" ,dataService.getAllContracts());
 
     return "/DataRegister/listOfContracts";
   }
