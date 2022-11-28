@@ -4,6 +4,7 @@ import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Cars.ElectricCar;
 import com.example.eksamensprojekt.Model.Cars.GasCar;
+import com.example.eksamensprojekt.Model.Enums.CarStatus;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,6 +46,7 @@ public class CarRepository implements IRepository {
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
+                        CarStatus.valueOf(resultSet.getString(6)),
                         resultSet.getString(4),
                         resultSet.getString(5)));
             }
@@ -65,6 +67,7 @@ public class CarRepository implements IRepository {
                         resultSet.getString(1),
                         resultSet.getString(2),
                         resultSet.getString(3),
+                        CarStatus.valueOf(resultSet.getString(7)),
                         resultSet.getString(4),
                         resultSet.getBoolean(5),
                         resultSet.getBoolean(6)
