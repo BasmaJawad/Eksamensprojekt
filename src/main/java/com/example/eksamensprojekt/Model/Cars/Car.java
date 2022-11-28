@@ -3,23 +3,22 @@ package com.example.eksamensprojekt.Model.Cars;
 public class Car {
 
     private String carModel, carBrand,VIN;
-    private int carID;
 
     //Addons
 
 // private AddedFeatures;
 
 
-    public Car(String carModel, String carBrand, int carID, String VIN) {
+    public Car(String carModel, String carBrand, String VIN) {
         this.carModel = carModel;
         this.carBrand = carBrand;
-        this.carID = carID;
+
         this.VIN = VIN;
     }
-    public Car(String carModel, String carBrand, int carID, String VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires){
+    public Car(String carModel, String carBrand, String VIN, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires){
         this.carModel = carModel;
         this.carBrand = carBrand;
-        this.carID = carID;
+
         this.VIN = VIN;
 
     }
@@ -41,13 +40,6 @@ public class Car {
         this.carBrand = carBrand;
     }
 
-    public int getCarID() {
-        return carID;
-    }
-
-    public void setCarID(int carID) {
-        this.carID = carID;
-    }
 
     public String getVIN() {
         return VIN;

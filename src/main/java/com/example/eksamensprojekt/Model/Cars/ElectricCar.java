@@ -4,17 +4,17 @@ public class ElectricCar extends Car{
 
     private boolean cleverNetworkCharging, cleverCharging;
 
-    private int kmPrCharge;
+    private String kmPrCharge;
 
 
-    public ElectricCar(String carModel, String carBrand, int carID, String VIN, int kmPrCharge) {
-        super(carModel, carBrand, carID, VIN);
+    public ElectricCar(String carModel, String carBrand, String VIN, String kmPrCharge) {
+        super(carModel, carBrand, VIN);
         this.kmPrCharge = kmPrCharge;
 
     }
 
-    public ElectricCar(String carModel, String carBrand, int carID, String VIN, int kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
-        super(carModel, carBrand, carID, VIN);
+    public ElectricCar(String carModel, String carBrand,  String VIN, String kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
+        super(carModel, carBrand, VIN);
         this.kmPrCharge = kmPrCharge;
         this.cleverCharging = cleverCharging;
         this.cleverNetworkCharging = cleverNetworkCharging;
@@ -36,11 +36,11 @@ public class ElectricCar extends Car{
         this.cleverCharging = cleverCharging;
     }
 
-    public int getKmPrCharge() {
+    public String getKmPrCharge() {
         return kmPrCharge;
     }
 
-    public void setKmPrCharge(int kmPrCharge) {
+    public void setKmPrCharge(String kmPrCharge) {
         this.kmPrCharge = kmPrCharge;
     }
 }

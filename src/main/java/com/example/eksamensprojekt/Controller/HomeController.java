@@ -32,9 +32,9 @@ public class HomeController {
             else if (user.getUserType().equals(UserType.INCIDENT))
                 return "/DamageRegister/incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))
-                return "businessHomepage";
+                return "/BusinessUser/businessHomepage";
             else if (user.getUserType().equals(UserType.ADMIN))
-                return "adminHomepage";
+                return "/Admin/adminHomepage";
         }
 
         return "login"; // mangler fejlhåndtering

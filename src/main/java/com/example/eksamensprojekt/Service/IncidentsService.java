@@ -17,6 +17,7 @@ public class IncidentsService {
 
     private int reportID;
 
+
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
 

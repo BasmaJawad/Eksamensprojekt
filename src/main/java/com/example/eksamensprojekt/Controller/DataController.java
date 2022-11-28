@@ -11,7 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import java.util.ArrayList;
 
 @Controller
-public class dataController {
+public class DataController {
 
   DataService dataService = new DataService();
 
@@ -26,12 +26,8 @@ public class dataController {
   @GetMapping("/contractPage")
   public String contractPage(Model model){
 
-    Car car = new GasCar("model", "model1", 1, "abcdefg", 30);
 
-    ArrayList<Car> cars = new ArrayList<>();
-
-    cars.add(car);
-
+    ArrayList<Car> cars = dataService.getAllAvailableCars();
 
     model.addAttribute("cars", cars);
 
