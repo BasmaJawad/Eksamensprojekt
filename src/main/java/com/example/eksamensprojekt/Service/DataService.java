@@ -51,10 +51,8 @@ public class DataService {
                 lowDeductible,
                 winterTires);
 
-        //Database
+        //Add contract to database
         contractRepo.writeSingle(contract);
-
-
     }
 
     public ArrayList<Car> getAllAvailableCars(){
