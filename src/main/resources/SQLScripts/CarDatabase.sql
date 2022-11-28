@@ -29,3 +29,4 @@ INSERT INTO electricCar(CarModel, CarBrand, VIN, kmPrCharge, cleverNetworkChargi
 VALUES ('500e Icon Pack 118 HK', 'Fiat', 45783636453574612, 300,0,0);
 INSERT INTO gasCar(CarModel, CarBrand, VIN,kmPrLiter, co2PrKm)
 VALUES ('C4 Cactus Platinium Benzin', 'Citroën', 45783698142874612,'15km/L', '133g/km');
+

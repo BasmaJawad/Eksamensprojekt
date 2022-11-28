@@ -23,6 +23,41 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
+    public Contract findOneContract(String VINnum){
+
+        Contract contract = null;
+
+        try {
+
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.contracts where VIN=?");
+         //  psts.setString(1, columnName);
+            psts.setString(1, VINnum);
+
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+                int contractID = resultSet.getInt("contractID");
+                String VIN = resultSet.getString("VIN");
+                SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
+                int customerID = resultSet.getInt("customerID");
+                PickupDestination pickup = PickupDestination.valueOf(resultSet.getString("pickupDestination"));
+                boolean winterTires = resultSet.getBoolean("winterTires");
+                boolean vikingHelp = resultSet.getBoolean("vikingHelp");
+                boolean lowDeductible = resultSet.getBoolean("lowDeductible");
+                boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
+
+                contract = new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return contract;
+
+
+    }
+
     @Override
     public ArrayList<Contract> readMultiple(ArrayList conditions) {
 
@@ -114,16 +149,18 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
+
     public List<Contract> returnedCarsContracts(List<Car> returnedCars){
 
         List<Contract> returnedCardsContracts = new ArrayList<>();
 
         for (Car car: returnedCars) {
-            if( )
+            Contract contract = findOneContract( car.getVIN());
+            if (contract!=null) {
+                returnedCardsContracts.add(contract);
+            }
         }
-
-
-        return null;
+        return returnedCardsContracts;
 
     }
 

@@ -21,7 +21,6 @@ import static java.lang.Integer.parseInt;
 public class IncidentsService {
 
 
-
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
     private ContractRepository contractRepository = new ContractRepository();
@@ -63,13 +62,6 @@ public class IncidentsService {
     }
 
 
-    public String getVIN(int contractID){
-
-        Contract contract = contractRepository.readSingle(contractID);
-
-        return contract.getVIN();
-    }
-
     public void createIncidentReport(int contractID) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 
@@ -81,21 +73,53 @@ public class IncidentsService {
         incidentReport.createIncidentReport(report);
     }
 
-    public ArrayList<Contract> findContractsWithIncidentReport(){
+    public String getVIN(int contractID) {
 
-        incidentReport.findContractsWithIncidentReport(contractRepository.readMultiple()); //skift liste til kun tilbage returnede biler
+        Contract contract = contractRepository.readSingle(contractID);
 
-        return null;
+        return contract.getVIN();
     }
 
-    public void setCarRepositoryInContractRepo(){
+
+    public List<Contract> returnedCarsContracts() {
+        //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
+        return contractRepository.returnedCarsContracts(setCarRepositoryInContractRepo());
+    }
+
+    public List<Car> setCarRepositoryInContractRepo() {
+
         ArrayList<CarStatus> conditions = new ArrayList<>();
         conditions.add(CarStatus.RETURNED);
-        carRepository.readMultiple(conditions);
+
+        return carRepository.readMultiple(conditions);
+    }
+
+    //Følgende 2 metoder undersøger om listen med returnerede biler har en incident report,
+    // ved at tjekke om contractIDen eksisterer i incidentReport tabellen
+    public List<Contract> contractsWITHincidentRep() {
+
+        List<Contract> allReturnedCarsContracts = returnedCarsContracts();
+        List<Contract> contractsWreport = new ArrayList<>();
+
+        for (Contract contract : allReturnedCarsContracts) {
+            if (incidentReport.readOneReport(contract.getContractID())!=null)
+                contractsWreport.add(contract);
+        }
+
+        return contractsWreport;
     }
 
 
-    public ContractRepository getContractRepository() {
-        return contractRepository;
+    public List<Contract> contractsWITHOUTincidentRep() {
+
+        List<Contract> allReturnedCarsContracts = returnedCarsContracts();
+        List<Contract> contractsWOreport = new ArrayList<>();
+
+        for (Contract contract : allReturnedCarsContracts) {
+            if (incidentReport.readOneReport(contract.getContractID())==null)
+                contractsWOreport.add(contract);
+        }
+
+        return contractsWOreport;
     }
 }

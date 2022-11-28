@@ -19,8 +19,14 @@ public class IncidentController {
     IncidentsService incidentsService = new IncidentsService();
 
     // STARTSIDE
-    @GetMapping("incidentsHomepage")
-    public String incidentHome() {
+    @GetMapping("/incidentsHomepage")
+    public String incidentHome(HttpSession session) {
+
+       session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep());
+       session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
+
+        System.out.println("med ir" +incidentsService.contractsWITHincidentRep().size());
+        System.out.println("uden ir" +incidentsService.contractsWITHOUTincidentRep().size());
 
         return "/DamageRegister/incidentsHomepage";
     }
