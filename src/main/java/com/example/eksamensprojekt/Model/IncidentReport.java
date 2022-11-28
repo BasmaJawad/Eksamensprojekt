@@ -1,17 +1,17 @@
 package com.example.eksamensprojekt.Model;
 
-import java.util.List;
-
 public class IncidentReport {
 
     private int contractID;
-    private long VIN;
-    private int reportID;
+    private String VIN;
 
-    public IncidentReport(int contractID, long VIN, int reportID) {
+
+    private String date;
+
+    public IncidentReport(int contractID, String VIN, String date) {
         this.contractID = contractID;
         this.VIN = VIN;
-        this.reportID = reportID;
+        this.date = date;
     }
 
     public int getContractID() {
@@ -22,19 +22,20 @@ public class IncidentReport {
         this.contractID = contractID;
     }
 
-    public long getVIN() {
+    public String getVIN() {
         return VIN;
     }
 
-    public void setVIN(long VIN) {
+    public void setVIN(String VIN) {
         this.VIN = VIN;
     }
 
-    public int getReportID() {
-        return reportID;
+
+    public String getDate() {
+        return date;
     }
 
-    public void setReportID(int reportID) {
-        this.reportID = reportID;
+    public void setDate(String date) {
+        this.date = date;
     }
 }

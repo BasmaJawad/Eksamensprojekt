@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Type damage</title>
+</head>
+<body>
+
+<div class="bg">
+    <div class="popup-box">
+        <p id="newDamage">Indtast skade</p>
+
+        <div class="close">
+            <a href="/createReport"> Tilbage </a>
+        </div>
+
+        <form action="/DamagePopup" method="post">
+            <label for ="beskrivelse"></label>
+            <input id="beskrivelse" type="text" name="beskrivelse" placeholder="beskrivelse" required />
+            <label for ="pris"></label>
+            <input id="pris" type="text" name="pris" placeholder="pris" required />
+            <br>
+            <br>
+            <br>
+            <button type="submit" class="CreateButton">Create</button>
+        </form>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+</body>
+</html>

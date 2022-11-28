@@ -25,8 +25,8 @@ public class IncidentRepository {
 
                 incidentReport = new IncidentReport(
                         resultSet.getInt("contractID"),
-                        resultSet.getLong("VIN"),
-                        resultSet.getInt("reportID")
+                        resultSet.getString("VIN"),
+                        resultSet.getString("date")
                 );
 
             }
@@ -37,6 +37,25 @@ public class IncidentRepository {
         }
 
         return incidentReport;
+    }
+
+
+
+
+
+    public void createIncidentReport(IncidentReport incidentReport){
+        try {
+            PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports VALUES (?,?,?)");
+            psts.setInt(1, incidentReport.getContractID());
+            psts.setString(2, incidentReport.getVIN());
+            psts.setString(3,incidentReport.getDate());
+
+            psts.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 

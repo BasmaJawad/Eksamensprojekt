@@ -30,7 +30,7 @@ public class HomeController {
             if (user.getUserType().equals(UserType.DATA))
                 return "/DataRegister/dataHomepage";
             else if (user.getUserType().equals(UserType.INCIDENT))
-                return "incidentsHomepage";
+                return "/DamageRegister/incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))
                 return "businessHomepage";
             else if (user.getUserType().equals(UserType.ADMIN))

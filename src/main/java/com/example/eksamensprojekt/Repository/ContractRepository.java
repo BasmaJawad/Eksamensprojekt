@@ -90,6 +90,27 @@ public class ContractRepository implements IRepository {
 
     }
 
+    public String returnVIN(int contractID) {
+        String QUARY = "SELECT VIN FROM contracts WHERE contractID = ? "  ;
+
+        try{
+            PreparedStatement psts = conn.prepareStatement(QUARY); {
+                psts.setInt(1, contractID);
+                ResultSet resultSet = psts.executeQuery();
+                String VIN = "";
+                while(resultSet.next()) {
+                    VIN = resultSet.getString(1);
+
+                }
+                return VIN;
+
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
+    }
+
     @Override
     public void writeMultiple(ArrayList objects) {
 
