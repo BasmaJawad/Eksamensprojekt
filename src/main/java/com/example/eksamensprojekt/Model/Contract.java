@@ -3,8 +3,11 @@ package com.example.eksamensprojekt.Model;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
+import java.time.LocalDate;
+
 public class Contract {
 
+    private LocalDate date;
     private int contractID;
     private String VIN;
     private SubLenght subLenght; //months
@@ -13,15 +16,23 @@ public class Contract {
     private PickupDestination pickupDestination;
     private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
-    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination) {
+
+    //Constructor without contractID, used when writing contracts
+    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
         this.VIN = VIN;
         this.subLenght = subLenght;
         this.customerID = customerID;
         this.pickupDestination = pickupDestination;
-    }
+        this.vikingHelp = vikingHelp;
+        this.deliveryInsurance = deliveryInsurance;
+        this.lowDeductible = lowDeductible;
+        this.winterTires = winterTires;
 
-  
-    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+        finalPrice = calculatePrice();
+    }
+    //Constructor with contractID, used when displaying all contracts
+    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+        this.contractID = contractID;
         this.VIN = VIN;
         this.subLenght = subLenght;
         this.customerID = customerID;
@@ -41,7 +52,7 @@ public class Contract {
         if (vikingHelp) totalPrice += 49;
         if (deliveryInsurance) totalPrice += 119;
         if (lowDeductible) totalPrice += 64;
-        if (winterTires) totalPrice += 0;
+        if (winterTires) totalPrice += 50;
 
         //needs more
         return totalPrice;

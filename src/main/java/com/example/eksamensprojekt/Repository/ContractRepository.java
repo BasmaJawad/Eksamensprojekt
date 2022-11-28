@@ -43,7 +43,7 @@ public class ContractRepository implements IRepository {
             ResultSet resultSet = ptsd.executeQuery();
 
             while (resultSet.next()) {
-
+                int contractID = resultSet.getInt("contractID");
                 String VIN = resultSet.getString("VIN");
                 SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
                 int customerID = resultSet.getInt("customerID");
@@ -53,7 +53,7 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
 
-                contracts.add(new Contract(VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires));
+                contracts.add(new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires));
             }
 
         } catch (SQLException e) {
@@ -88,6 +88,27 @@ public class ContractRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public String returnVIN(int contractID) {
+        String QUARY = "SELECT VIN FROM contracts WHERE contractID = ? "  ;
+
+        try{
+            PreparedStatement psts = conn.prepareStatement(QUARY); {
+                psts.setInt(1, contractID);
+                ResultSet resultSet = psts.executeQuery();
+                String VIN = "";
+                while(resultSet.next()) {
+                    VIN = resultSet.getString(1);
+
+                }
+                return VIN;
+
+            }
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return null;
     }
 
     @Override
