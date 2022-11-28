@@ -39,11 +39,6 @@ public class CarDamageRepository{
     }
 
 
-
-
-
-
-
     public int readID(){
 
       try{

@@ -22,9 +22,6 @@ public class IncidentController {
       return "/DamageRegister/incidentsHomepage";
     }
 
-
-
-
     //Mangler at indlæse contracts først
 
 
@@ -33,10 +30,21 @@ public class IncidentController {
         return "/DamageRegister/incidentReport";
     }
 
+
     @PostMapping("/incidentReport")
     public String showIncidentReport(HttpSession session, WebRequest req){
-        List<CarDamage> carDamages =
-    incidentsService.findIncidentReport(Integer.parseInt(req.getParameter("contractID")));
+
+        //tjekker om contract id eksisterer
+        int ContractID= Integer.parseInt(req.getParameter("contractID"));
+       boolean validID = incidentsService.verifyContractID(ContractID);
+
+       if (validID){
+
+       }
+
+        List<CarDamage> carDamages = incidentsService.findCarDamages(ContractID);
+        System.out.println(carDamages.size());
+
         session.setAttribute("damages", carDamages);
 
         return "/DamageRegister/showCarDamages";

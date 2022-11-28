@@ -24,6 +24,7 @@ public class IncidentRepository {
             while (resultSet.next()) {
 
                 incidentReport = new IncidentReport(
+                        resultSet.getInt("reportID"),
                         resultSet.getInt("contractID"),
                         resultSet.getString("VIN"),
                         resultSet.getString("date")

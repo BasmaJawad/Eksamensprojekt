@@ -2,6 +2,7 @@ package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.User;
 import com.example.eksamensprojekt.Model.Enums.UserType;
+import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
