@@ -10,6 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -79,9 +80,11 @@ public class IncidentsService {
         incidentReport.createIncidentReport(report);
     }
 
+    public ArrayList<Contract> findContractsWithIncidentReport(){
 
-    public void findAllBackCars(){
+        incidentReport.findContractsWithIncidentReport(contractRepository.readMultiple()); //skift liste til kun tilbage returnede biler
 
+        return null;
     }
 
     public ContractRepository getContractRepository() {

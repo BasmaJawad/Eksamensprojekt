@@ -19,7 +19,6 @@ public class CarRepository implements IRepository {
     @Override
     public Object readSingle(Object param) {
 
-
         return -1;
     }
 
