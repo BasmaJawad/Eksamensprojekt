@@ -19,14 +19,64 @@ public class CarRepository implements IRepository {
     @Override
     public Object readSingle(Object param) {
 
-
         return -1;
     }
 
 
     @Override
     public ArrayList<Car> readMultiple(ArrayList conditions) {
-        return null;
+
+        ArrayList<CarStatus> carStatus = (ArrayList<CarStatus>) conditions;
+
+        ArrayList<Car> cars = new ArrayList<>();
+
+        String QUARY_GAS = "SELECT * from gascar where carStatus = ?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
+            ptst.setString(1, String.valueOf(carStatus.get(0)));
+
+            ResultSet resultSet = ptst.executeQuery();
+
+            while (resultSet.next()) {
+                cars.add(new GasCar(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        CarStatus.valueOf(resultSet.getString(6)),
+                        resultSet.getString(4),
+                        resultSet.getString(5)));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String QUARY_ELECTRIC = "SELECT * from electriccar where carStatus = ?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
+
+            ptst.setString(1, String.valueOf(carStatus.get(0)));
+
+            ResultSet resultSet = ptst.executeQuery();
+
+            while (resultSet.next()) {
+                cars.add(new ElectricCar(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        CarStatus.valueOf(resultSet.getString(7)),
+                        resultSet.getString(4),
+                        resultSet.getBoolean(5),
+                        resultSet.getBoolean(6)));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return cars;
     }
 
     @Override
