@@ -9,70 +9,93 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class CustomerRepository implements IRepository{
+public class CustomerRepository implements IRepository {
 
-  private Connection conn = DCM.getConnection();
-  @Override
-  public Customer readSingle(Object param) {
+    private Connection conn = DCM.getConnection();
 
-    return null;
-  }
+    @Override
+    public Customer readSingle(Object param) {
 
-  public int readID(Customer customer) {
-    try{
-    PreparedStatement psts = conn.prepareStatement("SELECT cprNum, CustomerID FROM customer");
-      ResultSet resultSet = psts.executeQuery();
-      while (resultSet.next()) {
-        String cprNum = resultSet.getString(1);
-        int customerID = resultSet.getInt(2);
-        if(customer.getCprNum().equals(cprNum)) {
-          return customerID;
-        }
-      }
-
-    } catch (SQLException e) {
-      System.out.println(e);
+        return null;
     }
-    return -1;
-  }
 
-  @Override
-  public ArrayList readMultiple(ArrayList conditions) {
-    return null;
-  }
+    public int readID(Customer customer) {
 
-  @Override
-  public ArrayList readMultiple() {
-    return null;
-  }
+        String QUARY = "SELECT cprNum, CustomerID FROM customer";
 
-  @Override
-  public void writeSingle(Object param) {
+        try {
+            PreparedStatement psts = conn.prepareStatement(QUARY);
+            ResultSet resultSet = psts.executeQuery();
+            while (resultSet.next()) {
 
-  }
+                String cprNum = resultSet.getString(1);
+                int customerID = resultSet.getInt(2);
+                if (customer.getCprNum().equals(cprNum)) {
+                    return customerID;
+                }
+            }
 
-  @Override
-  public void writeMultiple(ArrayList objects) {
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return -1;
+    }
 
-  }
+    @Override
+    public ArrayList readMultiple(ArrayList conditions) {
+        return null;
+    }
 
-  @Override
-  public void updateSingle(Object param) {
+    @Override
+    public ArrayList readMultiple() {
+        return null;
+    }
 
-  }
+    @Override
+    public void writeSingle(Object param) {
 
-  @Override
-  public void updateMultiple(ArrayList objects) {
+        Customer c = (Customer) param;
 
-  }
+        String QUARY = "INSERT into customer (name, cprNum, email, address, phoneNumber, ZIPCode) VALUES (?,?,?,?,?,?)";
 
-  @Override
-  public void deleteSingle(Object param) {
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-  }
+            ptst.setString(1,c.getName());
+            ptst.setString(2,c.getCprNum());
+            ptst.setString(3,c.getEmail());
+            ptst.setString(4,c.getAddress());
+            ptst.setString(5,c.getPhoneNum());
+            ptst.setInt(6,c.getZipCode());
 
-  @Override
-  public void deleteMultiple(ArrayList objects) {
+            ptst.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-  }
+    @Override
+    public void writeMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void updateSingle(Object param) {
+
+    }
+
+    @Override
+    public void updateMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void deleteSingle(Object param) {
+
+    }
+
+    @Override
+    public void deleteMultiple(ArrayList objects) {
+
+    }
 }

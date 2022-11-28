@@ -1,9 +1,13 @@
+use data;
+
+drop table contracts;
+
 create table contracts
 (
-    contractID        int,
+    contractID        int unique auto_increment,
+    VIN               varchar(17),
+    customerID        int,
     subLength         ENUM ('THREE_MONTHS','SIX_MONTHS','TWELVE_MONTHS','TWENTYFOUR_MONTHS','THIRTYSIX_MONTHS'),
-    finalPrice        int,
-    VIN varchar(50),
     pickupDestination ENUM ('FDM_AARHUS',
         'FMD_VEJLE',
         'FDM_SOENDERBORG',
@@ -14,6 +18,10 @@ create table contracts
         'FDM_AALBORG',
         'FDM_HILLEROED',
         'KW_BRUUN'),
+    winterTires       binary,
+    vikinghelp        binary,
+    lowDeductible     binary,
+    deliveryInsurance binary,
     primary key (contractID)
 
 );

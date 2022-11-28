@@ -7,9 +7,9 @@ CREATE TABLE carDamages(
 );
 
 insert into carDamages (reportID, damageDescription, cost)
-values (10, 'flækket bilrude', 2000);
+values (1, 'flækket bilrude', 2000);
 insert into carDamages (reportID, damageDescription, cost)
-values (10, 'Brændt forlygter ', 900);
+values (1, 'Brændt forlygter ', 900);
 
 
 
