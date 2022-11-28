@@ -1,6 +1,7 @@
 package com.example.eksamensprojekt.Repository;
 
 import com.example.eksamensprojekt.Misc.DCM;
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
@@ -10,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ContractRepository implements IRepository {
 
@@ -109,6 +111,19 @@ public class ContractRepository implements IRepository {
             System.out.println(e);
         }
         return null;
+    }
+
+    public List<Contract> returnedCarsContracts(List<Car> returnedCars){
+
+        List<Contract> returnedCardsContracts = new ArrayList<>();
+
+        for (Car car: returnedCars) {
+            if( )
+        }
+
+
+        return null;
+
     }
 
     @Override

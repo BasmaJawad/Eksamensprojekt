@@ -2,8 +2,10 @@ package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.CarDamage;
 import com.example.eksamensprojekt.Model.Contract;
+import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.IncidentReport;
 import com.example.eksamensprojekt.Repository.CarDamageRepository;
+import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.IncidentRepository;
 import org.springframework.web.context.request.WebRequest;
@@ -21,18 +23,16 @@ public class IncidentsService {
 
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
-
     private ContractRepository contractRepository = new ContractRepository();
+
+    private CarRepository carRepository = new CarRepository();
 
 
     public boolean verifyContractID(int ContractID) {
 
         List<Contract> contracts = contractRepository.readMultiple();
-        System.out.println(contracts.size());
 
         for (Contract contract : contracts) {
-            System.out.println("Id fra liste" + contract.getContractID());
-            System.out.println( "Id fra req" + ContractID);
             if (contract.getContractID() == ContractID)
                 return true;
 
@@ -86,6 +86,13 @@ public class IncidentsService {
 
         return null;
     }
+
+    public void setCarRepositoryInContractRepo(){
+        ArrayList<CarStatus> conditions = new ArrayList<>();
+        conditions.add(CarStatus.RETURNED);
+        carRepository.readMultiple(conditions);
+    }
+
 
     public ContractRepository getContractRepository() {
         return contractRepository;
