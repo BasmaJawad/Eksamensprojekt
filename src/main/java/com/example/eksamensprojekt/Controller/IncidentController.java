@@ -20,7 +20,12 @@ public class IncidentController {
 
     // STARTSIDE
     @GetMapping("incidentsHomepage")
-    public String incidentHome() {
+    public String incidentHome(HttpSession httpSession) {
+
+        incidentsService.getContractRepository().readMultiple();
+        httpSession.setAttribute("contracts", );
+
+
         return "/DamageRegister/incidentsHomepage";
     }
 
@@ -28,6 +33,8 @@ public class IncidentController {
     // FIND SKADERAPPORT
     @GetMapping("/incidentReport")
     public String findIncidentReport() {
+
+
         return "/DamageRegister/incidentReport";
     }
 
