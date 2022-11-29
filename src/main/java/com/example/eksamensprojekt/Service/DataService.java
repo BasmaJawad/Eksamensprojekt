@@ -89,41 +89,32 @@ public class DataService {
         int subScriptionFee = 0;
         switch (car.getCarModel()) {
             case "208 envy 82 HK" -> {
-                baseSupscribtionPrice = 3799;
                 subScriptionFee = car.addSubscriptionFeeEnvy(subLength);
             }
             case "108 Active+ 72 HK" -> {
-                baseSupscribtionPrice = 2799;
                 subScriptionFee= car.addSubscriptionFee108ActivePlus(subLength);
             }
             case "C1 Le Mans 72 HK" -> {
-                baseSupscribtionPrice = 2699;
                 subScriptionFee= car.addSubscriptionFeeC1LeMans(subLength);
             }
             case "C3 Le Mans 83 HK" -> {
-                baseSupscribtionPrice = 3199;
                 subScriptionFee= car.addSubscriptionFeeC3LeMans(subLength);
-
             }
             case "Fiat 500e CABRIO Icon Pack 118 HK" -> {
-                baseSupscribtionPrice = 3399;
                 subScriptionFee= car.getAddSubscriptionFeeCabrioIcon(subLength);
             }
             case "500e Icon Pack 118 HK" -> {
-                baseSupscribtionPrice = 2999;
                 subScriptionFee= car.addSubscriptionFeeIcon(subLength);
             }
             case "e-2008 GT Line 136 HK" -> {
-                baseSupscribtionPrice = 4799;
                 subScriptionFee= car.addSubscriptionFeeGTLine(subLength);
             }
             case "208 Active+ 100 HK" -> {
-                baseSupscribtionPrice = 3799;
                 subScriptionFee= car.addSubscriptionFee208ActivePlus(subLength);
             }
 
         }
-        priceRepo.writePrice(baseSupscribtionPrice, subScriptionFee, addKmPrMonthPrice(contract.getKmPrMonth()), contract.calculateAddOnPrice(), contractRepo.getContractID(contract.getVIN()));
+        priceRepo.writePrice(subScriptionFee, addKmPrMonthPrice(contract.getKmPrMonth()), contract.calculateAddOnPrice(), contractRepo.getContractID(contract.getVIN()));
     }
     private int addKmPrMonthPrice(KmPrMonth kmPrMonth){
 

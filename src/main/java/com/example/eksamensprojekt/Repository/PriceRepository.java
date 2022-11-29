@@ -10,11 +10,11 @@ public class PriceRepository {
 
     Connection conn = DCM.getConnection();
 
-    public void writePrice(int baseSubPrice, int subFee, int kmPrMonthPrice, int addOn, int contractID) {
+    public void writePrice(int baseSubPrice, int kmPrMonthPrice, int addOn, int contractID) {
         int finalPrice = 0;
-        finalPrice = baseSubPrice + subFee + kmPrMonthPrice + addOn;
+        finalPrice = baseSubPrice + kmPrMonthPrice + addOn;
 
-        String QUARY = "INSERT into contractprice (contractID, basePrice, subFee, extraKmPrice, addOnPrices, finalPrice) values (?,?,?,?,?,?)";
+        String QUARY = "INSERT into contractprice (contractID, basePrice, extraKmPrice, addOnPrices, finalPrice) values (?,?,?,?,?)";
 
         try {
 
@@ -22,10 +22,9 @@ public class PriceRepository {
 
             ptst.setInt(1,contractID);
             ptst.setInt(2,baseSubPrice);
-            ptst.setInt(3,subFee);
-            ptst.setInt(4,kmPrMonthPrice);
-            ptst.setInt(5,addOn);
-            ptst.setInt(6,finalPrice);
+            ptst.setInt(3,kmPrMonthPrice);
+            ptst.setInt(4,addOn);
+            ptst.setInt(5,finalPrice);
 
             ptst.executeUpdate();
 
