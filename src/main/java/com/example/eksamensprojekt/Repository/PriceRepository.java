@@ -14,8 +14,7 @@ public class PriceRepository {
     Connection conn = DCM.getConnection();
 
     public void writePrice(int baseSubPrice, int kmPrMonthPrice, int addOn, int contractID) {
-        int finalPrice = 0;
-        finalPrice = baseSubPrice + kmPrMonthPrice + addOn;
+        int finalPrice = baseSubPrice + kmPrMonthPrice + addOn;
 
         String QUARY = "INSERT into contractprice (contractID, basePrice, extraKmPrice, addOnPrices, finalPrice) values (?,?,?,?,?)";
 
@@ -36,9 +35,9 @@ public class PriceRepository {
         }
     }
 
-    public ArrayList<ContractPrice> getPrices(int contractID){
+    public ContractPrice getPrices(int contractID){
 
-        ArrayList<ContractPrice> prices = new ArrayList<>();
+
         String QUARY = "SELECT * from contractprice where contractID =?";
 
         try {
@@ -47,19 +46,19 @@ public class PriceRepository {
             ResultSet resultSet = ptst.executeQuery();
 
             while (resultSet.next()){
-                prices.add(new ContractPrice(
+                return new ContractPrice(
                         resultSet.getInt(1),
                         resultSet.getInt(2),
                         resultSet.getInt(3),
                         resultSet.getInt(4),
-                        resultSet.getInt(5))
+                        resultSet.getInt(5)
                 );
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return prices;
 
+        return null;
     }
 }

@@ -11,21 +11,20 @@
         <tr>
             <td>Kontrakt</td>
             <td>Basis pris</td>
-            <td>Pris for måned</td>
-            <td>Abonnement Pris</td>
             <td>Pris for Ekstra KM</td>
             <td>Tilføjelser</td>
             <td>Samlet kr/md</td>
         </tr>
     </thead>
     <tbody>
-        <tr th:each="contract : ${pricePrContract}">
-            <td th:each="prices : ${pricePrContract.get(contratstat.index)}">
-                <span th:text="${prices.get(0)}"></span>
-            </td>
+        <tr th:each="price : ${pricePrContract}">
+            <td th:text="${price.contractID}">
+            <td th:text="${price.basePrice}">
+            <td th:text="${price.extraKmPrice}">
+            <td th:text="${price.addOnPrice}">
+            <td th:text="${price.finalPrice}">
         </tr>
     </tbody>
-
 </table>
 
 </body>
