@@ -149,8 +149,12 @@ public class DataService {
         return contractRepo.findOneContract("contractID", contractID);
     }
 
-    public Car getOnecar(int VIN){
-        return carRepository.
+    public Car getOnecar(Object param){
+        return carRepository.readSingle(param);
 
+    }
+
+    public Customer getOneCustomer(String column, Object val){
+        return customerRepo.findOneCustomer(column, val);
     }
 }

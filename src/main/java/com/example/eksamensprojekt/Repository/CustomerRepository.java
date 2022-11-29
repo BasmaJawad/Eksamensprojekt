@@ -15,8 +15,39 @@ public class CustomerRepository implements IRepository {
 
     @Override
     public Customer readSingle(Object param) {
-
         return null;
+    }
+
+    public Customer findOneCustomer(String column, Object param) {
+
+        Customer customer = null;
+        String QUARY = "SELECT * FROM data.customer where " + column + "=?";
+
+        try {
+            PreparedStatement psts = conn.prepareStatement(QUARY);
+            psts.setObject(1, param);
+
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+
+                customer = new Customer(
+                        resultSet.getString("name"),
+                        resultSet.getString("cprNUM"),
+                        resultSet.getString("email"),
+                        resultSet.getString("address"),
+                        resultSet.getString("phoneNumber"),
+                        resultSet.getInt("ZIPCode")
+                );
+            }
+
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return customer;
     }
 
     public int readID(Customer customer) {
@@ -61,12 +92,12 @@ public class CustomerRepository implements IRepository {
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-            ptst.setString(1,c.getName());
-            ptst.setString(2,c.getCprNum());
-            ptst.setString(3,c.getEmail());
-            ptst.setString(4,c.getAddress());
-            ptst.setString(5,c.getPhoneNum());
-            ptst.setInt(6,c.getZipCode());
+            ptst.setString(1, c.getName());
+            ptst.setString(2, c.getCprNum());
+            ptst.setString(3, c.getEmail());
+            ptst.setString(4, c.getAddress());
+            ptst.setString(5, c.getPhoneNum());
+            ptst.setInt(6, c.getZipCode());
 
             ptst.executeUpdate();
         } catch (SQLException e) {

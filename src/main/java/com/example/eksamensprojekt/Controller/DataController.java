@@ -3,6 +3,7 @@ package com.example.eksamensprojekt.Controller;
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Cars.GasCar;
 import com.example.eksamensprojekt.Model.Contract;
+import com.example.eksamensprojekt.Model.Customer;
 import com.example.eksamensprojekt.Service.DataService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,11 +47,17 @@ public class DataController {
   }
 
 
+  //Form i listOfContracts
   @PostMapping("/showcontract")
   public String showContract(WebRequest req){
 
     Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
-    Car car = dataService.
+    System.out.println(contract.getVIN());
+    Car car = dataService.getOnecar(contract.getVIN());
+    System.out.println(car.getCarBrand());
+    Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
+    System.out.println(customer.getName());
+
 
     return "ShowContract";
 

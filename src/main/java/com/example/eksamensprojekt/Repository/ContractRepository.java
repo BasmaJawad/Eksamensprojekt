@@ -31,7 +31,6 @@ public class ContractRepository implements IRepository {
         try {
 
             PreparedStatement psts = conn.prepareStatement(QUARY);
-         //  psts.setString(1, columnName);
             psts.setObject(1, num);
 
             ResultSet resultSet = psts.executeQuery();
