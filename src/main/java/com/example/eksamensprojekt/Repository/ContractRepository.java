@@ -171,7 +171,7 @@ public class ContractRepository implements IRepository {
     }
 
     @Override
-    public void updateSingle(Object param) {
+    public void updateSingle(Object param, String columnName, String columnCondition) {
 
     }
 

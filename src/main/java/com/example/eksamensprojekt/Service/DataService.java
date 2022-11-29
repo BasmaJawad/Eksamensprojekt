@@ -2,6 +2,7 @@ package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.*;
 import com.example.eksamensprojekt.Model.Cars.Car;
+import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 import com.example.eksamensprojekt.Repository.CarRepository;
@@ -23,6 +24,7 @@ public class DataService {
         Car car;
 
         String VIN;
+
         //Creates new customer object
         Customer customer = new Customer(req.getParameter("name"),
                 req.getParameter("cpr"),
@@ -38,6 +40,9 @@ public class DataService {
         car = carRepository.readSingle(VIN);
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
+
+        //Updates CarStatus in car to RENTED
+        carRepository.updateSingle(VIN, "carStatus", "VIN");
 
         //Convert addOns to booleans
         boolean vikingHelp = Objects.equals(req.getParameter("vikingHelp"), "on");
@@ -106,7 +111,9 @@ public class DataService {
 
     public ArrayList<Car> getAllAvailableCars(){
 
-        return carRepository.readMultiple();
+        ArrayList<CarStatus> carStatus = new ArrayList<>();
+        carStatus.add(CarStatus.NOT_RENTED);
+        return carRepository.readMultiple(carStatus);
     }
 
     public ArrayList<Contract> getAllContracts() {

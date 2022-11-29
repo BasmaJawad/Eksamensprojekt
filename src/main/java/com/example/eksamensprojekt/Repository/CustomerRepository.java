@@ -80,7 +80,7 @@ public class CustomerRepository implements IRepository {
     }
 
     @Override
-    public void updateSingle(Object param) {
+    public void updateSingle(Object param, String columnName, String columnCondition) {
 
     }
 
