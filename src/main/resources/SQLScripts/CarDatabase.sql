@@ -6,7 +6,7 @@ create table gasCar
 (
     carModel  varchar(50),
     carBrand  varchar(50),
-    VIN       long ,
+    VIN       varchar(17) unique ,
     kmPrLiter varchar(50),
     co2PrKm varchar(50)
 );
@@ -15,10 +15,10 @@ create table electricCar
 (
     carModel varchar(50),
     carBrand varchar(50),
-    VIN      long ,
+    VIN      varchar(17) unique ,
     kmPrCharge varchar(50),
-    cleverNetworkCharging binary,
-    cleverCharging binary
+    cleverNetworkCharging boolean,
+    cleverCharging boolean
 );
 
 INSERT INTO gasCar(CarModel, CarBrand, VIN, kmPrLiter,co2PrKm)

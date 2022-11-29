@@ -18,10 +18,10 @@ create table contracts
         'FDM_AALBORG',
         'FDM_HILLEROED',
         'KW_BRUUN'),
-    winterTires       binary,
-    vikinghelp        binary,
-    lowDeductible     binary,
-    deliveryInsurance binary,
+    winterTires       boolean,
+    vikingHelp        boolean,
+    lowDeductible     boolean,
+    deliveryInsurance boolean,
     primary key (contractID)
 
 );
