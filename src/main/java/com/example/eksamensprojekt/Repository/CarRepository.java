@@ -16,11 +16,64 @@ public class CarRepository implements IRepository {
 
     Connection conn = DCM.getConnection();
 
+
     @Override
-    public Object readSingle(Object param) {
+    public Car readSingle(Object param) {
+        String VIN = (String) param;
+        String QUARY_GAS = "SELECT * from data.gascar where VIN = ?";
 
 
-        return -1;
+        try {
+            GasCar gasCar = null;
+            PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
+            ptst.setString(1, VIN);
+
+            ResultSet resultSet = ptst.executeQuery();
+
+            while (resultSet.next()) {
+              gasCar = new GasCar (
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    CarStatus.valueOf(resultSet.getString(6)),
+                    resultSet.getString(4),
+                    resultSet.getString(5));
+            }
+            if(gasCar.getCarBrand() != null){
+                return gasCar;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String QUARY_ELECTRIC = "SELECT * from data.electriccar where carStatus = ?";
+
+        try {
+            ElectricCar electricCar = null;
+            PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
+
+            ptst.setString(1, VIN);
+
+            ResultSet resultSet = ptst.executeQuery();
+
+            while (resultSet.next()) {
+                electricCar = new ElectricCar(
+                    resultSet.getString(1),
+                    resultSet.getString(2),
+                    resultSet.getString(3),
+                    CarStatus.valueOf(resultSet.getString(7)),
+                    resultSet.getString(4),
+                    resultSet.getBoolean(5),
+                    resultSet.getBoolean(6));
+            }
+            if(electricCar.getCarBrand() != null){
+                return electricCar;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     //reads all cars based on CarStatus
@@ -133,6 +186,9 @@ public class CarRepository implements IRepository {
 
         return cars;
     }
+
+
+
 
     @Override
     public void writeSingle(Object param) {

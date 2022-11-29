@@ -20,7 +20,9 @@ public class DataService {
     CustomerRepository customerRepo = new CustomerRepository();
 
     public void addContract(WebRequest req) {
+        Car car;
 
+        String VIN;
         //Creates new customer object
         Customer customer = new Customer(req.getParameter("name"),
                 req.getParameter("cpr"),
@@ -32,6 +34,8 @@ public class DataService {
         //Insert customer into database
         customerRepo.writeSingle(customer);
 
+        VIN = req.getParameter("car");
+        car = carRepository.readSingle(VIN);
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
 
@@ -41,8 +45,10 @@ public class DataService {
         boolean lowDeductible = Objects.equals(req.getParameter("lowDeductible"), "on");
         boolean winterTires = Objects.equals(req.getParameter("winterTires"), "on");
 
+
+
         //Creating new Contract object
-        Contract contract = new Contract(req.getParameter("car"),
+        Contract contract = new Contract(VIN,
                 SubLenght.valueOf(req.getParameter("subLength")),
                 customerID,
                 PickupDestination.valueOf(req.getParameter("pickupDestination")),
@@ -55,7 +61,50 @@ public class DataService {
         contractRepo.writeSingle(contract);
     }
 
-    public ArrayList<Car> getAllAvailableCars() {
+    public int getBaseScribtionPrice(Car car) {
+        int baseSupscribtionPrice = 0;
+        switch (car.getCarModel()) {
+            case "208 envy 82 HK", "208 Active+ 100 HK" -> {
+                baseSupscribtionPrice = 3799;
+                baseSupscribtionPrice += 0;
+            }
+            case "108 Active+ 72 HK" -> {
+                baseSupscribtionPrice = 2799;
+                baseSupscribtionPrice += 0;
+            }
+            case "C1 Le Mans 72 HK" -> {
+                baseSupscribtionPrice = 2699;
+                baseSupscribtionPrice += 0;
+            }
+            case "C3 Le Mans 83 HK" -> {
+                baseSupscribtionPrice = 3199;
+                baseSupscribtionPrice += 0;
+
+            }
+            case "Fiat 500e CABRIO Icon Pack 118 HK" -> {
+                baseSupscribtionPrice = 3399;
+                baseSupscribtionPrice += 0;
+            }
+            case "500e Icon Pack 118 HK" -> {
+                baseSupscribtionPrice = 2999;
+                baseSupscribtionPrice += 0;
+            }
+            case "e-2008 GT Line 136 HK" -> {
+                baseSupscribtionPrice = 4799;
+                baseSupscribtionPrice += 0;
+            }
+        }
+        return -1;
+    }
+
+
+    public int addSubLengthPrice(String carModel, SubLenght subLength){
+
+        return 0;
+    }
+
+
+    public ArrayList<Car> getAllAvailableCars(){
 
         return carRepository.readMultiple();
     }
@@ -64,6 +113,4 @@ public class DataService {
 
         return contractRepo.readMultiple();
     }
-
-
 }
