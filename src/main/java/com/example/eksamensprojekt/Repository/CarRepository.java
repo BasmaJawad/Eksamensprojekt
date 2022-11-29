@@ -138,7 +138,7 @@ public class CarRepository implements IRepository {
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        String QUARY_GAS = "SELECT * from gascar";
+        String QUARY_GAS = "SELECT * from data.gascar";
 
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY_GAS);
