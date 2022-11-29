@@ -19,7 +19,7 @@ public class BusinessController {
     }
 
     @GetMapping("/revenueBoard")
-    public String rentRevenueBoard(Model model){
+    public String revenueBoard(Model model){
 
 
         return "/BusinessUser/revenueBoard";

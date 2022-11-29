@@ -39,7 +39,7 @@ public class CarRepository implements IRepository {
                     resultSet.getString(4),
                     resultSet.getString(5));
             }
-            if(gasCar.getCarBrand() != null){
+            if(gasCar != null){
                 return gasCar;
             }
 
@@ -67,7 +67,7 @@ public class CarRepository implements IRepository {
                     resultSet.getBoolean(5),
                     resultSet.getBoolean(6));
             }
-            if(electricCar.getCarBrand() != null){
+            if(electricCar != null){
                 return electricCar;
             }
         } catch (SQLException e) {
@@ -76,7 +76,7 @@ public class CarRepository implements IRepository {
         return null;
     }
 
-
+    //reads all cars based on CarStatus
     @Override
     public ArrayList<Car> readMultiple(ArrayList conditions) {
 
@@ -133,6 +133,8 @@ public class CarRepository implements IRepository {
         return cars;
     }
 
+
+    //Reads ALL cars
     @Override
     public ArrayList<Car> readMultiple() {
 
@@ -198,9 +200,35 @@ public class CarRepository implements IRepository {
 
     }
 
-    @Override
-    public void updateSingle(Object param) {
 
+    @Override
+    public void updateSingle(Object param, String columnName, String columnCondition) {
+
+        String VIN = (String) param;
+
+        String QUARY_GAS = "UPDATE gascar SET "+ columnName + " = 'RENTED' where "+ columnCondition + " =?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
+
+            ptst.setString(1,VIN);
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        String QUARY_ELECTRIC = "UPDATE electriccar SET "+ columnName + " = 'RENTED' where VIN =?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
+
+            ptst.setString(1,VIN);
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

@@ -19,7 +19,7 @@ public interface IRepository<E> {
     void writeMultiple(ArrayList<E> objects);
 
     //Update
-    void updateSingle(E param);
+    void updateSingle(E param, String columnName, String columnCondition);
 
     void updateMultiple(ArrayList<E> objects);
 
