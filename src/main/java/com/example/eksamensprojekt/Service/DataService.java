@@ -55,7 +55,7 @@ public class DataService {
         contractRepo.writeSingle(contract);
     }
 
-    public ArrayList<Car> getAllAvailableCars(){
+    public ArrayList<Car> getAllAvailableCars() {
 
         return carRepository.readMultiple();
     }
@@ -64,4 +64,6 @@ public class DataService {
 
         return contractRepo.readMultiple();
     }
+
+
 }

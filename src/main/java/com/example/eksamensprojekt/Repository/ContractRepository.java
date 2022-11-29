@@ -36,14 +36,14 @@ public class ContractRepository implements IRepository {
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                int contractID = resultSet.getInt("contractID");
-                String VIN = resultSet.getString("VIN");
-                SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
-                int customerID = resultSet.getInt("customerID");
-                PickupDestination pickup = PickupDestination.valueOf(resultSet.getString("pickupDestination"));
-                boolean winterTires = resultSet.getBoolean("winterTires");
-                boolean vikingHelp = resultSet.getBoolean("vikingHelp");
-                boolean lowDeductible = resultSet.getBoolean("lowDeductible");
+                int contractID =            resultSet.getInt("contractID");
+                String VIN =                resultSet.getString("VIN");
+                SubLenght subLenght =       SubLenght.valueOf(resultSet.getString("subLength"));
+                int customerID =            resultSet.getInt("customerID");
+                PickupDestination pickup =  PickupDestination.valueOf(resultSet.getString("pickupDestination"));
+                boolean winterTires =       resultSet.getBoolean("winterTires");
+                boolean vikingHelp =        resultSet.getBoolean("vikingHelp");
+                boolean lowDeductible =     resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
 
                 contract = new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires);
@@ -54,8 +54,6 @@ public class ContractRepository implements IRepository {
         }
 
         return contract;
-
-
     }
 
     @Override
@@ -81,14 +79,14 @@ public class ContractRepository implements IRepository {
             ResultSet resultSet = ptsd.executeQuery();
 
             while (resultSet.next()) {
-                int contractID = resultSet.getInt("contractID");
-                String VIN = resultSet.getString("VIN");
-                SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
-                int customerID = resultSet.getInt("customerID");
-                PickupDestination pickup = PickupDestination.valueOf(resultSet.getString("pickupDestination"));
-                boolean winterTires = resultSet.getBoolean("winterTires");
-                boolean vikingHelp = resultSet.getBoolean("vikingHelp");
-                boolean lowDeductible = resultSet.getBoolean("lowDeductible");
+                int contractID =            resultSet.getInt("contractID");
+                String VIN =                resultSet.getString("VIN");
+                SubLenght subLenght =       SubLenght.valueOf(resultSet.getString("subLength"));
+                int customerID =            resultSet.getInt("customerID");
+                PickupDestination pickup =  PickupDestination.valueOf(resultSet.getString("pickupDestination"));
+                boolean winterTires =       resultSet.getBoolean("winterTires");
+                boolean vikingHelp =        resultSet.getBoolean("vikingHelp");
+                boolean lowDeductible =     resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
 
                 contracts.add(new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires));
@@ -111,10 +109,10 @@ public class ContractRepository implements IRepository {
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
 
-            ptsd.setString(1, c.getVIN());
-            ptsd.setString(2, c.getSubLenght().name());
-            ptsd.setString(3, c.getPickupDestination().name());
-            ptsd.setInt(4, c.getCustomerID());
+            ptsd.setString(1,  c.getVIN());
+            ptsd.setString(2,  c.getSubLenght().name());
+            ptsd.setString(3,  c.getPickupDestination().name());
+            ptsd.setInt(4,     c.getCustomerID());
             ptsd.setBoolean(5, c.isWinterTires());
             ptsd.setBoolean(6, c.isVikingHelp());
             ptsd.setBoolean(7, c.isLowDeductible());

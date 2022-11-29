@@ -19,10 +19,11 @@ public class CarRepository implements IRepository {
     @Override
     public Object readSingle(Object param) {
 
+
         return -1;
     }
 
-
+    //reads all cars based on CarStatus
     @Override
     public ArrayList<Car> readMultiple(ArrayList conditions) {
 
@@ -79,6 +80,8 @@ public class CarRepository implements IRepository {
         return cars;
     }
 
+
+    //Reads ALL cars
     @Override
     public ArrayList<Car> readMultiple() {
 
