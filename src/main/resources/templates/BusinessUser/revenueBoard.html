@@ -6,6 +6,27 @@
 </head>
 <body>
 
+<table>
+    <thead>
+        <tr>
+            <td>Kontrakt</td>
+            <td>Basis pris</td>
+            <td>Pris for måned</td>
+            <td>Abonnement Pris</td>
+            <td>Pris for Ekstra KM</td>
+            <td>Tilføjelser</td>
+            <td>Samlet kr/md</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="contract : ${pricePrContract}">
+            <td th:each="prices : ${pricePrContract.get(contratstat.index)}">
+                <span th:text="${prices.get(0)}"></span>
+            </td>
+        </tr>
+    </tbody>
+
+</table>
 
 </body>
 </html>

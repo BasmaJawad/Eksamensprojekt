@@ -21,7 +21,7 @@ public class BusinessController {
     @GetMapping("/revenueBoard")
     public String revenueBoard(Model model){
 
-
+        model.addAttribute("pricePrContract", bs.listOfPricesPrCar());
         return "/BusinessUser/revenueBoard";
     }
 

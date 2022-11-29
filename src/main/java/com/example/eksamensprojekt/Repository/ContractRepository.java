@@ -84,7 +84,6 @@ public class ContractRepository implements IRepository {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-
         return contracts;
     }
 
