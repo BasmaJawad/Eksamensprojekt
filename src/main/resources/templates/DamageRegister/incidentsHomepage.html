@@ -8,15 +8,27 @@
 
 <body>
 
+<!-- input tag -->
+
+<input id="searchbar" onkeyup="search_ID()" type="text"
+       name="search" placeholder="Søg efter kontraktID">
+
+
 
 <table>
 
-    <tr th:each="contract: ${session.contracts}">
+    <tr
+        th:each="contract:${session.contractsWithReport}">
 
-        <td th:text="${contract.getcontractID}" />
-        <td th:text="${contract.getVIN}" />
-        <td th:text="${contract.getcustomerID}" />
-    <tr>
+
+        <td class= "animals" th:text="${contract.getContractID}"></td>
+        <td class= "animals" th:text= "${contract.getVIN}" ></td>
+        <td class= "animals" th:text="${contract.getCustomerID}" ></td>
+
+    </tr>
+
+
+
 </table>
 
 
@@ -24,12 +36,26 @@
 
 
 
+<!-- linking javascript -->
+<script >
+
+function search_ID() {
+let input = document.getElementById('searchbar').value
+input=input.toLowerCase();
+let x = document.getElementsByClassName('animals');
+
+for (i = 0; i < x.length; i++) {
+if (!x[i].innerHTML.toLowerCase().includes(input)) {
+x[i].style.display="none";
+}
+else {
+x[i].style.display="list-item";
+}
+}
+}
+</script>
+
+
+
 </body>
 </html>
-
-
-<!--
-<input type="submit" name="contractID" th:value="${contract.contractID}"/>
-            <input type="submit" name="vinNumber" th:value="${contract.VIN}"/>
-            <input type="submit" name="customerID" th:value="${contract.customerID}"/>
--->

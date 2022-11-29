@@ -1,0 +1,34 @@
+#searchbar{
+    margin-left: 15%;
+    padding:15px;
+    border-radius: 10px;
+}
+
+input[type=text] {
+    width: 30%;
+    -webkit-transition: width 0.15s ease-in-out;
+    transition: width 0.15s ease-in-out;
+}
+
+/* When the input field gets focus,
+     change its width to 100% */
+input[type=text]:focus {
+    width: 40%;
+}
+
+#table{
+
+    font-size:  1.5em;
+    margin-left: 200px;
+}
+
+.animals{
+    display: list-item;
+}
+
+td, th{
+    border: 1px solid #999;
+    padding: 0.5rem;
+
+
+}
