@@ -3,6 +3,7 @@ package com.example.eksamensprojekt.Repository;
 import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
+import com.example.eksamensprojekt.Model.Enums.KmPrMonth;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
@@ -23,6 +24,27 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
+    public int getContractID(String VIN){
+
+        String QUARY = "SELECT contractID from contracts where VIN = ?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+            ptst.setString(1,VIN);
+            ResultSet resultSet = ptst.executeQuery();
+
+            while (resultSet.next()){
+
+                return resultSet.getInt(1);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
+
     public Contract findOneContract(String VINnum){
 
         Contract contract = null;
@@ -36,17 +58,18 @@ public class ContractRepository implements IRepository {
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {
-                int contractID = resultSet.getInt("contractID");
-                String VIN = resultSet.getString("VIN");
-                SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
-                int customerID = resultSet.getInt("customerID");
-                PickupDestination pickup = PickupDestination.valueOf(resultSet.getString("pickupDestination"));
-                boolean winterTires = resultSet.getBoolean("winterTires");
-                boolean vikingHelp = resultSet.getBoolean("vikingHelp");
-                boolean lowDeductible = resultSet.getBoolean("lowDeductible");
+                int contractID =            resultSet.getInt("contractID");
+                String VIN =                resultSet.getString("VIN");
+                SubLenght subLenght =       SubLenght.valueOf(resultSet.getString("subLength"));
+                int customerID =            resultSet.getInt("customerID");
+                PickupDestination pickup =  PickupDestination.valueOf(resultSet.getString("pickupDestination"));
+                boolean winterTires =       resultSet.getBoolean("winterTires");
+                boolean vikingHelp =        resultSet.getBoolean("vikingHelp");
+                boolean lowDeductible =     resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
+                KmPrMonth kmPrMonth =       KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
 
-                contract = new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires);
+                contract = new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires,kmPrMonth);
             }
 
         } catch (SQLException e) {
@@ -54,8 +77,6 @@ public class ContractRepository implements IRepository {
         }
 
         return contract;
-
-
     }
 
     @Override
@@ -81,17 +102,19 @@ public class ContractRepository implements IRepository {
             ResultSet resultSet = ptsd.executeQuery();
 
             while (resultSet.next()) {
-                int contractID = resultSet.getInt("contractID");
-                String VIN = resultSet.getString("VIN");
-                SubLenght subLenght = SubLenght.valueOf(resultSet.getString("subLength"));
-                int customerID = resultSet.getInt("customerID");
-                PickupDestination pickup = PickupDestination.valueOf(resultSet.getString("pickupDestination"));
-                boolean winterTires = resultSet.getBoolean("winterTires");
-                boolean vikingHelp = resultSet.getBoolean("vikingHelp");
-                boolean lowDeductible = resultSet.getBoolean("lowDeductible");
+                int contractID =            resultSet.getInt("contractID");
+                String VIN =                resultSet.getString("VIN");
+                SubLenght subLenght =       SubLenght.valueOf(resultSet.getString("subLength"));
+                int customerID =            resultSet.getInt("customerID");
+                PickupDestination pickup =  PickupDestination.valueOf(resultSet.getString("pickupDestination"));
+                boolean winterTires =       resultSet.getBoolean("winterTires");
+                boolean vikingHelp =        resultSet.getBoolean("vikingHelp");
+                boolean lowDeductible =     resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
+                KmPrMonth kmPrMonth =       KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
 
-                contracts.add(new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires));
+
+                contracts.add(new Contract(contractID,VIN,subLenght,customerID,pickup, vikingHelp,deliveryInsurance,lowDeductible,winterTires, kmPrMonth));
             }
 
         } catch (SQLException e) {
@@ -101,24 +124,28 @@ public class ContractRepository implements IRepository {
         return contracts;
     }
 
+    public void findContractsByDelivery() {
+
+    }
     @Override
     public void writeSingle(Object param) {
 
         Contract c = (Contract) param;
         //Insert Contract to database
-        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance) VALUES (?,?,?,?,?,?,?,?)";
+        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
 
-            ptsd.setString(1, c.getVIN());
-            ptsd.setString(2, c.getSubLenght().name());
-            ptsd.setString(3, c.getPickupDestination().name());
-            ptsd.setInt(4, c.getCustomerID());
+            ptsd.setString(1,  c.getVIN());
+            ptsd.setString(2,  c.getSubLenght().name());
+            ptsd.setString(3,  c.getPickupDestination().name());
+            ptsd.setInt(4,     c.getCustomerID());
             ptsd.setBoolean(5, c.isWinterTires());
             ptsd.setBoolean(6, c.isVikingHelp());
             ptsd.setBoolean(7, c.isLowDeductible());
             ptsd.setBoolean(8, c.isDeliveryInsurance());
+            ptsd.setString(9,  c.getKmPrMonth().name());
 
             ptsd.executeUpdate();
 
@@ -170,7 +197,7 @@ public class ContractRepository implements IRepository {
     }
 
     @Override
-    public void updateSingle(Object param) {
+    public void updateSingle(Object param, String columnName, String columnCondition) {
 
     }
 
