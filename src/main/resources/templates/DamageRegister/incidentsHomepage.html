@@ -8,36 +8,17 @@
 
 <body>
 
-<div class="container">
 
+<table>
 
-    <div id="overlay">
-    <div class = "content">
+    <tr th:each="contract: ${session.contracts}">
 
-        <div class = "card">
-            <p class="title">OPRET SKADERAPPORT</p>
+        <td th:text="${contract.getcontractID}" />
+        <td th:text="${contract.getVIN}" />
+        <td th:text="${contract.getcustomerID}" />
+    <tr>
+</table>
 
-
-        </div>
-        <div class = "card">
-            <p class="title">SE SKADERAPPORT</p>
-
-        </div>
-
-        <div class = "card">
-            <p class="title">AFSLUT KONTRAKT</p>
-
-        </div>
-
-
-
-
-
-
-    </div>
-
-    </div>
-</div>
 
 
 
@@ -45,3 +26,10 @@
 
 </body>
 </html>
+
+
+<!--
+<input type="submit" name="contractID" th:value="${contract.contractID}"/>
+            <input type="submit" name="vinNumber" th:value="${contract.VIN}"/>
+            <input type="submit" name="customerID" th:value="${contract.customerID}"/>
+-->
