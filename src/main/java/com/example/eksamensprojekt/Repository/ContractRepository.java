@@ -23,15 +23,16 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
-    public Contract findOneContract(String VINnum){
+    public Contract findOneContract(String column, Object num){
 
+        String QUARY = "SELECT * FROM data.contracts where " +column +"=?";
         Contract contract = null;
 
         try {
 
-            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.contracts where VIN=?");
+            PreparedStatement psts = conn.prepareStatement(QUARY);
          //  psts.setString(1, columnName);
-            psts.setString(1, VINnum);
+            psts.setObject(1, num);
 
             ResultSet resultSet = psts.executeQuery();
 
@@ -155,7 +156,7 @@ public class ContractRepository implements IRepository {
         List<Contract> returnedCardsContracts = new ArrayList<>();
 
         for (Car car: returnedCars) {
-            Contract contract = findOneContract( car.getVIN());
+            Contract contract = findOneContract("VIN",car.getVIN());
             if (contract!=null) {
                 returnedCardsContracts.add(contract);
             }

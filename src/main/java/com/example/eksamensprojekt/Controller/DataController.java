@@ -2,10 +2,12 @@ package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Cars.GasCar;
+import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Service.DataService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.ArrayList;
@@ -41,5 +43,16 @@ public class DataController {
     model.addAttribute("contracts" ,dataService.getAllContracts());
 
     return "/DataRegister/listOfContracts";
+  }
+
+
+  @PostMapping("/showcontract")
+  public String showContract(WebRequest req){
+
+    Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
+    Car car = dataService.
+
+    return "ShowContract";
+
   }
 }

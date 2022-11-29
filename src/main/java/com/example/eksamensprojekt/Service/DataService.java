@@ -64,4 +64,14 @@ public class DataService {
 
         return contractRepo.readMultiple();
     }
+
+    public Contract getOneContract(int contractID){
+
+        return contractRepo.findOneContract("contractID", contractID);
+    }
+
+    public Car getOnecar(int VIN){
+        return carRepository.
+
+    }
 }
