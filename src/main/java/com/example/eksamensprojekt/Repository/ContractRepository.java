@@ -63,6 +63,9 @@ public class ContractRepository implements IRepository {
         return contracts;
     }
 
+    public void findContractsByDelivery() {
+
+    }
     @Override
     public void writeSingle(Object param) {
 
