@@ -52,7 +52,7 @@ public class DataController {
   public String showContract(WebRequest req, Model model){
 
     Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
-    System.out.println(contract);
+    System.out.println("test" +contract.getContractID());
     Car car = dataService.getOnecar(contract.getVIN());
     Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
 
