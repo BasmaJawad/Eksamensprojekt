@@ -1,12 +1,15 @@
 package com.example.eksamensprojekt.Repository;
 
 import com.example.eksamensprojekt.Misc.DCM;
+import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.IncidentReport;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class IncidentRepository {
 
@@ -41,6 +44,32 @@ public class IncidentRepository {
     }
 
 
+    public List<IncidentReport> readAll(){
+
+        List<IncidentReport> incidentReports = new ArrayList<>();
+
+
+        try {
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.users");
+            ResultSet resultSet = psts.executeQuery();
+
+            while (resultSet.next()) {
+                incidentReports.add(new IncidentReport(
+                        resultSet.getInt("reportID"),
+                        resultSet.getInt("contractID"),
+                        resultSet.getString("VIN"),
+                        resultSet.getString("date"))
+                );
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+
+        return incidentReports;
+    }
 
 
 
@@ -60,5 +89,11 @@ public class IncidentRepository {
     }
 
 
+    public ArrayList<Contract> findContractsWithIncidentReport(ArrayList<Contract> contracts){
+
+
+
+        return null;
+    }
 
 }

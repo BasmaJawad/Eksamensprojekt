@@ -1,15 +1,19 @@
 package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.CarDamage;
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
+import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.IncidentReport;
 import com.example.eksamensprojekt.Repository.CarDamageRepository;
+import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.IncidentRepository;
 import org.springframework.web.context.request.WebRequest;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -17,21 +21,18 @@ import static java.lang.Integer.parseInt;
 public class IncidentsService {
 
 
-
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
-
     private ContractRepository contractRepository = new ContractRepository();
+
+    private CarRepository carRepository = new CarRepository();
 
 
     public boolean verifyContractID(int ContractID) {
 
         List<Contract> contracts = contractRepository.readMultiple();
-        System.out.println(contracts.size());
 
         for (Contract contract : contracts) {
-            System.out.println("Id fra liste" + contract.getContractID());
-            System.out.println( "Id fra req" + ContractID);
             if (contract.getContractID() == ContractID)
                 return true;
 
@@ -61,13 +62,6 @@ public class IncidentsService {
     }
 
 
-    public String getVIN(int contractID){
-
-        Contract contract = contractRepository.readSingle(contractID);
-
-        return contract.getVIN();
-    }
-
     public void createIncidentReport(int contractID) {
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
 
@@ -79,8 +73,53 @@ public class IncidentsService {
         incidentReport.createIncidentReport(report);
     }
 
+    public String getVIN(int contractID) {
 
-    public ContractRepository getContractRepository() {
-        return contractRepository;
+        Contract contract = contractRepository.readSingle(contractID);
+
+        return contract.getVIN();
+    }
+
+
+    public List<Contract> returnedCarsContracts() {
+        //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
+        return contractRepository.returnedCarsContracts(setCarRepositoryInContractRepo());
+    }
+
+    public List<Car> setCarRepositoryInContractRepo() {
+
+        ArrayList<CarStatus> conditions = new ArrayList<>();
+        conditions.add(CarStatus.RETURNED);
+
+        return carRepository.readMultiple(conditions);
+    }
+
+    //Følgende 2 metoder undersøger om listen med returnerede biler har en incident report,
+    // ved at tjekke om contractIDen eksisterer i incidentReport tabellen
+    public List<Contract> contractsWITHincidentRep() {
+
+        List<Contract> allReturnedCarsContracts = returnedCarsContracts();
+        List<Contract> contractsWreport = new ArrayList<>();
+
+        for (Contract contract : allReturnedCarsContracts) {
+            if (incidentReport.readOneReport(contract.getContractID())!=null)
+                contractsWreport.add(contract);
+        }
+
+        return contractsWreport;
+    }
+
+
+    public List<Contract> contractsWITHOUTincidentRep() {
+
+        List<Contract> allReturnedCarsContracts = returnedCarsContracts();
+        List<Contract> contractsWOreport = new ArrayList<>();
+
+        for (Contract contract : allReturnedCarsContracts) {
+            if (incidentReport.readOneReport(contract.getContractID())==null)
+                contractsWOreport.add(contract);
+        }
+
+        return contractsWOreport;
     }
 }
