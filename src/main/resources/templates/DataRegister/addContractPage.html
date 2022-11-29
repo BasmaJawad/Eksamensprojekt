@@ -20,6 +20,19 @@
         <option th:each="car : ${cars}" th:value="${car.VIN}" th:text="${car}"></option>
     </select>
 
+    <label>Ekstra KM / Måned <br>
+        <select name="kmPrMonth">
+            <option value="">1500 km.... + 0/md.</option>
+            <option>1750 km.... + 300kr/md.</option>
+            <option>2000 km.... + 590kr/md.</option>
+            <option>2500 km.... + 1160kr/md.</option>
+            <option>3000 km.... + 1710kr/md.</option>
+            <option>3500 km.... + 2240kr/md.</option>
+            <option>4000 km.... + 2750kr/md.</option>
+            <option>4500 km.... + 3240kr/md.</option>
+        </select>
+    </label>
+
     <label> SubLength:
         <select name="subLength">
             <option value="THREE_MONTHS">3 måneder</option>

@@ -61,12 +61,12 @@ public class CustomerRepository implements IRepository {
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-            ptst.setString(1,c.getName());
-            ptst.setString(2,c.getCprNum());
-            ptst.setString(3,c.getEmail());
-            ptst.setString(4,c.getAddress());
-            ptst.setString(5,c.getPhoneNum());
-            ptst.setInt(6,c.getZipCode());
+            ptst.setString(1, c.getName());
+            ptst.setString(2, c.getCprNum());
+            ptst.setString(3, c.getEmail());
+            ptst.setString(4, c.getAddress());
+            ptst.setString(5, c.getPhoneNum());
+            ptst.setInt(6, c.getZipCode());
 
             ptst.executeUpdate();
         } catch (SQLException e) {

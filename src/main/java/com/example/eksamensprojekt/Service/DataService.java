@@ -8,6 +8,7 @@ import com.example.eksamensprojekt.Model.Enums.SubLenght;
 import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.CustomerRepository;
+import com.example.eksamensprojekt.Repository.PriceRepository;
 import org.springframework.web.context.request.WebRequest;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class DataService {
     ContractRepository contractRepo = new ContractRepository();
 
     CustomerRepository customerRepo = new CustomerRepository();
+    PriceRepository priceRepo = new PriceRepository();
 
     public void addContract(WebRequest req) {
         Car car;
@@ -43,6 +45,12 @@ public class DataService {
 
         //Updates CarStatus in car to RENTED
         carRepository.updateSingle(VIN, "carStatus", "VIN");
+
+        //Calculating baseSubPrice based on Sublength and CarModel
+        int baseSubPrice = getBaseScribtionPrice(car,subLenght);
+
+
+
 
         //Convert addOns to booleans
         boolean vikingHelp = Objects.equals(req.getParameter("vikingHelp"), "on");
