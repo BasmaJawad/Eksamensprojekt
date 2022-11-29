@@ -30,7 +30,7 @@ public class CarRepository implements IRepository {
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        String QUARY_GAS = "SELECT * from gascar where carStatus = ?";
+        String QUARY_GAS = "SELECT * from data.gascar where carStatus = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
@@ -52,7 +52,7 @@ public class CarRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "SELECT * from electriccar where carStatus = ?";
+        String QUARY_ELECTRIC = "SELECT * from data.electriccar where carStatus = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
@@ -84,7 +84,7 @@ public class CarRepository implements IRepository {
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        String QUARY_GAS = "SELECT * from gascar";
+        String QUARY_GAS = "SELECT * from data.gascar";
 
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY_GAS);
