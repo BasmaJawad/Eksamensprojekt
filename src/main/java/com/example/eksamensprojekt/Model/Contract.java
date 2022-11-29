@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Model;
 
+import com.example.eksamensprojekt.Model.Enums.KmPrMonth;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
@@ -12,13 +13,15 @@ public class Contract {
     private String VIN;
     private SubLenght subLenght; //months
     private int finalPrice;
+    private KmPrMonth kmPrMonth;
+
     private int customerID;
     private PickupDestination pickupDestination;
     private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
 
     //Constructor without contractID, used when writing contracts
-    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth) {
         this.VIN = VIN;
         this.subLenght = subLenght;
         this.customerID = customerID;
@@ -27,10 +30,11 @@ public class Contract {
         this.deliveryInsurance = deliveryInsurance;
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
+        this.kmPrMonth = kmPrMonth;
 
     }
     //Constructor with contractID, used when displaying all contracts
-    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires) {
+    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth) {
         this.contractID = contractID;
         this.VIN = VIN;
         this.subLenght = subLenght;
@@ -40,19 +44,20 @@ public class Contract {
         this.deliveryInsurance = deliveryInsurance;
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
+        this.kmPrMonth = kmPrMonth;
 
     }
 
-    private void calculatePrice(){
+    public int calculateAddOnPrice(){
 
-        int totalPrice = 0;
+        int price = 0;
 
-        if (vikingHelp) totalPrice += 49;
-        if (deliveryInsurance) totalPrice += 119;
-        if (lowDeductible) totalPrice += 64;
-        if (winterTires) totalPrice += 50;
+        if (vikingHelp) price += 49;
+        if (deliveryInsurance) price += 119;
+        if (lowDeductible) price += 64;
+        if (winterTires) price += 549;
 
-        //needs more
+        return price;
     }
 
 
@@ -135,6 +140,10 @@ public class Contract {
 
     public void setWinterTires(boolean winterTires) {
         this.winterTires = winterTires;
+    }
+
+    public KmPrMonth getKmPrMonth(){
+        return this.kmPrMonth;
     }
 
     @Override

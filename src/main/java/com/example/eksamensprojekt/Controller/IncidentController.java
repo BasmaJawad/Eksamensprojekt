@@ -25,8 +25,8 @@ public class IncidentController {
        session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep());
        session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
 
-        System.out.println("med ir" +incidentsService.contractsWITHincidentRep().size());
-        System.out.println("uden ir" +incidentsService.contractsWITHOUTincidentRep().size());
+        System.out.println(incidentsService.contractsWITHincidentRep());
+
 
         return "/DamageRegister/incidentsHomepage";
     }
@@ -69,11 +69,14 @@ public class IncidentController {
     @PostMapping("/createReport")
     public String createReport(WebRequest req, Model model) {
 
+        model.addAttribute("contractID",req.getParameter("contractID"));
+
         int ContractID = Integer.parseInt(req.getParameter("contractID"));
+
         boolean validID = incidentsService.verifyContractID(ContractID);
         if (validID) {
             incidentsService.createIncidentReport(ContractID);
-            return "/DamageRegister/createReport";
+            return "/DamageRegister/DamagePopup";
         }
         return "/DamageRegister/NoContractError";
     }
