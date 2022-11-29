@@ -49,14 +49,17 @@ public class DataController {
 
   //Form i listOfContracts
   @PostMapping("/showcontract")
-  public String showContract(WebRequest req){
+  public String showContract(WebRequest req, Model model){
 
     Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
-    System.out.println(contract.getVIN());
+    System.out.println(contract);
     Car car = dataService.getOnecar(contract.getVIN());
-    System.out.println(car.getCarBrand());
     Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
-    System.out.println(customer.getName());
+
+    model.addAttribute("contract",contract);
+    model.addAttribute("car",car);
+    model.addAttribute("customer",customer);
+
 
 
     return "ShowContract";

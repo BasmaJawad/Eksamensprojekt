@@ -1,0 +1,64 @@
+body{
+    padding: 70px;
+    font: normal 15px "Avenir Next";
+
+}
+
+.leftBox{
+    width: 50%;
+    border: 2px black;
+    float: left;
+}
+
+.contractID{
+    height: 30px;
+    width: 200px;
+    display: inline-block;
+    padding: 4px 16px;
+    color: black;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 13px;
+    font-weight: bold;
+    background-color: #c3c3c3;
+    border-style: ridge;
+    border-color: black;
+    border-width: thin;
+}
+.contractID span {
+    color: black;
+    font-weight: normal;
+}
+
+h1{
+    font-weight: bold;
+    font-size: 50px;
+    text-transform: capitalize;
+    display:inline;
+}
+
+#carModel span{
+    font-size: 30px;
+    font-weight: 500;
+}
+#carBrand{
+    display:inline;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+}
+
+h2{
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.rightBox{
+    float: left;
+    width: 50%;
+
+}
+
+

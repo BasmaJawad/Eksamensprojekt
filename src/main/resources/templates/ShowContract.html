@@ -2,9 +2,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="ShowContract.css">
     <title>Contract</title>
+
+
 </head>
 <body>
+
+<header></header>
+<div class="leftBox">
+
+    <div class="contractID">
+        <span>Contract ID:</span>
+        <td th:text="${contract.getContractID()}"/>
+        <br><br><br>
+    </div>
+
+    <div class="maininfo">
+
+        <h1 id="carModel"><span>Car Model</span><br>
+        <td th:text="${car.getCarModel()}"/>
+        </h1><br>
+
+        <p id="carBrand">
+        <td th:text="${car.getCarBrand()}"/>
+        </p>
+
+        <div class="CarInfo">
+
+            <label for="carModel"> Car Model</label>
+            <input type="text" name="carModel" class="form-control" th:value="${car.getCarModel()} readonly"><br>
+
+            <label for="carBrand"> Car Brand</label>
+            <input type="text" name="carBrand" class="form-control" th:value="${car.getCarBrand()} readonly"><br>
+
+        </div>
+    </div>
+</div>
+
+<div class="rightBox">
+    <br><br><br>
+    <div class="contractInfo">
+
+    <h2> contract information</h2>
+
+        <label for="contractID">Contract ID</label>
+        <input type="text" name="contractID" class="form-control" th:value="${contract.getContractID()}" readonly><br>
+
+        <label for="subLenght">Subsription lenght</label>
+        <input type="text" name="subLenght" class="form-control" th:value="${car.getCarBrand()} readonly"><br>
+
+    </div>
+
+</div>
+
+
+<br><br><br><br><br>
+<td th:text="${contract.getContractID()}"/>
+<br>
+<td th:text="${contract.getSubLenght()}"/>
+<br>
+<td th:text="${contract.getPickupDestination()}"/>
+<br>
+
+customer
+
+<td th:text="${customer.getName()}"/>
+<br>
+<td th:text="${customer.getPhoneNum()}"/>
+
 
 </body>
 </html>
