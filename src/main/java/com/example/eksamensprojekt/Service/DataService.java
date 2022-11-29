@@ -21,7 +21,7 @@ public class DataService {
 
     public void addContract(WebRequest req) {
         Car car;
-
+        SubLenght subLenght = SubLenght.valueOf(req.getParameter("subLength"));
         String VIN;
         //Creates new customer object
         Customer customer = new Customer(req.getParameter("name"),
@@ -79,7 +79,7 @@ public class DataService {
 
         //Creating new Contract object
         Contract contract = new Contract(VIN,
-                SubLenght.valueOf(req.getParameter("subLength")),
+            subLenght,
                 customerID,
                 PickupDestination.valueOf(req.getParameter("pickupDestination")),
                 vikingHelp,
@@ -91,37 +91,41 @@ public class DataService {
         contractRepo.writeSingle(contract);
     }
 
-    public int getBaseScribtionPrice(Car car) {
+    public int getBaseScribtionPrice(Car car, SubLenght subLength) {
         int baseSupscribtionPrice = 0;
         switch (car.getCarModel()) {
-            case "208 envy 82 HK", "208 Active+ 100 HK" -> {
+            case "208 envy 82 HK" -> {
                 baseSupscribtionPrice = 3799;
-                baseSupscribtionPrice += 0;
+               baseSupscribtionPrice += car.addSubscriptionFeeEnvy(subLength);
             }
             case "108 Active+ 72 HK" -> {
                 baseSupscribtionPrice = 2799;
-                baseSupscribtionPrice += 0;
+                baseSupscribtionPrice += car.addSubscriptionFee108ActivePlus(subLength);
             }
             case "C1 Le Mans 72 HK" -> {
                 baseSupscribtionPrice = 2699;
-                baseSupscribtionPrice += 0;
+                baseSupscribtionPrice += car.addSubscriptionFeeC1LeMans(subLength);
             }
             case "C3 Le Mans 83 HK" -> {
                 baseSupscribtionPrice = 3199;
-                baseSupscribtionPrice += 0;
+                baseSupscribtionPrice += car.addSubscriptionFeeC3LeMans(subLength);
 
             }
             case "Fiat 500e CABRIO Icon Pack 118 HK" -> {
                 baseSupscribtionPrice = 3399;
-                baseSupscribtionPrice += 0;
+                baseSupscribtionPrice += car.getAddSubscriptionFeeCabrioIcon(subLength);
             }
             case "500e Icon Pack 118 HK" -> {
                 baseSupscribtionPrice = 2999;
-                baseSupscribtionPrice += 0;
+                baseSupscribtionPrice += car.addSubscriptionFeeIcon(subLength);
             }
             case "e-2008 GT Line 136 HK" -> {
                 baseSupscribtionPrice = 4799;
-                baseSupscribtionPrice += 0;
+                baseSupscribtionPrice += car.addSubscriptionFeeGTLine(subLength);
+            }
+            case "208 Active+ 100 HK" -> {
+                baseSupscribtionPrice = 3799;
+                baseSupscribtionPrice += car.addSubscriptionFee208ActivePlus(subLength);
             }
         }
         return -1;
