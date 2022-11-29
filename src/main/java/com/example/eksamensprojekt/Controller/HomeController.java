@@ -41,7 +41,7 @@ public class HomeController {
         return "login"; // mangler fejlhåndtering
     }
 
-    @GetMapping("/logout") //bruges i login html
+    @GetMapping("/logout") //bruges i login html pt
     public String logout(HttpSession session){
 
         session.invalidate();
