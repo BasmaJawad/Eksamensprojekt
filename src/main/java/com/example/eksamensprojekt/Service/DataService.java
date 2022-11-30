@@ -79,13 +79,15 @@ public class DataService {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
         carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus, null);
+        return carRepository.readMultiple(carStatus, "carStatus");
     }
 
     public ArrayList<Contract> getAllContracts() {
 
         return contractRepo.readMultiple();
     }
+
+
 
 
 

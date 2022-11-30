@@ -1,9 +1,12 @@
 package com.example.eksamensprojekt.Controller;
 
+import com.example.eksamensprojekt.Model.ContractPrice;
 import com.example.eksamensprojekt.Service.BusinessService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.ArrayList;
 
 @Controller
 public class BusinessController {
@@ -21,8 +24,11 @@ public class BusinessController {
     @GetMapping("/revenueBoard")
     public String revenueBoard(Model model){
 
-        model.addAttribute("pricePrContract", bs.listOfPricesPrCar());
+        ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
+        int totalRevenue = bs.totalRevenue();
+
+        model.addAttribute("pricePrContract", list);
+        model.addAttribute("totalRevenue", totalRevenue);
         return "/BusinessUser/revenueBoard";
     }
-
 }
