@@ -4,50 +4,59 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="incidentHomepage.css">
     <title>Incidents</title>
-</head>
+    <style>
+        table {border-collapse: collapse; }
 
+    </style>
+</head>
 <body>
 
-<!-- input tag -->
-
-<input id="searchbar" onkeyup="search_ID()" type="text"
-       name="search" placeholder="Søg efter kontraktID">
 
 
-<table>
 
-    <tr
-            th:each="contract:${session.contractsWithReport}">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID">
 
+<table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
 
-        <td class="animals" th:text="${contract.getContractID}"></td>
-        <td class="animals" th:text="${contract.getVIN}"></td>
-        <td class="animals" th:text="${contract.getCustomerID}"></td>
+    <tr class="header">
+        <th style="width:20%;">KONKTRAKT ID</th>
+        <th style="width:30%;">STELNUMMER</th>
+        <th style="width:20%;">KUNDE ID</th>
+    </tr>
+
+    <tr th:each="contract :${session.contractsWOreports}">
+        <td th:text="${contract.getContractID}">
+        <td th:text="${contract.getVIN}">
+        <td th:text="${contract.getCustomerID}">
 
     </tr>
 
-
 </table>
 
-
-<!-- linking javascript -->
 <script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
 
-    function search_ID() {
-        let input = document.getElementById('searchbar').value
-        input = input.toLowerCase();
-        let x = document.getElementsByClassName('animals');
-
-        for (i = 0; i < x.length; i++) {
-            if (!x[i].innerHTML.toLowerCase().includes(input)) {
-                x[i].style.display = "none";
-            } else {
-                x[i].style.display = "list-item";
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
             }
         }
     }
 </script>
 
-
 </body>
+
 </html>

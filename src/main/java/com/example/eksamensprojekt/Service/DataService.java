@@ -143,7 +143,6 @@ public class DataService {
 
     public Car getOnecar(Object param){
         return carRepository.readSingle(param);
-
     }
 
     public Customer getOneCustomer(String column, Object val){
@@ -152,7 +151,13 @@ public class DataService {
 
     public void updateSingle(WebRequest req, Car car){
 
-        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", req.getParameter("carStatus"));
+        String updateTo = req.getParameter("carStatus");
+
+        //Updates carStatus
+        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", updateTo);
+
+        //Sets contract to inactive
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"active", "contractID", "0");
 
     }
 }
