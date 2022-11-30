@@ -32,22 +32,54 @@
 
         <br><br><br> <br><br><br><br><br><br><br>
 
-        <div class="container">
+        <div class="container" id="storBox">
             <div class="panel-heading">car information</div>
 
             <div class="infoContainter">
-            <label for="carModel"> Car Model</label><br>
-            <input type="text" name="carModel" class="form-control" th:value="${session.car.getCarModel()}" readonly><br>
+                <div>
+                    <label for="carModel"> Car Model</label><br>
+                    <input type="text" name="carModel" class="form-control" th:value="${session.car.getCarModel()}"
+                           readonly><br>
+                </div>
+                <div>
+                    <label for="carBrand"> Car Brand</label><br>
+                    <input type="text" name="carBrand" class="form-control" th:value="${session.car.getCarBrand()}"
+                           readonly><br>
+                </div>
+                <div>
+                    <label for="VIN">Vehicle identification number</label><br>
+                    <input type="text" name="VIN" class="form-control" th:value="${session.car.getVIN()}" readonly><br>
+                </div>
 
-            <label for="carBrand"> Car Brand</label><br>
-            <input type="text" name="carBrand" class="form-control" th:value="${session.car.getCarBrand()}" readonly><br>
 
-                <label for="VIN">Vehicle identification number</label><br>
-                <input type="text" name="VIN" class="form-control" th:value="${session.car.getVIN()}" readonly><br>
+                <span th:if="${session.car instanceof T(GasCar)}">cat</span>
+                <span th:unless="${session.car.class.name == 'GasCar'}">dog</span>
 
+
+
+                <div>
+                    <label  for="specification">specification</label><br>
+                    <input class="specielContent" type="text" name="specification" value="Gas Car" readonly><br>
+                </div>
+                <div class="smallInput">
+
+                    <label  for="LiterPrKm">Liter pr. Kilometer</label><br>
+                    <input class="specielContent" type="text" name="LiterPrKm" th:value="${session.car.getLiterPrKm()}"
+                           readonly><br>
+                </div>
+
+                <div class="smallInput">
+
+                    <label for="co2PrKm">Co2 emisson pr. Kilometer</label><br>
+                    <input class="specielContent" type="text" name="co2PrKm" th:value="${session.car.getCo2PrKm()}"
+                           readonly><br>
+
+                </div>
 
             </div>
         </div>
+
+
     </div>
     <br><br><br>
 </div>
@@ -58,15 +90,15 @@
     <div id="carStatusContainter">
 
         <div id="carStatus">
-        Car Status<br><br>
-        <span>  <td th:text="${session.car.getCarStatus()}"/> </span>
+            Car Status<br><br>
+            <span>  <td th:text="${session.car.getCarStatus()}"/> </span>
         </div>
 
         <div id="submitCarStat">
-        <form action="/updateCarStatus" method="post">
-            <input type="hidden" name="carStatus" value="RETURNED">
-            <button type ="submit">Change status to RETURNED</button>
-        </form>
+            <form action="/updateCarStatus" method="post">
+                <input type="hidden" name="carStatus" value="RETURNED">
+                <button type="submit">Change status to RETURNED</button>
+            </form>
         </div>
 
     </div>
@@ -80,11 +112,13 @@
                    readonly><br>
 
             <label for="subLenght">Subsription lenght</label><br>
-            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}" readonly><br>
+            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
+                   readonly><br>
 
 
             <label for="pickupDes">pickup destination</label><br>
-            <input type="text" name="pickupDes" class="form-control" th:value="${session.contract.getPickupDestination()}" readonly><br>
+            <input type="text" name="pickupDes" class="form-control"
+                   th:value="${session.contract.getPickupDestination()}" readonly><br>
 
         </div>
     </div>
@@ -100,16 +134,17 @@
                    readonly><br>
 
             <label for="email">Subsription lenght</label><br>
-            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}" readonly><br>
+            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
+                   readonly><br>
 
 
             <label for="pickupDes">pickup destination</label><br>
-            <input type="text" name="pickupDes" class="form-control" th:value="${session.contract.getPickupDestination()}" readonly><br>
+            <input type="text" name="pickupDes" class="form-control"
+                   th:value="${session.contract.getPickupDestination()}" readonly><br>
 
         </div>
     </div>
 </div>
-
 
 
 </body>

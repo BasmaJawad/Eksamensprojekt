@@ -107,7 +107,7 @@ input{
     border-radius: 5px;
     font-size: 16px;
     margin-bottom: 40px;
-    border-color: gray;
+    border-color: lightgrey;
     width: 90%;
     height: 28px;
     padding: 6px 12px;
@@ -118,6 +118,10 @@ input{
 .container{
     border: 2px solid lightgrey;
     width: 100%;
+
+}
+#storBox{
+    height: 660px;
 }
 .panel-heading{
     font-size: 20px;
@@ -133,4 +137,18 @@ input{
 
 .infoContainter{
     padding: 15px;
+}
+
+
+.smallInput{
+    float: left;
+    width: 40%;
+    margin-right: 30px;
+}
+
+.specielContent{
+background-color: rgba(0, 76, 153,0.1);
+}
+.additionalInfo{
+    text-align: left;
 }
