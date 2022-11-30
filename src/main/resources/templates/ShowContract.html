@@ -14,19 +14,19 @@
 
     <div class="contractID">
         <span>Contract ID:</span>
-        <td th:text="${contract.getContractID()}"/>
+        <td th:text="${session.contract.getContractID()}"/>
         <br><br><br>
     </div>
 
     <div class="maininfo">
 
         <h1 id="carModel"><span>Car Model</span><br>
-            <td th:text="${car.getCarModel()}"/>
+            <td th:text="${session.car.getCarModel()}"/>
         </h1>
         <br>
 
         <p id="carBrand">
-        <td th:text="${car.getCarBrand()}"/>
+        <td th:text="${session.car.getCarBrand()}"/>
         </p>
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -36,10 +36,10 @@
 
             <div class="infoContainter">
             <label for="carModel"> Car Model</label><br>
-            <input type="text" name="carModel" class="form-control" th:value="${car.getCarModel()}" readonly><br>
+            <input type="text" name="carModel" class="form-control" th:value="${session.car.getCarModel()}" readonly><br>
 
             <label for="carBrand"> Car Brand</label><br>
-            <input type="text" name="carBrand" class="form-control" th:value="${car.getCarBrand()}" readonly><br>
+            <input type="text" name="carBrand" class="form-control" th:value="${session.car.getCarBrand()}" readonly><br>
 
 
             </div>
@@ -55,15 +55,15 @@
 
         <div class="infoContainter">
             <label for="contractID">Contract ID</label><br>
-            <input type="text" name="contractID" class="form-control" th:value="${contract.getContractID()}"
+            <input type="text" name="contractID" class="form-control" th:value="${session.contract.getContractID()}"
                    readonly><br>
 
             <label for="subLenght">Subsription lenght</label><br>
-            <input type="text" name="subLenght" class="form-control" th:value="${contract.getSubLenght()}" readonly><br>
+            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}" readonly><br>
 
 
             <label for="pickupDes">pickup destination</label><br>
-            <input type="text" name="pickupDes" class="form-control" th:value="${contract.getPickupDestination()}" readonly><br>
+            <input type="text" name="pickupDes" class="form-control" th:value="${session.contract.getPickupDestination()}" readonly><br>
 
         </div>
     </div>
@@ -75,20 +75,31 @@
 
         <div class="infoContainter">
             <label for="name">Name</label><br>
-            <input type="text" name="name" class="form-control" th:value="${customer.getName()}"
+            <input type="text" name="name" class="form-control" th:value="${session.customer.getName()}"
                    readonly><br>
 
             <label for="email">Subsription lenght</label><br>
-            <input type="text" name="subLenght" class="form-control" th:value="${contract.getSubLenght()}" readonly><br>
+            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}" readonly><br>
 
 
             <label for="pickupDes">pickup destination</label><br>
-            <input type="text" name="pickupDes" class="form-control" th:value="${contract.getPickupDestination()}" readonly><br>
+            <input type="text" name="pickupDes" class="form-control" th:value="${session.contract.getPickupDestination()}" readonly><br>
 
         </div>
     </div>
 </div>
 
+<div id="carStatus">
+
+    Car Status:
+    <td th:text="${session.car.getCarStatus()}"/>
+
+    <form action="/updateCarStatus" method="post">
+        Submit car as
+        <input type="submit" name="carStatus" value="RETURNED"/>
+    </form>
+
+</div>
 
 </body>
 </html>

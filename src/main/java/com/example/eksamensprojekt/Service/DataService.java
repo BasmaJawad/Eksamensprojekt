@@ -12,6 +12,7 @@ import com.example.eksamensprojekt.Repository.CustomerRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,7 +20,6 @@ public class DataService {
 
     CarRepository carRepository = new CarRepository();
     ContractRepository contractRepo = new ContractRepository();
-
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
@@ -89,6 +89,7 @@ public class DataService {
 
 
 
+
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int baseSupscribtionPrice = 0;
         int subScriptionFee = 0;
@@ -137,21 +138,7 @@ public class DataService {
         return price;
     }
 
-    public ArrayList<Car> getAllAvailableCars(){
-
-        ArrayList<CarStatus> carStatus = new ArrayList<>();
-        carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus);
-    }
-
-    public ArrayList<Contract> getAllContracts() {
-
-        return contractRepo.readMultiple();
-    }
-
     public Contract getOneContract(int contractID){
-
-
         return contractRepo.findOneContract("contractID", contractID);
     }
 
@@ -162,5 +149,11 @@ public class DataService {
 
     public Customer getOneCustomer(String column, Object val){
         return customerRepo.findOneCustomer(column, val);
+    }
+
+    public void updateSingle(WebRequest req, Car car){
+
+        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", req.getParameter("carStatus"));
+
     }
 }

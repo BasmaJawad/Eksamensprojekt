@@ -149,4 +149,13 @@ public class Car {
     public String toString() {
         return carBrand + " " + carModel + "   " + VIN;
     }
+
+    public CarStatus getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(CarStatus carStatus) {
+        this.carStatus = carStatus;
+    }
+
 }
