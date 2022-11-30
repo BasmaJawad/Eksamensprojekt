@@ -10,7 +10,7 @@ public interface IRepository<E> {
     //Read
     E readSingle(E param);
 
-    ArrayList<E> readMultiple(ArrayList<E> conditions);
+    ArrayList<E> readMultiple(ArrayList<E> conditions, String columnName);
     ArrayList<E> readMultiple();
 
     //Write
@@ -19,7 +19,7 @@ public interface IRepository<E> {
     void writeMultiple(ArrayList<E> objects);
 
     //Update
-    void updateSingle(E param, String columnName, String columnCondition);
+    void updateSingle(E param, String columnName, String columnCondition, String updateTo);
 
     void updateMultiple(ArrayList<E> objects);
 

@@ -13,33 +13,33 @@ import java.util.ArrayList;
 @Controller
 public class DataController {
 
-  DataService dataService = new DataService();
+    DataService dataService = new DataService();
 
-  @GetMapping("/addContract")
-  public String addContract(WebRequest req) {
+    @GetMapping("/addContract")
+    public String addContract(WebRequest req) {
 
-    dataService.addContract(req);
-    return "/DataRegister/dataHomepage";
-  }
+        dataService.addContract(req);
+        return "/DataRegister/dataHomepage";
+    }
 
-  //Page to add a new contract
-  @GetMapping("/contractPage")
-  public String contractPage(Model model){
+    //Page to add a new contract
+    @GetMapping("/contractPage")
+    public String contractPage(Model model) {
 
 
-    ArrayList<Car> cars = dataService.getAllAvailableCars();
+        ArrayList<Car> cars = dataService.getAllAvailableCars();
 
-    model.addAttribute("cars", cars);
+        model.addAttribute("cars", cars);
 
-    return "/DataRegister/addContractPage";
-  }
+        return "/DataRegister/addContractPage";
+    }
 
-  @GetMapping("/contractList")
-  public String contractList(Model model){
+    @GetMapping("/contractList")
+    public String contractList(Model model) {
 
-    //ThymeLeaf
-    model.addAttribute("contracts" ,dataService.getAllContracts());
+        //ThymeLeaf
+        model.addAttribute("contracts", dataService.getAllContracts());
 
-    return "/DataRegister/listOfContracts";
-  }
+        return "/DataRegister/listOfContracts";
+    }
 }
