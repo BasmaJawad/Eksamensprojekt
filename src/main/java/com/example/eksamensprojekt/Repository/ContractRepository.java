@@ -164,7 +164,7 @@ public class ContractRepository implements IRepository {
 
         Contract c = (Contract) param;
         //Insert Contract to database
-        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth) VALUES (?,?,?,?,?,?,?,?,?)";
+        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth, active) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
@@ -178,6 +178,7 @@ public class ContractRepository implements IRepository {
             ptsd.setBoolean(7, c.isLowDeductible());
             ptsd.setBoolean(8, c.isDeliveryInsurance());
             ptsd.setString(9, c.getKmPrMonth().name());
+            ptsd.setBoolean(10,c.isActive());
 
             ptsd.executeUpdate();
 
@@ -232,6 +233,20 @@ public class ContractRepository implements IRepository {
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
+        int contractID = (int) param;
+
+
+        String QUARY = "UPDATE contracts SET "+ columnName + " = " + Integer.valueOf(updateTo) + " where "+ columnCondition + " =?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+
+            ptst.setInt(1,contractID);
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

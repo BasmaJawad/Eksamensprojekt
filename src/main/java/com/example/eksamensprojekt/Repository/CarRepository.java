@@ -106,7 +106,7 @@ public class CarRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "SELECT * from data.electriccar where carStatus = ?";
+        String QUARY_ELECTRIC = "SELECT * from data.electriccar where " + columnName +" = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
