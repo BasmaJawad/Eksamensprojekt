@@ -73,7 +73,7 @@ public class CustomerRepository implements IRepository {
     }
 
     @Override
-    public ArrayList readMultiple(ArrayList conditions) {
+    public ArrayList readMultiple(ArrayList conditions, String columnName) {
         return null;
     }
 
@@ -111,7 +111,7 @@ public class CustomerRepository implements IRepository {
     }
 
     @Override
-    public void updateSingle(Object param, String columnName, String columnCondition) {
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
     }
 

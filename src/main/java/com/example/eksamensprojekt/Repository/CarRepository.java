@@ -78,7 +78,7 @@ public class CarRepository implements IRepository {
 
     //reads all cars based on CarStatus
     @Override
-    public ArrayList<Car> readMultiple(ArrayList conditions) {
+    public ArrayList<Car> readMultiple(ArrayList conditions, String columnName) {
 
         ArrayList<CarStatus> carStatus = (ArrayList<CarStatus>) conditions;
 
@@ -202,11 +202,11 @@ public class CarRepository implements IRepository {
 
 
     @Override
-    public void updateSingle(Object param, String columnName, String columnCondition) {
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
         String VIN = (String) param;
 
-        String QUARY_GAS = "UPDATE gascar SET "+ columnName + " = 'RENTED' where "+ columnCondition + " =?";
+        String QUARY_GAS = "UPDATE gascar SET "+ columnName + " = '" + updateTo + "' where "+ columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);

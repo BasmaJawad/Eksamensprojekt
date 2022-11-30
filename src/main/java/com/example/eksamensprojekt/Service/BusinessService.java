@@ -26,7 +26,7 @@ public class BusinessService {
 
         conditions.add(CarStatus.RENTED);
 
-        return carRepo.readMultiple(conditions);
+        return carRepo.readMultiple(conditions, null);
     }
 
     public ArrayList<ContractPrice> listOfPricesPrCar() {
@@ -38,7 +38,7 @@ public class BusinessService {
         ArrayList<Contract> contracts = contractRepo.readMultiple();
 
 
-        //Iterates through contract, If VIN is identical to a rented car, get price
+        //Iterates through contract, If VIN is identical to a rented car VIN, get price
         for (Contract contract : contracts) {
             for (Car rentedCar : rentedCars) {
 
@@ -49,6 +49,4 @@ public class BusinessService {
         }
         return list;
     }
-
-
 }

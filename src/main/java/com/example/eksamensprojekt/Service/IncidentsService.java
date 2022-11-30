@@ -91,7 +91,7 @@ public class IncidentsService {
         ArrayList<CarStatus> conditions = new ArrayList<>();
         conditions.add(CarStatus.RETURNED);
 
-        return carRepository.readMultiple(conditions);
+        return carRepository.readMultiple(conditions,null);
     }
 
     //Følgende 2 metoder undersøger om listen med returnerede biler har en incident report,

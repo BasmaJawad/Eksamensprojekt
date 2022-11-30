@@ -47,7 +47,7 @@ public class DataService {
         int customerID = customerRepo.readID(customer);
 
         //Updates CarStatus in car to RENTED
-        carRepository.updateSingle(VIN, "carStatus", "VIN");
+        carRepository.updateSingle(VIN, "carStatus", "VIN", "RENTED");
 
         //Convert addOns to booleans
         boolean vikingHelp = Objects.equals(req.getParameter("vikingHelp"), "on");
@@ -79,13 +79,15 @@ public class DataService {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
         carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus);
+        return carRepository.readMultiple(carStatus, null);
     }
 
     public ArrayList<Contract> getAllContracts() {
 
         return contractRepo.readMultiple();
     }
+
+
 
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int baseSupscribtionPrice = 0;
