@@ -25,8 +25,7 @@ public class IncidentController {
        session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep());
        session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
 
-        System.out.println(incidentsService.contractsWITHincidentRep());
-
+        System.out.println(incidentsService.contractsWITHincidentRep().size());
 
         return "/DamageRegister/incidentsHomepage";
     }
