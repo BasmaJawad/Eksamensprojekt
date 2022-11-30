@@ -89,12 +89,13 @@ public class ContractRepository implements IRepository {
         ArrayList<Contract> contracts = new ArrayList<>();
 
 
+
         String QUARY = "SELECT * FROM data.contracts where " + columnName + "=?";
 
         try {
 
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
-            ptsd.setString(1, (String) conditions.get(0));
+            ptsd.setBoolean(1, (Boolean) conditions.get(0));
 
             ResultSet resultSet = ptsd.executeQuery();
 

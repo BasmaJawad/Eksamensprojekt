@@ -36,8 +36,11 @@ public class BusinessService {
         //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
 
+        ArrayList<Boolean> condition = new ArrayList<>();
+        condition.add(true);
 
-        ArrayList<Contract> contracts = contractRepo.readMultiple();
+
+        ArrayList<Contract> contracts = contractRepo.readMultiple(condition,"active");
 
 
         //Iterates through contract, If VIN is identical to a rented car VIN, get price
