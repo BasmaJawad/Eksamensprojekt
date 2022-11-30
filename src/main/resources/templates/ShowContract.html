@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="ShowContract.css">
+    <title>Contract</title>
+
+
+</head>
+<body>
+
+<header></header>
+<div class="leftBox">
+
+    <div class="contractID">
+        <span>Contract ID:</span>
+        <td th:text="${session.contract.getContractID()}"/>
+        <br><br><br>
+    </div>
+
+    <div class="maininfo">
+
+        <h1 id="carModel"><span>Car Model</span><br>
+            <td th:text="${session.car.getCarModel()}"/>
+        </h1>
+        <br>
+
+        <p id="carBrand">
+        <td th:text="${session.car.getCarBrand()}"/>
+        </p>
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <div class="container">
+            <div class="panel-heading">car information</div>
+
+            <div class="infoContainter">
+            <label for="carModel"> Car Model</label><br>
+            <input type="text" name="carModel" class="form-control" th:value="${session.car.getCarModel()}" readonly><br>
+
+            <label for="carBrand"> Car Brand</label><br>
+            <input type="text" name="carBrand" class="form-control" th:value="${session.car.getCarBrand()}" readonly><br>
+
+
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+</div>
+
+<div class="rightBox">
+    <br><br><br>
+    <div class="container">
+        <div class="panel-heading">contract information</div>
+
+        <div class="infoContainter">
+            <label for="contractID">Contract ID</label><br>
+            <input type="text" name="contractID" class="form-control" th:value="${session.contract.getContractID()}"
+                   readonly><br>
+
+            <label for="subLenght">Subsription lenght</label><br>
+            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}" readonly><br>
+
+
+            <label for="pickupDes">pickup destination</label><br>
+            <input type="text" name="pickupDes" class="form-control" th:value="${session.contract.getPickupDestination()}" readonly><br>
+
+        </div>
+    </div>
+
+    <br>
+
+    <div class="container">
+        <div class="panel-heading">Customer information</div>
+
+        <div class="infoContainter">
+            <label for="name">Name</label><br>
+            <input type="text" name="name" class="form-control" th:value="${session.customer.getName()}"
+                   readonly><br>
+
+            <label for="email">Subsription lenght</label><br>
+            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}" readonly><br>
+
+
+            <label for="pickupDes">pickup destination</label><br>
+            <input type="text" name="pickupDes" class="form-control" th:value="${session.contract.getPickupDestination()}" readonly><br>
+
+        </div>
+    </div>
+</div>
+
+<div id="carStatus">
+
+    Car Status:
+    <td th:text="${session.car.getCarStatus()}"/>
+
+    <form action="/updateCarStatus" method="post">
+        Submit car as
+        <input type="submit" name="carStatus" value="RETURNED"/>
+    </form>
+
+</div>
+
+</body>
+</html>

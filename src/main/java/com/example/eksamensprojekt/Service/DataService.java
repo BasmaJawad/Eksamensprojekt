@@ -89,8 +89,6 @@ public class DataService {
 
 
 
-
-
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int baseSupscribtionPrice = 0;
         int subScriptionFee = 0;
@@ -139,4 +137,22 @@ public class DataService {
         return price;
     }
 
+    public Contract getOneContract(int contractID){
+        return contractRepo.findOneContract("contractID", contractID);
+    }
+
+    public Car getOnecar(Object param){
+        return carRepository.readSingle(param);
+
+    }
+
+    public Customer getOneCustomer(String column, Object val){
+        return customerRepo.findOneCustomer(column, val);
+    }
+
+    public void updateSingle(WebRequest req, Car car){
+
+        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", req.getParameter("carStatus"));
+
+    }
 }
