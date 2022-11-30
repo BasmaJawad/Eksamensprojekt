@@ -84,7 +84,7 @@ public class CarRepository implements IRepository {
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        String QUARY_GAS = "SELECT * from data.gascar where carStatus = ?";
+        String QUARY_GAS = "SELECT * from data.gascar where " + columnName + " = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);

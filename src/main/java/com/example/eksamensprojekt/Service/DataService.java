@@ -12,7 +12,6 @@ import com.example.eksamensprojekt.Repository.CustomerRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -20,6 +19,7 @@ public class DataService {
 
     CarRepository carRepository = new CarRepository();
     ContractRepository contractRepo = new ContractRepository();
+
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
@@ -79,14 +79,13 @@ public class DataService {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
         carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus, null);
+        return carRepository.readMultiple(carStatus, "carStatus");
     }
 
     public ArrayList<Contract> getAllContracts() {
 
         return contractRepo.readMultiple();
     }
-
 
 
 
