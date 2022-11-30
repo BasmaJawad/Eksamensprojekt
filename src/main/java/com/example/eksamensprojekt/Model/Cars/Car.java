@@ -8,10 +8,6 @@ public class Car {
     private String carModel, carBrand,VIN;
     private CarStatus carStatus;
 
-    //Addons
-
-// private AddedFeatures;
-
 
     public Car(String carModel, String carBrand, String VIN, CarStatus carStatus) {
         this.carModel = carModel;
@@ -149,4 +145,13 @@ public class Car {
     public String toString() {
         return carBrand + " " + carModel + "   " + VIN;
     }
+
+    public CarStatus getCarStatus() {
+        return carStatus;
+    }
+
+    public void setCarStatus(CarStatus carStatus) {
+        this.carStatus = carStatus;
+    }
+
 }

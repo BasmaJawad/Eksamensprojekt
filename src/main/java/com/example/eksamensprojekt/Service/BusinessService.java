@@ -17,7 +17,6 @@ public class BusinessService {
     CarRepository carRepo = new CarRepository();
     ContractRepository contractRepo = new ContractRepository();
     PriceRepository priceRepo = new PriceRepository();
-    CustomerRepository customerRepo = new CustomerRepository();
 
 
     public ArrayList<Car> getRentedCars() {
@@ -26,19 +25,25 @@ public class BusinessService {
 
         conditions.add(CarStatus.RENTED);
 
-        return carRepo.readMultiple(conditions);
+        return carRepo.readMultiple(conditions, "carStatus");
     }
+
 
     public ArrayList<ContractPrice> listOfPricesPrCar() {
 
         ArrayList<ContractPrice> list = new ArrayList<>();
 
+        //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
 
-        ArrayList<Contract> contracts = contractRepo.readMultiple();
+        ArrayList<Boolean> condition = new ArrayList<>();
+        condition.add(true);
 
 
-        //Iterates through contract, If VIN is identical to a rented car, get price
+        ArrayList<Contract> contracts = contractRepo.readMultiple(condition,"active");
+
+
+        //Iterates through contract, If VIN is identical to a rented car VIN, get price
         for (Contract contract : contracts) {
             for (Car rentedCar : rentedCars) {
 
@@ -50,5 +55,14 @@ public class BusinessService {
         return list;
     }
 
+    public int totalRevenue(){
 
+        ArrayList<ContractPrice> list = listOfPricesPrCar();
+
+        int totalRevenue = 0;
+        for (ContractPrice contractPrice : list) {
+            totalRevenue += contractPrice.getFinalPrice();
+        }
+        return totalRevenue;
+    }
 }

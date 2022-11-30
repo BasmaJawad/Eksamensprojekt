@@ -47,7 +47,7 @@ public class DataService {
         int customerID = customerRepo.readID(customer);
 
         //Updates CarStatus in car to RENTED
-        carRepository.updateSingle(VIN, "carStatus", "VIN");
+        carRepository.updateSingle(VIN, "carStatus", "VIN", "RENTED");
 
         //Convert addOns to booleans
         boolean vikingHelp = Objects.equals(req.getParameter("vikingHelp"), "on");
@@ -79,13 +79,15 @@ public class DataService {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
         carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus);
+        return carRepository.readMultiple(carStatus, "carStatus");
     }
 
     public ArrayList<Contract> getAllContracts() {
 
         return contractRepo.readMultiple();
     }
+
+
 
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int baseSupscribtionPrice = 0;
@@ -135,4 +137,27 @@ public class DataService {
         return price;
     }
 
+    public Contract getOneContract(int contractID){
+        return contractRepo.findOneContract("contractID", contractID);
+    }
+
+    public Car getOnecar(Object param){
+        return carRepository.readSingle(param);
+    }
+
+    public Customer getOneCustomer(String column, Object val){
+        return customerRepo.findOneCustomer(column, val);
+    }
+
+    public void updateSingle(WebRequest req, Car car){
+
+        String updateTo = req.getParameter("carStatus");
+
+        //Updates carStatus
+        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", updateTo);
+
+        //Sets contract to inactive
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"active", "contractID", "0");
+
+    }
 }
