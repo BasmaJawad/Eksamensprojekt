@@ -23,13 +23,14 @@
         <h1 id="carModel"><span>Car Model</span><br>
             <td th:text="${session.car.getCarModel()}"/>
         </h1>
+
         <br>
 
         <p id="carBrand">
         <td th:text="${session.car.getCarBrand()}"/>
         </p>
 
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br> <br><br><br><br><br><br><br>
 
         <div class="container">
             <div class="panel-heading">car information</div>
@@ -41,6 +42,9 @@
             <label for="carBrand"> Car Brand</label><br>
             <input type="text" name="carBrand" class="form-control" th:value="${session.car.getCarBrand()}" readonly><br>
 
+                <label for="VIN">Vehicle identification number</label><br>
+                <input type="text" name="VIN" class="form-control" th:value="${session.car.getVIN()}" readonly><br>
+
 
             </div>
         </div>
@@ -49,7 +53,24 @@
 </div>
 
 <div class="rightBox">
-    <br><br><br>
+    <br><br><br><br><br>
+
+    <div id="carStatusContainter">
+
+        <div id="carStatus">
+        Car Status<br><br>
+        <span>  <td th:text="${session.car.getCarStatus()}"/> </span>
+        </div>
+
+        <div id="submitCarStat">
+        <form action="/updateCarStatus" method="post">
+            <input type="hidden" name="carStatus" value="RETURNED">
+            <button type ="submit">Change status to RETURNED</button>
+        </form>
+        </div>
+
+    </div>
+    <br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>
     <div class="container">
         <div class="panel-heading">contract information</div>
 
@@ -89,17 +110,7 @@
     </div>
 </div>
 
-<div id="carStatus">
 
-    Car Status:
-    <td th:text="${session.car.getCarStatus()}"/>
-
-    <form action="/updateCarStatus" method="post">
-        Submit car as
-        <input type="submit" name="carStatus" value="RETURNED"/>
-    </form>
-
-</div>
 
 </body>
 </html>
