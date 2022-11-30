@@ -42,25 +42,18 @@ public class DataService {
 
         VIN = req.getParameter("car");
         car = carRepository.readSingle(VIN);
+
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
 
         //Updates CarStatus in car to RENTED
         carRepository.updateSingle(VIN, "carStatus", "VIN");
 
-
-
-
-
-
-
-
         //Convert addOns to booleans
         boolean vikingHelp = Objects.equals(req.getParameter("vikingHelp"), "on");
         boolean deliveryInsurance = Objects.equals(req.getParameter("deliveryInsurance"), "on");
         boolean lowDeductible = Objects.equals(req.getParameter("lowDeductible"), "on");
         boolean winterTires = Objects.equals(req.getParameter("winterTires"), "on");
-
 
 
         //Creating new Contract object
@@ -74,14 +67,24 @@ public class DataService {
                 winterTires,
                 kmPrMonth);
 
-
-
-
         //Add contract to database
         contractRepo.writeSingle(contract);
 
         //Inserting price to database
         addPriceToDatabase(car,subLenght,contract);
+    }
+
+
+    public ArrayList<Car> getAllAvailableCars(){
+
+        ArrayList<CarStatus> carStatus = new ArrayList<>();
+        carStatus.add(CarStatus.NOT_RENTED);
+        return carRepository.readMultiple(carStatus);
+    }
+
+    public ArrayList<Contract> getAllContracts() {
+
+        return contractRepo.readMultiple();
     }
 
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {

@@ -148,6 +148,6 @@ public class Contract {
 
     @Override
     public String toString() {
-        return customerID + "\n" + VIN + "\n" + finalPrice + "\n" + subLenght.toString();
+        return customerID + "\n" + VIN  + "\n" + subLenght.toString();
     }
 }
