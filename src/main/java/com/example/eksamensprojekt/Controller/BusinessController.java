@@ -14,7 +14,7 @@ public class BusinessController {
     BusinessService bs = new BusinessService();
 
     @GetMapping("/listOfRentedCars")
-    public String listOfRentedCars(Model model){
+    public String listOfRentedCars(Model model) {
 
         model.addAttribute("rentedCars", bs.getRentedCars());
 
@@ -22,7 +22,7 @@ public class BusinessController {
     }
 
     @GetMapping("/revenueBoard")
-    public String revenueBoard(Model model){
+    public String revenueBoard(Model model) {
 
         ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
