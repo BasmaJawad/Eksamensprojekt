@@ -12,12 +12,21 @@
 <header></header>
 <div class="leftBox">
 
-    <div class="contractID">
+    <div class="topContainter">
         <span>Contract ID:</span>
         <td th:text="${session.contract.getContractID()}"/>
-        <br><br><br>
+
     </div>
 
+    <div class="topContainter" id="live"th:if="${session.contract.isActive()==true}">
+        LIVE
+    </div>
+
+    <div class="topContainter" id="dead" th:unless="${session.contract.isActive()==true}">
+        DEAD
+    </div>
+
+    <br><br><br>
     <div class="maininfo">
 
         <h1 id="carModel"><span>Car Model</span><br>
@@ -97,17 +106,24 @@
 
                         </span>
 
-                    </div>
 
-                    <div class="additionalInfo">
+                        <span th:if="${session.car.isCleverNetworkCharging()==false}">
 
-                        <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" checked disabled>
-                        <label for="styled-checkbox-2">Clever Charging</label>
+                            <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" disabled>
+                            <label for="styled-checkbox-2">Clever Charging</label>
+
+                        </span>
+
+                        <span th:unless="${session.car.isCleverNetworkCharging()==false}">
+
+                            <input class="styled-checkbox" id="styled-checkbox-2.1" type="checkbox" checked disabled>
+                            <label for="styled-checkbox-2.1">Clever Charging</label>
+
+                        </span>
 
                     </div>
 
                 </div>
-
 
             </div>
         </div>
@@ -136,7 +152,7 @@
 
     </div>
     <br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>
-    <div class="container">
+    <div class="container" id="storBox2">
         <div class="panel-heading">contract information</div>
 
         <div class="infoContainter">
@@ -148,11 +164,69 @@
             <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
                    readonly><br>
 
-
             <label for="pickupDes">pickup destination</label><br>
             <input type="text" name="pickupDes" class="form-control"
                    th:value="${session.contract.getPickupDestination()}" readonly><br>
 
+            <label for="kmPrMonth">Kilometer Pr. month</label><br>
+            <input type="text" name="kmPrMonth" class="form-control"
+                   th:value="${session.contract.getKmPrMonth()}" readonly><br>
+
+            <div class="additionalInfo">
+
+            <span th:if="${session.contract.isWinterTires()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" disabled>
+                 <label for="styled-checkbox-3">Winter Tires</label>
+            </span>
+
+                <span th:unless="${session.contract.isWinterTires()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-4" type="checkbox" checked disabled>
+                <label for="styled-checkbox-4">Winter Tires</label>
+
+            </span>
+
+                <span th:if="${session.contract.isVikingHelp()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-5" type="checkbox" disabled>
+                 <label for="styled-checkbox-5">Viking help</label>
+            </span>
+
+                <span th:unless="${session.contract.isVikingHelp()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-6" type="checkbox" checked disabled>
+                <label for="styled-checkbox-6">Viking help</label>
+
+            </span>
+
+                <span th:if="${session.contract.isDeliveryInsurance()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-7" type="checkbox" disabled>
+                 <label for="styled-checkbox-7">Delivery Insurance</label>
+            </span>
+
+                <span th:unless="${session.contract.isDeliveryInsurance()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-8" type="checkbox" checked disabled>
+                <label for="styled-checkbox-8">Delivery Insurance</label>
+
+            </span>
+
+                <span th:if="${session.contract.isLowDeductible()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-9" type="checkbox" disabled>
+                 <label for="styled-checkbox-7">Low Deductible</label>
+            </span>
+
+                <span th:unless="${session.contract.isLowDeductible()==false}">
+
+                <input class="styled-checkbox" id="styled-checkbox-10" type="checkbox" checked disabled>
+                <label for="styled-checkbox-8">Low Deductible</label>
+
+            </span>
+
+            </div>
         </div>
     </div>
 
@@ -166,14 +240,25 @@
             <input type="text" name="name" class="form-control" th:value="${session.customer.getName()}"
                    readonly><br>
 
-            <label for="email">Subsription lenght</label><br>
-            <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
+            <label for="email">Email</label><br>
+            <input type="text" name="email" class="form-control" th:value="${session.customer.getEmail()}"
                    readonly><br>
 
+            <label for="phonenumber">phone number</label><br>
+            <input type="text" name="phonenumber" class="form-control"
+                   th:value="${session.customer.getPhoneNum()}" readonly><br>
 
-            <label for="pickupDes">pickup destination</label><br>
-            <input type="text" name="pickupDes" class="form-control"
-                   th:value="${session.contract.getPickupDestination()}" readonly><br>
+            <label for="CPR">social Security number</label><br>
+            <input type="text" name="CPR" class="form-control"
+                   th:value="${session.customer.getCprNum()}" readonly><br>
+
+            <label for="address">Address</label><br>
+            <input type="text" name="address" class="form-control"
+                   th:value="${session.customer.getAddress()}" readonly><br>
+
+            <label for="zipcode">Address</label><br>
+            <input type="text" name="zipcode" class="form-control"
+                   th:value="${session.customer.getZipCode()}" readonly><br>
 
         </div>
     </div>

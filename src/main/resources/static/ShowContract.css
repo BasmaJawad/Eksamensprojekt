@@ -10,12 +10,12 @@ body{
     float: left;
 }
 
-.contractID{
+.topContainter{
     height: 30px;
     width: 200px;
     display: inline-block;
     padding: 6px 16px;
-    color: black;
+    color: white;
     text-align: center;
     box-sizing: border-box;
     font-size: 13px;
@@ -24,13 +24,28 @@ body{
     border-style: ridge;
     border-color: black;
     border-width: thin;
+    float: left;
 }
 .contractID span {
     color: black;
     font-weight: normal;
 }
 
+#live{
+    background-color: #6cc644;
+    width: 150px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 230px;
+}
 
+#dead{
+    background-color: firebrick;
+    width: 150px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 230px;
+}
 
 h1{
     font-weight: bold;
@@ -123,6 +138,10 @@ input{
 #storBox{
     height: 750px;
 }
+
+#storBox2{
+    height: 750px;
+}
 .panel-heading{
     font-size: 20px;
     padding: 10px 15px;
@@ -175,3 +194,4 @@ background-color: rgba(0, 76, 153,0.1);
     margin-left: 50px;
     background-color: rgba(0, 76, 153,0.1);
 }
+

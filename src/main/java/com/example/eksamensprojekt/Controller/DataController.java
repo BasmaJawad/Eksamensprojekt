@@ -97,6 +97,7 @@ public String showContract(HttpSession session){
     Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
 
       session.setAttribute("contract",contract);
+      session.setAttribute("contractID", contract.getContractID());
       session.setAttribute("car",car);
       session.setAttribute("carVIN",car.getVIN()); //bruges for at update car
       session.setAttribute("customer",customer);
@@ -111,9 +112,13 @@ public String showContract(HttpSession session){
         public String updateCarStatus(WebRequest req, HttpSession session){
 
         dataService.updateSingle(req, (Car) session.getAttribute("car"));
+
         Car updatedCar = dataService.getOnecar(session.getAttribute("carVIN"));
+        Contract updatedContract = dataService.getOneContract((Integer) session.getAttribute("contractID"));
 
         session.setAttribute("car",updatedCar);
+        session.setAttribute("contract", updatedContract);
+      System.out.println(updatedContract.isActive());
 
         return "ShowContract";
   }
