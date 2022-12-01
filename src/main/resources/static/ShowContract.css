@@ -4,6 +4,10 @@ body{
 
 }
 
+#topScreen{
+
+}
+
 .leftBox{
     width: 48%;
     border: 2px black;
@@ -121,7 +125,7 @@ label{
 input{
     border-radius: 5px;
     font-size: 16px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
     border-color: lightgrey;
     width: 90%;
     height: 28px;
@@ -136,11 +140,11 @@ input{
 
 }
 #storBox{
-    height: 750px;
+    height: 670px;
 }
 
 #storBox2{
-    height: 750px;
+    height: 670px;
 }
 .panel-heading{
     font-size: 20px;
@@ -168,17 +172,18 @@ input{
 .specielContent{
 background-color: rgba(0, 76, 153,0.1);
 }
-.additionalInfo{
-
-
+.additionalInfoContract div{
+    text-align: left;
+    margin-bottom: 30px;
 }
 
-.additionalInfo label {
+.additionalInfoContract label {
     display: inline-block;
     padding: 5px;
     font-size: 17px;
-}
+    margin-right: 50px;
 
+}
 
 .styled-checkbox {
 
@@ -194,4 +199,19 @@ background-color: rgba(0, 76, 153,0.1);
     margin-left: 50px;
     background-color: rgba(0, 76, 153,0.1);
 }
+
+.container2{
+    border: 2px solid lightgrey;
+    width: 100%;
+    clear:both;
+    width: 97%;
+    height: 420px;
+}
+
+.customerInput{
+    width: 45%;
+    float: left;
+    margin-left: 40px;
+}
+
 

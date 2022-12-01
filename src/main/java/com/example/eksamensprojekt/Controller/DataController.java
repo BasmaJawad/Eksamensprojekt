@@ -102,6 +102,8 @@ public String showContract(HttpSession session){
       session.setAttribute("carVIN",car.getVIN()); //bruges for at update car
       session.setAttribute("customer",customer);
 
+      System.out.println(contract.isActive());
+
 
     return "ShowContract";
 
@@ -118,7 +120,7 @@ public String showContract(HttpSession session){
 
         session.setAttribute("car",updatedCar);
         session.setAttribute("contract", updatedContract);
-      System.out.println(updatedContract.isActive());
+      System.out.println("her" +updatedContract.isActive());
 
         return "ShowContract";
   }

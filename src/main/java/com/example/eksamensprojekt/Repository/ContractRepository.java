@@ -69,8 +69,9 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
+                boolean active = resultSet.getBoolean("active");
 
-                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth);
+                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active);
             }
 
         } catch (SQLException e) {
@@ -109,9 +110,10 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
+                boolean active = resultSet.getBoolean("active");
 
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active));
             }
 
         } catch (SQLException e) {
@@ -146,9 +148,10 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
+                boolean active = resultSet.getBoolean("active");
 
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active));
             }
 
         } catch (SQLException e) {

@@ -32,7 +32,7 @@ public class Contract {
 
     }
     //Constructor with contractID, used when displaying all contracts
-    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth) {
+    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth, boolean active) {
         this.contractID = contractID;
         this.VIN = VIN;
         this.subLenght = subLenght;
@@ -43,6 +43,7 @@ public class Contract {
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
         this.kmPrMonth = kmPrMonth;
+        this.active = active;
 
     }
 
