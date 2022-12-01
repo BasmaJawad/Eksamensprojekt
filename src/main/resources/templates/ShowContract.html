@@ -52,15 +52,16 @@
                 </div>
 
 
-                <label  for="specification">specification</label><br>
+                <label for="specification">specification</label><br>
 
                 <div th:if="${session.car.class.name == 'com.example.eksamensprojekt.Model.Cars.GasCar'}">
                     <input class="specielContent" type="text" name="specification" value="Gas Car" readonly><br>
 
                     <div class="smallInput">
 
-                        <label  for="LiterPrKm">Liter pr. Kilometer</label><br>
-                        <input class="specielContent" type="text" name="LiterPrKm" th:value="${session.car.getLiterPrKm()}"
+                        <label for="LiterPrKm">Liter pr. Kilometer</label><br>
+                        <input class="specielContent" type="text" name="LiterPrKm"
+                               th:value="${session.car.getLiterPrKm()}"
                                readonly><br>
                     </div>
 
@@ -76,23 +77,36 @@
 
                     <input class="specielContent" type="text" name="specification" value="Electric Car" readonly><br>
 
-                    <label  for="kmPrCharge">Kilometer Pr. Charge</label><br>
+                    <label for="kmPrCharge">Kilometer Pr. Charge</label><br>
                     <input class="specielContent" type="text" name="LiterPrKm" th:value="${session.car.getKmPrCharge()}"
                            readonly><br>
 
+                    <div class="additionalInfo">
+
+                        <span th:if="${session.car.isCleverCharging()==false}">
+
+                            <input class="styled-checkbox" id="styled-checkbox-1" type="checkbox" disabled>
+                            <label for="styled-checkbox-1">Clever Network Charging</label>
+
+                        </span>
+
+                        <span th:unless="${session.car.isCleverCharging()==false}">
+
+                            <input class="styled-checkbox" id="styled-checkbox-1.2" type="checkbox" checked disabled>
+                            <label for="styled-checkbox-1.2">Clever Network Charging</label>
+
+                        </span>
+
+                    </div>
 
                     <div class="additionalInfo">
 
-
-                        <label>Clever Network Charging <input class="styled-checkbox"  type="checkbox" checked disabled></label>
-
-
-                        <label >Clever Charging<input class="styled-checkbox"  type="checkbox" checked disabled></label>
+                        <input class="styled-checkbox" id="styled-checkbox-2" type="checkbox" checked disabled>
+                        <label for="styled-checkbox-2">Clever Charging</label>
 
                     </div>
 
                 </div>
-
 
 
             </div>

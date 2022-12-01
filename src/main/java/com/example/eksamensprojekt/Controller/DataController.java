@@ -47,7 +47,7 @@ public class DataController {
     return "/DataRegister/listOfContracts";
   }
 
- /*
+ /* skal måske ikke bruges
 @GetMapping("/showcontract")
 public String showContract(HttpSession session){
 

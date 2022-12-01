@@ -121,7 +121,7 @@ input{
 
 }
 #storBox{
-    height: 660px;
+    height: 750px;
 }
 .panel-heading{
     font-size: 20px;
@@ -150,23 +150,28 @@ input{
 background-color: rgba(0, 76, 153,0.1);
 }
 .additionalInfo{
-    text-align: left;
-}
 
+
+}
 
 .additionalInfo label {
     display: inline-block;
-    padding-right: 10px;
-    white-space: nowrap;
+    padding: 5px;
+    font-size: 17px;
 }
 
-.additionalInfo input {
-    width: 13px;
-    height: 13px;
-    padding: 0;
+
+.styled-checkbox {
+
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    padding: 5px;
     margin:0;
-    vertical-align: bottom;
+    vertical-align: middle;
     position: relative;
-    top: -1px;
     *overflow: hidden;
+    margin-left: 50px;
+    background-color: rgba(0, 76, 153,0.1);
 }
