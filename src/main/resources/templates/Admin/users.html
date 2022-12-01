@@ -8,6 +8,26 @@
 
 
 Here are all users
+<p th:each="user : ${users}">
+    <span th:text="${user.username}"></span> <br>
+    <span th:text="${user.userType}"></span> <br>
+
+<form action="/editUser">
+    <input name="username" type="text" style="display: none">
+    <input name="userType" type="text" style="display: none">
+
+    <button onmouseenter="makeForm(this)" type="submit"><img src="/RedX.png" height="20px"
+                                                             width="20px"></button>
+</form>
+</p>
 
 </body>
+<script>
+    function makeForm(element) {
+
+        element.parentNode.children.item(0).value = element.parentNode.parentNode.children.item(0).textContent;
+        element.parentNode.children.item(1).value = element.parentNode.parentNode.children.item(1).textContent;
+    }
+</script>
+
 </html>
