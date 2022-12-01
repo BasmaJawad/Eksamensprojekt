@@ -176,6 +176,20 @@
                 <input type="text" name="kmPrMonth" class="form-control"
                        th:value="${session.contract.getKmPrMonth()}" readonly><br>
 
+                <div style="width: 100%">
+                    <div class="smallInput">
+                        <label >Kontrakt Oprettet <br> <input type="text" name="dato" class="form-control" style="width: 99%"
+                                                              th:value="${session.contract.getStartDate()}" readonly></label>
+
+                    </div>
+                    <div class="smallInput">
+                        <label>Kontrakt slutning <br> <input type="text" name="endDate" class="form-control" style="width: 99%"
+                                                             th:value="${session.contract.getEndDate()}" readonly></label><br>
+                    </div>
+                </div>
+
+
+
                 <div class="additionalInfoContract">
 
                     <div>

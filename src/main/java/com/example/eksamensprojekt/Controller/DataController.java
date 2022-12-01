@@ -92,7 +92,7 @@ public String showContract(HttpSession session){
   public String showContract(WebRequest req, HttpSession session){
 
     Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
-    System.out.println("test" +contract.getContractID());
+    //System.out.println("test" +contract.getContractID());
     Car car = dataService.getOnecar(contract.getVIN());
     Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
 
@@ -101,6 +101,8 @@ public String showContract(HttpSession session){
       session.setAttribute("car",car);
       session.setAttribute("carVIN",car.getVIN()); //bruges for at update car
       session.setAttribute("customer",customer);
+      session.setAttribute("date", contract.getStartDate());
+      session.setAttribute("endDate", contract.getEndDate());
 
       System.out.println(contract.isActive());
 

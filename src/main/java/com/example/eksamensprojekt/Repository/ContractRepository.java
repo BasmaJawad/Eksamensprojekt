@@ -11,7 +11,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ContractRepository implements IRepository {
@@ -70,8 +73,9 @@ public class ContractRepository implements IRepository {
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
                 boolean active = resultSet.getBoolean("active");
+                LocalDate date = LocalDate.parse(resultSet.getString("date"),DateTimeFormatter.ISO_LOCAL_DATE);
 
-                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active);
+                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active,date);
             }
 
         } catch (SQLException e) {
@@ -111,9 +115,10 @@ public class ContractRepository implements IRepository {
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
                 boolean active = resultSet.getBoolean("active");
+                LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active,date));
             }
 
         } catch (SQLException e) {
@@ -149,9 +154,9 @@ public class ContractRepository implements IRepository {
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
                 boolean active = resultSet.getBoolean("active");
+                LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
-
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active,date));
             }
 
         } catch (SQLException e) {
@@ -170,7 +175,7 @@ public class ContractRepository implements IRepository {
 
         Contract c = (Contract) param;
         //Insert Contract to database
-        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth, active) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth, active, date ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
@@ -185,6 +190,7 @@ public class ContractRepository implements IRepository {
             ptsd.setBoolean(8, c.isDeliveryInsurance());
             ptsd.setString(9, c.getKmPrMonth().name());
             ptsd.setBoolean(10,c.isActive());
+            ptsd.setString(11,c.getStartDate().format(DateTimeFormatter.ISO_DATE));
 
             ptsd.executeUpdate();
 
