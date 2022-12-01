@@ -59,16 +59,17 @@ public class DataController {
   }
 
   @GetMapping("/electricCarContract")
-  public String electricCarContract(HttpSession httpSession, WebRequest addOnReq) {
-    WebRequest contractReq = (WebRequest)httpSession.getAttribute("req");
-    dataService.addContract(addOnReq, contractReq);
+  public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
+    Car car = (Car)httpSession.getAttribute("car");
+    dataService.addContract(car, contractReq);
     return "/DataRegister/dataHomepage";
   }
 
   @GetMapping("/gasCarContract")
-  public String gasCarContract(HttpSession httpSession, WebRequest addOnReq) {
-    WebRequest contractReq = (WebRequest)httpSession.getAttribute("req");
-    dataService.addContract(addOnReq ,contractReq);
+  public String gasCarContract(HttpSession carReq, WebRequest contractReq) {
+      Car car = (Car)carReq.getAttribute("car");
+
+    dataService.addContract(car, contractReq);
     return "/DataRegister/dataHomepage";
   }
 

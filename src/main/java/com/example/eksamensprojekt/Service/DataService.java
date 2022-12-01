@@ -26,10 +26,13 @@ public class DataService {
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
-    public void addContract(WebRequest addOnReq ,WebRequest contractReq) {
-        Car car;
+    public void addContract(Car car ,WebRequest contractReq) {
+
+        System.out.println(contractReq);
+        System.out.println(contractReq.getParameter("subLength"));
+        System.out.println(contractReq.getParameter("phonenumber"));
         SubLenght subLenght = SubLenght.valueOf(contractReq.getParameter("subLength"));
-        String VIN;
+
         KmPrMonth kmPrMonth = KmPrMonth.valueOf(contractReq.getParameter("kmPrMonth"));
 
         //Creates new customer object
@@ -43,29 +46,29 @@ public class DataService {
         //Insert customer into database
         customerRepo.writeSingle(customer);
 
-        VIN = contractReq.getParameter("car");
-        car = carRepository.readSingle(VIN);
+      //  VIN = contractReq.getParameter("car");
+       // car = carRepository.readSingle(VIN);
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
 
         //Updates CarStatus in car to RENTED
-        carRepository.updateSingle(VIN, "carStatus", "VIN");
+        carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", "RENTED");
 
 
 
 
         //Convert addOns to booleans
 
-            boolean vikingHelp = Objects.equals(addOnReq.getParameter("vikingHelp"), "on");
-            boolean deliveryInsurance = Objects.equals(addOnReq.getParameter("deliveryInsurance"), "on");
-            boolean lowDeductible = Objects.equals( addOnReq.getParameter("lowDeductible"), "on");
-            boolean winterTires = Objects.equals(addOnReq.getParameter("winterTires"), "on");
+            boolean vikingHelp = Objects.equals(contractReq.getParameter("vikingHelp"), "on");
+            boolean deliveryInsurance = Objects.equals(contractReq.getParameter("deliveryInsurance"), "on");
+            boolean lowDeductible = Objects.equals( contractReq.getParameter("lowDeductible"), "on");
+            boolean winterTires = Objects.equals(contractReq.getParameter("winterTires"), "on");
 
 
 
 
         //Creating new Contract object
-        Contract contract = new Contract(VIN,
+        Contract contract = new Contract(car.getVIN(),
             subLenght,
                 customerID,
                 PickupDestination.valueOf(contractReq.getParameter("pickupDestination")),
@@ -176,8 +179,8 @@ public class DataService {
         car = carRepository.readSingle(req.getParameter("car"));
         System.out.println(car);
 
-        httpSession.setAttribute("req",req);
-        model.addAttribute("req", req);
+        httpSession.setAttribute("car",car);
+        model.addAttribute("car", car);
         if( car instanceof ElectricCar){
             return true;
         }
