@@ -47,7 +47,7 @@ public class CarRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "SELECT * from data.electriccar where carStatus = ?";
+        String QUARY_ELECTRIC = "SELECT * from data.electriccar where VIN = ?";
 
         try {
             ElectricCar electricCar = null;
@@ -78,13 +78,13 @@ public class CarRepository implements IRepository {
 
     //reads all cars based on CarStatus
     @Override
-    public ArrayList<Car> readMultiple(ArrayList conditions) {
+    public ArrayList<Car> readMultiple(ArrayList conditions, String columnName) {
 
         ArrayList<CarStatus> carStatus = (ArrayList<CarStatus>) conditions;
 
         ArrayList<Car> cars = new ArrayList<>();
 
-        String QUARY_GAS = "SELECT * from data.gascar where carStatus = ?";
+        String QUARY_GAS = "SELECT * from data.gascar where " + columnName + " = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
@@ -106,7 +106,7 @@ public class CarRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "SELECT * from data.electriccar where carStatus = ?";
+        String QUARY_ELECTRIC = "SELECT * from data.electriccar where " + columnName +" = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
@@ -202,11 +202,11 @@ public class CarRepository implements IRepository {
 
 
     @Override
-    public void updateSingle(Object param, String columnName, String columnCondition) {
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
         String VIN = (String) param;
 
-        String QUARY_GAS = "UPDATE gascar SET "+ columnName + " = 'RENTED' where "+ columnCondition + " =?";
+        String QUARY_GAS = "UPDATE data.gascar SET "+ columnName + " = '" + updateTo + "' where "+ columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
@@ -218,7 +218,7 @@ public class CarRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "UPDATE electriccar SET "+ columnName + " = 'RENTED' where VIN =?";
+        String QUARY_ELECTRIC = "UPDATE data.electriccar SET "+ columnName + " = '" + updateTo + "' where "+ columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);

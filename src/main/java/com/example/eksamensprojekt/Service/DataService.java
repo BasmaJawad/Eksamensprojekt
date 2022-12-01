@@ -85,6 +85,21 @@ public class DataService {
         addPriceToDatabase(car,subLenght,contract);
     }
 
+
+    public ArrayList<Car> getAllAvailableCars(){
+
+        ArrayList<CarStatus> carStatus = new ArrayList<>();
+        carStatus.add(CarStatus.NOT_RENTED);
+        return carRepository.readMultiple(carStatus, "carStatus");
+    }
+
+    public ArrayList<Contract> getAllContracts() {
+
+        return contractRepo.readMultiple();
+    }
+
+
+
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int subScriptionFee = 0;
         switch (car.getCarModel()) {
@@ -132,16 +147,28 @@ public class DataService {
         return price;
     }
 
-    public ArrayList<Car> getAllAvailableCars(){
-
-        ArrayList<CarStatus> carStatus = new ArrayList<>();
-        carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus);
+    public Contract getOneContract(int contractID){
+        return contractRepo.findOneContract("contractID", contractID);
     }
 
-    public ArrayList<Contract> getAllContracts() {
+    public Car getOnecar(Object param){
+        return carRepository.readSingle(param);
+    }
 
-        return contractRepo.readMultiple();
+    public Customer getOneCustomer(String column, Object val){
+        return customerRepo.findOneCustomer(column, val);
+    }
+
+    public void updateSingle(WebRequest req, Car car){
+
+        String updateTo = req.getParameter("carStatus");
+
+        //Updates carStatus
+        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", updateTo);
+
+        //Sets contract to inactive
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"active", "contractID", "0");
+
     }
 
     public boolean isElectricCar(Model model , HttpSession httpSession, WebRequest req) {

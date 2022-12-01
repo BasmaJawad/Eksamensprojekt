@@ -9,15 +9,12 @@ import java.time.LocalDate;
 public class Contract {
 
     private LocalDate date;
-    private int contractID;
+    private int contractID ,finalPrice, customerID;
     private String VIN;
     private SubLenght subLenght; //months
-    private int finalPrice;
     private KmPrMonth kmPrMonth;
-
-    private int customerID;
     private PickupDestination pickupDestination;
-    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
+    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires, active;
 
 
     //Constructor without contractID, used when writing contracts
@@ -31,6 +28,7 @@ public class Contract {
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
         this.kmPrMonth = kmPrMonth;
+        this.active = true;
 
     }
     //Constructor with contractID, used when displaying all contracts
@@ -58,6 +56,12 @@ public class Contract {
         if (winterTires) price += 549;
 
         return price;
+    }
+    public void setActive(boolean active){
+        this.active = active;
+    }
+    public boolean isActive(){
+        return active;
     }
 
 
@@ -148,6 +152,6 @@ public class Contract {
 
     @Override
     public String toString() {
-        return customerID + "\n" + VIN + "\n" + finalPrice + "\n" + subLenght.toString();
+        return customerID + "\n" + VIN  + "\n" + subLenght.toString();
     }
 }

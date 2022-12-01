@@ -31,7 +31,7 @@ public class HomeController {
             if (user.getUserType().equals(UserType.DATA))
                 return "/DataRegister/dataHomepage";
             else if (user.getUserType().equals(UserType.INCIDENT))
-                return "/DamageRegister/incidentsHomepage";
+                return "redirect:/incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))
                 return "/BusinessUser/businessHomepage";
             else if (user.getUserType().equals(UserType.ADMIN))
@@ -48,5 +48,6 @@ public class HomeController {
 
         return "redirect:/";
     }
+
 
 }
