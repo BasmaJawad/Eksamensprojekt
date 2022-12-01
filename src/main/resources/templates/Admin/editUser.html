@@ -4,9 +4,40 @@
     <meta charset="UTF-8">
     <title>Rediger bruger</title>
 </head>
-<body>
+<body onload="findDefault()">
 
-
-
+<form action="/submitEdit">
+    <input id="usertype" style="display: none" type="text" th:value="${userType}">
+    <label>Brugernavn: <input type="text" name="username" th:value="${username}"></label> <br>
+    <label>Brugertype: <select name="userType">
+        <option class="d" value="ADMIN" >ADMIN</option>
+        <option class="d" value="DATA" >DATA</option>
+        <option class="d" value="BUSINESS" >BUSINESS</option>
+        <option class="d" value="INCIDENT" >INCIDENT</option>
+    </select>
+    </label> <br>
+    <button type="submit">Updater bruger</button>
+</form>
 </body>
+<script>
+    function findDefault() {
+        let e = document.getElementById('usertype')
+        let options = document.getElementsByClassName('d')
+
+        switch (e.value){
+            case options.item(0).value:
+                options.item(0).selected = true;
+                break;
+            case options.item(1).value:
+                options.item(1).selected = true;
+                break;
+            case options.item(2).value:
+                options.item(2).selected = true;
+                break;
+            case options.item(3).value:
+                options.item(3).selected = true;
+                break;
+        }
+    }
+</script>
 </html>

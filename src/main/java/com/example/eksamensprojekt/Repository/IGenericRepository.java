@@ -10,7 +10,7 @@ public interface IGenericRepository<E> {
 
     void create(E p);
 
-    void update(E p);
+    void update(E p, E old);
 
     void delete(int id);
 }
