@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ElectricCarContrat</title>
+</head>
+<body>
+<form action ="/electricCarContract">
+    <h1> Customer information </h1> <br>
+    <label> name: <input type="text" name="name" required> </label><br>
+    <label> cpr: <input type="text" name="cpr" required> </label><br>
+    <label> email: <input type="text" name="email" required> </label><br>
+    <label> address: <input type="text" name="address" required> </label><br>
+    <label> phonenumber: <input type="text" name="phonenumber" required> </label><br>
+    <label> ZIPcode: <input type="number" name="ZIPcode" required> </label><br>
+
+    <label>Ekstra KM / Måned <br>
+        <select name="kmPrMonth">
+            <option value="FIFTEEN_HUNDRED">1500 km.... + 0/md.</option>
+            <option value="SEVENTEEN_HUNDRED_AND_FIFTY">1750 km.... + 300kr/md.</option>
+            <option value="TWO_THOUSAND">2000 km.... + 590kr/md.</option>
+            <option value="TWO_THOUSAND_FIVE_HUNDRED">2500 km.... + 1160kr/md.</option>
+            <option value="THREE_THOUSAND">3000 km.... + 1710kr/md.</option>
+            <option value="THREE_THOUSAND_FIVE_HUNDRED">3500 km.... + 2240kr/md.</option>
+            <option value="FOUR_THOUSAND">4000 km.... + 2750kr/md.</option>
+            <option value="FOUR_THOUSAND_FIVE_HUNDRED">4500 km.... + 3240kr/md.</option>
+        </select>
+    </label>
+
+    <label> SubLength:
+        <select name="subLength">
+            <option value="THREE_MONTHS">3 måneder</option>
+            <option value="SIX_MONTHS">6 måneder</option>
+            <option value="TWELVE_MONTHS">12 måneder</option>
+            <option value="TWENTYFOUR_MONTHS">24 måneder</option>
+            <option value="THIRTYSIX_MONTHS">36 måneder</option>
+        </select>
+    </label><br>
+
+    <label> Afhentningsted <br>
+        <select name="pickupDestination">
+            <option value="FDM_AARHUS">Århus</option>
+            <option value="FMD_VEJLE">Vejle</option>
+            <option value="FDM_SOENDERBORG">Sønderborg</option>
+            <option value="FDM_SILKEBORG">Silkeborg</option>
+            <option value="FDM_ODENSE">Odense</option>
+            <option value="FDM_NAESTVED">Næstved</option>
+            <option value="FDM_FREDERICIA">Fredericia</option>
+            <option value="FDM_AALBORG">Aalborg</option>
+            <option value="FDM_HILLEROED">Hillerød</option>
+            <option value="KW_BRUUN">K.W Bruun</option>
+        </select>
+    </label>
+
+    <h1>Tilføjelser: </h1> <br>
+
+    <label>Viking hjælp ------------- 49kr <input name="vikingHelp" type="checkbox"></label> <br>
+    <label>Afleverings forsikring -- 119kr <input name="deliveryInsurance" type="checkbox"></label> <br>
+    <label>Lav selvrisiko ----------- 64kr <input name="lowDeductible" type="checkbox"></label> <br>
+    <label>Komplette vinterhjul ----- 49kr <input name="winterTires" type="checkbox"></label> <br>
+    <label>CleverUnlimitedNetwork ----- 625kr <input name="winterTires" type="checkbox"></label> <br>
+    <label>CleverUnlimited ----- 749kr <input name="winterTires" type="checkbox"></label> <br>
+
+
+    <button type="submit"> submit </button>
+</form>
+</body>
+
+</html>

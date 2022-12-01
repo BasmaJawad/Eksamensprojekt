@@ -107,7 +107,7 @@ input{
     border-radius: 5px;
     font-size: 16px;
     margin-bottom: 40px;
-    border-color: gray;
+    border-color: lightgrey;
     width: 90%;
     height: 28px;
     padding: 6px 12px;
@@ -118,6 +118,10 @@ input{
 .container{
     border: 2px solid lightgrey;
     width: 100%;
+
+}
+#storBox{
+    height: 750px;
 }
 .panel-heading{
     font-size: 20px;
@@ -133,4 +137,41 @@ input{
 
 .infoContainter{
     padding: 15px;
+}
+
+
+.smallInput{
+    float: left;
+    width: 40%;
+    margin-right: 30px;
+}
+
+.specielContent{
+background-color: rgba(0, 76, 153,0.1);
+}
+.additionalInfo{
+
+
+}
+
+.additionalInfo label {
+    display: inline-block;
+    padding: 5px;
+    font-size: 17px;
+}
+
+
+.styled-checkbox {
+
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    padding: 5px;
+    margin:0;
+    vertical-align: middle;
+    position: relative;
+    *overflow: hidden;
+    margin-left: 50px;
+    background-color: rgba(0, 76, 153,0.1);
 }

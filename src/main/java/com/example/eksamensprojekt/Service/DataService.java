@@ -2,6 +2,7 @@ package com.example.eksamensprojekt.Service;
 
 import com.example.eksamensprojekt.Model.*;
 import com.example.eksamensprojekt.Model.Cars.Car;
+import com.example.eksamensprojekt.Model.Cars.ElectricCar;
 import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.Enums.KmPrMonth;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
@@ -10,8 +11,10 @@ import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.CustomerRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
+import org.springframework.ui.Model;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -23,49 +26,60 @@ public class DataService {
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
-    public void addContract(WebRequest req) {
-        Car car;
-        SubLenght subLenght = SubLenght.valueOf(req.getParameter("subLength"));
-        String VIN;
-        KmPrMonth kmPrMonth = KmPrMonth.valueOf(req.getParameter("kmPrMonth"));
+    public void addContract(Car car ,WebRequest contractReq) {
+
+        System.out.println(contractReq);
+        System.out.println(contractReq.getParameter("subLength"));
+        System.out.println(contractReq.getParameter("phonenumber"));
+        SubLenght subLenght = SubLenght.valueOf(contractReq.getParameter("subLength"));
+
+        KmPrMonth kmPrMonth = KmPrMonth.valueOf(contractReq.getParameter("kmPrMonth"));
 
         //Creates new customer object
-        Customer customer = new Customer(req.getParameter("name"),
-                req.getParameter("cpr"),
-                req.getParameter("email"),
-                req.getParameter("address"),
-                req.getParameter("phonenumber"),
-                Integer.parseInt(req.getParameter("ZIPcode")));
+        Customer customer = new Customer(contractReq.getParameter("name"),
+                contractReq.getParameter("cpr"),
+                contractReq.getParameter("email"),
+                contractReq.getParameter("address"),
+                contractReq.getParameter("phonenumber"),
+                Integer.parseInt(contractReq.getParameter("ZIPcode")));
 
         //Insert customer into database
         customerRepo.writeSingle(customer);
 
-        VIN = req.getParameter("car");
-        car = carRepository.readSingle(VIN);
-
+      //  VIN = contractReq.getParameter("car");
+       // car = carRepository.readSingle(VIN);
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
 
         //Updates CarStatus in car to RENTED
-        carRepository.updateSingle(VIN, "carStatus", "VIN", "RENTED");
+        carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", "RENTED");
+
+
+
 
         //Convert addOns to booleans
-        boolean vikingHelp = Objects.equals(req.getParameter("vikingHelp"), "on");
-        boolean deliveryInsurance = Objects.equals(req.getParameter("deliveryInsurance"), "on");
-        boolean lowDeductible = Objects.equals(req.getParameter("lowDeductible"), "on");
-        boolean winterTires = Objects.equals(req.getParameter("winterTires"), "on");
+
+            boolean vikingHelp = Objects.equals(contractReq.getParameter("vikingHelp"), "on");
+            boolean deliveryInsurance = Objects.equals(contractReq.getParameter("deliveryInsurance"), "on");
+            boolean lowDeductible = Objects.equals( contractReq.getParameter("lowDeductible"), "on");
+            boolean winterTires = Objects.equals(contractReq.getParameter("winterTires"), "on");
+
+
 
 
         //Creating new Contract object
-        Contract contract = new Contract(VIN,
+        Contract contract = new Contract(car.getVIN(),
             subLenght,
                 customerID,
-                PickupDestination.valueOf(req.getParameter("pickupDestination")),
+                PickupDestination.valueOf(contractReq.getParameter("pickupDestination")),
                 vikingHelp,
                 deliveryInsurance,
                 lowDeductible,
                 winterTires,
                 kmPrMonth);
+
+
+
 
         //Add contract to database
         contractRepo.writeSingle(contract);
@@ -90,7 +104,6 @@ public class DataService {
 
 
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
-        int baseSupscribtionPrice = 0;
         int subScriptionFee = 0;
         switch (car.getCarModel()) {
             case "208 envy 82 HK" -> {
@@ -159,5 +172,18 @@ public class DataService {
         //Sets contract to inactive
         contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"active", "contractID", "0");
 
+    }
+
+    public boolean isElectricCar(Model model , HttpSession httpSession, WebRequest req) {
+        Car car;
+        car = carRepository.readSingle(req.getParameter("car"));
+        System.out.println(car);
+
+        httpSession.setAttribute("car",car);
+        model.addAttribute("car", car);
+        if( car instanceof ElectricCar){
+            return true;
+        }
+        return false;
     }
 }

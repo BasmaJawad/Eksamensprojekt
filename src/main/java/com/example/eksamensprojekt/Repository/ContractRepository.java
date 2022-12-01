@@ -26,7 +26,7 @@ public class ContractRepository implements IRepository {
 
     public int getContractID(String VIN) {
 
-        String QUARY = "SELECT contractID from contracts where VIN = ?";
+        String QUARY = "SELECT MAX(contractID) from contracts where VIN = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
