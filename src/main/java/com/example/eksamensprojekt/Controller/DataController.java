@@ -17,15 +17,15 @@ import java.util.ArrayList;
 @Controller
 public class DataController {
 
-    DataService dataService = new DataService();
+  DataService dataService = new DataService();
+/*
+  @GetMapping("/addContract")
+  public String addContract(WebRequest req) {
 
-    @GetMapping("/addContract")
-    public String addContract(WebRequest req) {
-
-        dataService.addContract(req);
-        return "/DataRegister/dataHomepage";
-    }
-
+    dataService.addContract(req);
+    return "/DataRegister/dataHomepage";
+  }
+*/
     //Page to add a new contract
     @GetMapping("/contractPage")
     public String contractPage(Model model) {
@@ -35,8 +35,8 @@ public class DataController {
 
         model.addAttribute("cars", cars);
 
-        return "/DataRegister/addContractPage";
-    }
+    return "/DataRegister/chooseCar";
+  }
 
     @GetMapping("/contractList")
     public String contractList(Model model) {
@@ -47,7 +47,33 @@ public class DataController {
     return "/DataRegister/listOfContracts";
   }
 
- /* skal måske ikke bruges
+  @GetMapping("/chooseCar")
+  public String chooseCar(HttpSession httpSession ,Model model, WebRequest req) {
+    System.out.println(dataService.isElectricCar(model, httpSession, req));
+    if(dataService.isElectricCar(model, httpSession, req)) {
+
+      return "/DataRegister/electricCarContract";
+    }
+    return "/DataRegister/gasCarContract";
+  }
+
+  @GetMapping("/electricCarContract")
+  public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
+    Car car = (Car)httpSession.getAttribute("car");
+    dataService.addContract(car, contractReq);
+    return "/DataRegister/dataHomepage";
+  }
+
+  @GetMapping("/gasCarContract")
+  public String gasCarContract(HttpSession carReq, WebRequest contractReq) {
+      Car car = (Car)carReq.getAttribute("car");
+
+    dataService.addContract(car, contractReq);
+    return "/DataRegister/dataHomepage";
+  }
+
+
+ /*
 @GetMapping("/showcontract")
 public String showContract(HttpSession session){
 
