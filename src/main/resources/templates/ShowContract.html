@@ -52,29 +52,48 @@
                 </div>
 
 
-                <span th:if="${session.car instanceof T(GasCar)}">cat</span>
-                <span th:unless="${session.car.class.name == 'GasCar'}">dog</span>
+                <label  for="specification">specification</label><br>
 
-
-
-                <div>
-                    <label  for="specification">specification</label><br>
+                <div th:if="${session.car.class.name == 'com.example.eksamensprojekt.Model.Cars.GasCar'}">
                     <input class="specielContent" type="text" name="specification" value="Gas Car" readonly><br>
-                </div>
-                <div class="smallInput">
 
-                    <label  for="LiterPrKm">Liter pr. Kilometer</label><br>
-                    <input class="specielContent" type="text" name="LiterPrKm" th:value="${session.car.getLiterPrKm()}"
+                    <div class="smallInput">
+
+                        <label  for="LiterPrKm">Liter pr. Kilometer</label><br>
+                        <input class="specielContent" type="text" name="LiterPrKm" th:value="${session.car.getLiterPrKm()}"
+                               readonly><br>
+                    </div>
+
+                    <div class="smallInput">
+
+                        <label for="co2PrKm">Co2 emisson pr. Kilometer</label><br>
+                        <input class="specielContent" type="text" name="co2PrKm" th:value="${session.car.getCo2PrKm()}"
+                               readonly><br>
+
+                    </div>
+                </div>
+                <div th:unless="${session.car.class.name == 'com.example.eksamensprojekt.Model.Cars.GasCar'}">
+
+                    <input class="specielContent" type="text" name="specification" value="Electric Car" readonly><br>
+
+                    <label  for="kmPrCharge">Kilometer Pr. Charge</label><br>
+                    <input class="specielContent" type="text" name="LiterPrKm" th:value="${session.car.getKmPrCharge()}"
                            readonly><br>
+
+
+                    <div class="additionalInfo">
+
+
+                        <label>Clever Network Charging <input class="styled-checkbox"  type="checkbox" checked disabled></label>
+
+
+                        <label >Clever Charging<input class="styled-checkbox"  type="checkbox" checked disabled></label>
+
+                    </div>
+
                 </div>
 
-                <div class="smallInput">
 
-                    <label for="co2PrKm">Co2 emisson pr. Kilometer</label><br>
-                    <input class="specielContent" type="text" name="co2PrKm" th:value="${session.car.getCo2PrKm()}"
-                           readonly><br>
-
-                </div>
 
             </div>
         </div>
