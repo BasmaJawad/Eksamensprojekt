@@ -47,7 +47,20 @@ public class DataController {
     return "/DataRegister/listOfContracts";
   }
 
+ /*
+@GetMapping("/showcontract")
+public String showContract(HttpSession session){
 
+        session.getAttribute("contract");
+        session.getAttribute("car");
+        session.getAttribute("customer");
+
+        return "ShowContract";
+}
+
+  */
+
+    
   //Form i listOfContracts
   @PostMapping("/showcontract")
   public String showContract(WebRequest req, HttpSession session){
@@ -59,19 +72,24 @@ public class DataController {
 
       session.setAttribute("contract",contract);
       session.setAttribute("car",car);
+      session.setAttribute("carVIN",car.getVIN()); //bruges for at update car
       session.setAttribute("customer",customer);
+
 
     return "ShowContract";
 
   }
 
-
+  //form i ShowContract
   @PostMapping("/updateCarStatus")
         public String updateCarStatus(WebRequest req, HttpSession session){
 
         dataService.updateSingle(req, (Car) session.getAttribute("car"));
+        Car updatedCar = dataService.getOnecar(session.getAttribute("carVIN"));
 
-        return "redirect:/showcontract";
+        session.setAttribute("car",updatedCar);
+
+        return "ShowContract";
   }
 
 }

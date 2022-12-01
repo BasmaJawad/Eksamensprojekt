@@ -79,7 +79,6 @@ public class ContractRepository implements IRepository {
 
         return contract;
 
-
     }
 
     //Reads contracts based on something
