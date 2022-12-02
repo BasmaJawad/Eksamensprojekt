@@ -22,12 +22,16 @@
         <th style="width:20%;">KONKTRAKT ID</th>
         <th style="width:30%;">STELNUMMER</th>
         <th style="width:20%;">KUNDE ID</th>
+        <th style="width:20%;">Rapport</th>
     </tr>
 
     <tr th:each="contract :${session.contractsWOreports}">
         <td th:text="${contract.getContractID}">
         <td th:text="${contract.getVIN}">
         <td th:text="${contract.getCustomerID}">
+        <td> <form action="/tilføjSkaderapport" method="post">
+        <button type="submit" name="contractID" th:value="${contract.getContractID}"/> TILFØJ RAPPORT
+        </form> </td>
 
     </tr>
 
@@ -40,6 +44,7 @@
         input = document.getElementById("myInput");
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
+
         tr = table.getElementsByTagName("tr");
 
         // Loop through all table rows, and hide those who don't match the search query

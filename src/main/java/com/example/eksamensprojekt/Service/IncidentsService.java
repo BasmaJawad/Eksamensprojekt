@@ -20,14 +20,13 @@ import static java.lang.Integer.parseInt;
 
 public class IncidentsService {
 
-
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
     private ContractRepository contractRepository = new ContractRepository();
 
     private CarRepository carRepository = new CarRepository();
 
-
+    private int currentContractID;
     public boolean verifyContractID(int ContractID) {
 
         List<Contract> contracts = contractRepository.readMultiple();
@@ -121,5 +120,14 @@ public class IncidentsService {
         }
 
         return contractsWOreport;
+    }
+
+    public int currentContract(int currentCon){
+        this.currentContractID = currentCon;
+        return currentCon;
+    }
+
+    public int getCurrentContractID() {
+        return currentContractID;
     }
 }
