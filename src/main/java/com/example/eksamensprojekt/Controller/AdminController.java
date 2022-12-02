@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 
 @Controller
 public class AdminController {
@@ -49,6 +50,7 @@ public class AdminController {
     @PostMapping("/goToAddACarPage")
     public String goToAddACarPage(){
 
+
         return "/Admin/addACar";
     }
 
@@ -57,7 +59,8 @@ public class AdminController {
 
         as.addCar(req);
 
-        return "redirect:/addACar";
+
+        return "redirect:/adminHomepage";
     }
 
 

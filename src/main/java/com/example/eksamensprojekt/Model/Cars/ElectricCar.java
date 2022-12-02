@@ -9,17 +9,28 @@ public class ElectricCar extends Car{
     private String kmPrCharge;
 
 
-    public ElectricCar(String carModel, String carBrand, String VIN ,CarStatus carStatus, String kmPrCharge) {
+    //Contructor used when inserting new cars into database
+    public ElectricCar(String carModel, String carBrand, String VIN ,CarStatus carStatus) {
         super(carModel, carBrand, VIN, carStatus);
-        this.kmPrCharge = kmPrCharge;
+        calcKmPrCharge();
+        cleverNetworkCharging = false;
+        cleverCharging = false;
 
     }
-
+    //Used when reading cars from database
     public ElectricCar(String carModel, String carBrand,  String VIN,CarStatus carStatus, String kmPrCharge, boolean cleverCharging, boolean cleverNetworkCharging) {
         super(carModel, carBrand, VIN,carStatus);
         this.kmPrCharge = kmPrCharge;
         this.cleverCharging = cleverCharging;
         this.cleverNetworkCharging = cleverNetworkCharging;
+    }
+
+    private void calcKmPrCharge(){
+        switch (getCarModel()){
+            case "500e Icon Pack 118 HK" -> kmPrCharge = "301km/Charge";
+            case "500e CABRIO Icon Pack 118 HK" -> kmPrCharge =  "311km/Charge";
+            case "e-2008 GT Line 136 HK" -> kmPrCharge = "310km/Charge";
+        }
     }
 
     public boolean isCleverNetworkCharging() {
