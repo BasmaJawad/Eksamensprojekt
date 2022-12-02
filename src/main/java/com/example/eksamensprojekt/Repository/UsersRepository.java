@@ -55,8 +55,24 @@ public class UsersRepository implements IGenericRepository {
     }
 
     @Override
-    public void update(Object p) {
+    public void update(Object p, Object old) {
 
+        User newUser = (User) p;
+        User oldUser = (User) old;
+
+        String TEST_QUARY = "UPDATE users SET username = 'newUser', userType = 'ADMIN' where (username,userType) = (?,?)";
+        String QUARY = "UPDATE users SET username = '" + newUser.getUsername() + "', userType ='" + newUser.getUserType() + "' where (username,userType) = (?,?)";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+            ptst.setString(1,oldUser.getUsername());
+            ptst.setString(2,String.valueOf(oldUser.getUserType()));
+
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

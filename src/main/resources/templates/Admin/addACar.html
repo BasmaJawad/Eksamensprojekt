@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h2>Tilføj en bil:</h2> <br>
+
+<form action="/addCar" method="post">
+
+    <label>Benzin/EL: <select name="carType">
+        <option on="showBrands()" value="benzin">BENZIN</option>
+        <option onchange="showBrands()" value="el">EL</option>
+    </select></label> <br>
+
+    <label>Brand: <select id="brands" name="brand" style="display: none">
+        <option onselect="showModels(this)" id="Peugeot" value="Peugeot">Peugeot</option>
+        <option onselect="showModels(this)" id="Fiat" value="Fiat">Fiat</option>
+        <option onselect="showModels(this)" id="Citroën" value="Citroën">Citroën</option>
+    </select></label>
+
+    <label>Model: <select name="model" id="models" style="display: none">
+        <option class="Peugeot"></option>
+        <option class="Peugeot"></option>
+        <option class="Peugeot"></option>
+    </select></label>
+
+</form>
+
+</body>
+
+
+
+<script>
+
+    function showBrands() {
+        document.getElementById('brands').style.display = "block"
+    }
+    function showModels(element) {
+        switch (element.value){
+            case 'Peugeot':
+
+
+        }
+    }
+
+
+
+</script>
+</html>

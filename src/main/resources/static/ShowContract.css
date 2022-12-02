@@ -4,18 +4,22 @@ body{
 
 }
 
+#topScreen{
+
+}
+
 .leftBox{
     width: 48%;
     border: 2px black;
     float: left;
 }
 
-.contractID{
+.topContainter{
     height: 30px;
     width: 200px;
     display: inline-block;
-    padding: 4px 16px;
-    color: black;
+    padding: 6px 16px;
+    color: white;
     text-align: center;
     box-sizing: border-box;
     font-size: 13px;
@@ -24,10 +28,27 @@ body{
     border-style: ridge;
     border-color: black;
     border-width: thin;
+    float: left;
 }
 .contractID span {
     color: black;
     font-weight: normal;
+}
+
+#live{
+    background-color: #6cc644;
+    width: 150px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 230px;
+}
+
+#dead{
+    background-color: firebrick;
+    width: 150px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 230px;
 }
 
 h1{
@@ -57,6 +78,44 @@ h1{
 
 }
 
+#carStatusContainter{
+    margin-left: 300px;
+    font-size: 17px;
+    width: 100%;
+    background-color: #f5f5f5;
+    text-transform: uppercase;
+}
+
+#carStatus{
+    float: left;
+    font-weight: 500;
+}
+
+#carStatus span{
+    padding: 10px;
+    color: white;
+    font-weight: 600;
+    background-color: midnightblue;
+
+}
+
+#submitCarStat{
+    float: left;
+    margin-left: 20px;
+    margin-top: 36px;
+}
+#submitCarStat button{
+    padding: 12px;
+    color: white;
+    background-color: rgb(0, 76, 153);
+}
+
+#submitCarStat button:hover{
+
+    background-color: rgba(0, 76, 153,0.4);
+}
+
+
 label{
     font-weight: 700;
     font-size: 16px;
@@ -66,8 +125,8 @@ label{
 input{
     border-radius: 5px;
     font-size: 16px;
-    margin-bottom: 40px;
-    border-color: gray;
+    margin-bottom: 30px;
+    border-color: lightgrey;
     width: 90%;
     height: 28px;
     padding: 6px 12px;
@@ -78,6 +137,14 @@ input{
 .container{
     border: 2px solid lightgrey;
     width: 100%;
+
+}
+#storBox{
+    height: 670px;
+}
+
+#storBox2{
+    height: 670px;
 }
 .panel-heading{
     font-size: 20px;
@@ -94,3 +161,57 @@ input{
 .infoContainter{
     padding: 15px;
 }
+
+
+.smallInput{
+    float: left;
+    width: 40%;
+    margin-right: 30px;
+}
+
+.specielContent{
+background-color: rgba(0, 76, 153,0.1);
+}
+.additionalInfoContract div{
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.additionalInfoContract label {
+    display: inline-block;
+    padding: 5px;
+    font-size: 17px;
+    margin-right: 50px;
+
+}
+
+.styled-checkbox {
+
+    width: 20px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    padding: 5px;
+    margin:0;
+    vertical-align: middle;
+    position: relative;
+    *overflow: hidden;
+    margin-left: 50px;
+    background-color: rgba(0, 76, 153,0.1);
+}
+
+.container2{
+    border: 2px solid lightgrey;
+    width: 100%;
+    clear:both;
+    width: 97%;
+    height: 420px;
+}
+
+.customerInput{
+    width: 45%;
+    float: left;
+    margin-left: 40px;
+}
+
+

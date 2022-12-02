@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChooseCar</title>
+</head>
+<body>
+<form action="/chooseCar">
+
+    <h1>Car information </h1> <br>
+
+    <select name="car">
+        <option th:each="car : ${cars}" th:value="${car.VIN}" th:text="${car}"></option>
+    </select>
+    <button type="submit"> submit </button>
+</form>
+</body>
+</html>
