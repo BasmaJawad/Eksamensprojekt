@@ -13,7 +13,10 @@
         <div class="close">
             <a href="/createReport"> Tilbage </a>
         </div>
-
+        <h2>
+            Skaderapport for lejeaftale:
+            <td th:text="${contractID}"/>
+        </h2>
         <form action="/damagePopup" method="post">
             <label for ="beskrivelse"></label>
             <input id="beskrivelse" type="text" name="beskrivelse" placeholder="beskrivelse" required />
