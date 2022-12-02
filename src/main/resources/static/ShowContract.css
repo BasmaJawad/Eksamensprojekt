@@ -1,7 +1,6 @@
 body{
-    padding: 70px;
+    padding: 0px 70px 70px;
     font: normal 15px "Avenir Next";
-
 }
 
 #topScreen{
@@ -140,11 +139,11 @@ input{
 
 }
 #storBox{
-    height: 670px;
+    height: 700px;
 }
 
 #storBox2{
-    height: 670px;
+    height: 700px;
 }
 .panel-heading{
     font-size: 20px;
@@ -198,6 +197,10 @@ background-color: rgba(0, 76, 153,0.1);
     *overflow: hidden;
     margin-left: 50px;
     background-color: rgba(0, 76, 153,0.1);
+}
+
+#specification{
+    margin-top: 50px;
 }
 
 .container2{

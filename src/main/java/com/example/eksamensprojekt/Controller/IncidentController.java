@@ -39,6 +39,14 @@ public class IncidentController {
         return "redirect:/DamagePopup";
     }
 
+//Find gamle skaderapporter
+
+    @GetMapping("/oldIncidentReports")
+    public String findOldReport(){
+
+        return "/DamageRegister/oldIncidentReports";
+    }
+
 
     // FIND SKADERAPPORT
     @GetMapping("/incidentReport")
