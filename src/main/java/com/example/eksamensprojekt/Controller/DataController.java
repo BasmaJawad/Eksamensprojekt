@@ -94,6 +94,7 @@ public String showContract(HttpSession session){
     Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
     //System.out.println("test" +contract.getContractID());
     Car car = dataService.getOnecar(contract.getVIN());
+
     Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
 
       session.setAttribute("contract",contract);
