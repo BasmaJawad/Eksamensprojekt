@@ -63,6 +63,14 @@ public class AdminController {
         return "redirect:/adminHomepage";
     }
 
+    @GetMapping("/createUser")
+    public String createUser(WebRequest req){
+
+        as.createUser(req);
+
+        return "redirect:/users";
+
+    }
 
 
 

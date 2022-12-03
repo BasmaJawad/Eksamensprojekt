@@ -11,15 +11,45 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersRepository implements IGenericRepository {
+public class UsersRepository implements IRepository {
 
     private Connection conn = DCM.getConnection();
 
 
-    @Override
-    public List<User> readAll() {
+    public void update(Object p, Object old) {
 
-        List<User> users = new ArrayList<>();
+        User newUser = (User) p;
+        User oldUser = (User) old;
+
+        String TEST_QUARY = "UPDATE users SET username = 'newUser', userType = 'ADMIN' where (username,userType) = (?,?)";
+        String QUARY = "UPDATE users SET username = '" + newUser.getUsername() + "', userType ='" + newUser.getUserType() + "' where (username,userType) = (?,?)";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+            ptst.setString(1,oldUser.getUsername());
+            ptst.setString(2,String.valueOf(oldUser.getUserType()));
+
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public Object readSingle(Object param) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<User> readMultiple(ArrayList conditions, String columnName) {
+
+       return null;
+    }
+
+    @Override
+    public ArrayList<User> readMultiple() {
+        ArrayList<User> users = new ArrayList<>();
 
 
         try {
@@ -45,38 +75,48 @@ public class UsersRepository implements IGenericRepository {
     }
 
     @Override
-    public User read() {
-        return null;
-    }
+    public void writeSingle(Object param) {
 
-    @Override
-    public void create(Object p) {
+        User user = (User) param;
 
-    }
-
-    @Override
-    public void update(Object p, Object old) {
-
-        User newUser = (User) p;
-        User oldUser = (User) old;
-
-        String TEST_QUARY = "UPDATE users SET username = 'newUser', userType = 'ADMIN' where (username,userType) = (?,?)";
-        String QUARY = "UPDATE users SET username = '" + newUser.getUsername() + "', userType ='" + newUser.getUserType() + "' where (username,userType) = (?,?)";
+        String QUARY = "INSERT INTO users (username, password, userType) values (?,?,?)";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
-            ptst.setString(1,oldUser.getUsername());
-            ptst.setString(2,String.valueOf(oldUser.getUserType()));
+
+            ptst.setString(1,user.getUsername());
+            ptst.setString(2,user.getPassword());
+            ptst.setString(3,String.valueOf(user.getUserType()));
 
             ptst.executeUpdate();
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void delete(int id) {
+    public void writeMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
+
+    }
+
+    @Override
+    public void updateMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void deleteSingle(Object param) {
+
+    }
+
+    @Override
+    public void deleteMultiple(ArrayList objects) {
 
     }
 }

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="AdminCSS.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -31,12 +32,49 @@
     </tbody>
 </table>
 
+<button class="signupbtn" onclick="document.getElementById('signup').style.display='block'" style="width:auto;">Opret ny bruger</button>
+<form id="signup" action="/createUser" style="border:1px solid #ccc; display: none" >
+    <div class="container">
+        <h1>Opret bruger</h1>
+        <hr>
+
+        <label for="username"><b>Brugernavn</b></label>
+        <input type="text" placeholder="Indtast brugernavn" name="username" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="text" placeholder="Indtast password" name="password" required>
+
+        <label for="usertype"><b>Brugertype</b></label>
+        <select name="usertype">
+            <option value="ADMIN">ADMIN</option>
+            <option value="DATA">DATA</option>
+            <option value="INCIDENT">INCIDENT</option>
+            <option value="BUSINESS">BUSINESS</option>
+        </select>
+
+
+        <div class="clearfix">
+            <button onclick="document.getElementById('signup').style.display='none'" type="button" class="cancelbtn">Luk</button>
+            <button type="submit" class="signupbtn">Opret bruger</button>
+        </div>
+    </div>
+</form>
 </body>
 <script>
     function makeForm(element) {
 
         element.parentNode.children.item(0).value = element.parentNode.parentNode.parentNode.children.item(0).textContent;
         element.parentNode.children.item(1).value = element.parentNode.parentNode.parentNode.children.item(1).textContent;
+    }
+
+    // Get the modal
+    var modal = document.getElementById('signup');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
     }
 </script>
 
