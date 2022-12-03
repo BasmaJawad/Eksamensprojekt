@@ -193,6 +193,52 @@ public class CarRepository implements IRepository {
     @Override
     public void writeSingle(Object param) {
 
+        Car car = (Car) param;
+
+        String QUARY;
+
+        if (car instanceof GasCar gasCar){
+
+            QUARY = "INSERT INTO gascar (carModel, carBrand, VIN, kmPrLiter, co2PrKm, carStatus) VALUES (?,?,?,?,?,?)";
+
+            try {
+                PreparedStatement ptst = conn.prepareStatement(QUARY);
+
+                ptst.setString(1,gasCar.getCarModel());
+                ptst.setString(2,gasCar.getCarBrand());
+                ptst.setString(3,gasCar.getVIN());
+                ptst.setString(4,gasCar.getLiterPrKm());
+                ptst.setString(5,gasCar.getCo2PrKm());
+                ptst.setString(6,String.valueOf(gasCar.getCarStatus()));
+
+                ptst.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+
+            ElectricCar electricCar = (ElectricCar) car;
+
+            QUARY = "INSERT INTO electriccar (carModel, carBrand, VIN, kmPrCharge, cleverNetworkCharging, cleverCharging, carStatus) VALUES (?,?,?,?,?,?,?)";
+
+            try {
+                PreparedStatement ptst = conn.prepareStatement(QUARY);
+
+                ptst.setString(1,electricCar.getCarModel());
+                ptst.setString(2,electricCar.getCarBrand());
+                ptst.setString(3,electricCar.getVIN());
+                ptst.setString(4,electricCar.getKmPrCharge());
+                ptst.setBoolean(5,electricCar.isCleverNetworkCharging());
+                ptst.setBoolean(6,electricCar.isCleverCharging());
+                ptst.setString(7,String.valueOf(electricCar.getCarStatus()));
+
+                ptst.executeUpdate();
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @Override
