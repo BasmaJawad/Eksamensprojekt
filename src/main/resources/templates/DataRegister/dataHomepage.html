@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="incidentHomepage.css">
     <link rel="stylesheet" href="dataHomepage.css">
@@ -9,22 +10,38 @@
 </head>
 <body>
 
-<header>
+<header id="navbar">
     <div class="wrapper">
         <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
-        <nav>
+        <nav >
             <ul>
-                <li><a href="/dataHomepage">Home</a></li>
-                <li><a href="/contractPage">Tilføj Lejeaftale</a></li>
-                <li><a href="/logout">Log out</a></li>
+                <li><a class="navbarDirections" href="/dataHomepage">Home</a></li>
+                <li><a class="navbarDirections" href="/contractPage">Tilføj Lejeaftale</a></li>
+                <li><a class="navbarDirections" href="/logout">Log out</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <span id="username" th:text="${session.user.getUsername()}"/>
+                    </div>
+                </li>
+
             </ul>
         </nav>
     </div>
 </header>
 
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Filter
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#" onclick="myFunction()">Kontrakt ID</a>
+        <a class="dropdown-item" href="#" onclick="myFunction2()">Stelnummer</a>
+        <a class="dropdown-item" href="#">Bil</a>
+    </div>
+</div>
 
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Kontrakt-ID">
 
 <table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
 
@@ -79,7 +96,34 @@
             }
         }
     }
+
+    function myFunction2() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
 </script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
 </html>
