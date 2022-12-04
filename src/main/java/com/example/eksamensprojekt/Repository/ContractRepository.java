@@ -94,7 +94,7 @@ public class ContractRepository implements IRepository {
 
 
 
-        String QUARY = "SELECT * FROM data.contracts where " + columnName + "=?";
+        String QUARY = "SELECT * FROM data.contracts where " + columnName + "=? ORDER BY active DESC";
 
         try {
 
@@ -135,7 +135,7 @@ public class ContractRepository implements IRepository {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-        String QUARY = "SELECT * FROM data.contracts";
+        String QUARY = "SELECT * FROM data.contracts ORDER BY active DESC";
 
         try {
 

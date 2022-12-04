@@ -47,15 +47,6 @@ public class DataController {
     return "/DataRegister/chooseCar";
   }
 
-    @GetMapping("/contractList")
-    public String contractList(Model model) {
-
-        //ThymeLeaf
-        model.addAttribute("contracts", dataService.getAllContracts());
-
-    return "/DataRegister/listOfContracts";
-  }
-
   @GetMapping("/chooseCar")
   public String chooseCar(HttpSession httpSession ,Model model, WebRequest req) {
     System.out.println(dataService.isElectricCar(model, httpSession, req));
@@ -96,7 +87,7 @@ public String showContract(HttpSession session){
   */
 
     
-  //Form i listOfContracts
+  //Form i dataHomepage
   @PostMapping("/showcontract")
   public String showContract(WebRequest req, HttpSession session){
 

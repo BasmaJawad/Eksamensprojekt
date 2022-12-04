@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="incidentHomepage.css">
+    <link rel="stylesheet" href="dataHomepage.css">
     <title>DataHomepage</title>
 </head>
 <body>
-
-<ul>
-    <li> <form action="/contractPage"><button type="submit">Tilføj en kontrakt her</button></form></li>
-    <li> <form action="/contractList"><button type="submit">Liste med lejekontrakter</button></form></li>
-
-</ul>
 
 <header>
     <div class="wrapper">
@@ -21,7 +16,7 @@
             <ul>
                 <li><a href="/dataHomepage">Home</a></li>
                 <li><a href="/contractPage">Tilføj Lejeaftale</a></li>
-                <li><a href="#">Log out</a></li>
+                <li><a href="/logout">Log out</a></li>
             </ul>
         </nav>
     </div>
@@ -37,15 +32,24 @@
         <th style="width:20%;">KONKTRAKT ID</th>
         <th style="width:30%;">STELNUMMER</th>
         <th style="width:20%;">BIL</th>
+        <th style="width:20%;">STATUS</th>
         <th style="width:20%;">LEJEAFTALE</th>
     </tr>
 
     <tr th:each="contract :${contracts}">
         <td th:text="${contract.getContractID}">
         <td th:text="${contract.getVIN}">
-        <td th:text="${carInContract.readSingle(contract.getVIN).getCarBrand()}">
+        <td> <span th:text="${carInContract.readSingle(contract.getVIN).getCarBrand()}"/> <br>
+        <span th:text="${carInContract.readSingle(contract.getVIN).getCarModel}"/>
+    </td>
+        <td>
+        <span th:if="${contract.isActive==true}">
+            LIVE </span>
+        <span th:unless="${contract.isActive==true}">
+            DEAD </span>
+    </td>
         <td> <form action="/showcontract" method="post">
-            <button type="submit" name="contractID" th:value="${contract.getContractID}"/>Lejeaftale
+            <button id="seeContract" type="submit" name="contractID" th:value="${contract.getContractID}"/>Lejeaftale
         </form> </td>
 
     </tr>
