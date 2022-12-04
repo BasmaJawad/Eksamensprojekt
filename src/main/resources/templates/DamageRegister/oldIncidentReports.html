@@ -2,19 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="incidentHomepage.css">
+    <link rel="stylesheet" href="oldIncidentreport.css">
 
-    <title>Incidents</title>
-    <style>
-        table {border-collapse: collapse; }
-
-    </style>
+    <title>Incident Reports</title>
 </head>
 <body>
 
-<div id="topBar">
-<button id="AllReports" onclick="window.location='/oldIncidentReports';">All Incident Reports</button>
-</div>
+<header>
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Find Car Reports</a></li>
+                <li><a href="#">All Reports</a></li>
+                <li><a href="#">Log out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID">
 
@@ -23,16 +32,16 @@
     <tr class="header">
         <th style="width:20%;">KONKTRAKT ID</th>
         <th style="width:30%;">STELNUMMER</th>
-        <th style="width:20%;">KUNDE ID</th>
+        <th style="width:20%;">BIL</th>
         <th style="width:20%;">Rapport</th>
     </tr>
 
-    <tr th:each="contract :${session.contractsWOreports}">
+    <tr th:each="contract :${AllContractsWithIncidentRep}">
         <td th:text="${contract.getContractID}">
         <td th:text="${contract.getVIN}">
-        <td th:text="${contract.getCustomerID}">
-        <td> <form action="/tilføjSkaderapport" method="post">
-        <button type="submit" name="contractID" th:value="${contract.getContractID}"/> TILFØJ RAPPORT
+        <td th:text="${carInContract.readSingle(contract.getVIN).getCarBrand()}">
+        <td> <form action="/oldIncidentReports" method="post">
+            <button type="submit" name="contractID" th:value="${contract.getContractID}"/> SE RAPPORT
         </form> </td>
 
     </tr>
@@ -65,5 +74,4 @@
 </script>
 
 </body>
-
 </html>

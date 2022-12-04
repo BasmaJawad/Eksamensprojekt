@@ -27,6 +27,15 @@ public class DataController {
   }
 */
     //Page to add a new contract
+
+    @GetMapping("/dataHomepage")
+    public String dataHomepage(Model model){
+
+        model.addAttribute("contracts", dataService.getAllContracts());
+        model.addAttribute("carInContract", dataService.getCarRepository());
+
+        return "/DataRegister/dataHomepage";
+    }
     @GetMapping("/contractPage")
     public String contractPage(Model model) {
 
@@ -36,15 +45,6 @@ public class DataController {
         model.addAttribute("cars", cars);
 
     return "/DataRegister/chooseCar";
-  }
-
-    @GetMapping("/contractList")
-    public String contractList(Model model) {
-
-        //ThymeLeaf
-        model.addAttribute("contracts", dataService.getAllContracts());
-
-    return "/DataRegister/listOfContracts";
   }
 
   @GetMapping("/chooseCar")
@@ -87,13 +87,14 @@ public String showContract(HttpSession session){
   */
 
     
-  //Form i listOfContracts
+  //Form i dataHomepage
   @PostMapping("/showcontract")
   public String showContract(WebRequest req, HttpSession session){
 
     Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
     //System.out.println("test" +contract.getContractID());
     Car car = dataService.getOnecar(contract.getVIN());
+
     Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
 
       session.setAttribute("contract",contract);

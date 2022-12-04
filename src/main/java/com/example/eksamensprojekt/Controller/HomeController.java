@@ -29,7 +29,7 @@ public class HomeController {
             session.setAttribute("user", user);
 
             if (user.getUserType().equals(UserType.DATA))
-                return "/DataRegister/dataHomepage";
+                return "redirect:/dataHomepage";
             else if (user.getUserType().equals(UserType.INCIDENT))
                 return "redirect:/incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))
