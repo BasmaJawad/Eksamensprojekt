@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="BusinessPage.css">
     <meta charset="UTF-8">
     <title>Udlejet biler</title>
 </head>
 <body>
 
+<div id="divHead">
+    <h1>Liste med udlejet biler</h1>
+
+</div>
+
+<div id="leftDiv" style="overflow-y: scroll; ">
+    <table>
+        <thead>
+        <tr>
+            <td>Brand</td>
+            <td>Model</td>
+            <td>Stel-nummer</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="car : ${rentedCars}">
+            <td th:text="${car.carBrand}"></td>
+            <td th:text="${car.carModel}"></td>
+            <td th:text="${car.VIN}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<div id="rightDiv">
+
+    <div class="rightDivDivs">
+        <h2>Antal udlejet biler</h2>
+        <hr>
+        <h1 th:text="${numberOfRentedCars}"></h1>
+    </div>
+    <div class="rightDivDivs">
+        <h2>Mest populere bil</h2>
+        <hr>
+        <h1 th:text="${mostPopularModel}"></h1>
+    </div>
 
 
-<span th:each="car : ${rentedCars}" th:text="${car}">
+</div>
 
-
-
-</span>
 
 </body>
 </html>

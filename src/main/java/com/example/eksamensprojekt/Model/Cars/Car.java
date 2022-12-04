@@ -3,7 +3,7 @@ package com.example.eksamensprojekt.Model.Cars;
 import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
-public class Car {
+public class Car implements Comparable<Car>{
 
     private String carModel, carBrand,VIN;
     private CarStatus carStatus;
@@ -154,4 +154,8 @@ public class Car {
         this.carStatus = carStatus;
     }
 
+    @Override
+    public int compareTo(Car o) {
+        return this.carModel.compareTo(o.carModel);
+    }
 }

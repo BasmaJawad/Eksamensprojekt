@@ -9,8 +9,9 @@ import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.CustomerRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.lang.reflect.Array;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BusinessService {
 
@@ -64,5 +65,37 @@ public class BusinessService {
             totalRevenue += contractPrice.getFinalPrice();
         }
         return totalRevenue;
+    }
+    public String mostPopularCarModel(){
+
+
+        ArrayList<Car> cars = getRentedCars();
+
+        Collections.sort(cars);
+
+        ArrayList<String> models = new ArrayList<>();
+
+        for (Car car : cars) {
+            models.add(car.getCarModel());
+        }
+
+        List<String> uniqueModels
+                = models.stream().distinct().toList();
+
+        System.out.println(uniqueModels.size());
+
+        int number = 0;
+
+        String mostPopCarModel = models.get(0); //If the first is the most popular
+        for (int i = 0; i < uniqueModels.size(); i++) {
+
+            int numberOfFreq = Collections.frequency(models,uniqueModels.get(i));
+
+            if (numberOfFreq > number){
+                number = numberOfFreq;
+                mostPopCarModel = models.get(i);
+            }
+        }
+        return mostPopCarModel;
     }
 }
