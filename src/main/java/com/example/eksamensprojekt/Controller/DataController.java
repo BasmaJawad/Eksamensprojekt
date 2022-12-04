@@ -27,6 +27,15 @@ public class DataController {
   }
 */
     //Page to add a new contract
+
+    @GetMapping("/dataHomepage")
+    public String dataHomepage(Model model){
+
+        model.addAttribute("contracts", dataService.getAllContracts());
+        model.addAttribute("carInContract", dataService.getCarRepository());
+
+        return "/DataRegister/dataHomepage";
+    }
     @GetMapping("/contractPage")
     public String contractPage(Model model) {
 

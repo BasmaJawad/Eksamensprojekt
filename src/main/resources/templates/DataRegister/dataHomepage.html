@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="incidentHomepage.css">
     <title>DataHomepage</title>
 </head>
 <body>
@@ -12,6 +14,68 @@
 
 </ul>
 
+<header>
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <nav>
+            <ul>
+                <li><a href="/dataHomepage">Home</a></li>
+                <li><a href="/contractPage">Tilføj Lejeaftale</a></li>
+                <li><a href="#">Log out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID">
+
+<table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
+
+    <tr class="header">
+        <th style="width:20%;">KONKTRAKT ID</th>
+        <th style="width:30%;">STELNUMMER</th>
+        <th style="width:20%;">BIL</th>
+        <th style="width:20%;">LEJEAFTALE</th>
+    </tr>
+
+    <tr th:each="contract :${contracts}">
+        <td th:text="${contract.getContractID}">
+        <td th:text="${contract.getVIN}">
+        <td th:text="${carInContract.readSingle(contract.getVIN).getCarBrand()}">
+        <td> <form action="/showcontract" method="post">
+            <button type="submit" name="contractID" th:value="${contract.getContractID}"/>Lejeaftale
+        </form> </td>
+
+    </tr>
+
+</table>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 
 </body>
 </html>

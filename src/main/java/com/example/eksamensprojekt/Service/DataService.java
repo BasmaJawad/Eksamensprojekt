@@ -101,6 +101,9 @@ public class DataService {
         return contractRepo.readMultiple();
     }
 
+    public CarRepository getCarRepository() {
+        return carRepository;
+    }
 
 
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
