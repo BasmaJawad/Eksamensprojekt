@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Controller;
 
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.ContractPrice;
 import com.example.eksamensprojekt.Service.BusinessService;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,12 @@ public class BusinessController {
     @GetMapping("/listOfRentedCars")
     public String listOfRentedCars(Model model) {
 
-        model.addAttribute("rentedCars", bs.getRentedCars());
+        ArrayList<Car> cars = bs.getRentedCars();
+
+
+        model.addAttribute("mostPopularModel", bs.mostPopularCarModel());
+        model.addAttribute("numberOfRentedCars", cars.size());
+        model.addAttribute("rentedCars", cars);
 
         return "/BusinessUser/listOfRentedCars";
     }

@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="BusinessPage.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<div id="mainDiv">
+    <div id="divHead">
+        <h1 style="display: inline-block">Økonomi overblik</h1>
+
+        <h2 style="display: inline-block; float: right" >Logget ind som: <span th:text="${session.user.getUsername()}"></span></h2>
+    </div>
+
+    <div id="leftDiv">
+
+
+    </div>
+
+    <div id="rightDiv"></div>
+
+</div>
+
 
 <form action="/listOfRentedCars">
 
