@@ -2,7 +2,7 @@ package com.example.eksamensprojekt.Model;
 
 import com.example.eksamensprojekt.Model.Enums.UserType;
 
-public class User {
+public class User implements Comparable<User>{
 
     private String username;
     private String password;
@@ -38,5 +38,10 @@ public class User {
 
     public void setUserType(UserType userType) {
         this.userType = userType;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.userType.compareTo(o.userType);
     }
 }

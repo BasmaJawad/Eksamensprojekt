@@ -113,6 +113,19 @@ public class UsersRepository implements IRepository {
     @Override
     public void deleteSingle(Object param) {
 
+        String username = (String) param;
+
+        String QUARY = "DELETE  from users where username = ?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+
+            ptst.setString(1,username);
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

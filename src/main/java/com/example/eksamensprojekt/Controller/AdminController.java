@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Controller;
 
+import com.example.eksamensprojekt.Model.User;
 import com.example.eksamensprojekt.Service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Collections;
 
 @Controller
 public class AdminController {
@@ -18,7 +20,11 @@ public class AdminController {
     @GetMapping("/users")
     public String users(Model model) {
 
-        model.addAttribute("users", as.getUsers());
+        ArrayList<User> users = as.getUsers();
+
+        Collections.sort(users);
+
+        model.addAttribute("users", users);
 
 
         return "/Admin/users";
@@ -41,7 +47,11 @@ public class AdminController {
 
         as.updateUser(req, session);
 
-        model.addAttribute("users",as.getUsers());
+        ArrayList<User> users = as.getUsers();
+
+        Collections.sort(users);
+
+        model.addAttribute("users",users);
 
 
         return "redirect:/users";
@@ -70,6 +80,13 @@ public class AdminController {
 
         return "redirect:/users";
 
+    }
+    @GetMapping("/deleteUser")
+    public String deleteUser(WebRequest req){
+
+        as.deleteUser(req);
+
+        return "redirect:/users";
     }
 
 

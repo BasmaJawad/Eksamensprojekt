@@ -65,4 +65,12 @@ public class AdminService {
         userRepo.writeSingle(user);
 
     }
+
+    public void deleteUser(WebRequest req) {
+
+        String username = req.getParameter("username");
+
+        userRepo.deleteSingle(username);
+
+    }
 }
