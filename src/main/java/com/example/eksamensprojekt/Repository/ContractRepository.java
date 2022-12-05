@@ -249,7 +249,7 @@ public class ContractRepository implements IRepository {
         int contractID = (int) param;
 
 
-        String QUARY = "UPDATE contracts SET "+ columnName + " = "+ ContractStatus.valueOf(updateTo) + " where "+ columnCondition + " =?";
+        String QUARY = "UPDATE contracts SET "+ columnName + " = "+ updateTo + " where "+ columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
