@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0px 70px 70px;
 }
-img{
+.main-menu-logo-image___1Ov1X{
     margin-top: 10px;
     width: 350px;
 }
@@ -54,4 +54,7 @@ header nav ul li a {
     display: block;
     margin-right: 50px;
     text-decoration: none;
+}
+hr{
+    border-top: 3px solid black;
 }
