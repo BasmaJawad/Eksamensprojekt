@@ -6,18 +6,9 @@ import com.example.eksamensprojekt.Model.ContractPrice;
 import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
-import com.example.eksamensprojekt.Repository.CustomerRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
-
-import javax.imageio.ImageIO;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class BusinessService {
 
@@ -31,6 +22,51 @@ public class BusinessService {
         ArrayList<CarStatus> conditions = new ArrayList<>();
 
         conditions.add(CarStatus.RENTED);
+
+        return carRepo.readMultiple(conditions, "carStatus");
+    }
+
+    public ArrayList<Integer> amountOfCarsPrModel(){
+
+        ArrayList<Car> notRentedCars = getNotRentedCars();
+
+        Collections.sort(notRentedCars);
+
+        System.out.println(notRentedCars);
+
+        ArrayList<Integer> amount = new ArrayList<>();
+
+        ArrayList<Car> allCars = carRepo.readMultiple();
+
+        Collections.sort(allCars);
+
+        ArrayList<String> models = new ArrayList<>();
+
+
+        for (Car allCar : allCars) {
+            models.add(allCar.getCarModel());
+        }
+
+        List<String> uniqueModels
+                = models.stream().distinct().toList();
+
+        for (String uniqueModel : uniqueModels) {
+            int count = 0;
+            for (Car notRentedCar : notRentedCars) {
+                if (notRentedCar.getCarModel().equals(uniqueModel)) {
+                    count++;
+                }
+            }
+            amount.add(count);
+        }
+
+        return amount;
+    }
+    private ArrayList<Car> getNotRentedCars(){
+
+        ArrayList<CarStatus> conditions = new ArrayList<>();
+
+        conditions.add(CarStatus.NOT_RENTED);
 
         return carRepo.readMultiple(conditions, "carStatus");
     }
@@ -61,6 +97,9 @@ public class BusinessService {
         }
         return list;
     }
+
+
+
 
     public int totalRevenue() {
 
@@ -127,4 +166,5 @@ public class BusinessService {
 
         return filePath;
     }
+
 }

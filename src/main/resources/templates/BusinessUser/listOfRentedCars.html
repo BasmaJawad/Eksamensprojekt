@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Udlejet biler</title>
 </head>
-<body>
+<body >
 
 <header>
     <div class="wrapper">
@@ -24,6 +24,8 @@
 </header>
 
 <div id="leftDiv" style="overflow-y: scroll; ">
+    <h2>Liste med udlejet biler</h2>
+    <hr>
     <table>
         <thead>
         <tr>
@@ -41,6 +43,26 @@
 
         </tbody>
     </table>
+    <h2>Biler på lager</h2>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <td>108 Active+ 72 HK</td>
+                <td>208 Active+ 100 HK</td>
+                <td>500e CABRIO Icon Pack 118 HK</td>
+                <td>500e Icon Pack 118 HK</td>
+                <td>C1 Le Mans 72 HK</td>
+                <td>C3 Le Mans 83 HK</td>
+                <td>e-2008 GT Line 136 HK</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td th:each="amount : ${amountOfCarsPrModel}"><span th:text="${amount}"></span> <span th:if="${amount<5}"><img  width="10px" height="10px" src="https://www.freeiconspng.com/thumbs/alert-icon/alert-icon-red-11.png"></span></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div id="rightDiv">
 
@@ -56,10 +78,6 @@
         <h1 th:text="${mostPopularModel}"></h1>
         <img style="width: 150px" th:src="${carImg}">
     </div>
-
-
 </div>
-
-
 </body>
 </html>
