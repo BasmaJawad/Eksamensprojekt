@@ -3,6 +3,7 @@ package com.example.eksamensprojekt.Repository;
 import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
+import com.example.eksamensprojekt.Model.Enums.ContractStatus;
 import com.example.eksamensprojekt.Model.Enums.KmPrMonth;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
@@ -93,10 +94,10 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
-                boolean active = resultSet.getBoolean("active");
+                ContractStatus contractStatus = ContractStatus.valueOf("contractStatus");
                 LocalDate date = LocalDate.parse(resultSet.getString("date"),DateTimeFormatter.ISO_LOCAL_DATE);
 
-                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active,date);
+                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus);
             }
 
         } catch (SQLException e) {
@@ -115,7 +116,7 @@ public class ContractRepository implements IRepository {
 
 
 
-        String QUARY = "SELECT * FROM data.contracts where " + columnName + "=? ORDER BY active DESC";
+        String QUARY = "SELECT * FROM data.contracts where " + columnName + "=? ORDER BY contractStatus DESC";
 
         try {
 
@@ -135,11 +136,11 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
-                boolean active = resultSet.getBoolean("active");
+                ContractStatus contractStatus = ContractStatus.valueOf("contractStatus");
                 LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active,date));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus));
             }
 
         } catch (SQLException e) {
@@ -156,7 +157,7 @@ public class ContractRepository implements IRepository {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-        String QUARY = "SELECT * FROM data.contracts ORDER BY active DESC";
+        String QUARY = "SELECT * FROM data.contracts ORDER BY contractStatus DESC";
 
         try {
 
@@ -174,10 +175,10 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
-                boolean active = resultSet.getBoolean("active");
+                ContractStatus contractStatus = ContractStatus.valueOf(resultSet.getString("contractStatus"));
                 LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,active,date));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus));
             }
 
         } catch (SQLException e) {
@@ -196,7 +197,7 @@ public class ContractRepository implements IRepository {
 
         Contract c = (Contract) param;
         //Insert Contract to database
-        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth, active, date) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+        String QUARY = "INSERT INTO contracts (VIN,subLength, pickupDestination,customerID,winterTires,vikingHelp,lowDeductible,deliveryInsurance,kmPrMonth,date,contractStatus) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
@@ -210,8 +211,8 @@ public class ContractRepository implements IRepository {
             ptsd.setBoolean(7, c.isLowDeductible());
             ptsd.setBoolean(8, c.isDeliveryInsurance());
             ptsd.setString(9, c.getKmPrMonth().name());
-            ptsd.setBoolean(10,c.isActive());
-            ptsd.setString(11,c.getStartDate().format(DateTimeFormatter.ISO_DATE));
+            ptsd.setString(10,c.getStartDate().format(DateTimeFormatter.ISO_DATE));
+            ptsd.setString(11,c.getContractStatus().name());
 
             ptsd.executeUpdate();
 

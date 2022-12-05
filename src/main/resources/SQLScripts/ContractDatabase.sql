@@ -27,3 +27,7 @@ create table contracts
 );
 
 
+ALTER TABLE contracts ADD contractStatus ENUM('LIVE', 'DEAD', 'CANCELLED')
+
+
+

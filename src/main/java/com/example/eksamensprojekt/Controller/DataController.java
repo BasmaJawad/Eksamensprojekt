@@ -105,7 +105,7 @@ public String showContract(HttpSession session){
       session.setAttribute("date", contract.getStartDate());
       session.setAttribute("endDate", contract.getEndDate());
 
-      System.out.println(contract.isActive());
+
 
 
     return "ShowContract";
@@ -123,7 +123,7 @@ public String showContract(HttpSession session){
 
         session.setAttribute("car",updatedCar);
         session.setAttribute("contract", updatedContract);
-      System.out.println("her" +updatedContract.isActive());
+     
 
         return "ShowContract";
   }
