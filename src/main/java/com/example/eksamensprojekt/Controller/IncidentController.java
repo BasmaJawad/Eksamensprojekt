@@ -29,17 +29,23 @@ public class IncidentController {
     }
 
 
-    @PostMapping("/tilføjSkaderapport")
+    @PostMapping("/incidentsHomepage")
     public String sendIncidentHome(HttpSession session , WebRequest req){
         // contractID skal sættes til være den som bliver hentet fra htmlen når man trykker på knappen tilføj
 
         session.setAttribute("contractID", req.getParameter("contractID"));
-        System.out.println(session.getAttribute("contractID"));
+        Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
+
+            incidentsService.createIncidentReport(contractID);
 
         return "redirect:/DamagePopup";
-    }
+        }
 
 
+
+
+
+    //return "redirect:/DamagePopup";
     // FIND SKADERAPPORT
     @GetMapping("/incidentReport")
     public String findIncidentReport() {

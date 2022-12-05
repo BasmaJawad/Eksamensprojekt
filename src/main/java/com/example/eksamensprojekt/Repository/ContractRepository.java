@@ -27,6 +27,26 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
+    public String getVIN(int contractID){
+        String QUARY = "SELECT VIN from contracts where contractID = ?";
+
+        try {
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+            ptst.setInt(1, contractID);
+            ResultSet resultSet = ptst.executeQuery();
+
+            while (resultSet.next()) {
+
+                return resultSet.getString(1);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
     public int getContractID(String VIN) {
 
         String QUARY = "SELECT MAX(contractID) from contracts where VIN = ?";
@@ -47,6 +67,7 @@ public class ContractRepository implements IRepository {
         }
         return -1;
     }
+
 
 
     public Contract findOneContract(String column, Object num){

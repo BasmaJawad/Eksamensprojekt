@@ -62,21 +62,24 @@ public class IncidentsService {
 
 
     public void createIncidentReport(int contractID) {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-mm-dd");
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("YYYY-MM-DD");
 
         IncidentReport report = new IncidentReport(
                 contractID,
                 getVIN(contractID),
                 LocalDate.now().format(df));
+        // orden d
 
         incidentReport.createIncidentReport(report);
     }
 
     public String getVIN(int contractID) {
 
-        Contract contract = contractRepository.readSingle(contractID);
+        String VIN = contractRepository.getVIN(contractID);
 
-        return contract.getVIN();
+
+
+        return VIN;
     }
 
 
