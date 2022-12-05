@@ -7,11 +7,12 @@ img{
     width: 350px;
 }
 
-a {
+.navbarDirections {
     text-decoration: none;
 }
-a:hover {
+.navbarDirections:hover {
     border-bottom: 2px solid black;
+    text-decoration: none;
 }
 
 .wrapper {
@@ -24,31 +25,32 @@ a:hover {
 
 }
 
-header {
+#navbar {
     height: 80px;
     font: normal 18px "Avenir Next";
-    margin-bottom: 30px;
+    margin-bottom: 100px;
 
 }
 hr{
     margin-bottom: 60px;
 }
-header nav {
+#navbar nav {
     float: right;
     margin-top: 0;
     margin-bottom: 15px;
 
 }
-header nav ul li {
+#navbarnav ul li {
     float: left;
     display: inline-block;
 
     font-weight: 500;
 }
-header nav ul li a {
+#navbar nav ul li a {
     color: #130f11;
     text-transform: capitalize;
     font-weight: bold;
     display: block;
     margin-right: 50px;
+    text-decoration: none;
 }

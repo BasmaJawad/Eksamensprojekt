@@ -5,3 +5,28 @@
     font-weight: 550;
 
 }
+
+.dropdown{
+    float: left;
+    margin-left: 50px;
+}
+
+#myInput {
+    margin-top: 0;
+    margin-left: 1%;
+    padding: 15px;
+    border-radius: 5px;
+    position: center;
+    float: left;
+    height: 40px;
+}
+
+#icon{
+    width: 30px;
+    margin-top: 0;
+}
+#username{
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: none;
+}
