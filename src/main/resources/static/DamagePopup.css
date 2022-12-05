@@ -13,32 +13,41 @@ body{
 
 }
 
-
-
-
-
-#myInput{
-    margin-top: 20px;
-    margin-left: 3.5%;
-    padding:15px;
-    border-radius: 10px;
-    position: center;
-
+h1{
+   font-weight: bold;
 }
 
-input[type=text] {
-    width: 30%;
-    -webkit-transition: width 0.15s ease-in-out;
-    transition: width 0.15s ease-in-out;
-    margin-bottom: 20px;
+#topBar{
+    width: 100%;
 }
 
-input[type=text]:focus {
-    width: 50%;
+.inputB{
+    height: 40px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    border-radius: 20px;
+    width: 250px;
 }
+.inputP{
+    height: 30px;
+    padding: 15px;
+    border-bottom: 1px solid #ddd;
+    width: 50px;
+    border-radius: 20px;
+}
+
+button.CreateButton{
+    border-radius: 20px;
+    color: lightskyblue;
+    text: white;
+}
+
 #myTable {
+    margin-right: 10px;
+    margin-top: ;
     border-collapse: collapse;
-    width: 90%;
+    width: 50%;
+    margin-top: 100px;
     border: 1px solid #ddd;
     font-size: 18px;
     border-radius: 20px;

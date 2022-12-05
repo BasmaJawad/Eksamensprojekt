@@ -44,7 +44,7 @@ public class IncidentController {
         return "redirect:/DamagePopup";
     }
 
-//Find gamle skaderapporter
+    //Find gamle skaderapporter
 
     @GetMapping("/oldIncidentReports")
     public String findOldReport(Model model){
@@ -88,6 +88,7 @@ public class IncidentController {
     }
 
     // LAV RAPPORT ... Skal muligvis slettes
+    /*
     @GetMapping("createReport")
     public String createReport() {
         return "/DamageRegister/createReport";
@@ -108,7 +109,7 @@ public class IncidentController {
         }
         return "/DamageRegister/NoContractError";
     }
-
+    */
 
     // INDTAST SKADE
     @GetMapping("/DamagePopup")
@@ -121,10 +122,10 @@ public class IncidentController {
     }
 
     @PostMapping("/addDamage")
-    public String writeDamage(WebRequest req, Model model, HttpSession session) {
+    public String writeDamage(WebRequest req, Model model) {
 
 
-        model.addAttribute("Beskrivelse", req.getParameter("beskrivelse"));
+        model.addAttribute("beskrivelse", req.getParameter("beskrivelse"));
         model.addAttribute("pris", req.getParameter("pris"));
         incidentsService.createDamage(req);
 

@@ -45,7 +45,7 @@ input[type=text]:focus {
 }
 #myTable {
     border-collapse: collapse;
-    width: 90%;
+    width: 95%;
     border: 1px solid #ddd;
     font-size: 18px;
     border-radius: 20px;

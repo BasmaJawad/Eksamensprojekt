@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="DamagePopup.css">
+    <link rel="stylesheet" href="navBar.css">
     <title>DAMAGES</title>
     <style>
         table {border-collapse: collapse; }
@@ -9,21 +11,39 @@
     </style>
 </head>
 <body>
+<header id="navbar">
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <nav >
+            <ul>
+                <li><a class="navbarDirections" href="/incidentsHomepage">Home</a></li>
+                <li><a class="navbarDirections" href="/logout">Log out</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <!-- <span id="username" th:text="${session.user.getUsername()}"/> -->
+                    </div>
+                </li>
 
+            </ul>
+        </nav>
+    </div>
+</header>
 <div class="bg">
-    <div class="popup-box">
+    <div>
         <h1 id="newDamage"> INDTAST SKADE </h1>
 
 
         <h2>
             Skaderapport for lejeaftale:
-            <td th:text="${contractID}"/>
+            <td th:text="${session.contractID}"/>
         </h2>
-        <form action="/addDamage" method="post">
+
+        <form  action="/addDamage" method="post">
             <label for ="beskrivelse"></label>
-            <input id="beskrivelse" type="text" name="beskrivelse" placeholder="beskrivelse" required />
+            <input class="inputB" type="text" name="beskrivelse" placeholder="BESKRIVELSE" required />
             <label for ="pris"></label>
-            <input id="pris" type="text" name="pris" placeholder="pris" required />
+            <input class="inputP" type="text" name="pris" placeholder="PRIS" required />
             <br>
             <br>
             <br>
@@ -32,17 +52,14 @@
     </div>
 
 
-    <table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
+    <table id="myTable" style= " margin-right:20px !important;">
 
         <tr class="header">
-            <th style="width:20%;">RAPPORT ID</th>
             <th style="width:30%;">BESKRIVELSE</th>
             <th style="width:20%;">PRIS</th>
         </tr>
 
         <tr th:each="damage: ${currentDamages}">
-
-            <td th:text="${damage.getReportID}"/>
 
             <td th:text="${damage.getDesciption}"/>
 

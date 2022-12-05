@@ -23,7 +23,7 @@
                 <li>
                     <div id="user">
                         <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
-                        <span id="username" th:text="${session.user.getUsername()}"/>
+                       <!-- <span id="username" th:text="${session.user.getUsername()}"/> -->
                     </div>
                 </li>
 
@@ -32,11 +32,11 @@
     </div>
 </header>
 
-<div id="topBar">
+<div id="topBar" style="margin-left: 50px">
 <button id="AllReports" onclick="window.location='/oldIncidentReports';">All Incident Reports</button>
 </div>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID">
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID" style="margin-left: 50px">
 
 <table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
 

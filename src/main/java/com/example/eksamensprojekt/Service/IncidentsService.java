@@ -52,7 +52,7 @@ public class IncidentsService {
         CarDamage damage = new CarDamage(
 
                 carDamageRepository.readID(),
-                req.getParameter("Beskrivelse"),
+                req.getParameter("beskrivelse"),
                 parseInt(req.getParameter("pris")));
 
         carDamageRepository.createDamage(damage);
