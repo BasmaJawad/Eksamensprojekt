@@ -31,11 +31,12 @@ a:hover {
 header {
     height: 80px;
     font: normal 18px "Avenir Next";
-    margin-bottom: 100px;
+    margin-bottom: 50px;
 
 }
 hr{
     margin-bottom: 60px;
+    background-color: grey;
 }
 
 header nav {
@@ -57,7 +58,4 @@ header nav ul li a {
     display: block;
     margin-right: 50px;
     text-decoration: none;
-}
-hr{
-    border-top: 3px solid black;
 }

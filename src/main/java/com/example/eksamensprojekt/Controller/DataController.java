@@ -104,9 +104,7 @@ public String showContract(HttpSession session){
       session.setAttribute("customer",customer);
       session.setAttribute("date", contract.getStartDate());
       session.setAttribute("endDate", contract.getEndDate());
-
-
-
+      System.out.println(contract.getContractStatus());
 
     return "ShowContract";
 
@@ -116,7 +114,9 @@ public String showContract(HttpSession session){
   @PostMapping("/updateCarStatus")
         public String updateCarStatus(WebRequest req, HttpSession session){
 
-        dataService.updateSingle(req, (Car) session.getAttribute("car"));
+      //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
+        dataService.updateSingle(req, (Car) session.getAttribute("car"),"'DEAD'");
+
 
         Car updatedCar = dataService.getOnecar(session.getAttribute("carVIN"));
         Contract updatedContract = dataService.getOneContract((Integer) session.getAttribute("contractID"));

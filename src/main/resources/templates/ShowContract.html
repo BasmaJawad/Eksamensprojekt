@@ -14,7 +14,9 @@
 
 <header>
     <div class="wrapper">
-        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
         <nav id="navbar">
             <ul>
                 <li><a href="/dataHomepage">Home</a></li>
@@ -26,6 +28,7 @@
     </div>
 </header>
 <hr>
+
 <div id="topScreen">
     <div class="leftBox">
 
@@ -34,20 +37,14 @@
             <td th:text="${session.contract.getContractID()}"/>
 
         </div>
-
-        <span th:switch="${session.contract.getContractStatus()}">
-             <span class="topContainter" id="live" th:case="${'LIVE'}">
+        <span th:if="${session.contract.getContractStatus().name()=='LIVE'}" class="topContainter" id="live">
         LIVE
     </span>
-            <span class="topContainter" id="dead" th:case="${'DEAD'}">
+            <span class="topContainter" id="dead" th:if="${session.contract.getContractStatus().name()=='DEAD'}">
         DEAD
     </span>
-                    <span class="topContainter" id="cancelled" th:case="${'CANCELLED'}">
-        CANCELLED
-    </span>
-        </span>
-
-
+       <span class="topContainter" id="cancelled" th:if="${session.contract.getContractStatus().name()=='CANCELLED'}">
+        CANCELLED </span>
 
 
         <br><br><br>
@@ -165,17 +162,19 @@
 
         <div id="carStatusContainter">
 
-            <div id="carStatus">
-                Car Status<br><br>
-                <span>  <td th:text="${session.car.getCarStatus()}"/> </span>
-            </div>
-
-            <div id="submitCarStat">
+                <p id="carStatus"><span id="carStatusSpan">Car Status: </span><td th:text="${session.car.getCarStatus()}"/> </p>
                 <form action="/updateCarStatus" method="post">
                     <input type="hidden" name="carStatus" value="RETURNED">
-                    <button type="submit">Change status to RETURNED</button>
+                    <button id="submitCarStat" type="submit">Change status to RETURNED</button>
                 </form>
-            </div>
+
+            <span th:if="${session.car.getCarStatus().name()=='RENTED'}">
+                <form action="/cancelContract" method="post">
+                    <input type="hidden" name="carStatus" value="CANCELLED">
+                    <button id="cancelContract" type="submit">Cancel Contract Early</button>
+                    </form>
+            </span>
+
 
         </div>
         <br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>
@@ -201,16 +200,19 @@
 
                 <div style="width: 100%">
                     <div class="smallInput">
-                        <label >Kontrakt Oprettet <br> <input type="text" name="dato" class="form-control" style="width: 99%"
-                                                              th:value="${session.contract.getStartDate()}" readonly></label>
+                        <label>Kontrakt Oprettet <br> <input type="text" name="dato" class="form-control"
+                                                             style="width: 99%"
+                                                             th:value="${session.contract.getStartDate()}"
+                                                             readonly></label>
 
                     </div>
                     <div class="smallInput">
-                        <label>Kontrakt slutning <br> <input type="text" name="endDate" class="form-control" style="width: 99%"
-                                                             th:value="${session.contract.getEndDate()}" readonly></label><br>
+                        <label>Kontrakt slutning <br> <input type="text" name="endDate" class="form-control"
+                                                             style="width: 99%"
+                                                             th:value="${session.contract.getEndDate()}"
+                                                             readonly></label><br>
                     </div>
                 </div>
-
 
 
                 <div class="additionalInfoContract">

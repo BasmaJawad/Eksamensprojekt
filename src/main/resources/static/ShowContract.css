@@ -49,6 +49,13 @@ body{
     margin-left: 10px;
     margin-right: 230px;
 }
+#cancelled{
+    background-color: #fcba03;
+    width: 150px;
+    float: left;
+    margin-left: 10px;
+    margin-right: 230px;
+}
 
 h1{
     font-weight: bold;
@@ -80,36 +87,31 @@ h1{
 #carStatusContainter{
     margin-left: 300px;
     font-size: 17px;
-    width: 100%;
-    background-color: #f5f5f5;
     text-transform: uppercase;
+    text-align: right;
 }
 
 #carStatus{
-    float: left;
+    float: right;
     font-weight: 500;
-}
-
-#carStatus span{
     padding: 10px;
     color: white;
     font-weight: 600;
     background-color: midnightblue;
-
 }
-
+#carStatusSpan{
+    font-size: 10px;
+}
 #submitCarStat{
-    float: left;
+    float: right;
     margin-left: 20px;
-    margin-top: 36px;
-}
-#submitCarStat button{
     padding: 12px;
     color: white;
     background-color: rgb(0, 76, 153);
 }
 
-#submitCarStat button:hover{
+
+#submitCarStat:hover{
 
     background-color: rgba(0, 76, 153,0.4);
 }
