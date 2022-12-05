@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="incidentHomepage.css">
+    <link rel="stylesheet" href="navBar.css">
 
     <title>Incidents</title>
     <style>
@@ -11,6 +12,25 @@
     </style>
 </head>
 <body>
+<header id="navbar">
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <nav >
+            <ul>
+                <li><a class="navbarDirections" href="/incidentsHomepage">Home</a></li>
+                <li><a class="navbarDirections" href="/contractPage">Tilføj Lejeaftale</a></li>
+                <li><a class="navbarDirections" href="/logout">Log out</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <span id="username" th:text="${session.user.getUsername()}"/>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
 
 <div id="topBar">
 <button id="AllReports" onclick="window.location='/oldIncidentReports';">All Incident Reports</button>
@@ -23,14 +43,16 @@
     <tr class="header">
         <th style="width:20%;">KONKTRAKT ID</th>
         <th style="width:30%;">STELNUMMER</th>
-        <th style="width:20%;">KUNDE ID</th>
+        <th style="width:20%;">BIL</th>
         <th style="width:20%;">Rapport</th>
     </tr>
 
     <tr th:each="contract :${session.contractsWOreports}">
         <td th:text="${contract.getContractID}">
         <td th:text="${contract.getVIN}">
-        <td th:text="${contract.getCustomerID}">
+        <td> <span th:text="${session.carInContract.readSingle(contract.getVIN).getCarBrand()}"/> <br>
+            <span th:text="${session.carInContract.readSingle(contract.getVIN).getCarModel}"/>
+        </td>
         <td> <form action="/incidentsHomepage" method="post">
         <button type="submit" name="contractID" th:value="${contract.getContractID}"/> TILFØJ RAPPORT
         </form> </td>

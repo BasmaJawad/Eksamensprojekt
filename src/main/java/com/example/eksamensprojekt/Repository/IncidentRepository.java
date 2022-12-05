@@ -75,7 +75,7 @@ public class IncidentRepository {
 
     public void createIncidentReport(IncidentReport incidentReport){
         try {
-            PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports VALUES (?,?,?)");
+            PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports(contractID, VIN, date) VALUES (?,?,?)");
             psts.setInt(1, incidentReport.getContractID());
             psts.setString(2, incidentReport.getVIN());
             psts.setString(3,incidentReport.getDate());

@@ -2,22 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Type damage</title>
+    <title>DAMAGES</title>
+    <style>
+        table {border-collapse: collapse; }
+
+    </style>
 </head>
 <body>
 
 <div class="bg">
     <div class="popup-box">
-        <p id="newDamage">Indtast skade</p>
+        <h1 id="newDamage"> INDTAST SKADE </h1>
 
-        <div class="close">
-            <a href="/createReport"> Tilbage </a>
-        </div>
+
         <h2>
             Skaderapport for lejeaftale:
             <td th:text="${contractID}"/>
         </h2>
-        <form action="/damagePopup" method="post">
+        <form action="/addDamage" method="post">
             <label for ="beskrivelse"></label>
             <input id="beskrivelse" type="text" name="beskrivelse" placeholder="beskrivelse" required />
             <label for ="pris"></label>
@@ -28,6 +30,31 @@
             <button type="submit" class="CreateButton">Create</button>
         </form>
     </div>
+
+
+    <table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
+
+        <tr class="header">
+            <th style="width:20%;">RAPPORT ID</th>
+            <th style="width:30%;">BESKRIVELSE</th>
+            <th style="width:20%;">PRIS</th>
+        </tr>
+
+        <tr th:each="damage: ${currentDamages}">
+
+            <td th:text="${damage.getReportID}"/>
+
+            <td th:text="${damage.getDesciption}"/>
+
+            <td th:text="${damage.getCost}"/>
+
+        </tr>
+
+    </table>
+
+
+
+
 
 
 </div>

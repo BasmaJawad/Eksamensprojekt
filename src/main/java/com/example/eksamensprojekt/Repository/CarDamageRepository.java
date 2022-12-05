@@ -62,7 +62,7 @@ public class CarDamageRepository{
     public void createDamage(CarDamage carDamage)  {
 
         try {
-            PreparedStatement psts = conn.prepareStatement("INSERT INTO cardamages VALUES (?,?,?)");
+            PreparedStatement psts = conn.prepareStatement("INSERT INTO cardamages(reportID, damageDescription, cost) VALUES (?,?,?)");
             psts.setInt(1,readID());
             psts.setString(2, carDamage.getDesciption());
             psts.setInt(3, carDamage.getCost());

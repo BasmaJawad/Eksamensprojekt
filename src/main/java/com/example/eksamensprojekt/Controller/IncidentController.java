@@ -25,6 +25,7 @@ public class IncidentController {
        List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
        session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
        session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
+       session.setAttribute("carInContract", incidentsService.getCarRepository());
         // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.
         return "DamageRegister/incidentsHomepage";
     }
@@ -66,7 +67,7 @@ public class IncidentController {
     }
 
 
-    @PostMapping("/incidentReport")
+    @PostMapping("/incidentReport") // VIS RAPPORT
     public String showIncidentReport(HttpSession session, WebRequest req) {
 
         //tjekker om contract id eksisterer
@@ -111,18 +112,22 @@ public class IncidentController {
 
     // INDTAST SKADE
     @GetMapping("/DamagePopup")
-    public String inputDamage() {
+    public String inputDamage(Model model, HttpSession session) {
+        Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
+        System.out.println(contractID);
+        model.addAttribute("currentDamages", incidentsService.findCarDamages(contractID));
+
         return "/DamageRegister/DamagePopup";
     }
 
-    @PostMapping("/DamagePopup")
+    @PostMapping("/addDamage")
     public String writeDamage(WebRequest req, Model model, HttpSession session) {
 
-       // contractID skal hentes fra damagepopsiden og returneres
+
         model.addAttribute("Beskrivelse", req.getParameter("beskrivelse"));
         model.addAttribute("pris", req.getParameter("pris"));
         incidentsService.createDamage(req);
 
-        return "redirect:/showCarDamages";
+        return "redirect:/DamagePopup";
     }
 }
