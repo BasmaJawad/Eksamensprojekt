@@ -162,7 +162,7 @@ public class DataService {
         return customerRepo.findOneCustomer(column, val);
     }
 
-    public void updateSingle(WebRequest req, Car car){
+    public void updateSingle(WebRequest req, Car car, String contractStatus){
 
         String updateTo = req.getParameter("carStatus");
 
@@ -170,7 +170,7 @@ public class DataService {
         carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", updateTo);
 
         //Sets contract to inactive
-        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", "0");
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", contractStatus);
 
     }
 

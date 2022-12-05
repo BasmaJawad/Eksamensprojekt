@@ -136,7 +136,7 @@ public class ContractRepository implements IRepository {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-        String QUARY = "SELECT * FROM data.contracts ORDER BY contractStatus DESC";
+        String QUARY = "SELECT * FROM data.contracts ORDER BY contractStatus ASC";
 
         try {
 
@@ -249,7 +249,7 @@ public class ContractRepository implements IRepository {
         int contractID = (int) param;
 
 
-        String QUARY = "UPDATE contracts SET "+ columnName + " = " + Integer.valueOf(updateTo) + " where "+ columnCondition + " =?";
+        String QUARY = "UPDATE contracts SET "+ columnName + " = "+ ContractStatus.valueOf(updateTo) + " where "+ columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
