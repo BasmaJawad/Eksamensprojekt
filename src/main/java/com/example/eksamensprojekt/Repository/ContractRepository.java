@@ -154,7 +154,7 @@ public class ContractRepository implements IRepository {
                 boolean lowDeductible = resultSet.getBoolean("lowDeductible");
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
-                ContractStatus contractStatus = ContractStatus.valueOf("contractStatus");
+                ContractStatus contractStatus = ContractStatus.valueOf(resultSet.getString("contractStatus"));
                 LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
                 contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus));
