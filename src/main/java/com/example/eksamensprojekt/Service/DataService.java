@@ -23,7 +23,7 @@ public class DataService {
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
-    public void addContract(Car car ,WebRequest contractReq) {
+    public void addContract(Car car, WebRequest contractReq) {
 
         System.out.println(contractReq);
         System.out.println(contractReq.getParameter("subLength"));
@@ -43,8 +43,8 @@ public class DataService {
         //Insert customer into database
         customerRepo.writeSingle(customer);
 
-      //  VIN = contractReq.getParameter("car");
-       // car = carRepository.readSingle(VIN);
+        //  VIN = contractReq.getParameter("car");
+        // car = carRepository.readSingle(VIN);
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
 
@@ -52,21 +52,17 @@ public class DataService {
         carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", "RENTED");
 
 
-
-
         //Convert addOns to booleans
 
-            boolean vikingHelp = Objects.equals(contractReq.getParameter("vikingHelp"), "on");
-            boolean deliveryInsurance = Objects.equals(contractReq.getParameter("deliveryInsurance"), "on");
-            boolean lowDeductible = Objects.equals( contractReq.getParameter("lowDeductible"), "on");
-            boolean winterTires = Objects.equals(contractReq.getParameter("winterTires"), "on");
-
-
+        boolean vikingHelp = Objects.equals(contractReq.getParameter("vikingHelp"), "on");
+        boolean deliveryInsurance = Objects.equals(contractReq.getParameter("deliveryInsurance"), "on");
+        boolean lowDeductible = Objects.equals(contractReq.getParameter("lowDeductible"), "on");
+        boolean winterTires = Objects.equals(contractReq.getParameter("winterTires"), "on");
 
 
         //Creating new Contract object
         Contract contract = new Contract(car.getVIN(),
-            subLenght,
+                subLenght,
                 customerID,
                 PickupDestination.valueOf(contractReq.getParameter("pickupDestination")),
                 vikingHelp,
@@ -76,17 +72,15 @@ public class DataService {
                 kmPrMonth, ContractStatus.LIVE);
 
 
-
-
         //Add contract to database
         contractRepo.writeSingle(contract);
 
         //Inserting price to database
-        addPriceToDatabase(car,subLenght,contract);
+        addPriceToDatabase(car, subLenght, contract);
     }
 
 
-    public ArrayList<Car> getAllAvailableCars(){
+    public ArrayList<Car> getAllAvailableCars() {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
         carStatus.add(CarStatus.NOT_RENTED);
@@ -110,34 +104,35 @@ public class DataService {
                 subScriptionFee = car.addSubscriptionFeeEnvy(subLength);
             }
             case "108 Active+ 72 HK" -> {
-                subScriptionFee= car.addSubscriptionFee108ActivePlus(subLength);
+                subScriptionFee = car.addSubscriptionFee108ActivePlus(subLength);
             }
             case "C1 Le Mans 72 HK" -> {
-                subScriptionFee= car.addSubscriptionFeeC1LeMans(subLength);
+                subScriptionFee = car.addSubscriptionFeeC1LeMans(subLength);
             }
             case "C3 Le Mans 83 HK" -> {
-                subScriptionFee= car.addSubscriptionFeeC3LeMans(subLength);
+                subScriptionFee = car.addSubscriptionFeeC3LeMans(subLength);
             }
             case "Fiat 500e CABRIO Icon Pack 118 HK" -> {
-                subScriptionFee= car.getAddSubscriptionFeeCabrioIcon(subLength);
+                subScriptionFee = car.getAddSubscriptionFeeCabrioIcon(subLength);
             }
             case "500e Icon Pack 118 HK" -> {
-                subScriptionFee= car.addSubscriptionFeeIcon(subLength);
+                subScriptionFee = car.addSubscriptionFeeIcon(subLength);
             }
             case "e-2008 GT Line 136 HK" -> {
-                subScriptionFee= car.addSubscriptionFeeGTLine(subLength);
+                subScriptionFee = car.addSubscriptionFeeGTLine(subLength);
             }
             case "208 Active+ 100 HK" -> {
-                subScriptionFee= car.addSubscriptionFee208ActivePlus(subLength);
+                subScriptionFee = car.addSubscriptionFee208ActivePlus(subLength);
             }
 
         }
         priceRepo.writePrice(subScriptionFee, addKmPrMonthPrice(contract.getKmPrMonth()), contract.calculateAddOnPrice(), contractRepo.getContractID(contract.getVIN()));
     }
-    private int addKmPrMonthPrice(KmPrMonth kmPrMonth){
+
+    private int addKmPrMonthPrice(KmPrMonth kmPrMonth) {
 
         int price = 0;
-        switch (kmPrMonth){
+        switch (kmPrMonth) {
             case FIFTEEN_HUNDRED -> price = 0;
             case SEVENTEEN_HUNDRED_AND_FIFTY -> price = 300;
             case TWO_THOUSAND -> price = 590;
@@ -150,40 +145,37 @@ public class DataService {
         return price;
     }
 
-    public Contract getOneContract(int contractID){
+    public Contract getOneContract(int contractID) {
         return contractRepo.findOneContract("contractID", contractID);
     }
 
-    public Car getOnecar(Object param){
+    public Car getOnecar(Object param) {
         return carRepository.readSingle(param);
     }
 
-    public Customer getOneCustomer(String column, Object val){
+    public Customer getOneCustomer(String column, Object val) {
         return customerRepo.findOneCustomer(column, val);
     }
 
-    public void updateSingle(WebRequest req, Car car){
+    public void updateSingle(WebRequest req, Car car) {
 
         String updateTo = req.getParameter("carStatus");
 
         //Updates carStatus
-        carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", updateTo);
+        carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
 
         //Sets contract to inactive
-        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", "0");
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()), "contractStatus", "contractID", "0");
 
     }
 
-    public boolean isElectricCar(Model model , HttpSession httpSession, WebRequest req) {
+    public boolean isElectricCar(Model model, HttpSession httpSession, WebRequest req) {
         Car car;
         car = carRepository.readSingle(req.getParameter("car"));
         System.out.println(car);
 
-        httpSession.setAttribute("car",car);
+        httpSession.setAttribute("car", car);
         model.addAttribute("car", car);
-        if( car instanceof ElectricCar){
-            return true;
-        }
-        return false;
+        return car instanceof ElectricCar;
     }
 }

@@ -20,6 +20,8 @@ public class BusinessController {
         ArrayList<Car> cars = bs.getRentedCars();
         String mostPopularCarModel = bs.mostPopularCarModel();
 
+
+        model.addAttribute("amountOfCarsPrModel", bs.amountOfCarsPrModel());
         model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
         model.addAttribute("mostPopularModel", mostPopularCarModel);
         model.addAttribute("numberOfRentedCars", cars.size());
