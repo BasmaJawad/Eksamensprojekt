@@ -17,6 +17,11 @@ public class AdminController {
 
     AdminService as = new AdminService();
 
+    @GetMapping("/adminHomepage")
+    public String adminHomepage(){
+        return "/Admin/adminHomepage";
+    }
+
     @GetMapping("/users")
     public String users(Model model) {
 
