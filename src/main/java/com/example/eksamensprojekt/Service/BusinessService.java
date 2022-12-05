@@ -9,8 +9,14 @@ import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.CustomerRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class BusinessService {
@@ -37,12 +43,12 @@ public class BusinessService {
         //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
 
+        //Condition has to be true
         ArrayList<Boolean> condition = new ArrayList<>();
         condition.add(true);
 
-
-        ArrayList<Contract> contracts = contractRepo.readMultiple(condition,"active");
-
+        //Finds only active contracts
+        ArrayList<Contract> contracts = contractRepo.readMultiple(condition, "active");
 
         //Iterates through contract, If VIN is identical to a rented car VIN, get price
         for (Contract contract : contracts) {
@@ -56,7 +62,7 @@ public class BusinessService {
         return list;
     }
 
-    public int totalRevenue(){
+    public int totalRevenue() {
 
         ArrayList<ContractPrice> list = listOfPricesPrCar();
 
@@ -66,7 +72,8 @@ public class BusinessService {
         }
         return totalRevenue;
     }
-    public String mostPopularCarModel(){
+
+    public String mostPopularCarModel() {
 
 
         ArrayList<Car> cars = getRentedCars();
@@ -75,27 +82,49 @@ public class BusinessService {
 
         ArrayList<String> models = new ArrayList<>();
 
+        //cannot use Collections.frequency on car class, has to be string
         for (Car car : cars) {
             models.add(car.getCarModel());
         }
-
+        //Strips all not unique models from list of models
         List<String> uniqueModels
                 = models.stream().distinct().toList();
-
-        System.out.println(uniqueModels.size());
 
         int number = 0;
 
         String mostPopCarModel = models.get(0); //If the first is the most popular
+
+
         for (int i = 0; i < uniqueModels.size(); i++) {
 
-            int numberOfFreq = Collections.frequency(models,uniqueModels.get(i));
+            int numberOfFreq = Collections.frequency(models, uniqueModels.get(i));
 
-            if (numberOfFreq > number){
+            //If the current frequency is higher than previous
+            if (numberOfFreq > number) {
                 number = numberOfFreq;
                 mostPopCarModel = models.get(i);
             }
         }
         return mostPopCarModel;
+    }
+
+    public String getCarImg(String carModel) {
+
+        String filePath = "";
+
+
+        switch (carModel) {
+            case "C1 Le Mans 72 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_C1_Shine_0MP00NP8.png";
+            case "C3 Le Mans 83 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_newc3_Shine_0MP00NWP.png";
+            case "108 Active+ 72 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_108_like_0MP00NP8.png";
+            case "208 Envy 82 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_108_like_0MP00NP8.png";
+            case "208 Active+ 100 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_new208_active_0MM00N9V.png";
+            case "e-2008 GT Line 136 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_e2008_GTLine_0MM60NSM.png";
+            case "500e Icon Pack 118 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500e_Icon_230.png";
+            case "500e CABRIO Icon Pack 118 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500c_Icon_601.png";
+        }
+
+
+        return filePath;
     }
 }

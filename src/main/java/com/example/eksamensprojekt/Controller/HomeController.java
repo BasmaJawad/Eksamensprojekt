@@ -33,9 +33,9 @@ public class HomeController {
             else if (user.getUserType().equals(UserType.INCIDENT))
                 return "redirect:/incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))
-                return "/BusinessUser/businessHomepage";
+                return "redirect:/businessHomepage";
             else if (user.getUserType().equals(UserType.ADMIN))
-                return "/Admin/adminHomepage";
+                return "redirect:/adminHomepage";
         }
 
         return "login"; // mangler fejlhåndtering

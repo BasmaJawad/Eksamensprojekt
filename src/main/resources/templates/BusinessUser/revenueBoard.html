@@ -3,11 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Indkomst Board</title>
+    <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="BusinessPage.css">
 </head>
 <body>
 
-<table>
-    <thead>
+<header>
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+
+        <nav>
+            <ul>
+                <li><a href="/businessHomepage">Home</a></li>
+                <li><a href="/listOfRentedCars">Udlejet biler</a></li>
+                <li><a href="/revenueBoard">Økonomi</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </nav>
+    </div>
+    <hr>
+</header>
+
+<div style="overflow-y: scroll" id="leftDiv">
+    <table>
+        <thead>
         <tr>
             <td>Kontrakt</td>
             <td>Basis pris</td>
@@ -15,8 +34,8 @@
             <td>Tilføjelser</td>
             <td>Samlet kr/md</td>
         </tr>
-    </thead>
-    <tbody>
+        </thead>
+        <tbody>
         <tr th:each="price : ${pricePrContract}">
             <td th:text="${price.contractID}">
             <td th:text="${price.basePrice}">
@@ -24,15 +43,23 @@
             <td th:text="${price.addOnPrice}">
             <td th:text="${price.finalPrice}">
         </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
 
-IDEER TIL DENNE SIDE:
+<div id="rightDiv">
 
-    - Den mest profitable bil
-    -
-
-<h1 th:text="${totalRevenue}"></h1>
+    <div class="rightDivDivs">
+        <h2>Mest profitable bil</h2>
+        <hr>
+        <h1> EEH</h1>
+    </div>
+    <div class="rightDivDivs">
+        <h2>Månedlige indtjening</h2>
+        <hr>
+        <h1 ><span th:text="${totalRevenue}"></span> kr/md.</h1>
+    </div>
+</div>
 
 </body>
 </html>

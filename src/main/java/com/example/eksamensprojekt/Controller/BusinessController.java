@@ -18,9 +18,10 @@ public class BusinessController {
     public String listOfRentedCars(Model model) {
 
         ArrayList<Car> cars = bs.getRentedCars();
+        String mostPopularCarModel = bs.mostPopularCarModel();
 
-
-        model.addAttribute("mostPopularModel", bs.mostPopularCarModel());
+        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
+        model.addAttribute("mostPopularModel", mostPopularCarModel);
         model.addAttribute("numberOfRentedCars", cars.size());
         model.addAttribute("rentedCars", cars);
 
@@ -33,8 +34,23 @@ public class BusinessController {
         ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
 
+
         model.addAttribute("pricePrContract", list);
         model.addAttribute("totalRevenue", totalRevenue);
+
+
         return "/BusinessUser/revenueBoard";
     }
+    @GetMapping("/businessHomepage")
+    public String businessHomepage(Model model){
+
+        String mostPopularCarModel =  bs.mostPopularCarModel();
+
+        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
+        model.addAttribute("mostPopularModel",mostPopularCarModel);
+
+        return "/BusinessUser/businessHomepage";
+    }
+
+
 }
