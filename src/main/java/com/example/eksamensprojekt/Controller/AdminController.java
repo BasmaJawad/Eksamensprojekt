@@ -62,9 +62,8 @@ public class AdminController {
         return "redirect:/users";
     }
 
-    @PostMapping("/goToAddACarPage")
+    @GetMapping("/goToAddACarPage")
     public String goToAddACarPage(){
-
 
         return "/Admin/addACar";
     }

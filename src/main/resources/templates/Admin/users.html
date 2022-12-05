@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="AdminCSS.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+
+<header>
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <nav id="navbar">
+            <ul>
+                <li><a href="/adminHomepage">Home</a></li>
+                <li><a href="/goToAddACarPage">Tilføj bil</a></li>
+                <li><a href="/users">Brugere</a></li>
+                <li><a href="/logout">Log out</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<hr>
 
 <h2>Her er alle brugere</h2>
 
@@ -31,7 +47,7 @@
         <td>
             <form onsubmit="confirm('Er du sikker')" action="/deleteUser">
                 <input name="username" type="text" style="display: none">
-                <button onclick="makeDeleteForm(this);" type="submit"> <img src="/Images/Deletepng.png" height="20px" width="20px"></button>
+                <button onclick="makeDeleteForm(this);" type="submit"> <img  src="/Images/Deletepng.png" height="20px" width="20px"></button>
             </form>
         </td>
     </tr>

@@ -2,15 +2,15 @@ body{
     margin: 0;
     padding: 0px 70px 70px;
 }
-img{
+.main-menu-logo-image___1Ov1X{
     margin-top: 10px;
     width: 350px;
 }
 
-.navbarDirections {
+a {
     text-decoration: none;
 }
-.navbarDirections:hover {
+a:hover {
     border-bottom: 2px solid black;
     text-decoration: none;
 }
@@ -25,7 +25,7 @@ img{
 
 }
 
-#navbar {
+header {
     height: 80px;
     font: normal 18px "Avenir Next";
     margin-bottom: 100px;
@@ -34,23 +34,27 @@ img{
 hr{
     margin-bottom: 60px;
 }
-#navbar nav {
+
+header nav {
     float: right;
     margin-top: 0;
     margin-bottom: 15px;
 
 }
-#navbarnav ul li {
+header nav ul li {
     float: left;
     display: inline-block;
 
     font-weight: 500;
 }
-#navbar nav ul li a {
+header nav ul li a {
     color: #130f11;
     text-transform: capitalize;
     font-weight: bold;
     display: block;
     margin-right: 50px;
     text-decoration: none;
+}
+hr{
+    border-top: 3px solid black;
 }
