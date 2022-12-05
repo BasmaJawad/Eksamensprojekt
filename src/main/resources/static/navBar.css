@@ -1,0 +1,56 @@
+body{
+    margin: 0;
+    padding: 0px 70px 70px;
+}
+img{
+    margin-top: 10px;
+    width: 350px;
+}
+
+.navbarDirections {
+    text-decoration: none;
+}
+.navbarDirections:hover {
+    border-bottom: 2px solid black;
+    text-decoration: none;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-left: 0px;
+    color: #130f11;
+
+
+}
+
+#navbar {
+    height: 80px;
+    font: normal 18px "Avenir Next";
+    margin-bottom: 100px;
+
+}
+hr{
+    margin-bottom: 60px;
+}
+#navbar nav {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 15px;
+
+}
+#navbarnav ul li {
+    float: left;
+    display: inline-block;
+
+    font-weight: 500;
+}
+#navbar nav ul li a {
+    color: #130f11;
+    text-transform: capitalize;
+    font-weight: bold;
+    display: block;
+    margin-right: 50px;
+    text-decoration: none;
+}

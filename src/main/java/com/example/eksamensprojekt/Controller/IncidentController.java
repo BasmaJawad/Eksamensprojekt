@@ -22,13 +22,15 @@ public class IncidentController {
     @GetMapping("/incidentsHomepage")
     public String incidentHome(HttpSession session) {
 
-       session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep());
+       List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
+       session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
        session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
         // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.
         return "DamageRegister/incidentsHomepage";
     }
 
 
+    //form i incidentHomepage
     @PostMapping("/incidentsHomepage")
     public String sendIncidentHome(HttpSession session , WebRequest req){
         // contractID skal sættes til være den som bliver hentet fra htmlen når man trykker på knappen tilføj
@@ -39,13 +41,24 @@ public class IncidentController {
             incidentsService.createIncidentReport(contractID);
 
         return "redirect:/DamagePopup";
-        }
+    }
+
+//Find gamle skaderapporter
+
+    @GetMapping("/oldIncidentReports")
+    public String findOldReport(Model model){
+
+        List<Contract> allContracts = incidentsService.getAllContracts();
+
+        List<Contract> allContractsWithIncidentRep = incidentsService.contractsWITHincidentRep(allContracts);
+        model.addAttribute("AllContractsWithIncidentRep",allContractsWithIncidentRep);
+        model.addAttribute("carInContract", incidentsService.getCarRepository());
+        model.addAttribute("carsInIncidentReports",incidentsService.getSomeCars(allContractsWithIncidentRep));
+
+        return "/DamageRegister/oldIncidentReports";
+    }
 
 
-
-
-
-    //return "redirect:/DamagePopup";
     // FIND SKADERAPPORT
     @GetMapping("/incidentReport")
     public String findIncidentReport() {

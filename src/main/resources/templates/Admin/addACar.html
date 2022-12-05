@@ -8,45 +8,38 @@
 
 <h2>Tilføj en bil:</h2> <br>
 
-<form action="/addCar" method="post">
+<form action="/addCar">
 
     <label>Benzin/EL: <select name="carType">
-        <option on="showBrands()" value="benzin">BENZIN</option>
-        <option onchange="showBrands()" value="el">EL</option>
+        <option value="gas">BENZIN</option>
+        <option value="electric">EL</option>
     </select></label> <br>
 
-    <label>Brand: <select id="brands" name="brand" style="display: none">
-        <option onselect="showModels(this)" id="Peugeot" value="Peugeot">Peugeot</option>
-        <option onselect="showModels(this)" id="Fiat" value="Fiat">Fiat</option>
-        <option onselect="showModels(this)" id="Citroën" value="Citroën">Citroën</option>
-    </select></label>
+    <label>Brand: <select name="brand">
+        <option id="Peugeot" value="Peugeot">Peugeot</option>
+        <option id="Fiat" value="Fiat">Fiat</option>
+        <option id="Citroën" value="Citroën">Citroën</option>
+    </select></label> <br>
 
-    <label>Model: <select name="model" id="models" style="display: none">
-        <option class="Peugeot"></option>
-        <option class="Peugeot"></option>
-        <option class="Peugeot"></option>
-    </select></label>
+    <label id="models">Model:
+        <select name="model">
+            <option value="C1 Le Mans 72 HK">Benzin, Citroën, C1 Le Mans 72 HK</option>
+            <option value="C3 Le Mans 83 HK">Benzin, Citroën, C3 Le Mans 83 HK</option>
+            <option value="108 Active+ 72 HK">Benzin, Peugeot, 108 Active+ 72 HK</option>
+            <option value="208 Envy 82 HK">Benzin, Peugeot, 208 Envy 82 HK</option>
+            <option value="208 Active+ 100 HK">Benzin, Peugeot, 208 Active+ 100 HK</option>
+            <option value="e-2008 GT Line 136 HK">EL-Bil, Peugeot, e-2008 GT Line 136 HK</option>
+            <option value="500e Icon Pack 118 HK">EL-Bil, Fiat, 500e Icon Pack 118 HK</option>
+            <option value="500e CABRIO Icon Pack 118 HK">EL-Bil, Fiat, 500e CABRIO Icon Pack 118 HK</option>
+        </select></label> <br>
 
+    <label>Stelnr
+        <input type="text" name="VIN" placeholder="Indtast stelnr" required minlength="17" maxlength="17">
+    </label>
+
+    <button type="submit">Tilføj bil</button>
 </form>
 
 </body>
 
-
-
-<script>
-
-    function showBrands() {
-        document.getElementById('brands').style.display = "block"
-    }
-    function showModels(element) {
-        switch (element.value){
-            case 'Peugeot':
-
-
-        }
-    }
-
-
-
-</script>
 </html>

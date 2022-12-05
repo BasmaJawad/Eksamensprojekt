@@ -23,13 +23,12 @@ public class IncidentsService {
     private IncidentRepository incidentReport = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
     private ContractRepository contractRepository = new ContractRepository();
-
     private CarRepository carRepository = new CarRepository();
 
     private int currentContractID;
     public boolean verifyContractID(int ContractID) {
 
-        List<Contract> contracts = contractRepository.readMultiple();
+        List<Contract> contracts = getAllContracts();
 
         for (Contract contract : contracts) {
             if (contract.getContractID() == ContractID)
@@ -82,6 +81,24 @@ public class IncidentsService {
         return VIN;
     }
 
+    public List<Contract> getAllContracts(){
+        return contractRepository.readMultiple();
+    }
+
+    public List<Car> getSomeCars(List<Contract> contracts){
+
+        List<Car> cars = new ArrayList<>();
+
+        for (Contract contract: contracts) {
+            cars.add(carRepository.readSingle(contract.getVIN()));
+        }
+
+       return cars;
+    }
+
+    public CarRepository getCarRepository() {
+        return carRepository;
+    }
 
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
@@ -98,12 +115,11 @@ public class IncidentsService {
 
     //Følgende 2 metoder undersøger om listen med returnerede biler har en incident report,
     // ved at tjekke om contractIDen eksisterer i incidentReport tabellen
-    public List<Contract> contractsWITHincidentRep() {
+    public List<Contract> contractsWITHincidentRep(List<Contract> contractList) {
 
-        List<Contract> allReturnedCarsContracts = returnedCarsContracts();
         List<Contract> contractsWreport = new ArrayList<>();
 
-        for (Contract contract : allReturnedCarsContracts) {
+        for (Contract contract : contractList) {
             if (incidentReport.readOneReport(contract.getContractID())!=null)
                 contractsWreport.add(contract);
         }

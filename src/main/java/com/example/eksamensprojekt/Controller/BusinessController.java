@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Controller;
 
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.ContractPrice;
 import com.example.eksamensprojekt.Service.BusinessService;
 import org.springframework.stereotype.Controller;
@@ -16,7 +17,13 @@ public class BusinessController {
     @GetMapping("/listOfRentedCars")
     public String listOfRentedCars(Model model) {
 
-        model.addAttribute("rentedCars", bs.getRentedCars());
+        ArrayList<Car> cars = bs.getRentedCars();
+        String mostPopularCarModel = bs.mostPopularCarModel();
+
+        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
+        model.addAttribute("mostPopularModel", mostPopularCarModel);
+        model.addAttribute("numberOfRentedCars", cars.size());
+        model.addAttribute("rentedCars", cars);
 
         return "/BusinessUser/listOfRentedCars";
     }
@@ -27,8 +34,23 @@ public class BusinessController {
         ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
 
+
         model.addAttribute("pricePrContract", list);
         model.addAttribute("totalRevenue", totalRevenue);
+
+
         return "/BusinessUser/revenueBoard";
     }
+    @GetMapping("/businessHomepage")
+    public String businessHomepage(Model model){
+
+        String mostPopularCarModel =  bs.mostPopularCarModel();
+
+        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
+        model.addAttribute("mostPopularModel",mostPopularCarModel);
+
+        return "/BusinessUser/businessHomepage";
+    }
+
+
 }
