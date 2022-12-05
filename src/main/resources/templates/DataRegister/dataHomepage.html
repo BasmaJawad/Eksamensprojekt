@@ -60,10 +60,7 @@
         <span th:text="${carInContract.readSingle(contract.getVIN).getCarModel}"/>
     </td>
         <td>
-        <span th:if="${contract.isActive==true}">
-            LIVE </span>
-        <span th:unless="${contract.isActive==true}">
-            DEAD </span>
+        <span th:text="${contract.getContractStatus}"/>
     </td>
         <td> <form action="/showcontract" method="post">
             <button id="seeContract" type="submit" name="contractID" th:value="${contract.getContractID}"/>Lejeaftale

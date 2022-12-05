@@ -1,5 +1,6 @@
 package com.example.eksamensprojekt.Model;
 
+import com.example.eksamensprojekt.Model.Enums.ContractStatus;
 import com.example.eksamensprojekt.Model.Enums.KmPrMonth;
 import com.example.eksamensprojekt.Model.Enums.PickupDestination;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
@@ -14,11 +15,13 @@ public class Contract {
     private SubLenght subLenght; //months
     private KmPrMonth kmPrMonth;
     private PickupDestination pickupDestination;
-    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires, active;
+
+    private ContractStatus contractStatus;
+    private boolean vikingHelp, deliveryInsurance, lowDeductible, winterTires;
 
 
     //Constructor without contractID, used when writing contracts
-    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth) {
+    public Contract(String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth, ContractStatus contractStatus) {
         this.VIN = VIN;
         this.subLenght = subLenght;
         this.customerID = customerID;
@@ -28,13 +31,13 @@ public class Contract {
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
         this.kmPrMonth = kmPrMonth;
-        this.active = true;
+        this.contractStatus = contractStatus;
         startDate = LocalDate.now();
         setEndDate();
 
     }
     //Constructor with contractID, used when reading contracts
-    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth, boolean active, LocalDate startDate) {
+    public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth, LocalDate startDate, ContractStatus contractStatus) {
         this.contractID = contractID;
         this.VIN = VIN;
         this.subLenght = subLenght;
@@ -45,7 +48,7 @@ public class Contract {
         this.lowDeductible = lowDeductible;
         this.winterTires = winterTires;
         this.kmPrMonth = kmPrMonth;
-        this.active = active;
+        this.contractStatus = contractStatus;
         this.startDate = startDate;
         setEndDate();
 
@@ -62,11 +65,11 @@ public class Contract {
 
         return price;
     }
-    public void setActive(boolean active){
-        this.active = active;
+    public void setContractStatus(ContractStatus contractStatus){
+        this.contractStatus = contractStatus;
     }
-    public boolean isActive(){
-        return active;
+    public ContractStatus getContractStatus(){
+        return contractStatus;
     }
 
 

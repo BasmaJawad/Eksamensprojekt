@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>ChooseCar</title>
 </head>
 <body>
@@ -12,7 +14,7 @@
     <select name="car">
         <option th:each="car : ${cars}" th:value="${car.VIN}" th:text="${car}"></option>
     </select>
-    <button type="submit"> submit </button>
+    <button type="submit"> submit</button>
 </form>
 </body>
 </html>

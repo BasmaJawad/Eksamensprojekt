@@ -3,10 +3,7 @@ package com.example.eksamensprojekt.Service;
 import com.example.eksamensprojekt.Model.*;
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Cars.ElectricCar;
-import com.example.eksamensprojekt.Model.Enums.CarStatus;
-import com.example.eksamensprojekt.Model.Enums.KmPrMonth;
-import com.example.eksamensprojekt.Model.Enums.PickupDestination;
-import com.example.eksamensprojekt.Model.Enums.SubLenght;
+import com.example.eksamensprojekt.Model.Enums.*;
 import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.CustomerRepository;
@@ -76,7 +73,7 @@ public class DataService {
                 deliveryInsurance,
                 lowDeductible,
                 winterTires,
-                kmPrMonth);
+                kmPrMonth, ContractStatus.LIVE);
 
 
 
@@ -173,7 +170,7 @@ public class DataService {
         carRepository.updateSingle(car.getVIN(),"carStatus", "VIN", updateTo);
 
         //Sets contract to inactive
-        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"active", "contractID", "0");
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", "0");
 
     }
 

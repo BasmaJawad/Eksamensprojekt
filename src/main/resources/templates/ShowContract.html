@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="navBar.css">
@@ -34,13 +35,20 @@
 
         </div>
 
-        <span class="topContainter" id="live" th:if="${session.contract.isActive()==true}">
+        <span th:switch="${session.contract.getContractStatus()}">
+             <span class="topContainter" id="live" th:case="${'LIVE'}">
         LIVE
     </span>
-
-        <span class="topContainter" id="dead" th:unless="${session.contract.isActive()==true}">
+            <span class="topContainter" id="dead" th:case="${'DEAD'}">
         DEAD
     </span>
+                    <span class="topContainter" id="cancelled" th:case="${'CANCELLED'}">
+        CANCELLED
+    </span>
+        </span>
+
+
+
 
         <br><br><br>
         <div class="maininfo">
