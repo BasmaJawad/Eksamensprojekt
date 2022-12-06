@@ -163,14 +163,17 @@ public class DataService {
         return customerRepo.findOneCustomer(column, val);
     }
 
-    public void updateSingle(WebRequest req, Car car, String contractStatus){
+    public void updateSingle(WebRequest req, Car car){
+
+        String contractStatus = req.getParameter("ContractStatus");
+        System.out.println(contractStatus);
 
         String updateTo = req.getParameter("carStatus");
 
         //Updates carStatus
         carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
 
-        //Sets contract to inactive
+        //Sets contract to dead or cancelled
         contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", contractStatus);
 
     }

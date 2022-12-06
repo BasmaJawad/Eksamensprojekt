@@ -61,7 +61,7 @@ public class DataController {
   public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
     Car car = (Car)httpSession.getAttribute("car");
     dataService.addContract(car, contractReq);
-    return "/DataRegister/dataHomepage";
+    return "redirect:/dataHomepage";
   }
 
   @GetMapping("/gasCarContract")
@@ -69,7 +69,7 @@ public class DataController {
       Car car = (Car)carReq.getAttribute("car");
 
     dataService.addContract(car, contractReq);
-    return "/DataRegister/dataHomepage";
+    return "redirect:/dataHomepage";
   }
 
 
@@ -110,22 +110,25 @@ public String showContract(HttpSession session){
 
   }
 
+
   //form i ShowContract
+  //opdaterer carstatus fra Rented til Returned + fra live til DEAD
   @PostMapping("/updateCarStatus")
         public String updateCarStatus(WebRequest req, HttpSession session){
 
-      //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
-        dataService.updateSingle(req, (Car) session.getAttribute("car"),"'DEAD'");
+      //metode der opdaterer i databasen
+        dataService.updateSingle(req, (Car) session.getAttribute("car"));
 
-
+        //læser fra de opdaterede tabeller og sætter i sessoion igen
         Car updatedCar = dataService.getOnecar(session.getAttribute("carVIN"));
         Contract updatedContract = dataService.getOneContract((Integer) session.getAttribute("contractID"));
 
         session.setAttribute("car",updatedCar);
         session.setAttribute("contract", updatedContract);
-     
 
         return "ShowContract";
   }
 
+    //form i ShowContract
+    //opdaterer carstatus fra Rented til Returned + fra live til Cancelled
 }

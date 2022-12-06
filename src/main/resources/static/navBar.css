@@ -6,8 +6,15 @@ body{
     margin-top: 10px;
     width: 350px;
 }
+
 #icon{
-width: 30px;
+    width: 30px;
+    margin-top: 0;
+}
+#username{
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: none;
 }
 
 a {

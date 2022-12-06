@@ -67,7 +67,7 @@ tr {
 }
 
 tr.header{
-    background-color: #daeaed;
+    background-color: rgba(0, 76, 153, 0.3);
     font-weight: bold;
 
 }
