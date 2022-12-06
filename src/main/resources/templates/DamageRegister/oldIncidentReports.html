@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="incidentHomepage.css">
     <link rel="stylesheet" href="oldIncidentreport.css">
 
-    <title>Incident Reports</title>
+    <title>Alle Rapporter</title>
 </head>
 <body>
 
@@ -39,7 +39,7 @@
         <td th:text="${contract.getContractID}">
         <td th:text="${contract.getVIN}">
         <td th:text="${carInContract.readSingle(contract.getVIN).getCarBrand()}">
-        <td> <form action="/incidentReport" method="post">
+        <td> <form action="/clickIncidentReport" method="post">
             <button type="submit" name="contractID" th:value="${contract.getContractID}"/> SE RAPPORT
         </form> </td>
 

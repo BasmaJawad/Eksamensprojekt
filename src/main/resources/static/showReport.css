@@ -1,0 +1,62 @@
+body{
+    font-family: "Lucida Grande" ;
+    font-weight: normal;
+    text-transform: uppercase;
+    background: white;
+
+}
+
+#myInput{
+    margin-top: 20px;
+    margin-left: 3.5%;
+    padding:15px;
+    border-radius: 10px;
+    position: center;
+
+}
+
+input[type=text] {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+
+#myTable {
+    border-collapse: collapse;
+    width: 80%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    border-radius: 20px;
+    padding: 15px;
+    position: center;
+
+}
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border: 1px white;
+
+}
+
+tr {
+
+    border-bottom: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+tr.header{
+    background-color: #daeaed;
+    font-weight: bold;
+
+}
+
+.panel-heading{
+    margin-bottom: 15px;
+}
+
+/*tr:hover {
+
+    background-color: #f1f1f1;
+}*/
