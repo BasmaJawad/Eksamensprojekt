@@ -59,12 +59,38 @@ public class IncidentController {
         return "/DamageRegister/oldIncidentReports";
     }
 
+    @PostMapping("/clickIncidentReport") // Når man klikker på se rapport
+    public String clickIncidentReport(WebRequest req, HttpSession session){
+
+        session.setAttribute("contractID", req.getParameter("contractID"));
+
+        return "redirect:/incidentReport";
+    }
 
     // FIND SKADERAPPORT
     @GetMapping("/incidentReport")
-    public String findIncidentReport() {
+    public String findIncidentReport(HttpSession session) {
+
+
+        Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
+
+        System.out.println(contractID);
+
+        //Hent rapport her
+
+        //session.setAttribute("report", incidentsService.readReport(contractID));
+        session.setAttribute("report", is.getIncidentRepository());
+
+
+        //Skaderne bliver hentet her
+        List<CarDamage> carDamages = is.findCarDamages(contractID);
+
+        session.setAttribute("damages", carDamages);
+
         return "/DamageRegister/incidentReport";
     }
+
+
 
 
     @PostMapping("/incidentReport") // VIS RAPPORT
@@ -85,6 +111,7 @@ public class IncidentController {
 
         }
         return "/DamageRegister/NoContractError";
+            
     }
 
     // LAV RAPPORT ... Skal muligvis slettes
@@ -116,6 +143,8 @@ public class IncidentController {
     public String inputDamage(Model model, HttpSession session) {
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
         System.out.println(contractID);
+        model.addAttribute("currentDamages", is.findCarDamages(contractID));
+
         model.addAttribute("currentDamages", is.findCarDamages(contractID));
 
         return "/DamageRegister/DamagePopup";
