@@ -17,7 +17,7 @@ public class HomeController {
     UsersService us = new UsersService();
 
     @GetMapping("/")
-    public String login() {
+    public String index() {
         return "login";
     }
 

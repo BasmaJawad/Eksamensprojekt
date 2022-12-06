@@ -78,7 +78,7 @@ button:hover {
     opacity: 0.9;
 }
 .signupbtn{
-    background-color: #6cc644;
+    background-color: rgba(0, 76, 153,0.5);
 }
 
 /* Add padding to container elements */

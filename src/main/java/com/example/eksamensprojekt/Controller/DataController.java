@@ -17,7 +17,7 @@ import java.util.ArrayList;
 @Controller
 public class DataController {
 
-  DataService dataService = new DataService();
+  DataService ds = new DataService();
 /*
   @GetMapping("/addContract")
   public String addContract(WebRequest req) {
@@ -31,8 +31,8 @@ public class DataController {
     @GetMapping("/dataHomepage")
     public String dataHomepage(Model model){
 
-        model.addAttribute("contracts", dataService.getAllContracts());
-        model.addAttribute("carInContract", dataService.getCarRepository());
+        model.addAttribute("contracts", ds.getAllContracts());
+        model.addAttribute("carInContract", ds.getCarRepository());
 
         return "/DataRegister/dataHomepage";
     }
@@ -40,7 +40,7 @@ public class DataController {
     public String contractPage(Model model) {
 
 
-        ArrayList<Car> cars = dataService.getAllAvailableCars();
+        ArrayList<Car> cars = ds.getAllAvailableCars();
 
         model.addAttribute("cars", cars);
 
@@ -49,8 +49,8 @@ public class DataController {
 
   @GetMapping("/chooseCar")
   public String chooseCar(HttpSession httpSession ,Model model, WebRequest req) {
-    System.out.println(dataService.isElectricCar(model, httpSession, req));
-    if(dataService.isElectricCar(model, httpSession, req)) {
+    System.out.println(ds.isElectricCar(model, httpSession, req));
+    if(ds.isElectricCar(model, httpSession, req)) {
 
       return "/DataRegister/electricCarContract";
     }
@@ -60,16 +60,16 @@ public class DataController {
   @GetMapping("/electricCarContract")
   public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
     Car car = (Car)httpSession.getAttribute("car");
-    dataService.addContract(car, contractReq);
-    return "redirect:/dataHomepage";
+    ds.addContract(car, contractReq);
+    return "/DataRegister/dataHomepage";
   }
 
   @GetMapping("/gasCarContract")
   public String gasCarContract(HttpSession carReq, WebRequest contractReq) {
       Car car = (Car)carReq.getAttribute("car");
 
-    dataService.addContract(car, contractReq);
-    return "redirect:/dataHomepage";
+    ds.addContract(car, contractReq);
+    return "/DataRegister/dataHomepage";
   }
 
 
@@ -91,11 +91,11 @@ public String showContract(HttpSession session){
   @PostMapping("/showcontract")
   public String showContract(WebRequest req, HttpSession session){
 
-    Contract contract = dataService.getOneContract(Integer.parseInt(req.getParameter("contractID")));
+    Contract contract = ds.getOneContract(Integer.parseInt(req.getParameter("contractID")));
     //System.out.println("test" +contract.getContractID());
-    Car car = dataService.getOnecar(contract.getVIN());
+    Car car = ds.getOnecar(contract.getVIN());
 
-    Customer customer = dataService.getOneCustomer("CustomerID",contract.getCustomerID());
+    Customer customer = ds.getOneCustomer("CustomerID",contract.getCustomerID());
 
       session.setAttribute("contract",contract);
       session.setAttribute("contractID", contract.getContractID());
@@ -110,25 +110,22 @@ public String showContract(HttpSession session){
 
   }
 
-
   //form i ShowContract
-  //opdaterer carstatus fra Rented til Returned + fra live til DEAD
   @PostMapping("/updateCarStatus")
         public String updateCarStatus(WebRequest req, HttpSession session){
 
-      //metode der opdaterer i databasen
-        dataService.updateSingle(req, (Car) session.getAttribute("car"));
+      //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
+        ds.updateSingle(req, (Car) session.getAttribute("car"),"'DEAD'");
 
-        //læser fra de opdaterede tabeller og sætter i sessoion igen
-        Car updatedCar = dataService.getOnecar(session.getAttribute("carVIN"));
-        Contract updatedContract = dataService.getOneContract((Integer) session.getAttribute("contractID"));
+
+        Car updatedCar = ds.getOnecar(session.getAttribute("carVIN"));
+        Contract updatedContract = ds.getOneContract((Integer) session.getAttribute("contractID"));
 
         session.setAttribute("car",updatedCar);
         session.setAttribute("contract", updatedContract);
+     
 
         return "ShowContract";
   }
 
-    //form i ShowContract
-    //opdaterer carstatus fra Rented til Returned + fra live til Cancelled
 }

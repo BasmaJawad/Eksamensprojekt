@@ -47,6 +47,8 @@ public class IncidentsService {
     }
 
 
+
+
     public void createDamage(WebRequest req) {
 
         CarDamage damage = new CarDamage(
@@ -58,6 +60,19 @@ public class IncidentsService {
         carDamageRepository.createDamage(damage);
 
     }
+    public List<IncidentReport> readReport(int contractID){
+
+        List<IncidentReport> report = new ArrayList<>();
+
+        report.add(incidentReport.readOneReport(contractID));
+
+        return report;
+    }
+
+    public IncidentRepository getIncidentRepository(){
+        return incidentReport;
+    }
+
 
 
     public void createIncidentReport(int contractID) {
@@ -102,10 +117,11 @@ public class IncidentsService {
 
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
-        return contractRepository.returnedCarsContracts(setCarRepositoryInContractRepo());
+        return contractRepository.returnedCarsContracts(getReturnedCars());
     }
 
-    public List<Car> setCarRepositoryInContractRepo() {
+    public List<Car> getReturnedCars() {
+
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
         conditions.add(CarStatus.RETURNED);
@@ -128,7 +144,7 @@ public class IncidentsService {
     }
 
 
-    public List<Contract> contractsWITHOUTincidentRep() {
+   public List<Contract> contractsWITHOUTincidentRep() {
 
         List<Contract> allReturnedCarsContracts = returnedCarsContracts();
         List<Contract> contractsWOreport = new ArrayList<>();
@@ -141,12 +157,5 @@ public class IncidentsService {
         return contractsWOreport;
     }
 
-    public int currentContract(int currentCon){
-        this.currentContractID = currentCon;
-        return currentCon;
-    }
 
-    public int getCurrentContractID() {
-        return currentContractID;
-    }
 }
