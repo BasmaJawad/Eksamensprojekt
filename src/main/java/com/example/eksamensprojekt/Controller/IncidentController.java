@@ -16,16 +16,16 @@ import java.util.List;
 @Controller
 public class IncidentController {
 
-    IncidentsService incidentsService = new IncidentsService();
+    IncidentsService is = new IncidentsService();
 
     // STARTSIDE
     @GetMapping("/incidentsHomepage")
     public String incidentHome(HttpSession session) {
 
-       List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
-       session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
-       session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
-       session.setAttribute("carInContract", incidentsService.getCarRepository());
+       List<Contract> returnedCarsContracts = is.returnedCarsContracts();
+       session.setAttribute("contractsWithReport", is.contractsWITHincidentRep(returnedCarsContracts));
+       session.setAttribute("contractsWOreports", is.contractsWITHOUTincidentRep());
+       session.setAttribute("carInContract", is.getCarRepository());
         // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.
         return "DamageRegister/incidentsHomepage";
     }
@@ -39,7 +39,7 @@ public class IncidentController {
         session.setAttribute("contractID", req.getParameter("contractID"));
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
-            incidentsService.createIncidentReport(contractID);
+            is.createIncidentReport(contractID);
 
         return "redirect:/DamagePopup";
     }
@@ -49,12 +49,12 @@ public class IncidentController {
     @GetMapping("/oldIncidentReports")
     public String findOldReport(Model model){
 
-        List<Contract> allContracts = incidentsService.getAllContracts();
+        List<Contract> allContracts = is.getAllContracts();
 
-        List<Contract> allContractsWithIncidentRep = incidentsService.contractsWITHincidentRep(allContracts);
+        List<Contract> allContractsWithIncidentRep = is.contractsWITHincidentRep(allContracts);
         model.addAttribute("AllContractsWithIncidentRep",allContractsWithIncidentRep);
-        model.addAttribute("carInContract", incidentsService.getCarRepository());
-        model.addAttribute("carsInIncidentReports",incidentsService.getSomeCars(allContractsWithIncidentRep));
+        model.addAttribute("carInContract", is.getCarRepository());
+        model.addAttribute("carsInIncidentReports", is.getSomeCars(allContractsWithIncidentRep));
 
         return "/DamageRegister/oldIncidentReports";
     }
@@ -72,12 +72,12 @@ public class IncidentController {
 
         //tjekker om contract id eksisterer
         int ContractID = Integer.parseInt(req.getParameter("contractID"));
-        boolean validID = incidentsService.verifyContractID(ContractID);
+        boolean validID = is.verifyContractID(ContractID);
 
 
         if (validID) {
 
-            List<CarDamage> carDamages = incidentsService.findCarDamages(ContractID);
+            List<CarDamage> carDamages = is.findCarDamages(ContractID);
 
             session.setAttribute("damages", carDamages);
 
@@ -116,7 +116,7 @@ public class IncidentController {
     public String inputDamage(Model model, HttpSession session) {
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
         System.out.println(contractID);
-        model.addAttribute("currentDamages", incidentsService.findCarDamages(contractID));
+        model.addAttribute("currentDamages", is.findCarDamages(contractID));
 
         return "/DamageRegister/DamagePopup";
     }
@@ -127,7 +127,7 @@ public class IncidentController {
 
         model.addAttribute("beskrivelse", req.getParameter("beskrivelse"));
         model.addAttribute("pris", req.getParameter("pris"));
-        incidentsService.createDamage(req);
+        is.createDamage(req);
 
         return "redirect:/DamagePopup";
     }

@@ -102,10 +102,11 @@ public class IncidentsService {
 
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
-        return contractRepository.returnedCarsContracts(setCarRepositoryInContractRepo());
+        return contractRepository.returnedCarsContracts(getReturnedCars());
     }
 
-    public List<Car> setCarRepositoryInContractRepo() {
+    public List<Car> getReturnedCars() {
+
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
         conditions.add(CarStatus.RETURNED);
