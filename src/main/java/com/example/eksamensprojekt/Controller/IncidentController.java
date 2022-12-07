@@ -3,6 +3,7 @@ package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.CarDamage;
 import com.example.eksamensprojekt.Model.Contract;
+import com.example.eksamensprojekt.Model.IncidentReport;
 import com.example.eksamensprojekt.Service.IncidentsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,10 +23,10 @@ public class IncidentController {
     @GetMapping("/incidentsHomepage")
     public String incidentHome(HttpSession session) {
 
-       List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
-       session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
-       session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
-       session.setAttribute("carInContract", incidentsService.getCarRepository());
+        List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
+        session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
+        session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
+        session.setAttribute("carInContract", incidentsService.getCarRepository());
         // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.
         return "DamageRegister/incidentsHomepage";
     }
@@ -33,14 +34,14 @@ public class IncidentController {
 
     //form i incidentHomepage
     @PostMapping("/incidentsHomepage")
-    public String sendIncidentHome(HttpSession session , WebRequest req){
+    public String sendIncidentHome(HttpSession session, WebRequest req) {
         // contractID skal sættes til være den som bliver hentet fra htmlen når man trykker på knappen tilføj
 
         session.setAttribute("contractID", req.getParameter("contractID"));
 
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
-            incidentsService.createIncidentReport(contractID);
+        incidentsService.createIncidentReport(contractID);
 
         return "redirect:/DamagePopup";
     }
@@ -48,58 +49,49 @@ public class IncidentController {
     //Find gamle skaderapporter
 
     @GetMapping("/oldIncidentReports")
-    public String findOldReport(Model model){
+    public String findOldReport(Model model) {
 
         List<Contract> allContracts = incidentsService.getAllContracts();
 
         List<Contract> allContractsWithIncidentRep = incidentsService.contractsWITHincidentRep(allContracts);
-        model.addAttribute("AllContractsWithIncidentRep",allContractsWithIncidentRep);
+        model.addAttribute("AllContractsWithIncidentRep", allContractsWithIncidentRep);
         model.addAttribute("carInContract", incidentsService.getCarRepository());
-        model.addAttribute("carsInIncidentReports",incidentsService.getSomeCars(allContractsWithIncidentRep));
+        model.addAttribute("carsInIncidentReports", incidentsService.getSomeCars(allContractsWithIncidentRep));
 
         return "/DamageRegister/oldIncidentReports";
     }
 
     @PostMapping("/clickIncidentReport") // Når man klikker på se rapport
-    public String clickIncidentReport(WebRequest req, HttpSession session){
+    public String clickIncidentReport(WebRequest req, HttpSession session) {
 
         session.setAttribute("contractID", req.getParameter("contractID"));
 
         return "redirect:/incidentReport";
     }
 
-    // FIND SKADERAPPORT
-    @GetMapping("/incidentReport")
-    public String findIncidentReport(HttpSession session) {
 
+    @GetMapping("/incidentReport")
+    public String incidentReport(HttpSession session) {
 
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
-        System.out.println(contractID);
-
         //Hent rapport her
-
         //session.setAttribute("report", incidentsService.readReport(contractID));
-        session.setAttribute("report", incidentsService.getIncidentRepository());
 
 
+        IncidentReport incidentReport = incidentsService.getOneReport(contractID);
+
+
+        session.setAttribute("VIN", incidentReport.getVIN());
+        session.setAttribute("Date", incidentReport.getDate());
+        session.setAttribute("car", incidentsService.getCarRepository().readSingle(incidentReport.getVIN()).getCarBrand());
         //Skaderne bliver hentet her
         List<CarDamage> carDamages = incidentsService.findCarDamages(contractID);
 
         session.setAttribute("damages", carDamages);
-
         return "/DamageRegister/incidentReport";
     }
 
-
-
-
-    @PostMapping("/incidentReport") // VIS RAPPORT
-    public String clickIncidentReport() {
-
-
-            return "/DamageRegister/incidentReport";
-    }
 
     // LAV RAPPORT ... Skal muligvis slettes
     /*
@@ -145,4 +137,21 @@ public class IncidentController {
 
         return "redirect:/DamagePopup";
     }
+
+
+    @PostMapping("/endReport")
+    public String endReport(WebRequest req, HttpSession session){
+        //hent kontrakt
+    session.setAttribute("VIN", incidentsService.contract(Integer.parseInt(session.getAttribute("contractID").toString())).getVIN());
+
+    req.getParameter("sendVIN");
+
+        incidentsService.updateSingleCar(req);
+
+
+
+
+        return "redirect:/incidentHomepage";
+    }
+
 }

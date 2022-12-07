@@ -1,6 +1,9 @@
 body{
     margin: 0;
     padding: 0px 70px 70px;
+    font-family: "Lucida Grande" ;
+    font-weight: normal;
+    text-transform: uppercase;
 }
 .main-menu-logo-image___1Ov1X{
     margin-top: 10px;
@@ -30,7 +33,8 @@ a:hover {
 
 header {
     height: 80px;
-    font: normal 18px "Avenir Next";
+    font: normal 18px "Lucida Grande";
+    text-transform: uppercase;
     margin-bottom: 50px;
 
 }

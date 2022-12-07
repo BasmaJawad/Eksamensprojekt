@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="navBar.css">
-    <link rel="stylesheet" href="showReport.css">
-    <link rel="stylesheet" href="showContract.css">
-
+    <link rel="stylesheet" href="showIncidentReportPopup.css">
     <title>Skaderapport</title>
 </head>
 <body>
@@ -28,50 +26,68 @@
     </div>
 </header>
 
-<div class = "container">
-    <div class = "panel-heading"> RAPPORT INFORMATION</div>
 
-    <div class = infoContainter>
 
-    <div class="reportInput">
-        <label for="contractID">Konkrakt ID</label><br>
-        <input type="text" name="contractID" class="form-control" th:value="${session.contractID}"
-               readonly><br>
+<div class="bg">
+
+    <div class="popup-box">
+
+        <div class="box1">
+            <br>
+            <p id="headTitle">Rapport information</p>
+            <div class = infoCon>
+                <div class="reportInput">
+                    <label for="contractID">Konkrakt ID</label><br>
+                    <input type="text" name="contractID" class="form-control" th:value="${session.contractID}"
+                           readonly><br>
+                </div>
+                <div class="reportInput">
+                    <label for="VIN">STELNUMMER</label><br>
+                    <input type="text" name="VIN" class="form-control" th:value="${session.VIN}"
+                           readonly><br>
+                </div>
+                <div class="reportInput">
+                    <label for="DATO">DATO</label><br>
+                    <input type="text" name="contractID" class="form-control" th:value="${session.Date}"
+                           readonly><br>
+                </div>
+                <div class="reportInput">
+                    <label for="car">BIL MODEL</label><br>
+                    <input type="text" name="car" class="form-control" th:value="${session.car}"
+                           readonly><br>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="box2">
+            <div class="close">
+                <a href="/oldIncidentReports">+</a>
+            </div>
+            <br>
+            <table id="myTable" style="position: center;margin-bottom: 10px;margin-left: 20px;">
+
+                <tr class="header">
+                    <th style="width:20%;">PRIS</th>
+                    <th style="width:20%;">BESKRIVELSE </th>
+
+                </tr>
+
+                <tr  th:each="damage:${session.damages}">
+                    <td th:text="${damage.getCost}">
+                    <td th:text="${damage.getDesciption}">
+
+
+                </tr>
+
+            </table>
+
+
+
+        </div>
     </div>
-    <div class="reportInput">
-        <label for="VIN">STELNUMMER</label><br>
-        <input type="text" name="VIN" class="form-control" th:value="${session.report.readOneReport(session.contractID).getVIN()}"
-               readonly><br>
-    </div>
-    <div class="reportInput">
-        <label for="DATO">DATO</label><br>
-        <input type="text" name="contractID" class="form-control" th:value="${session.report.readOneReport(session.contractID).getDate()}"
-               readonly><br>
-    </div>
-
-    </div>
-
-    <table id="myTable" style="position: center;margin-bottom: 10px;margin-left: 20px;">
-
-        <tr class="header">
-            <th style="width:20%;">PRIS</th>
-            <th style="width:20%;">BESKRIVELSE </th>
-
-        </tr>
-
-        <tr  th:each="damage:${session.damages}">
-            <td th:text="${damage.getCost}">
-            <td th:text="${damage.getDesciption}">
-
-
-        </tr>
-
-    </table>
 
 
 </div>
-
-
-
 </body>
 </html>

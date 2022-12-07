@@ -21,7 +21,7 @@
                 <li>
                     <div id="user">
                         <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
-                        <!-- <span id="username" th:text="${session.user.getUsername()}"/> -->
+                        <!--<span id="username" th:text="${session.user.getUsername()}"/>-->
                     </div>
                 </li>
 
@@ -69,7 +69,11 @@
         </tr>
 
     </table>
+    <br> <br> <br> <br> <br> <br> <br>
 
+    <form action="/endReport" method="post">
+        <button type="submit" name="sendVIN" class ="DoneButton" th:value="${session.VIN}"/> AFSLUT
+    </form>
 
 
 
