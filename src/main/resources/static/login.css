@@ -1,5 +1,7 @@
 body{
-    font: normal 15px "Avenir Next";
+    font-family: "Lucida Grande" ;
+    font-weight: normal;
+    text-transform: uppercase;
     color: white;
     padding: 0;
     margin: 0;
@@ -29,7 +31,7 @@ body{
 
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 76, 153, 0.6);
+    background-color: rgba(108, 156, 236, 0.23);
     position: absolute;
     top: 0;
     left: 0;
@@ -94,8 +96,8 @@ input {
 button{
     color: #fff;
     text-transform: uppercase;
-    background: rgb(0, 76, 153);
-    border: 1px solid rgb(0, 76, 153);
+    background: linear-gradient(to right, #daeaed, #8ea2b0);
+    border: #8ea2b0;
     margin: 40px;
     border-radius: 3px;
     height: 40px;

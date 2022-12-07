@@ -9,34 +9,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PriceRepository {
+public class PriceRepository implements IRepository{
 
     Connection conn = DCM.getConnection();
 
-    public void writePrice(int baseSubPrice, int kmPrMonthPrice, int addOn, int contractID) {
-        int finalPrice = baseSubPrice + kmPrMonthPrice + addOn;
+    @Override
+    public ContractPrice readSingle(Object param) {
 
-        String QUARY = "INSERT into contractprice (contractID, basePrice, extraKmPrice, addOnPrices, finalPrice) values (?,?,?,?,?)";
-
-        try {
-
-            PreparedStatement ptst = conn.prepareStatement(QUARY);
-
-            ptst.setInt(1,contractID);
-            ptst.setInt(2,baseSubPrice);
-            ptst.setInt(3,kmPrMonthPrice);
-            ptst.setInt(4,addOn);
-            ptst.setInt(5,finalPrice);
-
-            ptst.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public ContractPrice getPrices(int contractID){
-
+        int contractID = (int) param;
 
         String QUARY = "SELECT * from contractprice where contractID =?";
 
@@ -60,5 +40,71 @@ public class PriceRepository {
         }
 
         return null;
+    }
+
+    @Override
+    public ArrayList readMultiple(ArrayList conditions, String columnName) {
+        return null;
+    }
+
+    @Override
+    public ArrayList readMultiple() {
+        return null;
+    }
+
+    @Override
+    public void writeSingle(Object param) {
+
+        ArrayList<Integer> numbers = (ArrayList<Integer>) param;
+
+        int baseSubPrice = numbers.get(0);
+        int kmPrMonthPrice = numbers.get(1);
+        int addOn = numbers.get(2);
+        int contractID = numbers.get(3);
+
+        int finalPrice = baseSubPrice + kmPrMonthPrice + addOn;
+
+        String QUARY = "INSERT into contractprice (contractID, basePrice, extraKmPrice, addOnPrices, finalPrice) values (?,?,?,?,?)";
+
+        try {
+
+            PreparedStatement ptst = conn.prepareStatement(QUARY);
+
+            ptst.setInt(1,contractID);
+            ptst.setInt(2,baseSubPrice);
+            ptst.setInt(3,kmPrMonthPrice);
+            ptst.setInt(4,addOn);
+            ptst.setInt(5,finalPrice);
+
+            ptst.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void writeMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
+
+    }
+
+    @Override
+    public void updateMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void deleteSingle(Object param) {
+
+    }
+
+    @Override
+    public void deleteMultiple(ArrayList objects) {
+
     }
 }

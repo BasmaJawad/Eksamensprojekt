@@ -10,6 +10,7 @@ import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.IncidentRepository;
 import org.springframework.web.context.request.WebRequest;
+import org.thymeleaf.context.WebEngineContext;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -19,13 +20,12 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 public class IncidentsService {
-
-    private IncidentRepository incidentReport = new IncidentRepository();
+    private IncidentRepository incidentRepo = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
     private ContractRepository contractRepository = new ContractRepository();
     private CarRepository carRepository = new CarRepository();
 
-    private int currentContractID;
+
     public boolean verifyContractID(int ContractID) {
 
         List<Contract> contracts = getAllContracts();
@@ -40,13 +40,22 @@ public class IncidentsService {
 
     public List<CarDamage> findCarDamages(int contractID) {
 
-        IncidentReport inRep = incidentReport.readOneReport(contractID);
+        IncidentReport inRep = incidentRepo.readOneReport(contractID);
 
         return carDamageRepository.readDamagesInContract(inRep.getReportID());
 
     }
 
 
+    public void updateSingleCar(WebRequest req ){
+
+        carRepository.updateSingle(req, "carStatus", "VIN", "NOT_RENTED");
+
+    }
+
+    public  Contract contract (int contractID){
+        return contractRepository.findOneContract("contractID", contractID);
+    }
 
 
     public void createDamage(WebRequest req) {
@@ -60,17 +69,12 @@ public class IncidentsService {
         carDamageRepository.createDamage(damage);
 
     }
-    public List<IncidentReport> readReport(int contractID){
 
-        List<IncidentReport> report = new ArrayList<>();
 
-        report.add(incidentReport.readOneReport(contractID));
 
-        return report;
-    }
+    public IncidentReport getOneReport(int contractID){
+        return incidentRepo.readOneReport( contractID);
 
-    public IncidentRepository getIncidentRepository(){
-        return incidentReport;
     }
 
 
@@ -84,7 +88,7 @@ public class IncidentsService {
                 LocalDate.now().format(df));
         // orden d
 
-        incidentReport.createIncidentReport(report);
+        incidentRepo.createIncidentReport(report);
     }
 
     public String getVIN(int contractID) {
@@ -117,11 +121,10 @@ public class IncidentsService {
 
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
-        return contractRepository.returnedCarsContracts(getReturnedCars());
+        return contractRepository.returnedCarsContracts(setCarRepositoryInContractRepo());
     }
 
-    public List<Car> getReturnedCars() {
-
+    public List<Car> setCarRepositoryInContractRepo() {
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
         conditions.add(CarStatus.RETURNED);
@@ -136,7 +139,7 @@ public class IncidentsService {
         List<Contract> contractsWreport = new ArrayList<>();
 
         for (Contract contract : contractList) {
-            if (incidentReport.readOneReport(contract.getContractID())!=null)
+            if (incidentRepo.readOneReport(contract.getContractID())!=null)
                 contractsWreport.add(contract);
         }
 
@@ -150,7 +153,7 @@ public class IncidentsService {
         List<Contract> contractsWOreport = new ArrayList<>();
 
         for (Contract contract : allReturnedCarsContracts) {
-            if (incidentReport.readOneReport(contract.getContractID())==null)
+            if (incidentRepo.readOneReport(contract.getContractID())==null)
                 contractsWOreport.add(contract);
         }
 

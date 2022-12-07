@@ -132,7 +132,14 @@ public class DataService {
             }
 
         }
-        priceRepo.writePrice(subScriptionFee, addKmPrMonthPrice(contract.getKmPrMonth()), contract.calculateAddOnPrice(), contractRepo.getContractID(contract.getVIN()));
+        ArrayList<Integer> params = new ArrayList<>();
+
+        params.add(subScriptionFee);
+        params.add(addKmPrMonthPrice(contract.getKmPrMonth()));
+        params.add(contract.calculateAddOnPrice());
+        params.add(contractRepo.getContractID(contract.getVIN()));
+
+        priceRepo.writeSingle(params);
     }
 
     private int addKmPrMonthPrice(KmPrMonth kmPrMonth) {

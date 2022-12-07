@@ -41,8 +41,16 @@ button.CreateButton{
     border-radius: 20px;
     color: lightskyblue;
     text: white;
-    width: 30px;
-    height: 15px;
+    width: 70px;
+    height: 30px;
+}
+
+button.DoneButton{
+    border-radius: 20px;
+    background: green;
+    text: white;
+    width: 40px;
+    height: 70px;
 }
 
 #myTable {
