@@ -80,7 +80,6 @@ public class BusinessService {
         //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
 
-        //Condition has to be true
         ArrayList<ContractStatus> condition = new ArrayList<>();
         condition.add(ContractStatus.LIVE);
 
@@ -92,7 +91,7 @@ public class BusinessService {
             for (Car rentedCar : rentedCars) {
 
                 if (contract.getVIN().equals(rentedCar.getVIN())) {
-                    list.add(priceRepo.getPrices(contract.getContractID()));
+                    list.add(priceRepo.readSingle(contract.getContractID()));
                 }
             }
         }

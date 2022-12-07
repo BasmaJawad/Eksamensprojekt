@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarDamageRepository{
+public class CarDamageRepository implements IRepository{
 
     private Connection conn = DCM.getConnection();
 
@@ -54,12 +54,25 @@ public class CarDamageRepository{
 
         return -1;
     }
+    @Override
+    public Object readSingle(Object param) {
+        return null;
+    }
 
+    @Override
+    public ArrayList readMultiple(ArrayList conditions, String columnName) {
+        return null;
+    }
 
+    @Override
+    public ArrayList readMultiple() {
+        return null;
+    }
 
+    @Override
+    public void writeSingle(Object param) {
 
-    // Create new carDamage
-    public void createDamage(CarDamage carDamage)  {
+        CarDamage carDamage = (CarDamage) param;
 
         try {
             PreparedStatement psts = conn.prepareStatement("INSERT INTO cardamages(reportID, damageDescription, cost) VALUES (?,?,?)");
@@ -73,8 +86,30 @@ public class CarDamageRepository{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    @Override
+    public void writeMultiple(ArrayList objects) {
 
     }
 
+    @Override
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
+
+    }
+
+    @Override
+    public void updateMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void deleteSingle(Object param) {
+
+    }
+
+    @Override
+    public void deleteMultiple(ArrayList objects) {
+
+    }
 }
