@@ -115,7 +115,7 @@ public String showContract(HttpSession session){
         public String updateCarStatus(WebRequest req, HttpSession session){
 
       //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
-        ds.updateSingle(req, (Car) session.getAttribute("car"),"'DEAD'");
+        ds.updateSingle(req, (Car) session.getAttribute("car"));
 
 
         Car updatedCar = ds.getOnecar(session.getAttribute("carVIN"));
