@@ -121,7 +121,7 @@ public class ContractRepository implements IRepository {
         try {
 
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
-            ptsd.setBoolean(1, (Boolean) conditions.get(0));
+            ptsd.setString(1,String.valueOf(conditions.get(0)));
 
             ResultSet resultSet = ptsd.executeQuery();
 
