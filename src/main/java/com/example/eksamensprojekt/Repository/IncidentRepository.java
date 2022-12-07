@@ -11,37 +11,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncidentRepository {
+public class IncidentRepository implements IRepository{
 
     private Connection conn = DCM.getConnection();
-
-    public IncidentReport readOneReport(int contractID) {
-
-        IncidentReport incidentReport = null;
-        try {
-            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.incidentsreports where contractID =?");
-            psts.setInt(1, contractID);
-            ResultSet resultSet = psts.executeQuery();
-
-
-            while (resultSet.next()) {
-
-                incidentReport = new IncidentReport(
-                        resultSet.getInt("reportID"),
-                        resultSet.getInt("contractID"),
-                        resultSet.getString("VIN"),
-                        resultSet.getString("date")
-                );
-
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-
-        }
-
-        return incidentReport;
-    }
 
 
     public List<IncidentReport> readAll(){
@@ -72,8 +44,58 @@ public class IncidentRepository {
     }
 
 
+    public ArrayList<Contract> findContractsWithIncidentReport(ArrayList<Contract> contracts){
 
-    public void createIncidentReport(IncidentReport incidentReport){
+
+
+        return null;
+    }
+
+    @Override
+    public IncidentReport readSingle(Object param) {
+
+        int contractID = (int) param;
+
+        IncidentReport incidentReport = null;
+        try {
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.incidentsreports where contractID =?");
+            psts.setInt(1, contractID);
+            ResultSet resultSet = psts.executeQuery();
+
+
+            while (resultSet.next()) {
+
+                incidentReport = new IncidentReport(
+                        resultSet.getInt("reportID"),
+                        resultSet.getInt("contractID"),
+                        resultSet.getString("VIN"),
+                        resultSet.getString("date")
+                );
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        }
+
+        return incidentReport;
+    }
+
+    @Override
+    public ArrayList readMultiple(ArrayList conditions, String columnName) {
+        return null;
+    }
+
+    @Override
+    public ArrayList readMultiple() {
+        return null;
+    }
+
+    @Override
+    public void writeSingle(Object param) {
+
+        IncidentReport incidentReport = (IncidentReport) param;
         try {
             PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports(contractID, VIN, date) VALUES (?,?,?)");
             psts.setInt(1, incidentReport.getContractID());
@@ -85,15 +107,30 @@ public class IncidentRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public void writeMultiple(ArrayList objects) {
 
     }
 
+    @Override
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
-    public ArrayList<Contract> findContractsWithIncidentReport(ArrayList<Contract> contracts){
-
-
-
-        return null;
     }
 
+    @Override
+    public void updateMultiple(ArrayList objects) {
+
+    }
+
+    @Override
+    public void deleteSingle(Object param) {
+
+    }
+
+    @Override
+    public void deleteMultiple(ArrayList objects) {
+
+    }
 }

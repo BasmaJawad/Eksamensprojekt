@@ -4,6 +4,7 @@ import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.ContractPrice;
 import com.example.eksamensprojekt.Model.Enums.CarStatus;
+import com.example.eksamensprojekt.Model.Enums.ContractStatus;
 import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
@@ -79,19 +80,18 @@ public class BusinessService {
         //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
 
-        //Condition has to be true
-        ArrayList<Boolean> condition = new ArrayList<>();
-        condition.add(true);
+        ArrayList<ContractStatus> condition = new ArrayList<>();
+        condition.add(ContractStatus.LIVE);
 
         //Finds only active contracts
-        ArrayList<Contract> contracts = contractRepo.readMultiple(condition, "active");
+        ArrayList<Contract> contracts = contractRepo.readMultiple(condition, "contractStatus");
 
         //Iterates through contract, If VIN is identical to a rented car VIN, get price
         for (Contract contract : contracts) {
             for (Car rentedCar : rentedCars) {
 
                 if (contract.getVIN().equals(rentedCar.getVIN())) {
-                    list.add(priceRepo.getPrices(contract.getContractID()));
+                    list.add(priceRepo.readSingle(contract.getContractID()));
                 }
             }
         }
@@ -156,7 +156,6 @@ public class BusinessService {
             case "C1 Le Mans 72 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_C1_Shine_0MP00NP8.png";
             case "C3 Le Mans 83 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_newc3_Shine_0MP00NWP.png";
             case "108 Active+ 72 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_108_like_0MP00NP8.png";
-            case "208 Envy 82 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_108_like_0MP00NP8.png";
             case "208 Active+ 100 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_new208_active_0MM00N9V.png";
             case "e-2008 GT Line 136 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_e2008_GTLine_0MM60NSM.png";
             case "500e Icon Pack 118 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500e_Icon_230.png";

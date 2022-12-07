@@ -20,9 +20,14 @@
         <nav id="navbar">
             <ul>
                 <li><a href="/dataHomepage">Home</a></li>
-                <li><a href="#">Find Contract</a></li>
-                <li><a href="#">Find Car Contracts</a></li>
-                <li><a href="#">Log out</a></li>
+                <li><a href="/contractPage">Tilføj Lejeaftale</a></li>
+                <li><a href="/logout">Log out</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <span id="username" th:text="${session.user.getUsername()}"></span>
+                    </div>
+                </li>
             </ul>
         </nav>
     </div>
@@ -40,17 +45,18 @@
         <span th:if="${session.contract.getContractStatus().name()=='LIVE'}" class="topContainter" id="live">
         LIVE
     </span>
-            <span class="topContainter" id="dead" th:if="${session.contract.getContractStatus().name()=='DEAD'}">
+        <span class="topContainter" id="dead" th:if="${session.contract.getContractStatus().name()=='DEAD'}">
         DEAD
     </span>
-       <span class="topContainter" id="cancelled" th:if="${session.contract.getContractStatus().name()=='CANCELLED'}">
+        <span class="topContainter" id="cancelled" th:if="${session.contract.getContractStatus().name()=='CANCELLED'}">
         CANCELLED </span>
 
 
         <br><br><br>
         <div class="maininfo">
 
-            <h1 id="carModel"><span>Car Model</span><br>
+            <div id="carTitle">
+            <h1 id="carModel"><span>Bil Model</span><br>
                 <td th:text="${session.car.getCarModel()}"/>
             </h1>
 
@@ -59,31 +65,32 @@
             <p id="carBrand">
             <td th:text="${session.car.getCarBrand()}"/>
             </p>
+            </div>
 
-            <br><br><br> <br><br><br><br><br><br><br>
+            <br><br><br> <br><br>
 
             <div class="container" id="storBox">
-                <div class="panel-heading">car information</div>
+                <div class="panel-heading">Bil oplysninger</div>
 
                 <div class="infoContainter">
                     <div>
-                        <label for="carModel"> Car Model</label><br>
+                        <label for="carModel">Bil Model</label><br>
                         <input type="text" name="carModel" class="form-control" th:value="${session.car.getCarModel()}"
                                readonly><br>
                     </div>
                     <div>
-                        <label for="carBrand"> Car Brand</label><br>
+                        <label for="carBrand">Bil Mærke</label><br>
                         <input type="text" name="carBrand" class="form-control" th:value="${session.car.getCarBrand()}"
                                readonly><br>
                     </div>
                     <div>
-                        <label for="VIN">Vehicle identification number</label><br>
+                        <label for="VIN">Stelnummer</label><br>
                         <input type="text" name="VIN" class="form-control" th:value="${session.car.getVIN()}"
                                readonly><br>
                     </div>
 
 
-                    <label id="specification" for="specification">specification</label><br>
+                    <label id="specification" for="specification">specifikation</label><br>
 
                     <div th:if="${session.car.class.name == 'com.example.eksamensprojekt.Model.Cars.GasCar'}">
                         <input class="specielContent" type="text" name="specification" value="Gas Car" readonly><br>
@@ -98,7 +105,7 @@
 
                         <div class="smallInput">
 
-                            <label for="co2PrKm">Co2 emisson pr. Kilometer</label><br>
+                            <label for="co2PrKm">Co2 udledning pr. Kilometer</label><br>
                             <input class="specielContent" type="text" name="co2PrKm"
                                    th:value="${session.car.getCo2PrKm()}"
                                    readonly><br>
@@ -110,7 +117,7 @@
                         <input class="specielContent" type="text" name="specification" value="Electric Car"
                                readonly><br>
 
-                        <label for="kmPrCharge">Kilometer Pr. Charge</label><br>
+                        <label for="kmPrCharge">Kilometer Pr. opladning</label><br>
                         <input class="specielContent" type="text" name="LiterPrKm"
                                th:value="${session.car.getKmPrCharge()}"
                                readonly><br>
@@ -158,61 +165,70 @@
     </div>
 
     <div class="rightBox">
-        <br><br><br><br><br>
+        <br><br>
 
         <div id="carStatusContainter">
 
-                <p id="carStatus"><span id="carStatusSpan">Car Status: </span><td th:text="${session.car.getCarStatus()}"/> </p>
-                <form action="/updateCarStatus" method="post">
-                    <input type="hidden" name="carStatus" value="RETURNED">
-                    <button id="submitCarStat" type="submit">Change status to RETURNED</button>
-                </form>
+            <button class="buttons" id="carStatus"><span id="carStatusSpan">Bil Status: </span>
+            <td th:text="${session.car.getCarStatus()}"/>
+            </button>
 
             <span th:if="${session.car.getCarStatus().name()=='RENTED'}">
-                <form action="/cancelContract" method="post">
-                    <input type="hidden" name="carStatus" value="CANCELLED">
-                    <button id="cancelContract" type="submit">Cancel Contract Early</button>
-                    </form>
-            </span>
+
+            <form action="/updateCarStatus" method="post">
+                <input type="hidden" name="carStatus" value="RETURNED"/>
+                <input type="hidden" name="ContractStatus" value="'DEAD'"/>
+                <button class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
+
+            </form>
+
+            <form action="/updateCarStatus" method="post">
+
+                        <input type="hidden" name="carStatus" value="RETURNED"/>
+                        <input type="hidden" name="ContractStatus" value="'CANCELLED'"/>
+                        <button class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
+
+            </form>
+             </span>
 
 
         </div>
-        <br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br>
+        <br>
         <div class="container" id="storBox2">
             <div class="panel-heading">contract information</div>
 
+            <div style="width: 100%">
+                <div class="smallInput">
+                    <label>Kontrakt Oprettet <br> <input class="date" type="text" name="dato"
+                                                         style="width: 99%"
+                                                         th:value="${session.contract.getStartDate()}"
+                                                         readonly></label>
+
+                </div>
+                <div class="smallInput">
+                    <label>Kontrakt slutning <br> <input class="date" type="text" name="endDate"
+                                                         style="width: 99%"
+                                                         th:value="${session.contract.getEndDate()}"
+                                                         readonly></label><br>
+                </div>
+            </div>
+
             <div class="infoContainter">
-                <label for="contractID">Contract ID</label><br>
+                <label for="contractID">Kontrakt ID</label><br>
                 <input type="text" name="contractID" class="form-control" th:value="${session.contract.getContractID()}"
                        readonly><br>
 
-                <label for="subLenght">Subsription lenght</label><br>
+                <label for="subLenght">Abonnement længde</label><br>
                 <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
                        readonly><br>
 
-                <label for="pickupDes">pickup destination</label><br>
+                <label for="pickupDes">Afhentningssted</label><br>
                 <input type="text" name="pickupDes" class="form-control"
                        th:value="${session.contract.getPickupDestination()}" readonly><br>
 
-                <label for="kmPrMonth">Kilometer Pr. month</label><br>
+                <label for="kmPrMonth">Kilometer Pr. måned</label><br>
                 <input type="text" name="kmPrMonth" class="form-control"
                        th:value="${session.contract.getKmPrMonth()}" readonly><br>
-
-                <div style="width: 100%">
-                    <div class="smallInput">
-                        <label>Kontrakt Oprettet <br> <input type="text" name="dato" class="form-control"
-                                                             style="width: 99%"
-                                                             th:value="${session.contract.getStartDate()}"
-                                                             readonly></label>
-
-                    </div>
-                    <div class="smallInput">
-                        <label>Kontrakt slutning <br> <input type="text" name="endDate" class="form-control"
-                                                             style="width: 99%"
-                                                             th:value="${session.contract.getEndDate()}"
-                                                             readonly></label><br>
-                    </div>
-                </div>
 
 
                 <div class="additionalInfoContract">
@@ -221,13 +237,13 @@
             <span th:if="${session.contract.isWinterTires()==false}">
 
                 <input class="styled-checkbox" id="styled-checkbox-3" type="checkbox" disabled>
-                 <label for="styled-checkbox-3">Winter Tires</label>
+                 <label for="styled-checkbox-3">Vinterdæk</label>
             </span>
 
                         <span th:unless="${session.contract.isWinterTires()==false}">
 
                 <input class="styled-checkbox" id="styled-checkbox-4" type="checkbox" checked disabled>
-                <label for="styled-checkbox-4">Winter Tires</label>
+                <label for="styled-checkbox-4">Vinterdæk</label>
 
             </span>
 
@@ -249,26 +265,26 @@
                 <span th:if="${session.contract.isDeliveryInsurance()==false}">
 
                 <input class="styled-checkbox" id="styled-checkbox-7" type="checkbox" disabled>
-                 <label for="styled-checkbox-7">Delivery Insurance</label>
+                 <label for="styled-checkbox-7">Afleveringsforsikring</label>
             </span>
 
                         <span th:unless="${session.contract.isDeliveryInsurance()==false}">
 
                 <input class="styled-checkbox" id="styled-checkbox-8" type="checkbox" checked disabled>
-                <label for="styled-checkbox-8">Delivery Insurance</label>
+                <label for="styled-checkbox-8">Afleveringsforsikring</label>
 
             </span>
 
                         <span th:if="${session.contract.isLowDeductible()==false}">
 
                 <input class="styled-checkbox" id="styled-checkbox-9" type="checkbox" disabled>
-                 <label for="styled-checkbox-7">Low Deductible</label>
+                 <label for="styled-checkbox-7">Lav selvrisiko</label>
             </span>
 
                         <span th:unless="${session.contract.isLowDeductible()==false}">
 
                 <input class="styled-checkbox" id="styled-checkbox-10" type="checkbox" checked disabled>
-                <label for="styled-checkbox-8">Low Deductible</label>
+                <label for="styled-checkbox-8">Lav selvrisiko</label>
 
             </span>
                     </div>
@@ -284,33 +300,33 @@
 
     <div class="infoContainter">
 
-        <div class="reportInput">
-            <label for="name">Name</label><br>
+        <div class="customerInput">
+            <label for="name">Navn</label><br>
             <input type="text" name="name" class="form-control" th:value="${session.customer.getName()}"
                    readonly><br>
         </div>
-        <div class="reportInput">
+        <div class="customerInput">
             <label for="email">Email</label><br>
             <input type="text" name="email" class="form-control" th:value="${session.customer.getEmail()}"
                    readonly><br>
         </div>
-        <div class="reportInput">
-            <label for="phonenumber">phone number</label><br>
+        <div class="customerInput">
+            <label for="phonenumber">Telefon nummer</label><br>
             <input type="text" name="phonenumber" class="form-control"
                    th:value="${session.customer.getPhoneNum()}" readonly><br>
         </div>
-        <div class="reportInput">
-            <label for="CPR">social Security number</label><br>
+        <div class="customerInput">
+            <label for="CPR">CPR-nummer</label><br>
             <input type="text" name="CPR" class="form-control"
                    th:value="${session.customer.getCprNum()}" readonly><br>
         </div>
-        <div class="reportInput">
-            <label for="address">Address</label><br>
+        <div class="customerInput">
+            <label for="address">Adresse</label><br>
             <input type="text" name="address" class="form-control"
                    th:value="${session.customer.getAddress()}" readonly><br>
         </div>
-        <div class="reportInput">
-            <label for="zipcode">ZIP code</label><br>
+        <div class="customerInput">
+            <label for="zipcode">post nummer</label><br>
             <input type="text" name="zipcode" class="form-control"
                    th:value="${session.customer.getZipCode()}" readonly><br>
         </div>
