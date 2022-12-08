@@ -17,11 +17,30 @@ div{
     float: left;
     margin-right: 20px;
 }
-#rightDiv,#leftDiv{
-    border: #555555 solid 1px;
+#rightDiv, #leftDiv{
+    float: left;
+    background-color: #a8bcca;
     border-radius: 10px;
-    width: 47%;
+    width: 40%;
     height: 600px;
+
+
+}
+#leftDiv{
+    width: 58%;
+}
+
+h2{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+thead {
+    background-color: #2e4d5f;
+    color: white;
+}
+
+tbody {
+    background-color: white;
 }
 table {
     margin: 20px;

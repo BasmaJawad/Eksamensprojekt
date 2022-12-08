@@ -14,7 +14,7 @@ public class BusinessController {
 
     BusinessService bs = new BusinessService();
 
-    @GetMapping("/businessHP")
+    @GetMapping("/businessHomepage")
     public String hp(Model model){
         String mostPopularCarModel =  bs.mostPopularCarModel();
 
@@ -28,7 +28,7 @@ public class BusinessController {
         model.addAttribute("signedContractsMonth", bs.signedContractsDayOrMonth("Month"));
         model.addAttribute("endedContractsToday", bs.endedContractsToday());
         model.addAttribute("cancelledContracts", bs.cancelledContractsMonth());
-        return "/BusinessUser/businessHP";
+        return "/BusinessUser/businessHomepage";
     }
 
     //form i businessHomepage
@@ -63,16 +63,5 @@ public class BusinessController {
 
         return "/BusinessUser/revenueBoard";
     }
-    @GetMapping("/businessHomepage")
-    public String businessHomepage(Model model){
-
-        String mostPopularCarModel =  bs.mostPopularCarModel();
-
-        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
-        model.addAttribute("mostPopularModel",mostPopularCarModel);
-
-        return "/BusinessUser/businessHomepage";
-    }
-
 
 }

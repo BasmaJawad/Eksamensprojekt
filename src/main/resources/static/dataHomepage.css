@@ -1,9 +1,12 @@
 #seeContract{
     padding: 8px;
-    background-color: rgb(0, 76, 153);
-    color: white;
+    color: black;
     font-weight: 550;
-
+    height: auto;
+    border-radius: 5px;
+}
+#dropdownMenuButton{
+height: auto;
 }
 
 .dropdown{

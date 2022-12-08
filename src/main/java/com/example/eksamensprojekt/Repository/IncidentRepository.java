@@ -22,7 +22,7 @@ public class IncidentRepository implements IRepository{
 
 
         try {
-            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.users");
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.incidentsreports");
             ResultSet resultSet = psts.executeQuery();
 
             while (resultSet.next()) {

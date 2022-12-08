@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="BusinessPage.css">
     <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="BusinessPage.css">
+
     <meta charset="UTF-8">
     <title>Udlejet biler</title>
 </head>
@@ -25,13 +26,12 @@
 
 <div id="leftDiv" style="overflow-y: scroll; ">
     <h2>Liste med udlejet biler</h2>
-    <hr>
     <table>
         <thead>
         <tr>
             <td>Brand</td>
             <td>Model</td>
-            <td>Stel-nummer</td>
+            <td>Stelnummer</td>
         </tr>
         </thead>
         <tbody>
@@ -40,11 +40,11 @@
             <td th:text="${car.carModel}"></td>
             <td th:text="${car.VIN}"></td>
         </tr>
-
         </tbody>
+
     </table>
+
     <h2>Biler på lager</h2>
-    <hr>
     <table>
         <thead>
             <tr>
@@ -66,13 +66,13 @@
 </div>
 <div id="rightDiv">
 
-    <div class="rightDivDivs" style="width: 42%;">
+    <div class="rightDivDivs">
         <h2>Antal udlejet biler</h2>
         <hr>
         <h1 th:text="${numberOfRentedCars}"></h1>
         <h1>Hello</h1>
     </div>
-    <div class="rightDivDivs" style="width: 42%">
+    <div class="rightDivDivs">
         <h2>Mest populere bil</h2>
         <hr>
         <h1 th:text="${mostPopularModel}"></h1>

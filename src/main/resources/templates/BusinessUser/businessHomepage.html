@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="BusinessPage.css">
-    <link rel="stylesheet" href="navBar.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="businessHomepage.css">
+    <link rel="stylesheet" href="circleDiagram.css">
+    <title>Business</title>
 </head>
 <body>
-
 <header>
     <div class="wrapper">
         <img class="main-menu-logo-image___1Ov1X"
@@ -24,32 +24,81 @@
     </div>
     <hr>
 </header>
+<section class="statistics">
+    <div class="row">
+        <div class="box">
+            <img class="icon"
+                 src="https://cdn2.iconfinder.com/data/icons/car-repair-10/512/Car_Repair_Icons-25-512.png">
+            <div class="box2">
+                <div class="dataTop">
+                    <h3 class="dataTopTitle" th:text="${rentedCars.size()}"></h3> <span class="d-block ms-2">Udlejede Biler</span>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <img class="icon"
+                 src="https://cdn0.iconfinder.com/data/icons/education-vol-01-3/48/clipboard-checklist-todo-verify-list-check-inventory-512.png">
+            <div class="box2">
+                <div class="dataTop">
+                    <h3 class="dataTopTitle" th:text="${notRentedCars.size()}"></h3> <span class="d-block ms-2">Ledige Biler</span>
+                </div>
+            </div>
+        </div>
+        <div class="box">
+            <img class="icon"
+                 src="https://cdn4.iconfinder.com/data/icons/office-and-business-conceptual-flat/169/10-512.png">
+            <div class="box2">
+                <div class="dataTop">
+                    <h3 class="dataTopTitle" th:text="${allContractsAmount}"></h3> <span class="d-block ms-2">Kontrakter i alt</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <div id="mainDiv">
 
-    <div id="leftDiv">
+    <div id="mostpopCarDiv">
 
-        <h1 style="margin-left: 20px">Mest populære bil <span style="float: right;
-         margin-right:50px" th:text="${mostPopularModel}"></span></h1>
-        <hr>
-
+        <h1 id="popcarTitle">Mest populære bil <br><span th:text="${mostPopularModel}"></span></h1>
         <img id="popCar" th:src="${carImg}">
-
-        <form action="/listOfRentedCars">
-
-            <button>Rented cars</button>
-        </form>
     </div>
 
     <div id="rightDiv">
-        <form action="/revenueBoard">
 
-            <button>RevenueBoard</button>
-        </form>
+        <div class="dataChart">
+
+            <div class="data">
+                <span class="dataTitle" th:text="${signedContractsDay}"></span><br>
+                <span>Underskrevet kontakter i dag</span>
+            </div>
+            <div class="data">
+                <span class="dataTitle"th:text="${endedContractsToday}"></span> <br>
+                <span>Udløbet kontrakter i dag</span>
+            </div>
+            <div class="data">
+                <span class="dataTitle" th:text="${signedContractsMonth}"></span><br>
+                <span>Underskrevet kontakter denne måned</span>
+            </div>
+            <div class="data">
+                <span class="dataTitle"th:text="${cancelledContracts}" ></span><br>
+                <span>Annullerede kontrakter denne måned</span>
+            </div>
+
+
+        </div>
+
+        <div class="dataChart2">
+
+        </div>
+        <div class="dataChart2">
+            <div class="circle-diagram" style="--percent: 75">75%</div>
+        </div>
     </div>
 
 </div>
 
-
 </body>
+
+
 </html>

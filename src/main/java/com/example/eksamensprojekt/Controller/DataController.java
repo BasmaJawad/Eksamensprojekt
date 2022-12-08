@@ -61,7 +61,7 @@ public class DataController {
   public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
     Car car = (Car)httpSession.getAttribute("car");
     ds.addContract(car, contractReq);
-    return "/DataRegister/dataHomepage";
+    return "redirect:/dataHomepage";
   }
 
   @GetMapping("/gasCarContract")
@@ -69,7 +69,7 @@ public class DataController {
       Car car = (Car)carReq.getAttribute("car");
 
     ds.addContract(car, contractReq);
-    return "/DataRegister/dataHomepage";
+    return "redirect:/dataHomepage";
   }
 
 
