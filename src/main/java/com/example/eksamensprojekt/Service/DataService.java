@@ -173,7 +173,6 @@ public class DataService {
     public void updateSingle(WebRequest req, Car car){
 
         String contractStatus = req.getParameter("ContractStatus");
-        System.out.println(contractStatus);
 
         String updateTo = req.getParameter("carStatus");
 

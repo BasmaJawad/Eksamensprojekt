@@ -1,5 +1,5 @@
 div{
-    margin: 20px;
+    margin-top: 20px;
 }
 #divHead{
     float: top;
@@ -10,14 +10,18 @@ div{
 #rightDiv{
     float: right;
 }
+#popCar{
+    width: 100%
+}
 #leftDiv{
     float: left;
+    margin-right: 20px;
 }
 #rightDiv,#leftDiv{
     border: #555555 solid 1px;
     border-radius: 10px;
-    width: 45%;
-    height: 500px;
+    width: 47%;
+    height: 600px;
 }
 table {
     margin: 20px;

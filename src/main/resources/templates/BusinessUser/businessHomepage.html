@@ -29,10 +29,11 @@
 
     <div id="leftDiv">
 
-        <h1 style="margin-left: 20px">Mest populære bil <span style="float: right; margin-right: 50px" th:text="${mostPopularModel}"></span></h1>
+        <h1 style="margin-left: 20px">Mest populære bil <span style="float: right;
+         margin-right:50px" th:text="${mostPopularModel}"></span></h1>
         <hr>
 
-        <img style="border: #130f11 2px solid; border-radius: 10px" th:src="${carImg}">
+        <img id="popCar" th:src="${carImg}">
 
         <form action="/listOfRentedCars">
 

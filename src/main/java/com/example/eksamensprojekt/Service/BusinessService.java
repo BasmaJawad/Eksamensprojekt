@@ -8,6 +8,8 @@ import com.example.eksamensprojekt.Model.Enums.ContractStatus;
 import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.PriceRepository;
+
+import java.time.LocalDate;
 import java.util.*;
 import java.util.List;
 
@@ -63,7 +65,8 @@ public class BusinessService {
 
         return amount;
     }
-    private ArrayList<Car> getNotRentedCars(){
+
+    private ArrayList<Car> getNotRentedCars() {
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
 
@@ -98,7 +101,72 @@ public class BusinessService {
         return list;
     }
 
+    public List<Contract> getAllcontracts() {
+        return contractRepo.readMultiple();
+    }
 
+    public List<Contract> getContracts(ContractStatus status){
+        ArrayList<ContractStatus> condition = new ArrayList<>();
+        condition.add(status);
+
+        return contractRepo.readMultiple(condition, "contractStatus");
+    }
+    public int signedContractsDayOrMonth(String dayOrMonth) {
+
+        List<Contract> contracts = getAllcontracts();
+
+        int countContractsSignedToday = 0;
+
+        if (dayOrMonth.equalsIgnoreCase("day")) {
+            for (Contract contract : contracts) {
+                System.out.println(contract.getStartDate() +" og"+ LocalDate.now());
+                if (contract.getStartDate().equals(LocalDate.now()))
+                    countContractsSignedToday++;
+
+
+            }
+        }
+        else if (dayOrMonth.equalsIgnoreCase("month")) {
+            for (Contract contract : contracts) {
+                if (contract.getStartDate().getMonthValue()== LocalDate.now().getMonthValue()){
+                    countContractsSignedToday++;
+                }
+
+
+            }
+
+        }
+        return countContractsSignedToday;
+    }
+
+    public int endedContractsToday(){
+
+        List<Contract> contracts = getContracts(ContractStatus.DEAD);
+
+        int countContractsSignedToday = 0;
+
+            for (Contract contract : contracts) {
+                if (contract.getEndDate() == LocalDate.now())
+                    countContractsSignedToday++;
+
+            }
+
+        return countContractsSignedToday;
+    }
+
+    public int cancelledContractsMonth(){
+
+        List<Contract> contracts = getContracts(ContractStatus.CANCELLED);
+
+        int countContractsSignedToday = 0;
+        for (Contract contract : contracts) {
+            if (contract.getEndDate().getMonthValue() == LocalDate.now().getMonthValue())
+                countContractsSignedToday++;
+
+        }
+
+        return countContractsSignedToday;
+    }
 
 
     public int totalRevenue() {
@@ -125,9 +193,9 @@ public class BusinessService {
         for (Car car : cars) {
             models.add(car.getCarModel());
         }
+
         //Strips all not unique models from list of models
-        List<String> uniqueModels
-                = models.stream().distinct().toList();
+        List<String> uniqueModels = models.stream().distinct().toList();
 
         int number = 0;
 
@@ -136,7 +204,7 @@ public class BusinessService {
 
         for (int i = 0; i < uniqueModels.size(); i++) {
 
-            int numberOfFreq = Collections.frequency(models, uniqueModels.get(i));
+            int numberOfFreq = Collections.frequency(models, uniqueModels.get(i));  // count the frequency of a carModel (String)
 
             //If the current frequency is higher than previous
             if (numberOfFreq > number) {

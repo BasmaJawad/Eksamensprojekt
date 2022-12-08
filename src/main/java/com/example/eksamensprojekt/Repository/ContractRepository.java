@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ContractRepository implements IRepository {
@@ -141,7 +142,6 @@ public class ContractRepository implements IRepository {
 
                 contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus));
             }
-            System.out.println(ptsd.isClosed());
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

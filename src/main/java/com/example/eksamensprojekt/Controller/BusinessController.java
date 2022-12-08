@@ -14,6 +14,24 @@ public class BusinessController {
 
     BusinessService bs = new BusinessService();
 
+    @GetMapping("/businessHP")
+    public String hp(Model model){
+        String mostPopularCarModel =  bs.mostPopularCarModel();
+
+        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
+        model.addAttribute("mostPopularModel",mostPopularCarModel);
+        model.addAttribute("rentedCars", bs.getRentedCars());
+
+        model.addAttribute("notRentedCars",bs.getRentedCars());
+        model.addAttribute("allContractsAmount",bs.getAllcontracts().size());
+        model.addAttribute("signedContractsDay", bs.signedContractsDayOrMonth("day"));
+        model.addAttribute("signedContractsMonth", bs.signedContractsDayOrMonth("Month"));
+        model.addAttribute("endedContractsToday", bs.endedContractsToday());
+        model.addAttribute("cancelledContracts", bs.cancelledContractsMonth());
+        return "/BusinessUser/businessHP";
+    }
+
+    //form i businessHomepage
     @GetMapping("/listOfRentedCars")
     public String listOfRentedCars(Model model) {
 
@@ -26,6 +44,8 @@ public class BusinessController {
         model.addAttribute("mostPopularModel", mostPopularCarModel);
         model.addAttribute("numberOfRentedCars", cars.size());
         model.addAttribute("rentedCars", cars);
+
+
 
         return "/BusinessUser/listOfRentedCars";
     }
