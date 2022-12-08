@@ -1,0 +1,67 @@
+div{
+    margin-top: 20px;
+}
+
+#topDiv{
+    width: 100%;
+    background: -webkit-linear-gradient(to right, #daeaed, #8ea2b0);
+    background: linear-gradient(to right, #daeaed, #8ea2b0);
+    padding: 30px;
+    border-radius: 7px;
+}
+
+#topDiv h1{
+    margin: 0;
+    font-size: 40px;
+}
+.revenue{
+    margin: 0;
+}
+#topDiv h2{
+    margin: 0;
+    font-size: 17px;
+}
+
+
+tr.header{
+    background-color: #daeaed;
+    font-weight: bold;
+
+}
+* {box-sizing: border-box}
+tr {
+
+    border-bottom: 1px solid #ddd;
+    border-radius: 20px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border: 1px white;
+
+}
+
+h2{
+    margin-left: 20px;
+    margin-top: 40px;
+}
+thead {
+    background-color: #2e4d5f;
+    color: white;
+}
+
+tbody {
+    background-color: white;
+}
+table {
+    margin: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+    border-radius: 20px;
+
+}

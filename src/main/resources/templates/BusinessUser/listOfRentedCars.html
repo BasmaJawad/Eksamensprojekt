@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Udlejet biler</title>
 </head>
-<body >
+<body>
 
 <header>
     <div class="wrapper">
@@ -64,9 +64,28 @@
         </tbody>
     </table>
 </div>
+
 <div id="rightDiv">
 
     <div class="rightDivDivs">
+
+        <div class="smallbox">
+            Udlejet Biler <br>
+            <span th:text="${numberOfRentedCars}"/>
+        </div>
+
+        <div class="smallbox">
+            Biler På Værksted<br>
+            <span th:text="${numberOfReturnedCars}"/>
+        </div>
+
+        <div class="smallbox">
+            Ledige Biler<br>
+            <span th:text="${numberOfnotRentedCars}"/>
+        </div>
+
+
+        <!--
         <h2>Antal udlejet biler</h2>
         <hr>
         <h1 th:text="${numberOfRentedCars}"></h1>
@@ -78,6 +97,9 @@
         <h1 th:text="${mostPopularModel}"></h1>
         <img style="width: 150px" th:src="${carImg}">
     </div>
+    -->
 </div>
+
+
 </body>
 </html>

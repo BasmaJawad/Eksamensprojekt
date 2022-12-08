@@ -44,6 +44,8 @@ public class BusinessController {
         model.addAttribute("mostPopularModel", mostPopularCarModel);
         model.addAttribute("numberOfRentedCars", cars.size());
         model.addAttribute("rentedCars", cars);
+        model.addAttribute("numberOfnotRentedCars",bs.getRentedCars().size());
+        model.addAttribute("numberOfReturnedCars",bs.getReturnedCars().size());
 
 
 
@@ -55,7 +57,6 @@ public class BusinessController {
 
         ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
-
 
         model.addAttribute("pricePrContract", list);
         model.addAttribute("totalRevenue", totalRevenue);

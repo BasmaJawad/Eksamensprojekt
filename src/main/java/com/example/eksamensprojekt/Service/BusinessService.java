@@ -75,6 +75,14 @@ public class BusinessService {
         return carRepo.readMultiple(conditions, "carStatus");
     }
 
+    public ArrayList<Car> getReturnedCars() {
+
+        ArrayList<CarStatus> conditions = new ArrayList<>();
+
+        conditions.add(CarStatus.RETURNED);
+
+        return carRepo.readMultiple(conditions, "carStatus");
+    }
 
     public ArrayList<ContractPrice> listOfPricesPrCar() {
 
