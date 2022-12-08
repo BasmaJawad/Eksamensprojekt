@@ -40,7 +40,7 @@ public class IncidentsService {
 
     public List<CarDamage> findCarDamages(int contractID) {
 
-        IncidentReport inRep = incidentRepo.readOneReport(contractID);
+        IncidentReport inRep = incidentRepo.readSingle(contractID);
 
         return carDamageRepository.readDamagesInContract(inRep.getReportID());
 
@@ -66,14 +66,14 @@ public class IncidentsService {
                 req.getParameter("beskrivelse"),
                 parseInt(req.getParameter("pris")));
 
-        carDamageRepository.createDamage(damage);
+        carDamageRepository.writeSingle(damage);
 
     }
 
 
 
     public IncidentReport getOneReport(int contractID){
-        return incidentRepo.readOneReport( contractID);
+        return incidentRepo.readSingle( contractID);
 
     }
 
@@ -88,7 +88,7 @@ public class IncidentsService {
                 LocalDate.now().format(df));
         // orden d
 
-        incidentRepo.createIncidentReport(report);
+        incidentRepo.writeSingle(report);
     }
 
     public String getVIN(int contractID) {
@@ -139,7 +139,7 @@ public class IncidentsService {
         List<Contract> contractsWreport = new ArrayList<>();
 
         for (Contract contract : contractList) {
-            if (incidentRepo.readOneReport(contract.getContractID())!=null)
+            if (incidentRepo.readSingle(contract.getContractID())!=null)
                 contractsWreport.add(contract);
         }
 
@@ -153,7 +153,7 @@ public class IncidentsService {
         List<Contract> contractsWOreport = new ArrayList<>();
 
         for (Contract contract : allReturnedCarsContracts) {
-            if (incidentRepo.readOneReport(contract.getContractID())==null)
+            if (incidentRepo.readSingle(contract.getContractID())==null)
                 contractsWOreport.add(contract);
         }
 

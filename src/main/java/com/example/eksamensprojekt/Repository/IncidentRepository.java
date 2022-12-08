@@ -16,7 +16,7 @@ public class IncidentRepository implements IRepository{
     private Connection conn = DCM.getConnection();
 
 
-    public List<IncidentReport> readAll(){
+    public List<IncidentReport> readAll(){ //Læaser
 
         List<IncidentReport> incidentReports = new ArrayList<>();
 
@@ -52,9 +52,9 @@ public class IncidentRepository implements IRepository{
     }
 
     @Override
-    public IncidentReport readSingle(Object param) {
+    public IncidentReport readSingle(Object num) {
 
-        int contractID = (int) param;
+        int contractID = (int) num;
 
         IncidentReport incidentReport = null;
         try {
@@ -93,7 +93,7 @@ public class IncidentRepository implements IRepository{
     }
 
     @Override
-    public void writeSingle(Object param) {
+    public void writeSingle(Object param) { // SKriver en report
 
         IncidentReport incidentReport = (IncidentReport) param;
         try {
