@@ -2,13 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="navBar.css">
+
     <title>Here you can add a new contract</title>
 </head>
 <body>
+<header>
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <nav>
+            <ul >
+                <li><a href="/dataHomepage">Home</a></li>
+                <li><a href="/contractPage">Tilføj Lejeaftale</a></li>
+                <li><a href="/logout">Log out</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <span id="username" th:text="${session.user.getUsername()}"></span>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
+<hr>
+<h1>Udfyld lejeaftale</h1>
 
 <form action="/addContract">
-    <h1> Customer information </h1> <br>
-    <label> name: <input type="text" name="name" required> </label><br>
+    <h1> Kunde information </h1> <br>
+    <label>Navn</label><br>
+    <input type="text" name="name" required>
     <label> cpr: <input type="text" name="cpr" required> </label><br>
     <label> email: <input type="text" name="email" required> </label><br>
     <label> address: <input type="text" name="address" required> </label><br>
