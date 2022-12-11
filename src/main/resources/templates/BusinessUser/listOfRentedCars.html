@@ -11,7 +11,9 @@
 
 <header>
     <div class="wrapper">
-        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
         <nav>
             <ul>
                 <li><a href="/businessHomepage">Home</a></li>
@@ -47,20 +49,23 @@
     <h2>Biler på lager</h2>
     <table>
         <thead>
-            <tr>
-                <td>108 Active+ 72 HK</td>
-                <td>208 Active+ 100 HK</td>
-                <td>500e CABRIO Icon Pack 118 HK</td>
-                <td>500e Icon Pack 118 HK</td>
-                <td>C1 Le Mans 72 HK</td>
-                <td>C3 Le Mans 83 HK</td>
-                <td>e-2008 GT Line 136 HK</td>
-            </tr>
+        <tr>
+            <td>108 Active+ 72 HK</td>
+            <td>208 Active+ 100 HK</td>
+            <td>500e CABRIO Icon Pack 118 HK</td>
+            <td>500e Icon Pack 118 HK</td>
+            <td>C1 Le Mans 72 HK</td>
+            <td>C3 Le Mans 83 HK</td>
+            <td>e-2008 GT Line 136 HK</td>
+        </tr>
         </thead>
         <tbody>
-            <tr >
-                <td th:each="amount : ${amountOfCarsPrModel}"><span th:text="${amount}"></span> <span th:if="${amount<5}"><img  width="10px" height="10px" src="https://www.freeiconspng.com/thumbs/alert-icon/alert-icon-red-11.png"></span></td>
-            </tr>
+        <tr>
+            <td th:each="amount : ${amountOfCarsPrModel}"><span th:text="${amount}"></span> <span
+                    th:if="${amount<5}"><img width="10px" height="10px"
+                                             src="https://www.freeiconspng.com/thumbs/alert-icon/alert-icon-red-11.png"></span>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
@@ -98,6 +103,7 @@
         <img style="width: 150px" th:src="${carImg}">
     </div>
     -->
+    </div>
 </div>
 
 

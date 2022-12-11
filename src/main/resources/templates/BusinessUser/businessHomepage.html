@@ -55,19 +55,13 @@
         </div>
     </div>
 </section>
-
 <div id="mainDiv">
-
     <div id="mostpopCarDiv">
-
         <h1 id="popcarTitle">Mest populære bil <br><span th:text="${mostPopularModel}"></span></h1>
         <img id="popCar" th:src="${carImg}">
     </div>
-
     <div id="rightDiv">
-
         <div class="dataChart">
-
             <div class="data">
                 <span class="dataTitle" th:text="${signedContractsDay}"></span><br>
                 <span>Underskrevet kontakter i dag</span>
@@ -81,24 +75,16 @@
                 <span>Underskrevet kontakter denne måned</span>
             </div>
             <div class="data">
-                <span class="dataTitle" th:text="${cancelledContracts}" ></span><br>
+                <span class="dataTitle" th:text="${cancelledContracts}"></span><br>
                 <span>Annullerede kontrakter denne måned</span>
             </div>
-
-
         </div>
-
         <div class="dataChart2">
-
         </div>
         <div class="dataChart2">
             <div class="circle-diagram" style="--percent: 75">75%</div>
         </div>
     </div>
-
 </div>
-
 </body>
-
-
 </html>

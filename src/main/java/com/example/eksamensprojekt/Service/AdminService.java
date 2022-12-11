@@ -47,7 +47,7 @@ public class AdminService {
 
     }
 
-    public void createUser(WebRequest req) {
+    public boolean createUser(WebRequest req) {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
@@ -55,8 +55,16 @@ public class AdminService {
 
         User user = new User(username,password,usertype);
 
-        userRepo.writeSingle(user);
+        ArrayList<User> users = userRepo.readMultiple();
 
+        //Check if user already exists
+        for (User value : users) {
+            if (value.getUsername().equals(user.getUsername())) {
+                return true;
+            }
+        }
+        userRepo.writeSingle(user);
+        return false;
     }
 
     public void deleteUser(WebRequest req) {
