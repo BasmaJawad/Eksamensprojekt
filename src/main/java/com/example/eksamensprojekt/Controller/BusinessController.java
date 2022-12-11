@@ -12,6 +12,9 @@ import java.util.ArrayList;
 @Controller
 public class BusinessController {
 
+    //Make class inaccessible
+    private BusinessController(){}
+
     BusinessService bs = new BusinessService();
 
     @GetMapping("/businessHomepage")

@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
+    //Make class inaccessible
+    private HomeController(){}
+
     UsersService us = new UsersService();
 
     @GetMapping("/")

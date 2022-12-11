@@ -17,6 +17,9 @@ import java.util.List;
 @Controller
 public class IncidentController {
 
+    //Make class inaccessible
+    private IncidentController(){}
+
     IncidentsService incidentsService = new IncidentsService();
 
     // STARTSIDE

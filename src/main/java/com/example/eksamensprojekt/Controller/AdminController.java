@@ -15,6 +15,9 @@ import java.util.Collections;
 @Controller
 public class AdminController {
 
+    //Make class inaccessible
+    private AdminController(){}
+
     AdminService as = new AdminService();
 
     @GetMapping("/adminHomepage")
@@ -36,6 +39,7 @@ public class AdminController {
     }
     @GetMapping("/editUser")
     public String editUser(WebRequest req, Model model, HttpSession session){
+
         String username = req.getParameter("username");
         String userType = req.getParameter("userType");
 
@@ -48,23 +52,15 @@ public class AdminController {
         return "/Admin/editUser";
     }
     @GetMapping("/submitEdit")
-    public String submitEdit(WebRequest req,Model model, HttpSession session){
+    public String submitEdit(WebRequest req, HttpSession session){
 
         as.updateUser(req, session);
-
-        ArrayList<User> users = as.getUsers();
-
-        Collections.sort(users);
-
-        model.addAttribute("users",users);
-
 
         return "redirect:/users";
     }
 
     @GetMapping("/goToAddACarPage")
     public String goToAddACarPage(){
-
         return "/Admin/addACar";
     }
 
@@ -72,7 +68,6 @@ public class AdminController {
     public String addCar(WebRequest req){
 
         as.addCar(req);
-
 
         return "redirect:/adminHomepage";
     }
@@ -92,7 +87,4 @@ public class AdminController {
 
         return "redirect:/users";
     }
-
-
-
 }

@@ -17,7 +17,11 @@ import java.util.ArrayList;
 @Controller
 public class DataController {
 
-  DataService ds = new DataService();
+    //Make class inaccessible
+    private DataController() {
+    }
+
+    DataService ds = new DataService();
 /*
   @GetMapping("/addContract")
   public String addContract(WebRequest req) {
@@ -29,13 +33,14 @@ public class DataController {
     //Page to add a new contract
 
     @GetMapping("/dataHomepage")
-    public String dataHomepage(Model model){
+    public String dataHomepage(Model model) {
 
         model.addAttribute("contracts", ds.getAllContracts());
         model.addAttribute("carInContract", ds.getCarRepository());
 
         return "/DataRegister/dataHomepage";
     }
+
     @GetMapping("/contractPage")
     public String contractPage(Model model) {
 
@@ -44,34 +49,34 @@ public class DataController {
 
         model.addAttribute("cars", cars);
 
-    return "/DataRegister/chooseCar";
-  }
-
-  @GetMapping("/chooseCar")
-  public String chooseCar(HttpSession httpSession ,Model model, WebRequest req) {
-
-    System.out.println(ds.isElectricCar(model, httpSession, req));
-    if(ds.isElectricCar(model, httpSession, req)) {
-
-      return "/DataRegister/electricCarContract";
+        return "/DataRegister/chooseCar";
     }
-    return "/DataRegister/gasCarContract";
-  }
 
-  @GetMapping("/electricCarContract")
-  public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
-    Car car = (Car)httpSession.getAttribute("car");
-    ds.addContract(car, contractReq);
-    return "redirect:/dataHomepage";
-  }
+    @GetMapping("/chooseCar")
+    public String chooseCar(HttpSession httpSession, Model model, WebRequest req) {
 
-  @GetMapping("/gasCarContract")
-  public String gasCarContract(HttpSession carReq, WebRequest contractReq) {
-      Car car = (Car)carReq.getAttribute("car");
+        System.out.println(ds.isElectricCar(model, httpSession, req));
+        if (ds.isElectricCar(model, httpSession, req)) {
 
-    ds.addContract(car, contractReq);
-    return "redirect:/dataHomepage";
-  }
+            return "/DataRegister/electricCarContract";
+        }
+        return "/DataRegister/gasCarContract";
+    }
+
+    @GetMapping("/electricCarContract")
+    public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
+        Car car = (Car) httpSession.getAttribute("car");
+        ds.addContract(car, contractReq);
+        return "redirect:/dataHomepage";
+    }
+
+    @GetMapping("/gasCarContract")
+    public String gasCarContract(HttpSession carReq, WebRequest contractReq) {
+        Car car = (Car) carReq.getAttribute("car");
+
+        ds.addContract(car, contractReq);
+        return "redirect:/dataHomepage";
+    }
 
 
  /*
@@ -87,46 +92,46 @@ public String showContract(HttpSession session){
 
   */
 
-    
-  //Form i dataHomepage
-  @PostMapping("/showcontract")
-  public String showContract(WebRequest req, HttpSession session){
 
-    Contract contract = ds.getOneContract(Integer.parseInt(req.getParameter("contractID")));
-    //System.out.println("test" +contract.getContractID());
-    Car car = ds.getOnecar(contract.getVIN());
+    //Form i dataHomepage
+    @PostMapping("/showcontract")
+    public String showContract(WebRequest req, HttpSession session) {
 
-    Customer customer = ds.getOneCustomer("CustomerID",contract.getCustomerID());
+        Contract contract = ds.getOneContract(Integer.parseInt(req.getParameter("contractID")));
+        //System.out.println("test" +contract.getContractID());
+        Car car = ds.getOnecar(contract.getVIN());
 
-      session.setAttribute("contract",contract);
-      session.setAttribute("contractID", contract.getContractID());
-      session.setAttribute("car",car);
-      session.setAttribute("carVIN",car.getVIN()); //bruges for at update car
-      session.setAttribute("customer",customer);
-      session.setAttribute("date", contract.getStartDate());
-      session.setAttribute("endDate", contract.getEndDate());
-      System.out.println(contract.getContractStatus());
+        Customer customer = ds.getOneCustomer("CustomerID", contract.getCustomerID());
 
-    return "ShowContract";
+        session.setAttribute("contract", contract);
+        session.setAttribute("contractID", contract.getContractID());
+        session.setAttribute("car", car);
+        session.setAttribute("carVIN", car.getVIN()); //bruges for at update car
+        session.setAttribute("customer", customer);
+        session.setAttribute("date", contract.getStartDate());
+        session.setAttribute("endDate", contract.getEndDate());
+        System.out.println(contract.getContractStatus());
 
-  }
+        return "ShowContract";
 
-  //form i ShowContract
-  @PostMapping("/updateCarStatus")
-        public String updateCarStatus(WebRequest req, HttpSession session){
+    }
 
-      //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
+    //form i ShowContract
+    @PostMapping("/updateCarStatus")
+    public String updateCarStatus(WebRequest req, HttpSession session) {
+
+        //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
         ds.updateSingle(req, (Car) session.getAttribute("car"));
 
 
         Car updatedCar = ds.getOnecar(session.getAttribute("carVIN"));
         Contract updatedContract = ds.getOneContract((Integer) session.getAttribute("contractID"));
 
-        session.setAttribute("car",updatedCar);
+        session.setAttribute("car", updatedCar);
         session.setAttribute("contract", updatedContract);
-     
+
 
         return "ShowContract";
-  }
+    }
 
 }
