@@ -1,9 +1,11 @@
-USE data;
+USE
+data;
 
-CREATE TABLE carDamages(
-    reportID int REFERENCES incidentsReports(reportID),
+CREATE TABLE carDamages
+(
+    reportID          int REFERENCES incidentsReports (reportID),
     damageDescription varchar(255),
-    cost int
+    cost              int
 );
 
 insert into carDamages (reportID, damageDescription, cost)
