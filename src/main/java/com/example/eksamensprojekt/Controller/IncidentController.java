@@ -123,6 +123,7 @@ public class IncidentController {
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
         model.addAttribute("currentDamages", incidentsService.findCarDamages(contractID));
+        session.setAttribute("VIN", incidentsService.contract(contractID).getVIN());
 
         return "/DamageRegister/DamagePopup";
     }
@@ -141,17 +142,10 @@ public class IncidentController {
 
     @PostMapping("/endReport")
     public String endReport(WebRequest req, HttpSession session){
-        //hent kontrakt
-    session.setAttribute("VIN", incidentsService.contract(Integer.parseInt(session.getAttribute("contractID").toString())).getVIN());
 
-    req.getParameter("sendVIN");
+    incidentsService.updateSingleCar(req);
 
-        incidentsService.updateSingleCar(req);
-
-
-
-
-        return "redirect:/incidentHomepage";
+        return "redirect:/incidentsHomepage";
     }
 
 }

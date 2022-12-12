@@ -49,7 +49,7 @@ public class IncidentsService {
 
     public void updateSingleCar(WebRequest req ){
 
-        carRepository.updateSingle(req, "carStatus", "VIN", "NOT_RENTED");
+        carRepository.updateSingle(req.getParameter("sendVIN"), "carStatus", "VIN", "NOT_RENTED");
 
     }
 
