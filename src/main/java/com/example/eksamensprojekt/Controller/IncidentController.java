@@ -31,7 +31,7 @@ public class IncidentController {
         session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
         session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
         session.setAttribute("carInContract", incidentsService.getCarRepository());
-        System.out.println("done");
+
 
 
         // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.

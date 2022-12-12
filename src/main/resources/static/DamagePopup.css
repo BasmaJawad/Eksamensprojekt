@@ -142,9 +142,9 @@ button.CreateButton{
 button.DoneButton{
     border-radius: 20px;
     color: white;
-    background-color: darkblue;
+    background-color: #2e4d5f;
     width: 150px;
-    border-color: darkblue;
+    border-color: #2e4d5f;
     height: 30px;
     margin-top: 40px;
     margin-left: 90px;
