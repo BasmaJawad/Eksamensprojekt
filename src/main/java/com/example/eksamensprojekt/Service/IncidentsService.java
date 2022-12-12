@@ -41,6 +41,7 @@ public class IncidentsService {
     public List<CarDamage> findCarDamages(int contractID) {
 
         IncidentReport inRep = incidentRepo.readSingle(contractID);
+        System.out.println(incidentRepo.readSingle(contractID).getReportID());
 
         return carDamageRepository.readDamagesInContract(inRep.getReportID());
 
