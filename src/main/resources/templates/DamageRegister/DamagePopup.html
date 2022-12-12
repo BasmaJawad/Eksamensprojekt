@@ -12,6 +12,7 @@
 
     </style>
 </head>
+
 <body>
 <header id="navbar">
     <div class="wrapper">
@@ -35,56 +36,68 @@
     </div>
 </header>
 <div class="bg">
-    <div>
-        <h1 id="newDamage"> INDTAST SKADE </h1>
 
+<div id="mainDiv">
 
-        <h2>
-            Skaderapport for lejeaftale:
-            <td th:text="${session.contractID}"/>
-        </h2>
+    <h1 style="margin-left: 10px"> INDTAST SKADE </h1>
+    <h2 style="margin-left: 10px">
+        Skaderapport for lejeaftale:
+        <td th:text="${session.contractID}"/>
+    </h2>
 
-        <form action="/addDamage" method="post">
-            <label>
-                <input class="inputB" type="text" name="beskrivelse" placeholder="BESKRIVELSE" required/>
-            </label>
-            <br> <br>
-            <label>
-                <input class="inputP" type="text" name="pris" placeholder="PRIS" required/>
-            </label>
-            <br>
-            <br>
-            <br>
-            <button type="submit" class="CreateButton">Create</button>
-        </form>
+    <div id="leftDiv">
+        <div id = "inputD" >
+            <form  action="/addDamage" method="post">
+                <br>
+                <p2>BESKRIVELSE</p2>
+                <br>
+                <label for ="beskrivelse"></label>
+                <br>
+                <input class="inputB" type="text" name="beskrivelse" required />
+                <br> <br>
+                <p3> PRIS </p3>
+                <br>
+                <label for ="pris" ></label>
+                <input class="inputP" type="text" name="pris" required />
+                <br>
+                <br>
+                <br>
+                <button type="submit" class="CreateButton">TILFØJ</button>
+            </form>
+
+            <form action="/endReport" method="post">
+                <button type="submit" name="sendVIN" class="DoneButton" th:value="${session.VIN}" >AFSLUT</button>
+            </form>
+        </div>
+
     </div>
 
 
-    <table id="myTable" style=" margin-right:20px !important;">
+    <div id="rightDiv">
 
-        <tr class="header">
-            <th style="width:30%;">BESKRIVELSE</th>
-            <th style="width:20%;">PRIS</th>
-        </tr>
 
-        <tr th:each="damage: ${currentDamages}">
+        <table id="myTable" >
 
-            <td th:text="${damage.getDesciption}"/>
+            <tr class="header">
+                <th style="width:90%;">BESKRIVELSE</th>
+                <th style="width:20%;">PRIS</th>
+            </tr>
 
-            <td th:text="${damage.getCost}"/>
+            <tr th:each="damage: ${currentDamages}">
 
-        </tr>
+                <td th:text="${damage.getDesciption}"/>
 
-    </table>
-    <br> <br> <br> <br> <br> <br> <br>
+                <td th:text="${damage.getCost}"/>
 
-    <form action="/endReport" method="post">
-        <button type="submit" name="sendVIN" class="DoneButton" th:value="${session.VIN}">AFSLUT</button>
-    </form>
+            </tr>
 
+        </table>
+
+    </div>
 
 </div>
 
 
-</body>
+     </body>
+
 </html>
