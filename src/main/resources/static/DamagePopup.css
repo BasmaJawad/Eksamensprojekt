@@ -163,6 +163,7 @@ button.DoneButton{
     width: 400px;
     margin-left: 90px;
     border-color: #eaf8fc;
+    font-size: 20px;
 
 }
 .inputP{
@@ -172,6 +173,7 @@ button.DoneButton{
     margin-left: 90px;
     border-color: #eaf8fc;
     margin-top: 40px;
+    font-size: 20px;
 }
 
 p2{
