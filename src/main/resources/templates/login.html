@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="login.css">
@@ -21,7 +21,8 @@
         </div>
         <div id="overlay">
             <div id="logoImg">
-                <img src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_448/v1/Logos/BILABONNEMENT_rgb_mmahqw.png" width="300px">
+                <img src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_448/v1/Logos/BILABONNEMENT_rgb_mmahqw.png"
+                     width="300px">
             </div>
             <br> <br>
             <div id="formcontainer">
@@ -33,15 +34,14 @@
 
                     <label for="password"></label>
                     <input id="password" type="password" name="password" placeholder="Adgangskode" required/>
-
+                    <h2 th:text="${doesntExists}"></h2>
                     <button type="submit">Log ind</button>
                 </form>
+
             </div>
         </div>
 
     </div>
-
 </div>
-
 </body>
 </html>
