@@ -265,9 +265,9 @@ public class ContractRepository implements IRepository {
     }
 
     @Override
-    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
+    public void updateSingle(Object conractID, String columnName, String columnCondition, String updateTo) {
 
-        int contractID = (int) param;
+        int contractID = (int) conractID;
 
 
         String QUARY = "UPDATE contracts SET "+ columnName + " = "+ updateTo + " where "+ columnCondition + " =?";

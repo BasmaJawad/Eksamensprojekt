@@ -7,9 +7,7 @@ div{
     border: #555555 solid 1px;
     border-radius: 10px;
 }
-#rightDiv{
-    float: right;
-}
+
 #popCar{
     width: 100%
 }
@@ -17,11 +15,32 @@ div{
     float: left;
     margin-right: 20px;
 }
-#rightDiv,#leftDiv{
-    border: #555555 solid 1px;
-    border-radius: 10px;
-    width: 47%;
+#rightDiv, #leftDiv{
+    float: left;
+    background-color: #a8bcca;
+    border-radius: 7px;
+    width: 21%;
     height: 600px;
+    margin: 10px;
+
+
+}
+#leftDiv{
+    width: 75%;
+}
+
+
+h2{
+    margin-left: 20px;
+    margin-top: 40px;
+}
+thead {
+    background-color: #2e4d5f;
+    color: white;
+}
+
+tbody {
+    background-color: white;
 }
 table {
     margin: 20px;
@@ -47,6 +66,26 @@ tr {
     border-radius: 20px;
 }
 
+.rightDivDivs {
+    padding: 15px;
+}
+
+.smallbox{
+    height: 165px;
+    margin: 0 10px 25px;
+    background-color: #e3e9ee;
+    border-radius: 7px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+    padding: 30px;
+}
+
+.smallbox span{
+    margin: 20px;
+    font-size: 55px;
+}
+
 tr.header{
     background-color: #daeaed;
     font-weight: bold;
@@ -54,19 +93,8 @@ tr.header{
 }
 * {box-sizing: border-box}
 
-.rightDivDivs{
-    display: inline-block;
-    width: 45%;
-    height: 91%;
-    border: #555555 solid 1px;
-    border-radius: 10px;
-    text-align: center;
-
-}
-.rightDivDivs:hover{
-    transform: scale(1.1);
+.smallbox:hover{
+    transform: scale(1.05);
     transform-origin: center;
 }
-hr {
-    border-top: 3px solid black;
-}
+

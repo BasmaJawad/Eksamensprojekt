@@ -17,6 +17,9 @@ import java.util.List;
 @Controller
 public class IncidentController {
 
+    //Make class inaccessible
+    private IncidentController(){}
+
     IncidentsService incidentsService = new IncidentsService();
 
     // STARTSIDE
@@ -41,7 +44,7 @@ public class IncidentController {
 
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
-        incidentsService.createIncidentReport(contractID);
+        //incidentsService.createIncidentReport(contractID);
 
         return "redirect:/DamagePopup";
     }
@@ -76,7 +79,7 @@ public class IncidentController {
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
         //Hent rapport her
-        //session.setAttribute("report", incidentsService.readReport(contractID));
+        session.setAttribute("report", incidentsService.getOneReport(contractID));
 
 
         IncidentReport incidentReport = incidentsService.getOneReport(contractID);

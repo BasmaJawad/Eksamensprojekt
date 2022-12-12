@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="navBar.css">
-    <link rel="stylesheet" href="businessHP2.css">
+    <link rel="stylesheet" href="Dashboard.css">
     <link rel="stylesheet" href="circleDiagram.css">
     <title>Business</title>
 </head>
@@ -15,7 +15,7 @@
              alt="Bilabonnement">
         <nav>
             <ul>
-                <li><a href="/businessHomepage">Home</a></li>
+                <li><a href="/dashboard">Home</a></li>
                 <li><a href="/listOfRentedCars">Udlejet biler</a></li>
                 <li><a href="/revenueBoard">Økonomi</a></li>
                 <li><a href="/logout">Log out</a></li>
@@ -73,7 +73,7 @@
                 <span>Underskrevet kontakter i dag</span>
             </div>
             <div class="data">
-                <span class="dataTitle"th:text="${endedContractsToday}"></span> <br>
+                <span class="dataTitle" th:text="${endedContractsToday}"></span> <br>
                 <span>Udløbet kontrakter i dag</span>
             </div>
             <div class="data">
@@ -81,7 +81,7 @@
                 <span>Underskrevet kontakter denne måned</span>
             </div>
             <div class="data">
-                <span class="dataTitle"th:text="${cancelledContracts}" ></span><br>
+                <span class="dataTitle" th:text="${cancelledContracts}" ></span><br>
                 <span>Annullerede kontrakter denne måned</span>
             </div>
 
@@ -89,10 +89,19 @@
         </div>
 
         <div class="dataChart2">
-
+            <div id="dataChart2div">
+            <span>Månedlig indtægt</span>
+            <div class="dataTitle" th:text="${totalRevenue}">kr</div>
+            </div>
         </div>
         <div class="dataChart2">
-            <div class="circle-diagram" style="--percent: 40">65%</div>
+            <div id="dataChart2chart">
+            <span>Optaget biler (%)</span>
+            <div class="circle-diagram" th:style="'--percent:'+@{${percent}}+';'">
+                <span th:text="${percent}"/>
+            </div>
+            </div>
+        </div>
         </div>
     </div>
 

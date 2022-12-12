@@ -132,14 +132,14 @@ public class DataService {
             }
 
         }
-        ArrayList<Integer> params = new ArrayList<>();
+        ArrayList<Integer> prices = new ArrayList<>();
 
-        params.add(subScriptionFee);
-        params.add(addKmPrMonthPrice(contract.getKmPrMonth()));
-        params.add(contract.calculateAddOnPrice());
-        params.add(contractRepo.getContractID(contract.getVIN()));
+        prices.add(subScriptionFee);
+        prices.add(addKmPrMonthPrice(contract.getKmPrMonth()));
+        prices.add(contract.calculateAddOnPrice());
+        prices.add(contractRepo.getContractID(contract.getVIN()));
 
-        priceRepo.writeSingle(params);
+        priceRepo.writeSingle(prices);
     }
 
     private int addKmPrMonthPrice(KmPrMonth kmPrMonth) {
@@ -179,10 +179,12 @@ public class DataService {
         //Updates carStatus
         carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
 
-        //Sets contract to dead or cancelled
+        //update contract to dead or cancelled
         contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", contractStatus);
 
+
     }
+
 
     public boolean isElectricCar(Model model, HttpSession httpSession, WebRequest req) {
         Car car;

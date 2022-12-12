@@ -5,7 +5,6 @@ import com.example.eksamensprojekt.Service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
@@ -15,10 +14,16 @@ import java.util.Collections;
 @Controller
 public class AdminController {
 
+    //Make class inaccessible
+    private AdminController(){}
+
     AdminService as = new AdminService();
 
     @GetMapping("/adminHomepage")
-    public String adminHomepage(){
+    public String adminHomepage(Model model){
+
+        model.addAttribute("usersAmount",as.getUsers().size());
+        model.addAttribute("carsAmount",as.getCars().size());
         return "/Admin/adminHomepage";
     }
 
@@ -32,10 +37,12 @@ public class AdminController {
         model.addAttribute("users", users);
 
 
+
         return "/Admin/users";
     }
     @GetMapping("/editUser")
     public String editUser(WebRequest req, Model model, HttpSession session){
+
         String username = req.getParameter("username");
         String userType = req.getParameter("userType");
 
@@ -48,23 +55,15 @@ public class AdminController {
         return "/Admin/editUser";
     }
     @GetMapping("/submitEdit")
-    public String submitEdit(WebRequest req,Model model, HttpSession session){
+    public String submitEdit(WebRequest req, HttpSession session){
 
         as.updateUser(req, session);
-
-        ArrayList<User> users = as.getUsers();
-
-        Collections.sort(users);
-
-        model.addAttribute("users",users);
-
 
         return "redirect:/users";
     }
 
     @GetMapping("/goToAddACarPage")
     public String goToAddACarPage(){
-
         return "/Admin/addACar";
     }
 
@@ -73,14 +72,15 @@ public class AdminController {
 
         as.addCar(req);
 
-
         return "redirect:/adminHomepage";
     }
 
     @GetMapping("/createUser")
-    public String createUser(WebRequest req){
+    public String createUser(WebRequest req, HttpSession session){
 
-        as.createUser(req);
+        if (as.createUser(req)){
+            session.setAttribute("userExists", "Bruger findes allerede");
+        }
 
         return "redirect:/users";
 
@@ -92,7 +92,4 @@ public class AdminController {
 
         return "redirect:/users";
     }
-
-
-
 }

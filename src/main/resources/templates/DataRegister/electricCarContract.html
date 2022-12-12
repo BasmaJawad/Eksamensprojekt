@@ -2,56 +2,113 @@
 <html lang="en" >
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="contractForm.css">
     <title>ElectricCarContrat</title>
 </head>
 <body>
+<header>
+    <div class="wrapper">
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
+        <nav>
+            <ul>
+                <li><a href="/dataHomepage">Home</a></li>
+                <li><a href="/contractPage">Tilføj Lejeaftale</a></li>
+                <li><a href="/logout">Log out</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png"
+                             id="icon">
+                        <span id="username" th:text="${session.user.getUsername()}"></span>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</header>
+<hr>
+
+<h2>lejeaftale</h2>
+<h2>Bil: stelnummer</h2><br>
+
 <form action ="/electricCarContract">
-    <h1> Customer information </h1> <br>
-    <label> name: <input type="text" name="name" required> </label><br>
-    <label> cpr: <input type="text" name="cpr" required> </label><br>
-    <label> email: <input type="text" name="email" required> </label><br>
-    <label> address: <input type="text" name="address" required> </label><br>
-    <label> phonenumber: <input type="text" name="phonenumber" required> </label><br>
-    <label> ZIPcode: <input type="number" name="ZIPcode" required> </label><br>
+    <h1>Kundeinformation</h1> <br>
+    <div id="customerinformation">
+        <div class="customerInput">
+            <label>Fulde Navn</label><br>
+            <input type="text" name="name" required>
+        </div>
+        <div class="customerInput">
+            <label>CPR</label><br>
+            <input type="text" name="cpr" required>
+        </div>
+        <div class="customerInput">
+            <label>Email</label><br>
+            <input type="text" name="email" required>
+        </div>
+        <div class="customerInput">
+            <label>Adresse</label><br>
+            <input type="text" name="address" required>
+        </div>
+        <div class="customerInput">
+            <label>Mobil nr.</label><br>
+            <input type="text" name="phonenumber" required>
+        </div>
+        <div class="customerInput">
+            <label>Postnummer</label><br>
+            <input type="number" name="ZIPcode" required>
+        </div>
+    </div>
 
-    <label>Ekstra KM / Måned <br>
-        <select name="kmPrMonth">
-            <option value="FIFTEEN_HUNDRED">1500 km.... + 0/md.</option>
-            <option value="SEVENTEEN_HUNDRED_AND_FIFTY">1750 km.... + 300kr/md.</option>
-            <option value="TWO_THOUSAND">2000 km.... + 590kr/md.</option>
-            <option value="TWO_THOUSAND_FIVE_HUNDRED">2500 km.... + 1160kr/md.</option>
-            <option value="THREE_THOUSAND">3000 km.... + 1710kr/md.</option>
-            <option value="THREE_THOUSAND_FIVE_HUNDRED">3500 km.... + 2240kr/md.</option>
-            <option value="FOUR_THOUSAND">4000 km.... + 2750kr/md.</option>
-            <option value="FOUR_THOUSAND_FIVE_HUNDRED">4500 km.... + 3240kr/md.</option>
-        </select>
-    </label>
+    <div id="carInformation">
+        <h1>Bil information </h1> <br>
+        <div class="carInput">
+            <label>Ekstra KM / Måned <br>
+                <select name="kmPrMonth">
+                    <option value="FIFTEEN_HUNDRED">1500 km.... + 0/md.</option>
+                    <option value="SEVENTEEN_HUNDRED_AND_FIFTY">1750 km.... + 300kr/md.</option>
+                    <option value="TWO_THOUSAND">2000 km.... + 590kr/md.</option>
+                    <option value="TWO_THOUSAND_FIVE_HUNDRED">2500 km.... + 1160kr/md.</option>
+                    <option value="THREE_THOUSAND">3000 km.... + 1710kr/md.</option>
+                    <option value="THREE_THOUSAND_FIVE_HUNDRED">3500 km.... + 2240kr/md.</option>
+                    <option value="FOUR_THOUSAND">4000 km.... + 2750kr/md.</option>
+                    <option value="FOUR_THOUSAND_FIVE_HUNDRED">4500 km.... + 3240kr/md.</option>
+                </select>
+            </label>
+        </div>
+        <div class="carInput">
+            <label> SubLength: <br>
+                <select name="subLength">
+                    <option value="THREE_MONTHS">3 måneder</option>
+                    <option value="SIX_MONTHS">6 måneder</option>
+                    <option value="TWELVE_MONTHS">12 måneder</option>
+                    <option value="TWENTYFOUR_MONTHS">24 måneder</option>
+                    <option value="THIRTYSIX_MONTHS">36 måneder</option>
+                </select>
+            </label><br>
+        </div>
+        <div class="carInput">
+            <label> Afhentningsted <br>
+                <select name="pickupDestination">
+                    <option value="FDM_AARHUS">Århus</option>
+                    <option value="FMD_VEJLE">Vejle</option>
+                    <option value="FDM_SOENDERBORG">Sønderborg</option>
+                    <option value="FDM_SILKEBORG">Silkeborg</option>
+                    <option value="FDM_ODENSE">Odense</option>
+                    <option value="FDM_NAESTVED">Næstved</option>
+                    <option value="FDM_FREDERICIA">Fredericia</option>
+                    <option value="FDM_AALBORG">Aalborg</option>
+                    <option value="FDM_HILLEROED">Hillerød</option>
+                    <option value="KW_BRUUN">K.W Bruun</option>
+                </select>
+            </label>
+        </div>
+    </div>
 
-    <label> SubLength:
-        <select name="subLength">
-            <option value="THREE_MONTHS">3 måneder</option>
-            <option value="SIX_MONTHS">6 måneder</option>
-            <option value="TWELVE_MONTHS">12 måneder</option>
-            <option value="TWENTYFOUR_MONTHS">24 måneder</option>
-            <option value="THIRTYSIX_MONTHS">36 måneder</option>
-        </select>
-    </label><br>
-
-    <label> Afhentningsted <br>
-        <select name="pickupDestination">
-            <option value="FDM_AARHUS">Århus</option>
-            <option value="FMD_VEJLE">Vejle</option>
-            <option value="FDM_SOENDERBORG">Sønderborg</option>
-            <option value="FDM_SILKEBORG">Silkeborg</option>
-            <option value="FDM_ODENSE">Odense</option>
-            <option value="FDM_NAESTVED">Næstved</option>
-            <option value="FDM_FREDERICIA">Fredericia</option>
-            <option value="FDM_AALBORG">Aalborg</option>
-            <option value="FDM_HILLEROED">Hillerød</option>
-            <option value="KW_BRUUN">K.W Bruun</option>
-        </select>
-    </label>
-
+    <div id="extraInfo">
     <h1>Tilføjelser: </h1> <br>
 
     <label>Viking hjælp ------------- 49kr <input name="vikingHelp" type="checkbox"></label> <br>
@@ -60,9 +117,9 @@
     <label>Komplette vinterhjul ----- 49kr <input name="winterTires" type="checkbox"></label> <br>
     <label>CleverUnlimitedNetwork ----- 625kr <input name="winterTires" type="checkbox"></label> <br>
     <label>CleverUnlimited ----- 749kr <input name="winterTires" type="checkbox"></label> <br>
+    </div>
 
-
-    <button type="submit"> submit </button>
+    <button type="submit">Tilføj Lejeaftale</button>
 </form>
 </body>
 

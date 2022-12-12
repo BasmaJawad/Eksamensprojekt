@@ -21,7 +21,6 @@ public class UsersRepository implements IRepository {
         User newUser = (User) p;
         User oldUser = (User) old;
 
-        String TEST_QUARY = "UPDATE users SET username = 'newUser', userType = 'ADMIN' where (username,userType) = (?,?)";
         String QUARY = "UPDATE users SET username = '" + newUser.getUsername() + "', userType ='" + newUser.getUserType() + "' where (username,userType) = (?,?)";
 
         try {
@@ -49,6 +48,7 @@ public class UsersRepository implements IRepository {
 
     @Override
     public ArrayList<User> readMultiple() {
+
         ArrayList<User> users = new ArrayList<>();
 
 

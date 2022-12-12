@@ -9,14 +9,17 @@
 <body>
 <header id="navbar">
     <div class="wrapper">
-        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
-        <nav >
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
+        <nav>
             <ul>
                 <li><a class="navbarDirections" href="/incidentsHomepage">Home</a></li>
                 <li><a class="navbarDirections" href="/logout">Log out</a></li>
                 <li>
                     <div id="user">
-                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png"
+                             id="icon">
                         <!-- <span id="username" th:text="${session.user.getUsername()}"/> -->
                     </div>
                 </li>
@@ -25,9 +28,6 @@
         </nav>
     </div>
 </header>
-
-
-
 <div class="bg">
 
     <div class="popup-box">
@@ -35,28 +35,39 @@
         <div class="box1">
             <br>
             <p id="headTitle">Rapport information</p>
-            <div class = infoCon>
+            <div class=infoCon>
                 <div class="reportInput">
-                    <label for="contractID">Konkrakt ID</label><br>
-                    <input type="text" name="contractID" class="form-control" th:value="${session.contractID}"
-                           readonly><br>
-                </div>
-                <div class="reportInput">
-                    <label for="VIN">STELNUMMER</label><br>
-                    <input type="text" name="VIN" class="form-control" th:value="${session.VIN}"
-                           readonly><br>
-                </div>
-                <div class="reportInput">
-                    <label for="DATO">DATO</label><br>
-                    <input type="text" name="contractID" class="form-control" th:value="${session.Date}"
-                           readonly><br>
-                </div>
-                <div class="reportInput">
-                    <label for="car">BIL MODEL</label><br>
-                    <input type="text" name="car" class="form-control" th:value="${session.car}"
-                           readonly><br>
-                </div>
+                    <label>Konkrakt ID <br>
+                        <input type="text" name="contractID" class="form-control" th:value="${session.contractID}"
+                               readonly>
+                        <br>
+                    </label>
 
+                </div>
+                <div class="reportInput">
+                    <label>STELNUMMER <br>
+                        <input type="text" name="VIN" class="form-control" th:value="${session.VIN}"
+                               readonly>
+                        <br>
+                    </label>
+                    <br>
+
+                </div>
+                <div class="reportInput">
+                    <label>DATO <br>
+                        <input type="text" name="contractID" class="form-control" th:value="${session.Date}"
+                               readonly>
+                        <br>
+                    </label>
+
+                </div>
+                <div class="reportInput">
+                    <label>BIL MODEL <br>
+                        <input type="text" name="car" class="form-control" th:value="${session.car}"
+                               readonly>
+                        <br>
+                    </label>
+                </div>
             </div>
         </div>
 
@@ -69,25 +80,15 @@
 
                 <tr class="header">
                     <th style="width:20%;">PRIS</th>
-                    <th style="width:20%;">BESKRIVELSE </th>
-
+                    <th style="width:20%;">BESKRIVELSE</th>
                 </tr>
-
-                <tr  th:each="damage:${session.damages}">
+                <tr th:each="damage:${session.damages}">
                     <td th:text="${damage.getCost}">
                     <td th:text="${damage.getDesciption}">
-
-
                 </tr>
-
             </table>
-
-
-
         </div>
     </div>
-
-
 </div>
 </body>
 </html>

@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link rel="stylesheet" href="BusinessPage.css">
     <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="BusinessPage.css">
+
     <meta charset="UTF-8">
     <title>Udlejet biler</title>
 </head>
-<body >
+<body>
 
 <header>
     <div class="wrapper">
-        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
         <nav>
             <ul>
-                <li><a href="/businessHomepage">Home</a></li>
+                <li><a href="/dashboard">Home</a></li>
                 <li><a href="/listOfRentedCars">Udlejet biler</a></li>
                 <li><a href="/revenueBoard">Økonomi</a></li>
                 <li><a href="/logout">Log out</a></li>
@@ -24,14 +27,13 @@
 </header>
 
 <div id="leftDiv" style="overflow-y: scroll; ">
-    <h2>Liste med udlejet biler</h2>
-    <hr>
+    <h2>Liste med udlejede biler</h2>
     <table>
         <thead>
         <tr>
             <td>Brand</td>
             <td>Model</td>
-            <td>Stel-nummer</td>
+            <td>Stelnummer</td>
         </tr>
         </thead>
         <tbody>
@@ -40,44 +42,70 @@
             <td th:text="${car.carModel}"></td>
             <td th:text="${car.VIN}"></td>
         </tr>
-
         </tbody>
+
     </table>
+
     <h2>Biler på lager</h2>
-    <hr>
     <table>
         <thead>
-            <tr>
-                <td>108 Active+ 72 HK</td>
-                <td>208 Active+ 100 HK</td>
-                <td>500e CABRIO Icon Pack 118 HK</td>
-                <td>500e Icon Pack 118 HK</td>
-                <td>C1 Le Mans 72 HK</td>
-                <td>C3 Le Mans 83 HK</td>
-                <td>e-2008 GT Line 136 HK</td>
-            </tr>
+        <tr>
+            <td>108 Active+ 72 HK</td>
+            <td>208 Active+ 100 HK</td>
+            <td>500e CABRIO Icon Pack 118 HK</td>
+            <td>500e Icon Pack 118 HK</td>
+            <td>C1 Le Mans 72 HK</td>
+            <td>C3 Le Mans 83 HK</td>
+            <td>e-2008 GT Line 136 HK</td>
+        </tr>
         </thead>
         <tbody>
-            <tr >
-                <td th:each="amount : ${amountOfCarsPrModel}"><span th:text="${amount}"></span> <span th:if="${amount<5}"><img  width="10px" height="10px" src="https://www.freeiconspng.com/thumbs/alert-icon/alert-icon-red-11.png"></span></td>
-            </tr>
+        <tr>
+            <td th:each="amount : ${amountOfCarsPrModel}"><span th:text="${amount}"></span> <span
+                    th:if="${amount<5}"><img width="10px" height="10px"
+                                             src="https://www.freeiconspng.com/thumbs/alert-icon/alert-icon-red-11.png"></span>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
+
 <div id="rightDiv">
 
-    <div class="rightDivDivs" style="width: 42%;">
+    <div class="rightDivDivs">
+
+        <div class="smallbox">
+            Udlejet Biler <br>
+            <span th:text="${numberOfRentedCars}"/>
+        </div>
+
+        <div class="smallbox">
+            Biler På Værksted<br>
+            <span th:text="${numberOfReturnedCars}"/>
+        </div>
+
+        <div class="smallbox">
+            Ledige Biler<br>
+            <span th:text="${numberOfnotRentedCars}"/>
+        </div>
+
+
+        <!--
         <h2>Antal udlejet biler</h2>
         <hr>
         <h1 th:text="${numberOfRentedCars}"></h1>
         <h1>Hello</h1>
     </div>
-    <div class="rightDivDivs" style="width: 42%">
+    <div class="rightDivDivs">
         <h2>Mest populere bil</h2>
         <hr>
         <h1 th:text="${mostPopularModel}"></h1>
         <img style="width: 150px" th:src="${carImg}">
     </div>
+    -->
+    </div>
 </div>
+
+
 </body>
 </html>

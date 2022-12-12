@@ -12,23 +12,30 @@ import java.util.ArrayList;
 @Controller
 public class BusinessController {
 
+    //Make class inaccessible
+    private BusinessController(){}
+
     BusinessService bs = new BusinessService();
 
-    @GetMapping("/businessHP")
+    @GetMapping("/dashboard")
     public String hp(Model model){
         String mostPopularCarModel =  bs.mostPopularCarModel();
 
         model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
         model.addAttribute("mostPopularModel",mostPopularCarModel);
-        model.addAttribute("rentedCars", bs.getRentedCars());
 
-        model.addAttribute("notRentedCars",bs.getRentedCars());
+        model.addAttribute("rentedCars", bs.getRentedCars());
+        model.addAttribute("notRentedCars",bs.getNotRentedCars());
         model.addAttribute("allContractsAmount",bs.getAllcontracts().size());
+
         model.addAttribute("signedContractsDay", bs.signedContractsDayOrMonth("day"));
         model.addAttribute("signedContractsMonth", bs.signedContractsDayOrMonth("Month"));
         model.addAttribute("endedContractsToday", bs.endedContractsToday());
         model.addAttribute("cancelledContracts", bs.cancelledContractsMonth());
-        return "/BusinessUser/businessHP";
+
+        model.addAttribute("totalRevenue", bs.totalRevenue());
+        model.addAttribute("percent",bs.percentageOfNotAvailableCars());
+        return "/BusinessUser/Dashboard";
     }
 
     //form i businessHomepage
@@ -44,6 +51,8 @@ public class BusinessController {
         model.addAttribute("mostPopularModel", mostPopularCarModel);
         model.addAttribute("numberOfRentedCars", cars.size());
         model.addAttribute("rentedCars", cars);
+        model.addAttribute("numberOfnotRentedCars",bs.getNotRentedCars().size());
+        model.addAttribute("numberOfReturnedCars",bs.getReturnedCars().size());
 
 
 
@@ -56,23 +65,11 @@ public class BusinessController {
         ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
 
-
         model.addAttribute("pricePrContract", list);
         model.addAttribute("totalRevenue", totalRevenue);
 
 
         return "/BusinessUser/revenueBoard";
     }
-    @GetMapping("/businessHomepage")
-    public String businessHomepage(Model model){
-
-        String mostPopularCarModel =  bs.mostPopularCarModel();
-
-        model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
-        model.addAttribute("mostPopularModel",mostPopularCarModel);
-
-        return "/BusinessUser/businessHomepage";
-    }
-
 
 }

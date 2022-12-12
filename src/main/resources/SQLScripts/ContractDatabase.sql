@@ -22,12 +22,8 @@ create table contracts
     vikingHelp        boolean,
     lowDeductible     boolean,
     deliveryInsurance boolean,
+    kmPrMonth         enum ('FIFTEEN_HUNDRED', 'SEVENTEEN_HUNDRED_AND_FIFTY', 'TWO_THOUSAND', 'TWO_THOUSAND_FIVE_HUNDRED', 'THREE_THOUSAND', 'THREE_THOUSAND_FIVE_HUNDRED', 'FOUR_THOUSAND', 'FOUR_THOUSAND_FIVE_HUNDRED'),
+    date              varchar(10),
+    contractStatus    enum ('LIVE','CANCELLED','DEAD'),
     primary key (contractID)
-
 );
-
-
-ALTER TABLE contracts ADD contractStatus ENUM('LIVE', 'DEAD', 'CANCELLED')
-
-
-
