@@ -103,6 +103,11 @@ public String showContract(HttpSession session){
 
         Customer customer = ds.getOneCustomer("CustomerID", contract.getCustomerID());
 
+        if (contract == null || car == null || customer == null){
+            session.setAttribute("error","Fejl");
+            return "redirect:/dataHomepage";
+        }
+
         session.setAttribute("contract", contract);
         session.setAttribute("contractID", contract.getContractID());
         session.setAttribute("car", car);

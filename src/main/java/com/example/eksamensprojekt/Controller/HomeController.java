@@ -5,6 +5,7 @@ import com.example.eksamensprojekt.Model.Enums.UserType;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Service.UsersService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
@@ -25,10 +26,13 @@ public class HomeController {
     }
 
     @PostMapping("/")
-    public String validateLogin(HttpSession session, WebRequest req) {
+    public String validateLogin(HttpSession session, WebRequest req, Model model) {
         User user = us.validateUserLogin(req);
 
-        if (user != null) {
+        if (user == null) {
+            model.addAttribute("doesntExists", "bruger findes ikke");
+            return "login";
+        } else {
             session.setAttribute("user", user);
 
             if (user.getUserType().equals(UserType.DATA))
@@ -39,9 +43,10 @@ public class HomeController {
                 return "redirect:/dashboard";
             else if (user.getUserType().equals(UserType.ADMIN))
                 return "redirect:/adminHomepage";
+
         }
 
-        return "login"; // mangler fejlhåndtering
+        return "login";
     }
 
     @GetMapping("/logout") //bruges i login html pt
