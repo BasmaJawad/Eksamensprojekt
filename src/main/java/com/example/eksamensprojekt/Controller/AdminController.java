@@ -5,7 +5,6 @@ import com.example.eksamensprojekt.Service.AdminService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +20,10 @@ public class AdminController {
     AdminService as = new AdminService();
 
     @GetMapping("/adminHomepage")
-    public String adminHomepage(){
+    public String adminHomepage(Model model){
+
+        model.addAttribute("usersAmount",as.getUsers().size());
+        model.addAttribute("carsAmount",as.getCars().size());
         return "/Admin/adminHomepage";
     }
 

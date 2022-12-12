@@ -66,7 +66,7 @@ public class BusinessService {
         return amount;
     }
 
-    private ArrayList<Car> getNotRentedCars() {
+    public ArrayList<Car> getNotRentedCars() {
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
 
@@ -166,14 +166,16 @@ public class BusinessService {
 
         List<Contract> contracts = getContracts(ContractStatus.CANCELLED);
 
-        int countContractsSignedToday = 0;
+        //Nedstående kode kan kun virke, hvis endDate bliver gemt og updateret i databasen
+       /* int countContractsSignedToday = 0;
         for (Contract contract : contracts) {
             if (contract.getEndDate().getMonthValue() == LocalDate.now().getMonthValue())
                 countContractsSignedToday++;
-
         }
-
         return countContractsSignedToday;
+        */
+
+        return contracts.size();
     }
 
 
@@ -242,4 +244,14 @@ public class BusinessService {
         return filePath;
     }
 
+    public int percentageOfNotAvailableCars(){
+
+        int allContracts = getAllcontracts().size();
+
+        int notRented = getNotRentedCars().size();
+
+
+        int percentageThatIsNotAvailable = (100/allContracts)*(allContracts-notRented);
+        return percentageThatIsNotAvailable;
+    }
 }

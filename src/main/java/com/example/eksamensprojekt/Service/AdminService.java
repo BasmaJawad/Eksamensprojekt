@@ -71,4 +71,9 @@ public class AdminService {
 
         return userRepo.readMultiple();
     }
+
+    public ArrayList<Car> getCars(){
+
+        return carRepo.readMultiple();
+    }
 }

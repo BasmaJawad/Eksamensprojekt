@@ -120,7 +120,7 @@ public String showContract(HttpSession session){
     @PostMapping("/updateCarStatus")
     public String updateCarStatus(WebRequest req, HttpSession session) {
 
-        //opdaterer carstatus fra Renten tol Returned + fra live til DEAD
+        //opdaterer carstatus fra Rented til Returned + fra live til DEAD/cancelled
         ds.updateSingle(req, (Car) session.getAttribute("car"));
 
 
@@ -129,7 +129,6 @@ public String showContract(HttpSession session){
 
         session.setAttribute("car", updatedCar);
         session.setAttribute("contract", updatedContract);
-
 
         return "ShowContract";
     }

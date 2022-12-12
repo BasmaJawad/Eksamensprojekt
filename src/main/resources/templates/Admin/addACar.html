@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="contractForm.css">
+    <link rel="stylesheet" href="addACar.css">
     <title>Title</title>
 </head>
 <body>
@@ -24,18 +26,18 @@
 
 <form action="/addCar">
 
-    <label>Benzin/EL: <select name="carType">
+    <label>Benzin/EL <br> <select name="carType">
         <option value="gas">BENZIN</option>
         <option value="electric">EL</option>
     </select></label> <br>
 
-    <label>Brand: <select name="brand">
+    <label>Bilmærke <br> <select name="brand">
         <option id="Peugeot" value="Peugeot">Peugeot</option>
         <option id="Fiat" value="Fiat">Fiat</option>
         <option id="Citroën" value="Citroën">Citroën</option>
     </select></label> <br>
 
-    <label id="models">Model:
+    <label id="models">Model<br>
         <select name="model">
             <option value="C1 Le Mans 72 HK">Benzin, Citroën, C1 Le Mans 72 HK</option>
             <option value="C3 Le Mans 83 HK">Benzin, Citroën, C3 Le Mans 83 HK</option>
@@ -47,9 +49,9 @@
             <option value="500e CABRIO Icon Pack 118 HK">EL-Bil, Fiat, 500e CABRIO Icon Pack 118 HK</option>
         </select></label> <br>
 
-    <label>Stelnr
-        <input type="text" name="VIN" placeholder="Indtast stelnr" required minlength="17" maxlength="17">
-    </label>
+    <label>Stelnummer<br>
+        <input id="VIN" type="text" name="VIN" placeholder="Indtast stelnr" required minlength="17" maxlength="17">
+    </label><br><br>
 
     <button type="submit">Tilføj bil</button>
 </form>

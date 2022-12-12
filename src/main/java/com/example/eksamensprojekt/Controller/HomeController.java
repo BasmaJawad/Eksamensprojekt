@@ -36,7 +36,7 @@ public class HomeController {
             else if (user.getUserType().equals(UserType.INCIDENT))
                 return "redirect:/incidentsHomepage";
             else if (user.getUserType().equals(UserType.BUSINESS))
-                return "redirect:/businessHomepage";
+                return "redirect:/dashboard";
             else if (user.getUserType().equals(UserType.ADMIN))
                 return "redirect:/adminHomepage";
         }
