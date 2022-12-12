@@ -1,8 +1,10 @@
 use data;
 
-create table contractPrice(
-    contractID int unique ,
-    basePrice int,
+create table contractPrice
+(
+    contractID   int unique,
+    basePrice    int,
     extraKmPrice int,
-    addOnPrices int
+    addOnPrices  int,
+    finalPrice   int
 )

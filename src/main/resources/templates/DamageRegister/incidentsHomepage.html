@@ -7,21 +7,26 @@
 
     <title>Skaderapport</title>
     <style>
-        table {border-collapse: collapse; }
+        table {
+            border-collapse: collapse;
+        }
 
     </style>
 </head>
 <body>
 <header id="navbar">
     <div class="wrapper">
-        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
-        <nav >
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
+        <nav>
             <ul>
                 <li><a class="navbarDirections" href="/incidentsHomepage">Home</a></li>
                 <li><a class="navbarDirections" href="/logout">Log out</a></li>
                 <li>
                     <div id="user">
-                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png"
+                             id="icon">
                         <!-- <span id="username" th:text="${session.user.getUsername()}"/>-->
                     </div>
                 </li>
@@ -32,10 +37,11 @@
 </header>
 
 <div id="topBar" style="margin-left: 50px">
-<button id="AllReports" onclick="window.location='/oldIncidentReports';">All Incident Reports</button>
+    <button id="AllReports" onclick="window.location='/oldIncidentReports';">All Incident Reports</button>
 </div>
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID" style="margin-left: 50px">
+<label>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID" style="margin-left: 50px">
+</label>
 
 <table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
 
@@ -49,12 +55,15 @@
     <tr th:each="contract :${session.contractsWOreports}">
         <td th:text="${contract.getContractID}">
         <td th:text="${contract.getVIN}">
-        <td> <span th:text="${session.carInContract.readSingle(contract.getVIN).getCarBrand()}"/> <br>
+        <td><span th:text="${session.carInContract.readSingle(contract.getVIN).getCarBrand()}"/> <br>
             <span th:text="${session.carInContract.readSingle(contract.getVIN).getCarModel}"/>
         </td>
-        <td> <form action="/incidentsHomepage" method="post">
-        <button type="submit" name="contractID" th:value="${contract.getContractID}"/> TILFØJ RAPPORT
-        </form> </td>
+        <td>
+            <form action="/incidentsHomepage" method="post">
+                <button type="submit" name="contractID" th:value="${contract.getContractID}"></button>
+                TILFØJ RAPPORT
+            </form>
+        </td>
 
     </tr>
 
@@ -84,7 +93,5 @@
         }
     }
 </script>
-
 </body>
-
 </html>

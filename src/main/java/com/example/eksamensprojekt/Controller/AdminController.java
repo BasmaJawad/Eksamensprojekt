@@ -37,6 +37,7 @@ public class AdminController {
         model.addAttribute("users", users);
 
 
+
         return "/Admin/users";
     }
     @GetMapping("/editUser")
@@ -75,9 +76,11 @@ public class AdminController {
     }
 
     @GetMapping("/createUser")
-    public String createUser(WebRequest req){
+    public String createUser(WebRequest req, HttpSession session){
 
-        as.createUser(req);
+        if (as.createUser(req)){
+            session.setAttribute("userExists", "Bruger findes allerede");
+        }
 
         return "redirect:/users";
 

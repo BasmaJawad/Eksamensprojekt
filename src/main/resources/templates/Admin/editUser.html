@@ -9,7 +9,9 @@
 
 <header>
     <div class="wrapper">
-        <img class="main-menu-logo-image___1Ov1X" src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg" alt="Bilabonnement">
+        <img class="main-menu-logo-image___1Ov1X"
+             src="https://res.cloudinary.com/digital-interdan-bilabonnement/image/upload/c_fit,q_80,w_128/v1/Logos/logo_brands_0922_ltj2wu.svg"
+             alt="Bilabonnement">
         <nav id="navbar">
             <ul>
                 <li><a href="/adminHomepage">Home</a></li>
@@ -23,15 +25,20 @@
 <hr>
 
 <form action="/submitEdit">
-    <input id="usertype" style="display: none" type="text" th:value="${userType}">
-    <label>Brugernavn: <input type="text" name="username" th:value="${username}"></label> <br>
-    <label>Brugertype: <select name="userType">
-        <option class="d" value="ADMIN" >ADMIN</option>
-        <option class="d" value="DATA" >DATA</option>
-        <option class="d" value="BUSINESS" >BUSINESS</option>
-        <option class="d" value="INCIDENT" >INCIDENT</option>
-    </select>
+    <label>
+        <input id="usertype" style="display: none" type="text" th:value="${userType}">
+    </label>
+    <label>Brugernavn:
+        <input type="text" name="username" th:value="${username}">
     </label> <br>
+    <label>Brugertype: <select name="userType">
+        <option class="d" value="ADMIN">ADMIN</option>
+        <option class="d" value="DATA">DATA</option>
+        <option class="d" value="BUSINESS">BUSINESS</option>
+        <option class="d" value="INCIDENT">INCIDENT</option>
+    </select>
+    </label>
+    <br>
     <button type="submit">Updater bruger</button>
 </form>
 </body>
@@ -40,7 +47,7 @@
         let e = document.getElementById('usertype')
         let options = document.getElementsByClassName('d')
 
-        switch (e.value){
+        switch (e.value) {
             case options.item(0).value:
                 options.item(0).selected = true;
                 break;
