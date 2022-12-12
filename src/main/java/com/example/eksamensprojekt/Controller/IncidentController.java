@@ -27,24 +27,31 @@ public class IncidentController {
     public String incidentHome(HttpSession session) {
 
         List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
+
         session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
         session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
         session.setAttribute("carInContract", incidentsService.getCarRepository());
+        System.out.println("done");
+
+
         // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.
         return "DamageRegister/incidentsHomepage";
     }
 
 
     //form i incidentHomepage
-    @PostMapping("/incidentsHomepage")
+    @PostMapping("/addIncidentReport")
     public String sendIncidentHome(HttpSession session, WebRequest req) {
         // contractID skal sættes til være den som bliver hentet fra htmlen når man trykker på knappen tilføj
 
         session.setAttribute("contractID", req.getParameter("contractID"));
 
+        System.out.println(req.getParameter("contractID"));
+
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
-        //incidentsService.createIncidentReport(contractID);
+        incidentsService.createIncidentReport(contractID);
+
 
         return "redirect:/DamagePopup";
     }
@@ -125,7 +132,9 @@ public class IncidentController {
     public String inputDamage(Model model, HttpSession session) {
         Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
 
+
         model.addAttribute("currentDamages", incidentsService.findCarDamages(contractID));
+        session.setAttribute("VIN", incidentsService.contract(contractID).getVIN());
 
         return "/DamageRegister/DamagePopup";
     }
@@ -144,17 +153,10 @@ public class IncidentController {
 
     @PostMapping("/endReport")
     public String endReport(WebRequest req, HttpSession session){
-        //hent kontrakt
-    session.setAttribute("VIN", incidentsService.contract(Integer.parseInt(session.getAttribute("contractID").toString())).getVIN());
 
-    req.getParameter("sendVIN");
+    incidentsService.updateSingleCar(req);
 
-        incidentsService.updateSingleCar(req);
-
-
-
-
-        return "redirect:/incidentHomepage";
+        return "redirect:/incidentsHomepage";
     }
 
 }

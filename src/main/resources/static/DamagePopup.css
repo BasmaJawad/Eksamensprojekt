@@ -1,69 +1,192 @@
 body{
+    background: linear-gradient(to right, #daeaed, #8ea2b0);
+    font: normal 15px "Avenir Next";
+    color: #1e1e1e;
+}
+body{
+    margin: 0;
+    padding: 0px 70px 70px;
     font-family: "Lucida Grande" ;
     font-weight: normal;
     text-transform: uppercase;
-    background: white;
-
 }
-#logo{
-
-    margin: auto 0;
-    position: fixed;
-    top: 0;
-
-}
-
-h1{
-   font-weight: bold;
-}
-
-#topBar{
-    width: 100%;
-}
-
-.inputB{
+.main-menu-logo-image___1Ov1X{
     margin-top: 10px;
-    height: 30px;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    border-radius: 20px;
-    width: 250px;
-}
-.inputP{
-    height: 30px;
-    padding: 15px;
-    border-bottom: 1px solid #ddd;
-    width: 100px;
-    border-radius: 20px;
+    width: 350px;
 }
 
+#icon{
+    width: 30px;
+    margin-top: 0;
+}
+#username{
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: none;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    border-bottom: 2px solid black;
+    text-decoration: none;
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding-top: 30px;
+    padding-right: 0px;
+    padding-left: 0px;
+    color: #130f11;
+
+
+}
+
+header {
+    height: 80px;
+    font: normal 18px "Lucida Grande";
+    text-transform: uppercase;
+    margin-bottom: 50px;
+
+}
+hr{
+    margin-bottom: 60px;
+    background-color: grey;
+}
+
+header nav {
+    float: right;
+    margin-top: 0;
+    margin-bottom: 15px;
+
+}
+header nav ul li {
+    float: left;
+    display: inline-block;
+
+    font-weight: 500;
+}
+header nav ul li a {
+    color: #130f11;
+    text-transform: capitalize;
+    font-weight: bold;
+    display: block;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+header{
+    margin-bottom: 50px;
+}
+hr{
+    background-color: white;
+}
+
+
+
+.statistics .box img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    float: left;
+    margin: 10px 10px 10px 15px;
+}
+
+
+.box2{
+    float: left;
+    margin-left: 10px;
+}
+.dataTopTitle{
+    margin: 10px 0 0;
+    font-size: 25px;
+}
+
+
+#rightDiv{
+    float: right;
+}
+#popCar{
+    width: 100%
+}
+
+#rightDiv,#leftDiv{
+    float: left;
+    background: white;
+    margin-top: 20px;
+    margin-bottom: 100px;;
+    border-radius: 10px;
+    width: 47%;
+    height: 600px;
+}
+
+#leftDiv{
+    margin-right: 30px;
+    margin-left: 13px;
+
+}
 button.CreateButton{
     border-radius: 20px;
-    color: lightskyblue;
-    text: white;
-    width: 70px;
+    background-color: #8ea2b0;
+    color: white;
+    border-color: #8ea2b0;
+    width: 150px;
     height: 30px;
+    margin-top: 40px;
+    margin-left: 90px;
+    font-size: 15px;
+
 }
 
 button.DoneButton{
     border-radius: 20px;
-    background: green;
-    text: white;
-    width: 40px;
-    height: 70px;
+    color: white;
+    background-color: darkblue;
+    width: 150px;
+    border-color: darkblue;
+    height: 30px;
+    margin-top: 40px;
+    margin-left: 90px;
+    font-size: 15px;
+
 }
 
-#myTable {
-    margin-right: 10px;
-    border-collapse: collapse;
-    width: 50%;
+#inputD{
+    position: center;
+}
+
+.inputB{
     margin-top: 50px;
-    border: 1px solid #ddd;
-    font-size: 18px;
-    border-radius: 20px;
+    height: 100px;
+    padding: 15px;
+    width: 400px;
+    margin-left: 90px;
+    border-color: #eaf8fc;
 
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+.inputP{
+    height: 15px;
+    padding: 15px;
+    width: 400px;
+    margin-left: 90px;
+    border-color: #eaf8fc;
+    margin-top: 40px;
+}
+
+p2{
+    margin-top: 40px;
+    margin-left: 90px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+p3{
+    margin-top: 20px;
+    margin-left: 90px;
+    font-size: 20px;
+    font-weight: bold;
+}
 
 th, td {
     text-align: left;
@@ -78,8 +201,3 @@ tr {
     border-radius: 20px;
 }
 
-tr.header{
-    background-color: #daeaed;
-    font-weight: bold;
-
-}

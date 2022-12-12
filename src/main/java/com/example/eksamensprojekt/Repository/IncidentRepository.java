@@ -53,12 +53,11 @@ public class IncidentRepository implements IRepository{
 
     @Override
     public IncidentReport readSingle(Object num) {
-
         int contractID = (int) num;
 
         IncidentReport incidentReport = null;
         try {
-            PreparedStatement psts = conn.prepareStatement("SELECT * FROM data.incidentsreports where contractID =?");
+            PreparedStatement psts = conn.prepareStatement("SELECT * FROM incidentsreports where contractID =?");
             psts.setInt(1, contractID);
             ResultSet resultSet = psts.executeQuery();
 

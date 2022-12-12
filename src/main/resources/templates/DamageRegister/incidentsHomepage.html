@@ -22,6 +22,7 @@
         <nav>
             <ul>
                 <li><a class="navbarDirections" href="/incidentsHomepage">Home</a></li>
+                <li><a class="navbarDirections" href="/oldIncidentReports">Rapporter</a></li>
                 <li><a class="navbarDirections" href="/logout">Log out</a></li>
                 <li>
                     <div id="user">
@@ -35,10 +36,8 @@
         </nav>
     </div>
 </header>
+<h1 style="margin-left: 50px"> ALLE TILBAGEREGISTREREDE BILER </h1>
 
-<div id="topBar" style="margin-left: 50px">
-    <button id="AllReports" onclick="window.location='/oldIncidentReports';">All Incident Reports</button>
-</div>
 <label>
     <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID" style="margin-left: 50px">
 </label>
@@ -59,9 +58,9 @@
             <span th:text="${session.carInContract.readSingle(contract.getVIN).getCarModel}"/>
         </td>
         <td>
-            <form action="/incidentsHomepage" method="post">
-                <button type="submit" name="contractID" th:value="${contract.getContractID}"></button>
-                TILFØJ RAPPORT
+            <form action="/addIncidentReport" method="post">
+                <button type="submit" name="contractID" th:value="${contract.getContractID}"> TILFØJ RAPPORT</button>
+
             </form>
         </td>
 
