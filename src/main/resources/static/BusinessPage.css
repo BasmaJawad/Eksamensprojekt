@@ -1,21 +1,24 @@
-div{
+div {
     margin-top: 20px;
 }
-#divHead{
+
+#divHead {
     float: top;
     height: 100px;
     border: #555555 solid 1px;
     border-radius: 10px;
 }
 
-#popCar{
+#popCar {
     width: 100%
 }
-#leftDiv{
+
+#leftDiv {
     float: left;
     margin-right: 20px;
 }
-#rightDiv, #leftDiv{
+
+#rightDiv, #leftDiv {
     float: left;
     background-color: #a8bcca;
     border-radius: 7px;
@@ -25,15 +28,17 @@ div{
 
 
 }
-#leftDiv{
+
+#leftDiv {
     width: 75%;
 }
 
 
-h2{
+h2 {
     margin-left: 20px;
     margin-top: 40px;
 }
+
 thead {
     background-color: #2e4d5f;
     color: white;
@@ -42,6 +47,7 @@ thead {
 tbody {
     background-color: white;
 }
+
 table {
     margin: 20px;
     border-collapse: collapse;
@@ -51,7 +57,10 @@ table {
     border-radius: 20px;
 
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 th, td {
     text-align: left;
@@ -70,7 +79,7 @@ tr {
     padding: 15px;
 }
 
-.smallbox{
+.smallbox {
     height: 165px;
     margin: 0 10px 25px;
     background-color: #e3e9ee;
@@ -81,19 +90,22 @@ tr {
     padding: 30px;
 }
 
-.smallbox span{
+.smallbox span {
     margin: 20px;
     font-size: 55px;
 }
 
-tr.header{
+tr.header {
     background-color: #daeaed;
     font-weight: bold;
 
 }
-* {box-sizing: border-box}
 
-.smallbox:hover{
+* {
+    box-sizing: border-box
+}
+
+.smallbox:hover {
     transform: scale(1.05);
     transform-origin: center;
 }

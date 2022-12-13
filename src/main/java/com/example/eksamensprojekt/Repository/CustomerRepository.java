@@ -40,13 +40,9 @@ public class CustomerRepository implements IRepository {
                         resultSet.getInt("ZIPCode")
                 );
             }
-
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return customer;
     }
 
@@ -82,6 +78,7 @@ public class CustomerRepository implements IRepository {
         return null;
     }
 
+    //William, Albert
     @Override
     public void writeSingle(Object param) {
 
@@ -105,28 +102,16 @@ public class CustomerRepository implements IRepository {
         }
     }
 
-    @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
     }
 
-    @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void deleteSingle(Object param) {
 
     }
 
-    @Override
-    public void deleteMultiple(ArrayList objects) {
-
-    }
 }

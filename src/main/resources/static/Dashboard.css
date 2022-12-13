@@ -1,14 +1,15 @@
-body{
+body {
     background: -webkit-linear-gradient(to right, #daeaed, #8ea2b0);
     background: linear-gradient(to right, #daeaed, #8ea2b0);
     font: normal 15px "Avenir Next";
     color: #1e1e1e;
 }
 
-header{
+header {
     margin-bottom: 50px;
 }
-hr{
+
+hr {
     background-color: white;
 }
 
@@ -35,28 +36,30 @@ hr{
 }
 
 
-.box2{
+.box2 {
     float: left;
     margin-left: 10px;
 }
-.dataTopTitle{
+
+.dataTopTitle {
     margin: 10px 0 0;
     font-size: 25px;
 }
 
-.dataTopTitle span{
+.dataTopTitle span {
     font-size: 18px;
     font-weight: 550;
 }
 
-#rightDiv{
+#rightDiv {
     float: right;
 }
-#popCar{
+
+#popCar {
     width: 100%
 }
 
-#rightDiv,#mostpopCarDiv{
+#rightDiv, #mostpopCarDiv {
     float: left;
     background-color: #809bad;
     margin-top: 20px;
@@ -66,22 +69,22 @@ hr{
     height: 600px;
 }
 
-#mostpopCarDiv{
+#mostpopCarDiv {
     margin-right: 30px;
     margin-left: 13px;
 }
 
-#popcarTitle{
+#popcarTitle {
     margin: 50px;
     font-size: 25px;
 }
 
-#popcarTitle span{
+#popcarTitle span {
     font-size: 40px;
 }
 
 
-.dataChart{
+.dataChart {
     height: 91%;
     width: 45%;
     background-color: #abc1d0;
@@ -91,7 +94,7 @@ hr{
 
 }
 
-.dataChart2{
+.dataChart2 {
     height: 43.5%;
     margin-top: 25px;
     background-color: #abc1d0;
@@ -102,29 +105,31 @@ hr{
     align-content: center;
     font-weight: 700;
 }
-#dataChart2div{
+
+#dataChart2div {
     margin-top: 80px;
 }
-#dataChart2div .dataTitle{
+
+#dataChart2div .dataTitle {
     font-size: 55px;
     color: #2e2e63;
 }
 
-#dataChart2chart{
+#dataChart2chart {
     margin-top: 20px;
 }
 
-.data{
+.data {
     font-weight: bold;
     padding: 20px;
     margin: 0;
 }
 
-.dataTitle{
+.dataTitle {
     font-size: 40px;
 }
 
-.dataLine{
+.dataLine {
     width: 90%;
     margin: 0;
     margin-left: 5px;
@@ -132,7 +137,7 @@ hr{
 
 }
 
-#top_x_div{
+#top_x_div {
     background-color: #130f11;
 }
 

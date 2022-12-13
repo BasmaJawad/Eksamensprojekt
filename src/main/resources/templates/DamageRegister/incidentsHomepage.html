@@ -2,11 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link type="text/css" rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="tables.css">
 
+    <!-- Lavet af Jawaahir  -->
 
     <title>Skaderapport</title>
     <style>
@@ -44,7 +47,8 @@
 <h1 style="margin-left: 50px"> ALLE TILBAGEREGISTREREDE BILER </h1>
 
 <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
         Filter
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -80,7 +84,9 @@
         </td>
         <td>
             <form action="/endReport" method="post">
-                <button onclick="return confirm('Er du sikker');" type="submit" name="sendVIN" class="DoneButton" th:value="${data.key.getVIN()}" >AFSLUT</button>
+                <button onclick="return confirm('Er du sikker');" type="submit" name="sendVIN" class="DoneButton"
+                        th:value="${data.key.getVIN()}">AFSLUT
+                </button>
             </form>
         </td>
 

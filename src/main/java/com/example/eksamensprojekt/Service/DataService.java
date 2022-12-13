@@ -22,6 +22,7 @@ public class DataService {
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
+    //William, Albert
     public void addContract(Car car, WebRequest contractReq) {
 
         SubLenght subLenght = SubLenght.valueOf(contractReq.getParameter("subLength"));
@@ -69,15 +70,18 @@ public class DataService {
     }
 
 
+    //Albert
     public ArrayList<Car> getAllAvailableCars() {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
         carStatus.add(CarStatus.NOT_RENTED);
         return carRepository.readMultiple(carStatus, "carStatus");
     }
-    public HashMap<Contract,Car> getContractCarMap(){
 
-        HashMap<Contract,Car> contractCarMap = new HashMap<>();
+    //Albert, Basma
+    public HashMap<Contract, Car> getContractCarMap() {
+
+        HashMap<Contract, Car> contractCarMap = new HashMap<>();
 
         ArrayList<Contract> contracts = contractRepo.readMultiple();
         ArrayList<Car> cars = carRepository.readMultiple();
@@ -92,7 +96,7 @@ public class DataService {
         return contractCarMap;
     }
 
-
+    //William
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int subScriptionFee = 0;
         switch (car.getCarModel()) {
@@ -132,6 +136,7 @@ public class DataService {
         priceRepo.writeSingle(prices);
     }
 
+    //William
     private int addKmPrMonthPrice(KmPrMonth kmPrMonth) {
 
         int price = 0;
@@ -160,7 +165,8 @@ public class DataService {
         return customerRepo.findOneCustomer(column, val);
     }
 
-    public void updateSingle(WebRequest req, Car car){
+
+    public void updateSingle(WebRequest req, Car car) {
 
         String contractStatus = req.getParameter("ContractStatus");
 
@@ -170,10 +176,11 @@ public class DataService {
         carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
 
         //update contract to dead or cancelled
-        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", contractStatus);
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()), "contractStatus", "contractID", contractStatus);
     }
 
 
+    //William
     public boolean isElectricCar(Model model, HttpSession httpSession, WebRequest req) {
         Car car;
         car = carRepository.readSingle(req.getParameter("car"));

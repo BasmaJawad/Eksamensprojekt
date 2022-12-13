@@ -1,3 +1,4 @@
+/* Lavet af Basma og Jaw */
 body{
     font-family: "Lucida Grande" ;
     font-weight: normal;
@@ -8,26 +9,27 @@ body{
 
 
 }
-.container{
+
+.container {
     height: 100%;
     width: 100%;
 }
 
-#login_img{
+#login_img {
     width: 100%;
     padding: 0;
     margin: 0 auto;
 
 }
 
-#carimg{
+#carimg {
     filter: grayscale(100%);
     height: 100%;
     width: 100%;
 
 }
 
-#imgCol{
+#imgCol {
 
     width: 100%;
     height: 100%;
@@ -40,7 +42,7 @@ body{
 
 }
 
-#logIn{
+#logIn {
 
     padding: 0px;
     margin: 0px;
@@ -49,13 +51,13 @@ body{
     top: 0;
 }
 
-hr{
+hr {
     font-weight: 900;
 
 }
 
 
-#overlay{
+#overlay {
 
     width: 60%;
     height: 110%;
@@ -69,7 +71,7 @@ hr{
     align-items: center;
     justify-content: center;
     text-align: center;
-   padding-top: 230px;
+    padding-top: 230px;
 
 }
 
@@ -93,7 +95,7 @@ input {
     height: 30px;
 }
 
-button{
+button {
     color: #fff;
     text-transform: uppercase;
     background: linear-gradient(to right, #daeaed, #8ea2b0);
@@ -104,11 +106,12 @@ button{
     width: 200px;
     font-size: 15px;
 }
-button:hover{
+
+button:hover {
     background-color: cornflowerblue;
 }
 
-h2{
+h2 {
     color: black;
 
 }

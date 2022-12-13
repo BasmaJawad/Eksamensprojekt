@@ -1,4 +1,5 @@
 package com.example.eksamensprojekt.Service;
+
 import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Cars.ElectricCar;
 import com.example.eksamensprojekt.Model.Cars.GasCar;
@@ -8,6 +9,7 @@ import com.example.eksamensprojekt.Model.User;
 import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.UsersRepository;
 import org.springframework.web.context.request.WebRequest;
+
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -16,18 +18,19 @@ public class AdminService {
     UsersRepository userRepo = new UsersRepository();
     CarRepository carRepo = new CarRepository();
 
-
+    //Albert
     public void updateUser(WebRequest req, HttpSession session) {
 
         String username = req.getParameter("username");
         String userType = req.getParameter("userType");
 
-        User updatedUser = new User(username,null, UserType.valueOf(userType));
-        User oldUser = new User((String) session.getAttribute("oldUsername"),null,UserType.valueOf((String) session.getAttribute("oldUserType")));
+        User updatedUser = new User(username, null, UserType.valueOf(userType));
+        User oldUser = new User((String) session.getAttribute("oldUsername"), null, UserType.valueOf((String) session.getAttribute("oldUserType")));
 
         userRepo.update(updatedUser, oldUser);
     }
 
+    //Albert
     public void addCar(WebRequest req) {
 
         String carType = req.getParameter("carType");
@@ -37,23 +40,24 @@ public class AdminService {
 
         Car car;
 
-        if (carType.equals("gas")){
-            car = new GasCar(carModel,carBrand,VIN, CarStatus.NOT_RENTED);
+        if (carType.equals("gas")) {
+            car = new GasCar(carModel, carBrand, VIN, CarStatus.NOT_RENTED);
         } else {
-            car = new ElectricCar(carModel,carBrand,VIN, CarStatus.NOT_RENTED);
+            car = new ElectricCar(carModel, carBrand, VIN, CarStatus.NOT_RENTED);
         }
 
         carRepo.writeSingle(car);
 
     }
 
+    //Albert
     public boolean createUser(WebRequest req) {
 
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         UserType usertype = UserType.valueOf(req.getParameter("usertype"));
 
-        User user = new User(username,password,usertype);
+        User user = new User(username, password, usertype);
 
         ArrayList<User> users = userRepo.readMultiple();
 
@@ -67,6 +71,7 @@ public class AdminService {
         return false;
     }
 
+    //Albert
     public void deleteUser(WebRequest req) {
 
         String username = req.getParameter("username");
@@ -75,12 +80,14 @@ public class AdminService {
 
     }
 
-    public ArrayList<User> getUsers(){
+    //Albert
+    public ArrayList<User> getUsers() {
 
         return userRepo.readMultiple();
     }
 
-    public ArrayList<Car> getCars(){
+    //Basma
+    public ArrayList<Car> getCars() {
 
         return carRepo.readMultiple();
     }

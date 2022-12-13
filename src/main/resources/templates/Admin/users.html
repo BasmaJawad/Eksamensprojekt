@@ -3,8 +3,9 @@
 <head>
     <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="AdminCSS.css">
+    <link rel="stylesheet" href="contractForm.css">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Tilføj bruger</title>
 </head>
 <body>
 
@@ -41,12 +42,12 @@
         <td th:text="${user.userType}"></td>
         <td>
             <form action="/editUser">
-                <label>
+
                     <input name="username" type="text" style="display: none">
-                </label>
-                <label>
+
+
                     <input name="userType" type="text" style="display: none">
-                </label>
+
                 <button onclick="makeEditForm(this)" type="submit"><img src="/Images/Edit.jpg" height="20px"
                                                                         width="20px"></button>
             </form>

@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="navBar.css">
+    <link rel="stylesheet" href="contractForm.css">
     <meta charset="UTF-8">
     <title>Rediger bruger</title>
 </head>
@@ -23,13 +24,13 @@
     </div>
 </header>
 <hr>
-
+<h1>Rediger bruger</h1>
 <form action="/submitEdit">
     <label>
-        <input id="usertype" style="display: none" type="text" th:value="${userType}">
+        <input id="usertype" style="display: none" type="text" th:value="${session.oldUserType}">
     </label>
     <label>Brugernavn:
-        <input type="text" name="username" th:value="${username}">
+        <input  id="user" type="text" name="username" th:value="${username}">
     </label> <br>
     <label>Brugertype: <select name="userType">
         <option class="d" value="ADMIN">ADMIN</option>

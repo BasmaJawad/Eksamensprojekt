@@ -16,6 +16,7 @@ public class UsersRepository implements IRepository {
     private Connection conn = DCM.getConnection();
 
 
+    //Albert
     public void update(Object p, Object old) {
 
         User newUser = (User) p;
@@ -25,8 +26,8 @@ public class UsersRepository implements IRepository {
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
-            ptst.setString(1,oldUser.getUsername());
-            ptst.setString(2,String.valueOf(oldUser.getUserType()));
+            ptst.setString(1, oldUser.getUsername());
+            ptst.setString(2, String.valueOf(oldUser.getUserType()));
 
             ptst.executeUpdate();
 
@@ -43,7 +44,7 @@ public class UsersRepository implements IRepository {
     @Override
     public ArrayList<User> readMultiple(ArrayList conditions, String columnName) {
 
-       return null;
+        return null;
     }
 
     @Override
@@ -84,9 +85,9 @@ public class UsersRepository implements IRepository {
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-            ptst.setString(1,user.getUsername());
-            ptst.setString(2,user.getPassword());
-            ptst.setString(3,String.valueOf(user.getUserType()));
+            ptst.setString(1, user.getUsername());
+            ptst.setString(2, user.getPassword());
+            ptst.setString(3, String.valueOf(user.getUserType()));
 
             ptst.executeUpdate();
 
@@ -96,19 +97,10 @@ public class UsersRepository implements IRepository {
     }
 
     @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
-
-    @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
     }
 
-    @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void deleteSingle(Object param) {
@@ -120,7 +112,7 @@ public class UsersRepository implements IRepository {
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-            ptst.setString(1,username);
+            ptst.setString(1, username);
             ptst.executeUpdate();
 
         } catch (SQLException e) {
@@ -128,8 +120,4 @@ public class UsersRepository implements IRepository {
         }
     }
 
-    @Override
-    public void deleteMultiple(ArrayList objects) {
-
-    }
 }

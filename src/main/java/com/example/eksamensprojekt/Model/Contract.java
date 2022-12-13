@@ -10,7 +10,7 @@ import java.time.LocalDate;
 public class Contract {
 
     private LocalDate startDate, endDate;
-    private int contractID ,finalPrice, customerID;
+    private int contractID, finalPrice, customerID;
     private String VIN;
     private SubLenght subLenght; //months
     private KmPrMonth kmPrMonth;
@@ -36,6 +36,7 @@ public class Contract {
         setEndDate();
 
     }
+
     //Constructor with contractID, used when reading contracts
     public Contract(int contractID, String VIN, SubLenght subLenght, int customerID, PickupDestination pickupDestination, boolean vikingHelp, boolean deliveryInsurance, boolean lowDeductible, boolean winterTires, KmPrMonth kmPrMonth, LocalDate startDate, ContractStatus contractStatus) {
         this.contractID = contractID;
@@ -54,7 +55,7 @@ public class Contract {
 
     }
 
-    public int calculateAddOnPrice(){
+    public int calculateAddOnPrice() {
 
         int price = 0;
 
@@ -65,10 +66,12 @@ public class Contract {
 
         return price;
     }
-    public void setContractStatus(ContractStatus contractStatus){
+
+    public void setContractStatus(ContractStatus contractStatus) {
         this.contractStatus = contractStatus;
     }
-    public ContractStatus getContractStatus(){
+
+    public ContractStatus getContractStatus() {
         return contractStatus;
     }
 
@@ -154,19 +157,21 @@ public class Contract {
         this.winterTires = winterTires;
     }
 
-    public KmPrMonth getKmPrMonth(){
+    public KmPrMonth getKmPrMonth() {
         return this.kmPrMonth;
     }
 
     public LocalDate getStartDate() {
         return this.startDate;
     }
-    public LocalDate getEndDate(){
+
+    public LocalDate getEndDate() {
         return endDate;
     }
-    private void setEndDate(){
 
-        switch (subLenght){
+    private void setEndDate() {
+
+        switch (subLenght) {
             case THREE_MONTHS -> endDate = startDate.plusMonths(3);
             case SIX_MONTHS -> endDate = startDate.plusMonths(6);
             case TWELVE_MONTHS -> endDate = startDate.plusMonths(12);
@@ -176,8 +181,8 @@ public class Contract {
 
     }
 
-    public String getSubLenghtConverted(){
-        switch (subLenght){
+    public String getSubLenghtConverted() {
+        switch (subLenght) {
             case THREE_MONTHS -> {
                 return "3 Måneder";
             }
@@ -197,37 +202,30 @@ public class Contract {
         return String.valueOf(subLenght);
     }
 
-    public String getKmPrMonthConverted(){
-        switch (kmPrMonth){
+    public String getKmPrMonthConverted() {
+        switch (kmPrMonth) {
             case FIFTEEN_HUNDRED -> {
                 return "1500 km/måned";
             }
-            case SEVENTEEN_HUNDRED_AND_FIFTY ->
-            {
+            case SEVENTEEN_HUNDRED_AND_FIFTY -> {
                 return "1750 km/måned";
             }
-            case TWO_THOUSAND ->
-            {
+            case TWO_THOUSAND -> {
                 return "2000 km/måned";
             }
-            case TWO_THOUSAND_FIVE_HUNDRED ->
-            {
+            case TWO_THOUSAND_FIVE_HUNDRED -> {
                 return "2500 km/måned";
             }
-            case THREE_THOUSAND->
-            {
+            case THREE_THOUSAND -> {
                 return "3000 km/måned";
             }
-            case THREE_THOUSAND_FIVE_HUNDRED->
-            {
+            case THREE_THOUSAND_FIVE_HUNDRED -> {
                 return "3500 km/måned";
             }
-            case FOUR_THOUSAND->
-            {
+            case FOUR_THOUSAND -> {
                 return "4000 km/måned";
             }
-            case FOUR_THOUSAND_FIVE_HUNDRED->
-            {
+            case FOUR_THOUSAND_FIVE_HUNDRED -> {
                 return "4500 km/måned";
             }
         }
@@ -236,7 +234,7 @@ public class Contract {
 
     @Override
     public String toString() {
-        return customerID + "\n" + VIN  + "\n" + subLenght.toString();
+        return customerID + "\n" + VIN + "\n" + subLenght.toString();
     }
 
 }

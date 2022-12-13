@@ -14,20 +14,22 @@ import java.util.HashMap;
 public class BusinessController {
 
     //Make class inaccessible
-    private BusinessController(){}
+    //Albert
+    private BusinessController() {
+    }
 
     BusinessService bs = new BusinessService();
 
     @GetMapping("/dashboard")
-    public String hp(Model model){
-        String mostPopularCarModel =  bs.mostPopularCarModel();
+    public String hp(Model model) {
+        String mostPopularCarModel = bs.mostPopularCarModel();
 
         model.addAttribute("carImg", bs.getCarImg(mostPopularCarModel));
-        model.addAttribute("mostPopularModel",mostPopularCarModel);
+        model.addAttribute("mostPopularModel", mostPopularCarModel);
 
         model.addAttribute("rentedCars", bs.getRentedCars());
-        model.addAttribute("notRentedCars",bs.getNotRentedCars());
-        model.addAttribute("allContractsAmount",bs.getAllcontracts().size());
+        model.addAttribute("notRentedCars", bs.getNotRentedCars());
+        model.addAttribute("allContractsAmount", bs.getAllcontracts().size());
 
         model.addAttribute("signedContractsDay", bs.signedContractsDayOrMonth("day"));
         model.addAttribute("signedContractsMonth", bs.signedContractsDayOrMonth("Month"));
@@ -35,11 +37,12 @@ public class BusinessController {
         model.addAttribute("cancelledContracts", bs.cancelledContractsMonth());
 
         model.addAttribute("totalRevenue", bs.totalRevenue());
-        model.addAttribute("percent",bs.percentageOfNotAvailableCars());
+        model.addAttribute("percent", bs.percentageOfNotAvailableCars());
         return "/BusinessUser/Dashboard";
     }
 
     //form i businessHomepage
+    //Albert
     @GetMapping("/listOfRentedCars")
     public String listOfRentedCars(Model model) {
 
@@ -52,18 +55,18 @@ public class BusinessController {
         model.addAttribute("mostPopularModel", mostPopularCarModel);
         model.addAttribute("numberOfRentedCars", cars.size());
         model.addAttribute("rentedCars", cars);
-        model.addAttribute("numberOfnotRentedCars",bs.getNotRentedCars().size());
-        model.addAttribute("numberOfReturnedCars",bs.getReturnedCars().size());
-
+        model.addAttribute("numberOfnotRentedCars", bs.getNotRentedCars().size());
+        model.addAttribute("numberOfReturnedCars", bs.getReturnedCars().size());
 
 
         return "/BusinessUser/listOfRentedCars";
     }
 
+    //Albert
     @GetMapping("/revenueBoard")
     public String revenueBoard(Model model) {
 
-        HashMap<String,ContractPrice> list = bs.listOfPricesPrCar();
+        HashMap<String, ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
 
         model.addAttribute("pricePrContract", list);

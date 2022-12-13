@@ -9,9 +9,10 @@ public class DCM {
     private static String hostname, username, password;
     private static Connection conn;
 
-    public static Connection getConnection(){
+    //Albert
+    public static Connection getConnection() {
 
-        if (conn != null){
+        if (conn != null) {
             return conn;
         }
         hostname = System.getenv("hostname");
@@ -19,7 +20,7 @@ public class DCM {
         password = System.getenv("password");
 
         try {
-            conn = DriverManager.getConnection(hostname,username,password);
+            conn = DriverManager.getConnection(hostname, username, password);
 
         } catch (SQLException e) {
             System.out.println("Connection failed");
