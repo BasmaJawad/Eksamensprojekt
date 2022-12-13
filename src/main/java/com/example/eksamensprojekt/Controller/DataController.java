@@ -76,6 +76,22 @@ public class DataController {
     }
 
 
+@GetMapping("/showcontract")
+public String showContract(HttpSession session){
+
+
+    session.getAttribute("contract");
+    session.getAttribute("contractID");
+    session.getAttribute("car");
+    session.getAttribute("carVIN"); //bruges for at update car
+    session.getAttribute("customer");
+    session.getAttribute("date");
+    session.getAttribute("endDate");
+
+        return "/DataRegister/ShowContract";
+}
+
+
     //Form i dataHomepage
     @PostMapping("/showcontract")
     public String showContract(WebRequest req, HttpSession session) {
@@ -100,7 +116,7 @@ public class DataController {
         session.setAttribute("endDate", contract.getEndDate());
         System.out.println(contract.getContractStatus());
 
-        return "ShowContract";
+        return "/DataRegister/ShowContract";
 
     }
 
@@ -118,7 +134,7 @@ public class DataController {
         session.setAttribute("car", updatedCar);
         session.setAttribute("contract", updatedContract);
 
-        return "ShowContract";
+        return "/DataRegister/ShowContract";
     }
 
 }

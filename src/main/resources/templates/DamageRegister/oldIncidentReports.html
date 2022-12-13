@@ -7,7 +7,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="navBar.css">
     <link rel="stylesheet" href="incidentHomepage.css">
-    <link rel="stylesheet" href="oldIncidentreport.css">
+    <link rel="stylesheet" href="tables.css">
 
     <title>Alle Rapporter</title>
 </head>
@@ -43,13 +43,13 @@
         Filter
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#" onclick="myFunction()">Kontrakt ID</a>
-        <a class="dropdown-item" href="#" onclick="myFunction2()">Stelnummer</a>
-        <a class="dropdown-item" href="#" onclick="myFunction3()">Bil</a>
+        <a class="dropdown-item" href="#" onclick="searchfilter(0)">Kontrakt ID</a>
+        <a class="dropdown-item" href="#" onclick="searchfilter(1)">Stelnummer</a>
+        <a class="dropdown-item" href="#" onclick="searchfilter(2)">Bil</a>
     </div>
 </div>
 
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Indtast kontrakt-ID eller stel-nr">
+<input type="text" id="myInput" onkeyup="searchfilter(0)" placeholder="Kontrakt-ID eller stel-nr">
 
 <table id="myTable" style="margin-left: 50px !important; margin-right:20px !important;">
 
@@ -75,7 +75,8 @@
 </table>
 
 <script>
-    function myFunction() {
+
+    function searchfilter(x) {
         // Declare variables
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("myInput");
@@ -86,7 +87,8 @@
 
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
+            td = tr[i].getElementsByTagName("td")[x]
+
             if (td) {
                 txtValue = td.textContent || td.innerText;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -98,51 +100,6 @@
         }
     }
 
-    function myFunction2() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-
-    function myFunction3() {
-        // Declare variables
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-
-        tr = table.getElementsByTagName("tr");
-
-        // Loop through all table rows, and hide those who don't match the search query
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[2];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
 </script>
 
 

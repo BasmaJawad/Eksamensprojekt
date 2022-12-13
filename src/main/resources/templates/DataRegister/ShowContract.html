@@ -68,7 +68,7 @@
                 </p>
             </div>
 
-            <br><br><br> <br><br>
+            <br><br><br> <br>
 
             <div class="container" id="storBox">
                 <div class="panel-heading">Bil oplysninger</div>
@@ -170,16 +170,16 @@
 
         <div id="carStatusContainter">
 
-            <button class="buttons" id="carStatus"><span id="carStatusSpan">Bil Status: </span>
-                <td th:text="${session.car.getCarStatus()}"/>
-            </button>
+            <span th:if="${session.car.getCarStatus().name()=='RENTED' and session.contract.getContractStatus().name()=='LIVE'}">
 
-            <span th:if="${session.car.getCarStatus().name()=='RENTED'}">
+            <button class="buttons" id="carStatus"><span id="carStatusSpan">Bil Status: </span>
+            <td th:text="${session.car.getCarStatus()}"/>
+            </button>
 
             <form action="/updateCarStatus" method="post">
                 <input type="hidden" name="carStatus" value="RETURNED"/>
                 <input type="hidden" name="ContractStatus" value="'DEAD'"/>
-                <button onclick="return confirm('Er du sikker');" class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
+                <button onclick="return confirm('Vil du afslutte lejeaftale?');" class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
 
             </form>
 
@@ -187,8 +187,7 @@
 
                         <input type="hidden" name="carStatus" value="RETURNED"/>
                         <input type="hidden" name="ContractStatus" value="'CANCELLED'"/>
-                        <button onclick="return confirm('Er du sikker');" class="buttons" id="cancelContract"
-                                type="submit">Annuller lejeaftale</button>
+                        <button onclick="return confirm('Vil du annullere lejeaftale?');"  class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
 
             </form>
              </span>
