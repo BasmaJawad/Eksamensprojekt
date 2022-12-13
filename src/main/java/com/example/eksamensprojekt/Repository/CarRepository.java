@@ -20,8 +20,8 @@ public class CarRepository implements IRepository {
     @Override
     public Car readSingle(Object param) {
         String VIN = (String) param;
-        String QUARY_GAS = "SELECT * from data.gascar where VIN = ?";
 
+        String QUARY_GAS = "SELECT * from data.gascar where VIN = ?";
 
         try {
             GasCar gasCar = null;
@@ -187,9 +187,6 @@ public class CarRepository implements IRepository {
         return cars;
     }
 
-
-
-
     @Override
     public void writeSingle(Object param) {
 
@@ -241,11 +238,6 @@ public class CarRepository implements IRepository {
         }
     }
 
-    @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
-
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
@@ -278,17 +270,8 @@ public class CarRepository implements IRepository {
     }
 
     @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
-
-    @Override
     public void deleteSingle(Object param) {
 
     }
 
-    @Override
-    public void deleteMultiple(ArrayList objects) {
-
-    }
 }

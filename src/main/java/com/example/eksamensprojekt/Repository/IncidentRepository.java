@@ -15,7 +15,6 @@ public class IncidentRepository implements IRepository{
 
     private Connection conn = DCM.getConnection();
 
-
     public List<IncidentReport> readAll(){ //Læaser
 
         List<IncidentReport> incidentReports = new ArrayList<>();
@@ -41,14 +40,6 @@ public class IncidentRepository implements IRepository{
         }
 
         return incidentReports;
-    }
-
-
-    public ArrayList<Contract> findContractsWithIncidentReport(ArrayList<Contract> contracts){
-
-
-
-        return null;
     }
 
     @Override
@@ -108,18 +99,9 @@ public class IncidentRepository implements IRepository{
         }
     }
 
-    @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
-
-    }
-
-    @Override
-    public void updateMultiple(ArrayList objects) {
 
     }
 
@@ -128,8 +110,4 @@ public class IncidentRepository implements IRepository{
 
     }
 
-    @Override
-    public void deleteMultiple(ArrayList objects) {
-
-    }
 }

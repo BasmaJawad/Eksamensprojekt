@@ -45,8 +45,7 @@ public class CarDamageRepository implements IRepository{
           PreparedStatement psts = conn.prepareStatement("SELECT MAX(reportID) FROM incidentsreports");
           ResultSet resultSet = psts.executeQuery();
           while ((resultSet.next())){
-              int reportID = resultSet.getInt(1);
-              return reportID;
+              return resultSet.getInt(1);
           }
       } catch (SQLException e) {
           throw new RuntimeException(e);
@@ -87,29 +86,12 @@ public class CarDamageRepository implements IRepository{
             throw new RuntimeException(e);
         }
     }
-
-    @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
-
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
     }
-
-    @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
-
     @Override
     public void deleteSingle(Object param) {
-
-    }
-
-    @Override
-    public void deleteMultiple(ArrayList objects) {
 
     }
 }

@@ -69,8 +69,6 @@ public class ContractRepository implements IRepository {
         return -1;
     }
 
-
-
     public Contract findOneContract(String column, Object num){
 
         String QUARY = "SELECT * FROM data.contracts where " +column +"=?";
@@ -114,8 +112,6 @@ public class ContractRepository implements IRepository {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-
-
         String QUARY = "SELECT * FROM data.contracts where " + columnName + "=? ORDER BY contractStatus ASC";
 
         try {
@@ -149,7 +145,6 @@ public class ContractRepository implements IRepository {
 
         return contracts;
     }
-
 
     //Reads all contracts in database
     @Override
@@ -188,9 +183,6 @@ public class ContractRepository implements IRepository {
         return contracts;
     }
 
-    public void findContractsByDelivery() {
-
-    }
 
     @Override
     public void writeSingle(Object param) {
@@ -222,29 +214,6 @@ public class ContractRepository implements IRepository {
 
     }
 
-    public String returnVIN(int contractID) {
-        String QUARY = "SELECT VIN FROM contracts WHERE contractID = ? ";
-
-        try {
-            PreparedStatement psts = conn.prepareStatement(QUARY);
-            {
-                psts.setInt(1, contractID);
-                ResultSet resultSet = psts.executeQuery();
-                String VIN = "";
-                while (resultSet.next()) {
-                    VIN = resultSet.getString(1);
-
-                }
-                return VIN;
-
-            }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
-
     public List<Contract> returnedCarsContracts(List<Car> returnedCars) {
 
         List<Contract> returnedCardsContracts = new ArrayList<>();
@@ -256,11 +225,6 @@ public class ContractRepository implements IRepository {
             }
         }
         return returnedCardsContracts;
-
-    }
-
-    @Override
-    public void writeMultiple(ArrayList objects) {
 
     }
 
@@ -283,18 +247,10 @@ public class ContractRepository implements IRepository {
         }
     }
 
-    @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void deleteSingle(Object param) {
 
     }
 
-    @Override
-    public void deleteMultiple(ArrayList objects) {
-
-    }
 }
