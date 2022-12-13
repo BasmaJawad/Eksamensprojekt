@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+// Lavet af Basma og Jawaahir
 public class IncidentRepository implements IRepository{
 
     private Connection conn = DCM.getConnection();

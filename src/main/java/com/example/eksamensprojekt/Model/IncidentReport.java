@@ -1,5 +1,5 @@
 package com.example.eksamensprojekt.Model;
-
+// Lavet af Basma og Jawaahir
 public class IncidentReport {
 
 

@@ -1,0 +1,19 @@
+#VIN{
+    width: 400px;
+}
+button{
+    width: 170px;
+}
+
+select {
+    height: 50px;
+    width: 425px;
+}
+
+h1{
+    margin-bottom: 60px;
+}
+
+#user{
+    width: 40%;
+}

@@ -25,7 +25,7 @@ public class IncidentsService {
     private ContractRepository contractRepository = new ContractRepository();
     private CarRepository carRepository = new CarRepository();
 
-
+    // Lavet af Basma og Jawaahir
     public boolean verifyContractID(int ContractID) {
 
         List<Contract> contracts = getAllContracts();

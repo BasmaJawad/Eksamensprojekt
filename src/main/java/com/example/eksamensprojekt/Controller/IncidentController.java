@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+// Lavet af Basma og Jawaahir
 @Controller
 public class IncidentController {
 
