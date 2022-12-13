@@ -42,12 +42,12 @@
         <td th:text="${user.userType}"></td>
         <td>
             <form action="/editUser">
-                <label>
+
                     <input name="username" type="text" style="display: none">
-                </label>
-                <label>
+
+
                     <input name="userType" type="text" style="display: none">
-                </label>
+
                 <button onclick="makeEditForm(this)" type="submit"><img src="/Images/Edit.jpg" height="20px"
                                                                         width="20px"></button>
             </form>

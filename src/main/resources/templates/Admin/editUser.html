@@ -27,7 +27,7 @@
 <h1>Rediger bruger</h1>
 <form action="/submitEdit">
     <label>
-        <input id="usertype" style="display: none" type="text" th:value="${userType}">
+        <input id="usertype" style="display: none" type="text" th:value="${session.oldUserType}">
     </label>
     <label>Brugernavn:
         <input  id="user" type="text" name="username" th:value="${username}">
