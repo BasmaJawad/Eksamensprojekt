@@ -219,7 +219,7 @@
                        readonly><br>
 
                 <label for="subLenght">Abonnement længde</label><br>
-                <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
+                <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenghtConverted()}"
                        readonly><br>
 
                 <label for="pickupDes">Afhentningssted</label><br>
@@ -228,7 +228,7 @@
 
                 <label for="kmPrMonth">Kilometer Pr. måned</label><br>
                 <input type="text" name="kmPrMonth" class="form-control"
-                       th:value="${session.contract.getKmPrMonth()}" readonly><br>
+                       th:value="${session.contract.getKmPrMonthConverted()}" readonly><br>
 
 
                 <div class="additionalInfoContract">
