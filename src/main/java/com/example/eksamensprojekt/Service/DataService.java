@@ -25,11 +25,7 @@ public class DataService {
 
     public void addContract(Car car, WebRequest contractReq) {
 
-        System.out.println(contractReq);
-        System.out.println(contractReq.getParameter("subLength"));
-        System.out.println(contractReq.getParameter("phonenumber"));
         SubLenght subLenght = SubLenght.valueOf(contractReq.getParameter("subLength"));
-
         KmPrMonth kmPrMonth = KmPrMonth.valueOf(contractReq.getParameter("kmPrMonth"));
 
         //Creates new customer object
@@ -43,26 +39,17 @@ public class DataService {
         //Insert customer into database
         customerRepo.writeSingle(customer);
 
-        //  VIN = contractReq.getParameter("car");
-        // car = carRepository.readSingle(VIN);
         //Reads the customerID created in database
         int customerID = customerRepo.readID(customer);
 
         //Updates CarStatus in car to RENTED
         carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", "RENTED");
 
-
-
-
         //Convert addOns to booleans
-
         boolean vikingHelp = Objects.equals(contractReq.getParameter("vikingHelp"), "on");
         boolean deliveryInsurance = Objects.equals(contractReq.getParameter("deliveryInsurance"), "on");
         boolean lowDeductible = Objects.equals(contractReq.getParameter("lowDeductible"), "on");
         boolean winterTires = Objects.equals(contractReq.getParameter("winterTires"), "on");
-
-
-
 
         //Creating new Contract object
         Contract contract = new Contract(car.getVIN(),
@@ -74,9 +61,6 @@ public class DataService {
                 lowDeductible,
                 winterTires,
                 kmPrMonth, ContractStatus.LIVE);
-
-
-
 
         //Add contract to database
         contractRepo.writeSingle(contract);
@@ -181,8 +165,6 @@ public class DataService {
 
         //update contract to dead or cancelled
         contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", contractStatus);
-
-
     }
 
 

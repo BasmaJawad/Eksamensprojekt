@@ -29,7 +29,7 @@ public class BusinessService {
         return carRepo.readMultiple(conditions, "carStatus");
     }
 
-    public ArrayList<Integer> amountOfCarsPrModel(){
+    public ArrayList<Integer> amountOfCarsPrModel() {
 
         ArrayList<Car> notRentedCars = getNotRentedCars();
 
@@ -113,12 +113,13 @@ public class BusinessService {
         return contractRepo.readMultiple();
     }
 
-    public List<Contract> getContracts(ContractStatus status){
+    public List<Contract> getContracts(ContractStatus status) {
         ArrayList<ContractStatus> condition = new ArrayList<>();
         condition.add(status);
 
         return contractRepo.readMultiple(condition, "contractStatus");
     }
+
     public int signedContractsDayOrMonth(String dayOrMonth) {
 
         List<Contract> contracts = getAllcontracts();
@@ -127,16 +128,15 @@ public class BusinessService {
 
         if (dayOrMonth.equalsIgnoreCase("day")) {
             for (Contract contract : contracts) {
-                System.out.println(contract.getStartDate() +" og"+ LocalDate.now());
+                System.out.println(contract.getStartDate() + " og" + LocalDate.now());
                 if (contract.getStartDate().equals(LocalDate.now()))
                     countContractsSignedToday++;
 
 
             }
-        }
-        else if (dayOrMonth.equalsIgnoreCase("month")) {
+        } else if (dayOrMonth.equalsIgnoreCase("month")) {
             for (Contract contract : contracts) {
-                if (contract.getStartDate().getMonthValue()== LocalDate.now().getMonthValue()){
+                if (contract.getStartDate().getMonthValue() == LocalDate.now().getMonthValue()) {
                     countContractsSignedToday++;
                 }
 
@@ -147,22 +147,22 @@ public class BusinessService {
         return countContractsSignedToday;
     }
 
-    public int endedContractsToday(){
+    public int endedContractsToday() {
 
         List<Contract> contracts = getContracts(ContractStatus.DEAD);
 
         int countContractsSignedToday = 0;
 
-            for (Contract contract : contracts) {
-                if (contract.getEndDate() == LocalDate.now())
-                    countContractsSignedToday++;
+        for (Contract contract : contracts) {
+            if (contract.getEndDate() == LocalDate.now())
+                countContractsSignedToday++;
 
-            }
+        }
 
         return countContractsSignedToday;
     }
 
-    public int cancelledContractsMonth(){
+    public int cancelledContractsMonth() {
 
         List<Contract> contracts = getContracts(ContractStatus.CANCELLED);
 
@@ -197,29 +197,29 @@ public class BusinessService {
 
         Collections.sort(cars);
 
-        ArrayList<String> models = new ArrayList<>();
+        ArrayList<String> carModels = new ArrayList<>();
 
         //cannot use Collections.frequency on car class, has to be string
         for (Car car : cars) {
-            models.add(car.getCarModel());
+            carModels.add(car.getCarModel());
         }
 
-        //Strips all not unique models from list of models
-        List<String> uniqueModels = models.stream().distinct().toList();
+        //Strips all not unique carModels from list of carModels
+        List<String> uniqueCarModels = carModels.stream().distinct().toList();
 
-        int number = 0;
+        int count = 0;
 
-        String mostPopCarModel = models.get(0); //If the first is the most popular
+        String mostPopCarModel = carModels.get(0); //If the first is the most popular
 
 
-        for (int i = 0; i < uniqueModels.size(); i++) {
+        for (int i = 0; i < uniqueCarModels.size(); i++) {
 
-            int numberOfFreq = Collections.frequency(models, uniqueModels.get(i));  // count the frequency of a carModel (String)
+            int numberOfFreq = Collections.frequency(carModels, uniqueCarModels.get(i));  // count the frequency of a carModel (String)
 
             //If the current frequency is higher than previous
-            if (numberOfFreq > number) {
-                number = numberOfFreq;
-                mostPopCarModel = models.get(i);
+            if (numberOfFreq > count) {
+                count = numberOfFreq;
+                mostPopCarModel = carModels.get(i);
             }
         }
         return mostPopCarModel;
@@ -231,27 +231,34 @@ public class BusinessService {
 
 
         switch (carModel) {
-            case "C1 Le Mans 72 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_C1_Shine_0MP00NP8.png";
-            case "C3 Le Mans 83 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_newc3_Shine_0MP00NWP.png";
-            case "108 Active+ 72 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_108_like_0MP00NP8.png";
-            case "208 Active+ 100 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_new208_active_0MM00N9V.png";
-            case "e-2008 GT Line 136 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_e2008_GTLine_0MM60NSM.png";
-            case "500e Icon Pack 118 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500e_Icon_230.png";
-            case "500e CABRIO Icon Pack 118 HK" -> filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500c_Icon_601.png";
+            case "C1 Le Mans 72 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_C1_Shine_0MP00NP8.png";
+            case "C3 Le Mans 83 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Citroen_newc3_Shine_0MP00NWP.png";
+            case "108 Active+ 72 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_108_like_0MP00NP8.png";
+            case "208 Active+ 100 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_new208_active_0MM00N9V.png";
+            case "e-2008 GT Line 136 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Peugeot_e2008_GTLine_0MM60NSM.png";
+            case "500e Icon Pack 118 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500e_Icon_230.png";
+            case "500e CABRIO Icon Pack 118 HK" ->
+                    filePath = "https://res.cloudinary.com/digital-interdan/image/upload/c_fit,e_trim:0,q_80,w_1280/v1/cars/Fiat_500c_Icon_601.png";
         }
 
 
         return filePath;
     }
 
-    public int percentageOfNotAvailableCars(){
+    public int percentageOfNotAvailableCars() {
 
         int allContracts = getAllcontracts().size();
 
         int notRented = getNotRentedCars().size();
 
 
-        int percentageThatIsNotAvailable = (100/allContracts)*(allContracts-notRented);
+        int percentageThatIsNotAvailable = (100 / allContracts) * (allContracts - notRented);
         return percentageThatIsNotAvailable;
     }
 }
