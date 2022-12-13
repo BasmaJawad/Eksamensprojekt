@@ -11,20 +11,15 @@ public interface IRepository<E> {
     E readSingle(E param);
 
     ArrayList<E> readMultiple(ArrayList<E> conditions, String columnName);
+
     ArrayList<E> readMultiple();
 
     //Write
     void writeSingle(E param);
 
-    void writeMultiple(ArrayList<E> objects);
-
     //Update
     void updateSingle(E param, String columnName, String columnCondition, String updateTo);
 
-    void updateMultiple(ArrayList<E> objects);
-
     //delete
     void deleteSingle(E param);
-
-    void deleteMultiple(ArrayList<E> objects);
 }

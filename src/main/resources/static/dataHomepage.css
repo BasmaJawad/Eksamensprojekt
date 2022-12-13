@@ -1,16 +1,17 @@
-#seeContract{
+#seeContract {
     padding: 8px;
     color: black;
     font-weight: 550;
     height: auto;
     border-radius: 5px;
 }
-#dropdownMenuButton{
-height: auto;
+
+#dropdownMenuButton {
+    height: auto;
     color: black;
 }
 
-.dropdown{
+.dropdown {
     float: left;
     margin-left: 50px;
 }
@@ -26,7 +27,7 @@ height: auto;
     margin-bottom: 50px;
 }
 
-h1{
-font-weight: bold;
+h1 {
+    font-weight: bold;
     margin: 50px 50px 80px;
 }

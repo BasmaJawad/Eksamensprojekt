@@ -13,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 public class DataController {
@@ -22,25 +23,19 @@ public class DataController {
     }
 
     DataService ds = new DataService();
-/*
-  @GetMapping("/addContract")
-  public String addContract(WebRequest req) {
 
-    dataService.addContract(req);
-    return "/DataRegister/dataHomepage";
-  }
-*/
-    //Page to add a new contract
 
     @GetMapping("/dataHomepage")
     public String dataHomepage(Model model) {
 
-        model.addAttribute("contracts", ds.getAllContracts());
-        model.addAttribute("carInContract", ds.getCarRepository());
+        HashMap<Contract, Car> contractCarHashMap = ds.getContractCarMap();
+
+        model.addAttribute("list", contractCarHashMap);
 
         return "/DataRegister/dataHomepage";
     }
 
+    //Albert, William
     @GetMapping("/contractPage")
     public String contractPage(Model model) {
 
@@ -52,6 +47,7 @@ public class DataController {
         return "/DataRegister/chooseCar";
     }
 
+    //Albert, William
     @GetMapping("/chooseCar")
     public String chooseCar(HttpSession httpSession, Model model, WebRequest req) {
 
@@ -63,6 +59,7 @@ public class DataController {
         return "/DataRegister/gasCarContract";
     }
 
+    //William
     @GetMapping("/electricCarContract")
     public String electricCarContract(HttpSession httpSession, WebRequest contractReq) {
         Car car = (Car) httpSession.getAttribute("car");
@@ -70,6 +67,7 @@ public class DataController {
         return "redirect:/dataHomepage";
     }
 
+    //William
     @GetMapping("/gasCarContract")
     public String gasCarContract(HttpSession carReq, WebRequest contractReq) {
         Car car = (Car) carReq.getAttribute("car");
@@ -79,32 +77,18 @@ public class DataController {
     }
 
 
- /*
-@GetMapping("/showcontract")
-public String showContract(HttpSession session){
-
-        session.getAttribute("contract");
-        session.getAttribute("car");
-        session.getAttribute("customer");
-
-        return "ShowContract";
-}
-
-  */
-
-
     //Form i dataHomepage
     @PostMapping("/showcontract")
     public String showContract(WebRequest req, HttpSession session) {
 
         Contract contract = ds.getOneContract(Integer.parseInt(req.getParameter("contractID")));
-        //System.out.println("test" +contract.getContractID());
+
         Car car = ds.getOnecar(contract.getVIN());
 
         Customer customer = ds.getOneCustomer("CustomerID", contract.getCustomerID());
 
-        if (contract == null || car == null || customer == null){
-            session.setAttribute("error","Fejl");
+        if (contract == null || car == null || customer == null) {
+            session.setAttribute("error", "Fejl");
             return "redirect:/dataHomepage";
         }
 

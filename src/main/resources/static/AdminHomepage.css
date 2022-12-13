@@ -9,22 +9,22 @@
     border-radius: 5px;
 }
 
-img{
+img {
     width: 100px;
     margin-top: 50px;
     margin-bottom: 40px;
 }
 
-#carImg{
+#carImg {
     width: 140px;
     margin-bottom: 0px;
 }
 
-span{
-    font-size:50px;
+span {
+    font-size: 50px;
 }
 
-.text{
+.text {
     margin-bottom: 70px;
     font-weight: 600;
 }
@@ -40,6 +40,6 @@ button {
     font-weight: 600;
 }
 
-button:hover{
+button:hover {
     background-color: rgba(0, 0, 0, 0.5);
 }

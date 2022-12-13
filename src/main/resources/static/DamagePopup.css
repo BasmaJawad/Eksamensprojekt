@@ -4,23 +4,26 @@ body{
     font: normal 15px "Avenir Next";
     color: #1e1e1e;
 }
-body{
+
+body {
     margin: 0;
     padding: 0px 70px 70px;
-    font-family: "Lucida Grande" ;
+    font-family: "Lucida Grande";
     font-weight: normal;
     text-transform: uppercase;
 }
-.main-menu-logo-image___1Ov1X{
+
+.main-menu-logo-image___1Ov1X {
     margin-top: 10px;
     width: 350px;
 }
 
-#icon{
+#icon {
     width: 30px;
     margin-top: 0;
 }
-#username{
+
+#username {
     font-weight: 600;
     font-size: 15px;
     text-transform: none;
@@ -29,6 +32,7 @@ body{
 a {
     text-decoration: none;
 }
+
 a:hover {
     border-bottom: 2px solid black;
     text-decoration: none;
@@ -51,7 +55,8 @@ header {
     margin-bottom: 50px;
 
 }
-hr{
+
+hr {
     margin-bottom: 60px;
     background-color: grey;
 }
@@ -62,12 +67,14 @@ header nav {
     margin-bottom: 15px;
 
 }
+
 header nav ul li {
     float: left;
     display: inline-block;
 
     font-weight: 500;
 }
+
 header nav ul li a {
     color: #130f11;
     text-transform: capitalize;
@@ -77,10 +84,11 @@ header nav ul li a {
     text-decoration: none;
 }
 
-header{
+header {
     margin-bottom: 50px;
 }
-hr{
+
+hr {
     background-color: white;
 }
 
@@ -95,24 +103,26 @@ hr{
 }
 
 
-.box2{
+.box2 {
     float: left;
     margin-left: 10px;
 }
-.dataTopTitle{
+
+.dataTopTitle {
     margin: 10px 0 0;
     font-size: 25px;
 }
 
 
-#rightDiv{
+#rightDiv {
     float: right;
 }
-#popCar{
+
+#popCar {
     width: 100%
 }
 
-#rightDiv,#leftDiv{
+#rightDiv, #leftDiv {
     float: left;
     background: white;
     margin-top: 20px;
@@ -122,12 +132,13 @@ hr{
     height: 600px;
 }
 
-#leftDiv{
+#leftDiv {
     margin-right: 30px;
     margin-left: 13px;
 
 }
-button.CreateButton{
+
+button.CreateButton {
     border-radius: 20px;
     background-color: #8ea2b0;
     color: white;
@@ -140,7 +151,7 @@ button.CreateButton{
 
 }
 
-button.DoneButton{
+button.DoneButton {
     border-radius: 20px;
     color: white;
     background-color: #2e4d5f;
@@ -153,11 +164,11 @@ button.DoneButton{
 
 }
 
-#inputD{
+#inputD {
     position: center;
 }
 
-.inputB{
+.inputB {
     margin-top: 50px;
     height: 100px;
     padding: 15px;
@@ -167,7 +178,8 @@ button.DoneButton{
     font-size: 20px;
 
 }
-.inputP{
+
+.inputP {
     height: 15px;
     padding: 15px;
     width: 400px;
@@ -177,14 +189,14 @@ button.DoneButton{
     font-size: 20px;
 }
 
-p2{
+p2 {
     margin-top: 40px;
     margin-left: 90px;
     font-size: 20px;
     font-weight: bold;
 }
 
-p3{
+p3 {
     margin-top: 20px;
     margin-left: 90px;
     font-size: 20px;

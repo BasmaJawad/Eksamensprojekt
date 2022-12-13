@@ -3,7 +3,7 @@ package com.example.eksamensprojekt.Model;
 public class ContractPrice {
 
 
-    private int contractID,basePrice,extraKmPrice,addOnPrice,finalPrice;
+    private int contractID, basePrice, extraKmPrice, addOnPrice, finalPrice;
 
     public ContractPrice(int contractID, int basePrice, int extraKmPrice, int addOnPrice, int finalPrice) {
         this.contractID = contractID;

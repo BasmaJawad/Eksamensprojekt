@@ -1,14 +1,15 @@
-h2{
+h2 {
     font-size: 20px;
     margin: 5px auto auto;
 }
-label{
+
+label {
     font-weight: 700;
     font-size: 16px;
     text-transform: capitalize;
 }
 
-input, select{
+input, select {
     border-radius: 5px;
     font-size: 16px;
     margin-bottom: 30px;
@@ -23,33 +24,37 @@ input, select{
 #customerinformation {
     width: 75%;
 }
-.customerInput{
+
+.customerInput {
     width: 35%;
     float: left;
     margin-right: 40px;
 }
-h1{
+
+h1 {
     clear: left;
     padding: 7px;
     background: linear-gradient(to right, #daeaed, #8ea2b0);;
     border-radius: 3px;
 }
-select{
+
+select {
     height: 40px;
     width: 300px;
 }
-#carInformation, #extraInfo{
+
+#carInformation, #extraInfo {
     clear: left;
     width: 100%;
     padding-top: 40px;
 }
 
-.carInput{
+.carInput {
     float: left;
     margin-right: 50px;
 }
 
-button{
+button {
     padding: 8px;
     font-weight: 550;
     height: auto;

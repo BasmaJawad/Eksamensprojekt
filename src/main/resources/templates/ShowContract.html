@@ -24,7 +24,8 @@
                 <li><a href="/logout">Log out</a></li>
                 <li>
                     <div id="user">
-                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png" id="icon">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png"
+                             id="icon">
                         <span id="username" th:text="${session.user.getUsername()}"></span>
                     </div>
                 </li>
@@ -56,15 +57,15 @@
         <div class="maininfo">
 
             <div id="carTitle">
-            <h1 id="carModel"><span>Bil Model</span><br>
-                <td th:text="${session.car.getCarModel()}"/>
-            </h1>
+                <h1 id="carModel"><span>Bil Model</span><br>
+                    <td th:text="${session.car.getCarModel()}"/>
+                </h1>
 
-            <br>
+                <br>
 
-            <p id="carBrand">
-            <td th:text="${session.car.getCarBrand()}"/>
-            </p>
+                <p id="carBrand">
+                <td th:text="${session.car.getCarBrand()}"/>
+                </p>
             </div>
 
             <br><br><br> <br><br>
@@ -170,7 +171,7 @@
         <div id="carStatusContainter">
 
             <button class="buttons" id="carStatus"><span id="carStatusSpan">Bil Status: </span>
-            <td th:text="${session.car.getCarStatus()}"/>
+                <td th:text="${session.car.getCarStatus()}"/>
             </button>
 
             <span th:if="${session.car.getCarStatus().name()=='RENTED'}">
@@ -186,7 +187,8 @@
 
                         <input type="hidden" name="carStatus" value="RETURNED"/>
                         <input type="hidden" name="ContractStatus" value="'CANCELLED'"/>
-                        <button onclick="return confirm('Er du sikker');"  class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
+                        <button onclick="return confirm('Er du sikker');" class="buttons" id="cancelContract"
+                                type="submit">Annuller lejeaftale</button>
 
             </form>
              </span>
@@ -219,7 +221,8 @@
                        readonly><br>
 
                 <label for="subLenght">Abonnement længde</label><br>
-                <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenghtConverted()}"
+                <input type="text" name="subLenght" class="form-control"
+                       th:value="${session.contract.getSubLenghtConverted()}"
                        readonly><br>
 
                 <label for="pickupDes">Afhentningssted</label><br>

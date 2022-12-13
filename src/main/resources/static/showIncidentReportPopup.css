@@ -6,6 +6,7 @@ body{
     background: white;
 
 }
+
 .bg {
     width: 100%;
     height: 100%;
@@ -30,7 +31,7 @@ body{
 
 }
 
-.infoCon{
+.infoCon {
     font-size: 20px;
 
 }
@@ -57,12 +58,12 @@ body{
 
 }
 
-#headTitle {  /* HEADTITEL */
+#headTitle { /* HEADTITEL */
     font-weight: bold;
     font-size: 30px;
 }
 
-label{
+label {
     font-weight: normal;
 }
 
@@ -81,6 +82,7 @@ input {
 p{ /* TITEL */
     padding: 20px;
 }
+
 .close { /*KRYDS*/
 
     position: absolute;
@@ -92,6 +94,7 @@ p{ /* TITEL */
     color: #130f11;
 
 }
+
 #myTable {
     border-collapse: collapse;
     width: 80%;
@@ -101,7 +104,10 @@ p{ /* TITEL */
     position: center;
 
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 th, td {
     text-align: left;

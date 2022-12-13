@@ -38,6 +38,7 @@
         <thead>
         <tr>
             <td>Kontrakt</td>
+            <td>Stel-nummer</td>
             <td>Basis pris</td>
             <td>Pris for Ekstra KM</td>
             <td>Tilføjelser</td>
@@ -46,11 +47,12 @@
         </thead>
         <tbody>
         <tr th:each="price : ${pricePrContract}">
-            <td th:text="${price.contractID}">
-            <td th:text="${price.basePrice}">
-            <td th:text="${price.extraKmPrice}">
-            <td th:text="${price.addOnPrice}">
-            <td th:text="${price.finalPrice}">
+            <td th:text="${price.value.getContractID()}"></td>
+            <td th:text="${price.key}"></td>
+            <td th:text="${price.value.getBasePrice()}">
+            <td th:text="${price.value.getExtraKmPrice()}">
+            <td th:text="${price.value.getAddOnPrice()}">
+            <td th:text="${price.value.getFinalPrice()}">
         </tr>
         </tbody>
     </table>

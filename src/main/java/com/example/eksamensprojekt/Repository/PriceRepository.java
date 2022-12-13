@@ -9,10 +9,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class PriceRepository implements IRepository{
+public class PriceRepository implements IRepository {
 
     Connection conn = DCM.getConnection();
 
+    //Albert
     @Override
     public ContractPrice readSingle(Object param) {
 
@@ -22,10 +23,10 @@ public class PriceRepository implements IRepository{
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
-            ptst.setInt(1,contractID);
+            ptst.setInt(1, contractID);
             ResultSet resultSet = ptst.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 return new ContractPrice(
                         resultSet.getInt(1),
                         resultSet.getInt(2),
@@ -52,6 +53,8 @@ public class PriceRepository implements IRepository{
         return null;
     }
 
+
+    //William, Albert
     @Override
     public void writeSingle(Object param) {
 
@@ -70,11 +73,11 @@ public class PriceRepository implements IRepository{
 
             PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-            ptst.setInt(1,contractID);
-            ptst.setInt(2,baseSubPrice);
-            ptst.setInt(3,kmPrMonthPrice);
-            ptst.setInt(4,addOn);
-            ptst.setInt(5,finalPrice);
+            ptst.setInt(1, contractID);
+            ptst.setInt(2, baseSubPrice);
+            ptst.setInt(3, kmPrMonthPrice);
+            ptst.setInt(4, addOn);
+            ptst.setInt(5, finalPrice);
 
             ptst.executeUpdate();
 
@@ -83,28 +86,16 @@ public class PriceRepository implements IRepository{
         }
     }
 
-    @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
     }
 
-    @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
 
     @Override
     public void deleteSingle(Object param) {
 
     }
 
-    @Override
-    public void deleteMultiple(ArrayList objects) {
-
-    }
 }

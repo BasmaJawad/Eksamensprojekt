@@ -2,9 +2,8 @@ package com.example.eksamensprojekt.Model;
 
 public class CarDamage {
 
-    private int reportID;
+    private int reportID, cost;
     private String desciption;
-    private int cost;
 
 
     public CarDamage(int reportID, String desciption, int cost) {
@@ -38,7 +37,6 @@ public class CarDamage {
     public void setCost(int cost) {
         this.cost = cost;
     }
-
 
 
 }

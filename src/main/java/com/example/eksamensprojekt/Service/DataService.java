@@ -12,8 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class DataService {
 
@@ -23,6 +22,7 @@ public class DataService {
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
+    //William, Albert
     public void addContract(Car car, WebRequest contractReq) {
 
         SubLenght subLenght = SubLenght.valueOf(contractReq.getParameter("subLength"));
@@ -70,6 +70,7 @@ public class DataService {
     }
 
 
+    //Albert
     public ArrayList<Car> getAllAvailableCars() {
 
         ArrayList<CarStatus> carStatus = new ArrayList<>();
@@ -77,16 +78,25 @@ public class DataService {
         return carRepository.readMultiple(carStatus, "carStatus");
     }
 
-    public ArrayList<Contract> getAllContracts() {
+    //Albert, Basma
+    public HashMap<Contract, Car> getContractCarMap() {
 
-        return contractRepo.readMultiple();
+        HashMap<Contract, Car> contractCarMap = new HashMap<>();
+
+        ArrayList<Contract> contracts = contractRepo.readMultiple();
+        ArrayList<Car> cars = carRepository.readMultiple();
+
+        for (Car car : cars) {
+            for (Contract contract : contracts) {
+                if (contract.getVIN().equals(car.getVIN())) {
+                    contractCarMap.put(contract, car);
+                }
+            }
+        }
+        return contractCarMap;
     }
 
-    public CarRepository getCarRepository() {
-        return carRepository;
-    }
-
-
+    //William
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
         int subScriptionFee = 0;
         switch (car.getCarModel()) {
@@ -126,6 +136,7 @@ public class DataService {
         priceRepo.writeSingle(prices);
     }
 
+    //William
     private int addKmPrMonthPrice(KmPrMonth kmPrMonth) {
 
         int price = 0;
@@ -154,7 +165,8 @@ public class DataService {
         return customerRepo.findOneCustomer(column, val);
     }
 
-    public void updateSingle(WebRequest req, Car car){
+
+    public void updateSingle(WebRequest req, Car car) {
 
         String contractStatus = req.getParameter("ContractStatus");
 
@@ -164,10 +176,11 @@ public class DataService {
         carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
 
         //update contract to dead or cancelled
-        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()),"contractStatus", "contractID", contractStatus);
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()), "contractStatus", "contractID", contractStatus);
     }
 
 
+    //William
     public boolean isElectricCar(Model model, HttpSession httpSession, WebRequest req) {
         Car car;
         car = carRepository.readSingle(req.getParameter("car"));

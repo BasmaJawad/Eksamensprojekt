@@ -2,6 +2,7 @@ package com.example.eksamensprojekt.Controller;
 
 
 import com.example.eksamensprojekt.Model.CarDamage;
+import com.example.eksamensprojekt.Model.Cars.Car;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.IncidentReport;
 import com.example.eksamensprojekt.Service.IncidentsService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 // Lavet af Basma og Jawaahir
@@ -19,23 +21,19 @@ import java.util.List;
 public class IncidentController {
 
     //Make class inaccessible
-    private IncidentController(){}
+    private IncidentController() {
+    }
 
     IncidentsService incidentsService = new IncidentsService();
 
     // STARTSIDE
     @GetMapping("/incidentsHomepage")
-    public String incidentHome(HttpSession session) {
+    public String incidentHome(Model model) {
 
-        List<Contract> returnedCarsContracts = incidentsService.returnedCarsContracts();
+        HashMap<Contract, Car> map = incidentsService.mapOfContractsWithoutIncidentReport();
 
-        session.setAttribute("contractsWithReport", incidentsService.contractsWITHincidentRep(returnedCarsContracts));
-        session.setAttribute("contractsWOreports", incidentsService.contractsWITHOUTincidentRep());
-        session.setAttribute("carInContract", incidentsService.getCarRepository());
+        model.addAttribute("list", map);
 
-
-
-        // contractWITHreports deres biler er stadig status = returned, vi skal også kunne se dem der er rented.
         return "DamageRegister/incidentsHomepage";
     }
 
@@ -62,12 +60,7 @@ public class IncidentController {
     @GetMapping("/oldIncidentReports")
     public String findOldReport(Model model) {
 
-        List<Contract> allContracts = incidentsService.getAllContracts();
-
-        List<Contract> allContractsWithIncidentRep = incidentsService.contractsWITHincidentRep(allContracts);
-        model.addAttribute("AllContractsWithIncidentRep", allContractsWithIncidentRep);
-        model.addAttribute("carInContract", incidentsService.getCarRepository());
-        model.addAttribute("carsInIncidentReports", incidentsService.getSomeCars(allContractsWithIncidentRep));
+        model.addAttribute("list", incidentsService.oldReportsData());
 
         return "/DamageRegister/oldIncidentReports";
     }
@@ -153,9 +146,9 @@ public class IncidentController {
 
 
     @PostMapping("/endReport")
-    public String endReport(WebRequest req, HttpSession session){
+    public String endReport(WebRequest req, HttpSession session) {
 
-    incidentsService.updateSingleCar(req);
+        incidentsService.updateSingleCar(req);
 
         return "redirect:/incidentsHomepage";
     }

@@ -20,6 +20,7 @@ public class BusinessService {
     PriceRepository priceRepo = new PriceRepository();
 
 
+    //Albert
     public ArrayList<Car> getRentedCars() {
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
@@ -29,6 +30,7 @@ public class BusinessService {
         return carRepo.readMultiple(conditions, "carStatus");
     }
 
+    //Albert
     public ArrayList<Integer> amountOfCarsPrModel() {
 
         ArrayList<Car> notRentedCars = getNotRentedCars();
@@ -66,6 +68,7 @@ public class BusinessService {
         return amount;
     }
 
+
     public ArrayList<Car> getNotRentedCars() {
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
@@ -84,9 +87,10 @@ public class BusinessService {
         return carRepo.readMultiple(conditions, "carStatus");
     }
 
-    public ArrayList<ContractPrice> listOfPricesPrCar() {
+    //Albert
+    public HashMap<String, ContractPrice> listOfPricesPrCar() {
 
-        ArrayList<ContractPrice> list = new ArrayList<>();
+        HashMap<String, ContractPrice> hashmap = new HashMap<>();
 
         //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
@@ -102,11 +106,11 @@ public class BusinessService {
             for (Car rentedCar : rentedCars) {
 
                 if (contract.getVIN().equals(rentedCar.getVIN())) {
-                    list.add(priceRepo.readSingle(contract.getContractID()));
+                    hashmap.put(rentedCar.getVIN(), priceRepo.readSingle(contract.getContractID()));
                 }
             }
         }
-        return list;
+        return hashmap;
     }
 
     public List<Contract> getAllcontracts() {
@@ -179,17 +183,19 @@ public class BusinessService {
     }
 
 
+    //Albert
     public int totalRevenue() {
 
-        ArrayList<ContractPrice> list = listOfPricesPrCar();
+        HashMap<String, ContractPrice> list = listOfPricesPrCar();
 
         int totalRevenue = 0;
-        for (ContractPrice contractPrice : list) {
-            totalRevenue += contractPrice.getFinalPrice();
+        for (ContractPrice i : list.values()) {
+            totalRevenue += i.getFinalPrice();
         }
         return totalRevenue;
     }
 
+    //Albert
     public String mostPopularCarModel() {
 
 
@@ -225,6 +231,7 @@ public class BusinessService {
         return mostPopCarModel;
     }
 
+    //Albert
     public String getCarImg(String carModel) {
 
         String filePath = "";

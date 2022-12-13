@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CarDamageRepository implements IRepository{
+public class CarDamageRepository implements IRepository {
 
     private Connection conn = DCM.getConnection();
 
-    public List<CarDamage> readDamagesInContract(int reportID ) {
+    public List<CarDamage> readDamagesInContract(int reportID) {
 
         List<CarDamage> damages = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class CarDamageRepository implements IRepository{
             psts.setInt(1, reportID);
             ResultSet resultSet = psts.executeQuery();
 
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 damages.add(new CarDamage(
                         resultSet.getInt("reportID"),
                         resultSet.getString("damageDescription"),
@@ -39,21 +39,21 @@ public class CarDamageRepository implements IRepository{
     }
 
 
-    public int readID(){ // For at lave damages
+    public int readID() { // For at lave damages
 
-      try{
-          PreparedStatement psts = conn.prepareStatement("SELECT MAX(reportID) FROM incidentsreports");
-          ResultSet resultSet = psts.executeQuery();
-          while ((resultSet.next())){
-              int reportID = resultSet.getInt(1);
-              return reportID;
-          }
-      } catch (SQLException e) {
-          throw new RuntimeException(e);
-      }
+        try {
+            PreparedStatement psts = conn.prepareStatement("SELECT MAX(reportID) FROM incidentsreports");
+            ResultSet resultSet = psts.executeQuery();
+            while ((resultSet.next())) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
         return -1;
     }
+
     @Override
     public Object readSingle(Object param) {
         return null;
@@ -76,7 +76,7 @@ public class CarDamageRepository implements IRepository{
 
         try {
             PreparedStatement psts = conn.prepareStatement("INSERT INTO cardamages(reportID, damageDescription, cost) VALUES (?,?,?)");
-            psts.setInt(1,readID());
+            psts.setInt(1, readID());
             psts.setString(2, carDamage.getDesciption());
             psts.setInt(3, carDamage.getCost());
 
@@ -89,27 +89,12 @@ public class CarDamageRepository implements IRepository{
     }
 
     @Override
-    public void writeMultiple(ArrayList objects) {
-
-    }
-
-    @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
     }
 
     @Override
-    public void updateMultiple(ArrayList objects) {
-
-    }
-
-    @Override
     public void deleteSingle(Object param) {
-
-    }
-
-    @Override
-    public void deleteMultiple(ArrayList objects) {
 
     }
 }
