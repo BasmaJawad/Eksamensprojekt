@@ -1,7 +1,6 @@
 package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.Cars.Car;
-import com.example.eksamensprojekt.Model.Cars.GasCar;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.Customer;
 import com.example.eksamensprojekt.Service.DataService;
@@ -13,9 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.TreeMap;
 
 @Controller
 public class DataController {
@@ -83,18 +80,20 @@ public class DataController {
     }
 
 
- /*
 @GetMapping("/showcontract")
 public String showContract(HttpSession session){
 
-        session.getAttribute("contract");
-        session.getAttribute("car");
-        session.getAttribute("customer");
 
-        return "ShowContract";
+    session.getAttribute("contract");
+    session.getAttribute("contractID");
+    session.getAttribute("car");
+    session.getAttribute("carVIN"); //bruges for at update car
+    session.getAttribute("customer");
+    session.getAttribute("date");
+    session.getAttribute("endDate");
+
+        return "/DataRegister/ShowContract";
 }
-
-  */
 
 
     //Form i dataHomepage
@@ -119,9 +118,8 @@ public String showContract(HttpSession session){
         session.setAttribute("customer", customer);
         session.setAttribute("date", contract.getStartDate());
         session.setAttribute("endDate", contract.getEndDate());
-        System.out.println(contract.getContractStatus());
 
-        return "ShowContract";
+        return "/DataRegister/ShowContract";
 
     }
 
@@ -139,7 +137,7 @@ public String showContract(HttpSession session){
         session.setAttribute("car", updatedCar);
         session.setAttribute("contract", updatedContract);
 
-        return "ShowContract";
+        return "/DataRegister/ShowContract";
     }
 
 }
