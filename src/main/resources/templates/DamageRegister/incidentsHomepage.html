@@ -66,21 +66,21 @@
         <th style="width:30%;">Afslut uden rapport</th>
     </tr>
 
-    <tr th:each="contract :${session.contractsWOreports}">
-        <td th:text="${contract.getContractID}">
-        <td th:text="${contract.getVIN}">
-        <td><span th:text="${session.carInContract.readSingle(contract.getVIN).getCarBrand()}"/> <br>
-            <span th:text="${session.carInContract.readSingle(contract.getVIN).getCarModel}"/>
+    <tr th:each="data :${list}">
+        <td th:text="${data.key.getContractID()}">
+        <td th:text="${data.key.getVIN}">
+        <td><span th:text="${data.value.getCarBrand()}"/> <br>
+            <span th:text="${data.value.getCarModel()}"/>
         </td>
         <td>
             <form action="/addIncidentReport" method="post">
-                <button type="submit" name="contractID" th:value="${contract.getContractID}"> TILFØJ RAPPORT</button>
+                <button type="submit" name="contractID" th:value="${data.key.getContractID}"> TILFØJ RAPPORT</button>
 
             </form>
         </td>
         <td>
             <form action="/endReport" method="post">
-                <button onclick="return confirm('Er du sikker');" type="submit" name="sendVIN" class="DoneButton" th:value="${contract.getVIN()}" >AFSLUT</button>
+                <button onclick="return confirm('Er du sikker');" type="submit" name="sendVIN" class="DoneButton" th:value="${data.key.getVIN()}" >AFSLUT</button>
             </form>
         </td>
 
