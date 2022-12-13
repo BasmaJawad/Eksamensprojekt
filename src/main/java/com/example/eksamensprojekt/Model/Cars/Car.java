@@ -3,9 +3,9 @@ package com.example.eksamensprojekt.Model.Cars;
 import com.example.eksamensprojekt.Model.Enums.CarStatus;
 import com.example.eksamensprojekt.Model.Enums.SubLenght;
 
-public class Car implements Comparable<Car>{
+public class Car implements Comparable<Car> {
 
-    private String carModel, carBrand,VIN;
+    private String carModel, carBrand, VIN;
     private CarStatus carStatus;
 
 
@@ -15,41 +15,55 @@ public class Car implements Comparable<Car>{
         this.VIN = VIN;
         this.carStatus = carStatus;
     }
+
+    //William
     public int addSubscriptionFeeEnvy(SubLenght subLenght) {
         int subscriptionFeeEnvy = 0;
-        switch (subLenght){
-            case THREE_MONTHS -> {subscriptionFeeEnvy = 3999;
+        switch (subLenght) {
+            case THREE_MONTHS -> {
+                subscriptionFeeEnvy = 3999;
             }
-            case SIX_MONTHS -> {subscriptionFeeEnvy = 3499;
+            case SIX_MONTHS -> {
+                subscriptionFeeEnvy = 3499;
             }
-            case TWELVE_MONTHS -> { subscriptionFeeEnvy = 3099;
+            case TWELVE_MONTHS -> {
+                subscriptionFeeEnvy = 3099;
             }
-            case TWENTYFOUR_MONTHS -> {subscriptionFeeEnvy = 2999;
+            case TWENTYFOUR_MONTHS -> {
+                subscriptionFeeEnvy = 2999;
             }
-            case THIRTYSIX_MONTHS -> {subscriptionFeeEnvy = 2899;
+            case THIRTYSIX_MONTHS -> {
+                subscriptionFeeEnvy = 2899;
             }
         }
         return subscriptionFeeEnvy;
     }
 
+    //William
     public int addSubscriptionFee108ActivePlus(SubLenght subLenght) {
         int subscriptionFeeActivePlus = 0;
-        switch (subLenght){
-            case THREE_MONTHS -> {subscriptionFeeActivePlus = 3899;
+        switch (subLenght) {
+            case THREE_MONTHS -> {
+                subscriptionFeeActivePlus = 3899;
             }
-            case SIX_MONTHS -> {subscriptionFeeActivePlus = 3299;
+            case SIX_MONTHS -> {
+                subscriptionFeeActivePlus = 3299;
             }
-            case TWELVE_MONTHS -> {subscriptionFeeActivePlus = 2999;
+            case TWELVE_MONTHS -> {
+                subscriptionFeeActivePlus = 2999;
             }
-            case TWENTYFOUR_MONTHS -> {subscriptionFeeActivePlus = 2899;
+            case TWENTYFOUR_MONTHS -> {
+                subscriptionFeeActivePlus = 2899;
             }
-            case THIRTYSIX_MONTHS -> {subscriptionFeeActivePlus = 2799;
+            case THIRTYSIX_MONTHS -> {
+                subscriptionFeeActivePlus = 2799;
             }
         }
 
         return subscriptionFeeActivePlus;
     }
 
+    //William
     public int addSubscriptionFeeC1LeMans(SubLenght subLenght) {
         int subscriptionFeeC1LeMans = 0;
         switch (subLenght) {
@@ -62,6 +76,7 @@ public class Car implements Comparable<Car>{
         return subscriptionFeeC1LeMans;
     }
 
+    //William
     public int addSubscriptionFeeC3LeMans(SubLenght subLenght) {
         int subscriptionFeeC3LeMans = 0;
         switch (subLenght) {
@@ -74,6 +89,7 @@ public class Car implements Comparable<Car>{
         return subscriptionFeeC3LeMans;
     }
 
+    //William
     public int addSubscriptionFeeIcon(SubLenght subLenght) {
         int subscriptionFeeIcon = 0;
         switch (subLenght) {
@@ -85,6 +101,7 @@ public class Car implements Comparable<Car>{
         return subscriptionFeeIcon;
     }
 
+    //William
     public int getAddSubscriptionFeeCabrioIcon(SubLenght subLenght) {
         int subscriptionFeeCabrioIcon = 0;
         switch (subLenght) {
@@ -96,6 +113,7 @@ public class Car implements Comparable<Car>{
         return subscriptionFeeCabrioIcon;
     }
 
+    //William
     public int addSubscriptionFeeGTLine(SubLenght subLenght) {
         int subscriptionFeeGTLine = 0;
         switch (subLenght) {
@@ -105,6 +123,7 @@ public class Car implements Comparable<Car>{
         return subscriptionFeeGTLine;
     }
 
+    //William
     public int addSubscriptionFee208ActivePlus(SubLenght subLenght) {
         int subscriptionFee208ActivePlus = 0;
         switch (subLenght) {
@@ -121,18 +140,9 @@ public class Car implements Comparable<Car>{
         return carModel;
     }
 
-    public void setCarModel(String carModel) {
-        this.carModel = carModel;
-    }
-
     public String getCarBrand() {
         return carBrand;
     }
-
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
-    }
-
 
     public String getVIN() {
         return VIN;
@@ -141,6 +151,7 @@ public class Car implements Comparable<Car>{
     public void setVIN(String VIN) {
         this.VIN = VIN;
     }
+
     @Override
     public String toString() {
         return carBrand + " " + carModel + "   " + VIN;
@@ -150,10 +161,7 @@ public class Car implements Comparable<Car>{
         return carStatus;
     }
 
-    public void setCarStatus(CarStatus carStatus) {
-        this.carStatus = carStatus;
-    }
-
+    //Albert
     @Override
     public int compareTo(Car o) {
         return this.carModel.compareTo(o.carModel);

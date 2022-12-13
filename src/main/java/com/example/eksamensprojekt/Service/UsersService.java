@@ -15,11 +15,11 @@ public class UsersService {
     }
 
 
-    public User validateUserLogin(WebRequest req){
+    public User validateUserLogin(WebRequest req) {
 
         for (User user : allUsers()) {
-            if(req.getParameter("username").equals(user.getUsername()) &&
-                    req.getParameter("password").equals(user.getPassword())){
+            if (req.getParameter("username").equals(user.getUsername()) &&
+                    req.getParameter("password").equals(user.getPassword())) {
                 return user;
             }
         }

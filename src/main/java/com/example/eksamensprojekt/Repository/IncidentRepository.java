@@ -11,11 +11,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IncidentRepository implements IRepository{
+public class IncidentRepository implements IRepository {
 
     private Connection conn = DCM.getConnection();
 
-    public List<IncidentReport> readAll(){ //Læaser
+    public List<IncidentReport> readAll() { //Læaser
 
         List<IncidentReport> incidentReports = new ArrayList<>();
 
@@ -90,7 +90,7 @@ public class IncidentRepository implements IRepository{
             PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports(contractID, VIN, date) VALUES (?,?,?)");
             psts.setInt(1, incidentReport.getContractID());
             psts.setString(2, incidentReport.getVIN());
-            psts.setString(3,incidentReport.getDate());
+            psts.setString(3, incidentReport.getDate());
 
             psts.executeUpdate();
 
@@ -98,7 +98,6 @@ public class IncidentRepository implements IRepository{
             throw new RuntimeException(e);
         }
     }
-
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {

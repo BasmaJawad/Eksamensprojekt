@@ -11,6 +11,7 @@ public interface IRepository<E> {
     E readSingle(E param);
 
     ArrayList<E> readMultiple(ArrayList<E> conditions, String columnName);
+
     ArrayList<E> readMultiple();
 
     //Write

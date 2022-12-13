@@ -2,7 +2,6 @@ package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.User;
 import com.example.eksamensprojekt.Model.Enums.UserType;
-import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,8 @@ import javax.servlet.http.HttpSession;
 public class HomeController {
 
     //Make class inaccessible
-    private HomeController(){}
+    private HomeController() {
+    }
 
     UsersService us = new UsersService();
 
@@ -50,7 +50,7 @@ public class HomeController {
     }
 
     @GetMapping("/logout") //bruges i login html pt
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
 
         session.invalidate();
 

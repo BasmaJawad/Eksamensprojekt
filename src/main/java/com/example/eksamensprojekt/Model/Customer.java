@@ -1,11 +1,7 @@
 package com.example.eksamensprojekt.Model;
 
 public class Customer {
-    private String name;
-    private String cprNum;
-    private String email;
-    private String address;
-    private String phoneNum;
+    private String name, cprNum, email, address, phoneNum;
     private int zipCode;
 
 
@@ -70,12 +66,12 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-            "name='" + name + '\'' +
-            ", cprNum='" + cprNum + '\'' +
-            ", email='" + email + '\'' +
-            ", address='" + address + '\'' +
-            ", phoneNum='" + phoneNum + '\'' +
-            ", zipCode=" + zipCode +
-            '}';
+                "name='" + name + '\'' +
+                ", cprNum='" + cprNum + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phoneNum='" + phoneNum + '\'' +
+                ", zipCode=" + zipCode +
+                '}';
     }
 }

@@ -6,7 +6,10 @@ table {
     border-radius: 20px;
 
 }
-tr:nth-child(even) {background-color: #f2f2f2;}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 th, td {
     text-align: left;
@@ -21,12 +24,15 @@ tr {
     border-radius: 20px;
 }
 
-tr.header{
+tr.header {
     background-color: #daeaed;
     font-weight: bold;
 
 }
-* {box-sizing: border-box}
+
+* {
+    box-sizing: border-box
+}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -50,7 +56,7 @@ hr {
 
 
 button:hover {
-    opacity:1;
+    opacity: 1;
 }
 
 /* Extra styles for the cancel button */
@@ -77,8 +83,9 @@ button:hover {
     cursor: pointer;
     opacity: 0.9;
 }
-.signupbtn{
-    background-color: rgba(0, 76, 153,0.5);
+
+.signupbtn {
+    background-color: rgba(0, 76, 153, 0.5);
 }
 
 /* Add padding to container elements */
@@ -99,7 +106,8 @@ button:hover {
         width: 100%;
     }
 }
-.formImg{
+
+.formImg {
     height: 20px;
     width: 20px;
 }

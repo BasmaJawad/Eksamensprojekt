@@ -16,7 +16,7 @@ public class CarRepository implements IRepository {
 
     Connection conn = DCM.getConnection();
 
-
+    //Albert, William
     @Override
     public Car readSingle(Object param) {
         String VIN = (String) param;
@@ -31,15 +31,15 @@ public class CarRepository implements IRepository {
             ResultSet resultSet = ptst.executeQuery();
 
             while (resultSet.next()) {
-              gasCar = new GasCar (
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    CarStatus.valueOf(resultSet.getString(6)),
-                    resultSet.getString(4),
-                    resultSet.getString(5));
+                gasCar = new GasCar(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        CarStatus.valueOf(resultSet.getString(6)),
+                        resultSet.getString(4),
+                        resultSet.getString(5));
             }
-            if(gasCar != null){
+            if (gasCar != null) {
                 return gasCar;
             }
 
@@ -59,15 +59,15 @@ public class CarRepository implements IRepository {
 
             while (resultSet.next()) {
                 electricCar = new ElectricCar(
-                    resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3),
-                    CarStatus.valueOf(resultSet.getString(7)),
-                    resultSet.getString(4),
-                    resultSet.getBoolean(5),
-                    resultSet.getBoolean(6));
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        CarStatus.valueOf(resultSet.getString(7)),
+                        resultSet.getString(4),
+                        resultSet.getBoolean(5),
+                        resultSet.getBoolean(6));
             }
-            if(electricCar != null){
+            if (electricCar != null) {
                 return electricCar;
             }
         } catch (SQLException e) {
@@ -76,7 +76,9 @@ public class CarRepository implements IRepository {
         return null;
     }
 
+
     //reads all cars based on CarStatus
+    //Albert
     @Override
     public ArrayList<Car> readMultiple(ArrayList conditions, String columnName) {
 
@@ -106,7 +108,7 @@ public class CarRepository implements IRepository {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "SELECT * from data.electriccar where " + columnName +" = ?";
+        String QUARY_ELECTRIC = "SELECT * from data.electriccar where " + columnName + " = ?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
@@ -187,6 +189,7 @@ public class CarRepository implements IRepository {
         return cars;
     }
 
+    //Albert
     @Override
     public void writeSingle(Object param) {
 
@@ -194,19 +197,19 @@ public class CarRepository implements IRepository {
 
         String QUARY;
 
-        if (car instanceof GasCar gasCar){
+        if (car instanceof GasCar gasCar) {
 
             QUARY = "INSERT INTO gascar (carModel, carBrand, VIN, kmPrLiter, co2PrKm, carStatus) VALUES (?,?,?,?,?,?)";
 
             try {
                 PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-                ptst.setString(1,gasCar.getCarModel());
-                ptst.setString(2,gasCar.getCarBrand());
-                ptst.setString(3,gasCar.getVIN());
-                ptst.setString(4,gasCar.getLiterPrKm());
-                ptst.setString(5,gasCar.getCo2PrKm());
-                ptst.setString(6,String.valueOf(gasCar.getCarStatus()));
+                ptst.setString(1, gasCar.getCarModel());
+                ptst.setString(2, gasCar.getCarBrand());
+                ptst.setString(3, gasCar.getVIN());
+                ptst.setString(4, gasCar.getLiterPrKm());
+                ptst.setString(5, gasCar.getCo2PrKm());
+                ptst.setString(6, String.valueOf(gasCar.getCarStatus()));
 
                 ptst.executeUpdate();
 
@@ -222,13 +225,13 @@ public class CarRepository implements IRepository {
             try {
                 PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-                ptst.setString(1,electricCar.getCarModel());
-                ptst.setString(2,electricCar.getCarBrand());
-                ptst.setString(3,electricCar.getVIN());
-                ptst.setString(4,electricCar.getKmPrCharge());
-                ptst.setBoolean(5,electricCar.isCleverNetworkCharging());
-                ptst.setBoolean(6,electricCar.isCleverCharging());
-                ptst.setString(7,String.valueOf(electricCar.getCarStatus()));
+                ptst.setString(1, electricCar.getCarModel());
+                ptst.setString(2, electricCar.getCarBrand());
+                ptst.setString(3, electricCar.getVIN());
+                ptst.setString(4, electricCar.getKmPrCharge());
+                ptst.setBoolean(5, electricCar.isCleverNetworkCharging());
+                ptst.setBoolean(6, electricCar.isCleverCharging());
+                ptst.setString(7, String.valueOf(electricCar.getCarStatus()));
 
                 ptst.executeUpdate();
 
@@ -239,29 +242,30 @@ public class CarRepository implements IRepository {
     }
 
 
+    //William, Albert
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
 
         String VIN = (String) param;
 
-        String QUARY_GAS = "UPDATE data.gascar SET "+ columnName + " = '" + updateTo + "' where "+ columnCondition + " =?";
+        String QUARY_GAS = "UPDATE data.gascar SET " + columnName + " = '" + updateTo + "' where " + columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
 
-            ptst.setString(1,VIN);
+            ptst.setString(1, VIN);
             ptst.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        String QUARY_ELECTRIC = "UPDATE data.electriccar SET "+ columnName + " = '" + updateTo + "' where "+ columnCondition + " =?";
+        String QUARY_ELECTRIC = "UPDATE data.electriccar SET " + columnName + " = '" + updateTo + "' where " + columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
 
-            ptst.setString(1,VIN);
+            ptst.setString(1, VIN);
             ptst.executeUpdate();
 
         } catch (SQLException e) {

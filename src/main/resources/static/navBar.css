@@ -1,20 +1,22 @@
-body{
+body {
     margin: 0;
     padding: 0px 70px 70px;
-    font-family: "Lucida Grande" ;
+    font-family: "Lucida Grande";
     font-weight: normal;
     text-transform: uppercase;
 }
-.main-menu-logo-image___1Ov1X{
+
+.main-menu-logo-image___1Ov1X {
     margin-top: 10px;
     width: 350px;
 }
 
-#icon{
+#icon {
     width: 30px;
     margin-top: 0;
 }
-#username{
+
+#username {
     font-weight: 600;
     font-size: 15px;
     text-transform: none;
@@ -23,6 +25,7 @@ body{
 a {
     text-decoration: none;
 }
+
 a:hover {
     border-bottom: 2px solid black;
     text-decoration: none;
@@ -45,7 +48,8 @@ header {
     margin-bottom: 50px;
 
 }
-hr{
+
+hr {
     margin-bottom: 60px;
     background-color: grey;
 }
@@ -56,12 +60,14 @@ header nav {
     margin-bottom: 15px;
 
 }
+
 header nav ul li {
     float: left;
     display: inline-block;
 
     font-weight: 500;
 }
+
 header nav ul li a {
     color: #130f11;
     text-transform: capitalize;

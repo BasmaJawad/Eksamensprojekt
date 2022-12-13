@@ -3,12 +3,10 @@ package com.example.eksamensprojekt.Model;
 public class IncidentReport {
 
 
-    private int reportID;
-    private int contractID;
-    private String VIN;
-    private String date;
+    private int reportID, contractID;
+    private String VIN, date;
 
-    public IncidentReport( int reportID,int contractID, String VIN, String date) {
+    public IncidentReport(int reportID, int contractID, String VIN, String date) {
         this.reportID = reportID;
         this.contractID = contractID;
         this.VIN = VIN;
@@ -20,6 +18,7 @@ public class IncidentReport {
         this.VIN = VIN;
         this.date = date;
     }
+
     public int getContractID() {
         return contractID;
     }

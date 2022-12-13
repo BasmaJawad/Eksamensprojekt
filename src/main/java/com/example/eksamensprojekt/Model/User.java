@@ -2,10 +2,9 @@ package com.example.eksamensprojekt.Model;
 
 import com.example.eksamensprojekt.Model.Enums.UserType;
 
-public class User implements Comparable<User>{
+public class User implements Comparable<User> {
 
-    private String username;
-    private String password;
+    private String username, password;
     private UserType userType;
 
 
@@ -28,16 +27,8 @@ public class User implements Comparable<User>{
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public UserType getUserType() {
         return userType;
-    }
-
-    public void setUserType(UserType userType) {
-        this.userType = userType;
     }
 
     @Override

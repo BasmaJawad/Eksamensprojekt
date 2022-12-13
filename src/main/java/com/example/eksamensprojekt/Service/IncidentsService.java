@@ -145,8 +145,8 @@ public class IncidentsService {
     }
 
     public HashMap<Contract, Car> oldReportsData() {
-        
-        HashMap<Contract,Car> map = new HashMap<>();
+
+        HashMap<Contract, Car> map = new HashMap<>();
 
         List<Contract> allContracts = getAllContracts();
 
@@ -163,13 +163,14 @@ public class IncidentsService {
         }
         return map;
     }
-    public HashMap<Contract, Car> mapOfContractsWithoutIncidentReport(){
+
+    public HashMap<Contract, Car> mapOfContractsWithoutIncidentReport() {
 
         List<Contract> contracts = contractsWITHOUTincidentRep();
 
         List<Car> cars = getReturnedCars();
 
-        HashMap<Contract,Car> map = new HashMap<>();
+        HashMap<Contract, Car> map = new HashMap<>();
 
         for (Contract contract : contracts) {
             for (Car car : cars) {

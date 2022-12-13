@@ -28,7 +28,7 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
-    public String getVIN(int contractID){
+    public String getVIN(int contractID) {
         String QUARY = "SELECT VIN from contracts where contractID = ?";
 
         try {
@@ -69,9 +69,9 @@ public class ContractRepository implements IRepository {
         return -1;
     }
 
-    public Contract findOneContract(String column, Object num){
+    public Contract findOneContract(String column, Object num) {
 
-        String QUARY = "SELECT * FROM data.contracts where " +column +"=?";
+        String QUARY = "SELECT * FROM data.contracts where " + column + "=?";
         Contract contract = null;
 
         try {
@@ -93,9 +93,9 @@ public class ContractRepository implements IRepository {
                 boolean deliveryInsurance = resultSet.getBoolean("deliveryInsurance");
                 KmPrMonth kmPrMonth = KmPrMonth.valueOf(resultSet.getString("kmPrMonth"));
                 ContractStatus contractStatus = ContractStatus.valueOf(resultSet.getString("contractStatus"));
-                LocalDate date = LocalDate.parse(resultSet.getString("date"),DateTimeFormatter.ISO_LOCAL_DATE);
+                LocalDate date = LocalDate.parse(resultSet.getString("date"), DateTimeFormatter.ISO_LOCAL_DATE);
 
-                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus);
+                contract = new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth, date, contractStatus);
             }
 
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class ContractRepository implements IRepository {
         try {
 
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
-            ptsd.setString(1,String.valueOf(conditions.get(0)));
+            ptsd.setString(1, String.valueOf(conditions.get(0)));
 
             ResultSet resultSet = ptsd.executeQuery();
 
@@ -136,7 +136,7 @@ public class ContractRepository implements IRepository {
                 LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth, date, contractStatus));
             }
 
         } catch (SQLException e) {
@@ -173,7 +173,7 @@ public class ContractRepository implements IRepository {
                 ContractStatus contractStatus = ContractStatus.valueOf(resultSet.getString("contractStatus"));
                 LocalDate date = LocalDate.parse(resultSet.getString("date"));
 
-                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth,date,contractStatus));
+                contracts.add(new Contract(contractID, VIN, subLenght, customerID, pickup, vikingHelp, deliveryInsurance, lowDeductible, winterTires, kmPrMonth, date, contractStatus));
             }
 
         } catch (SQLException e) {
@@ -183,7 +183,7 @@ public class ContractRepository implements IRepository {
         return contracts;
     }
 
-
+    //William, Albert
     @Override
     public void writeSingle(Object param) {
 
@@ -203,8 +203,8 @@ public class ContractRepository implements IRepository {
             ptsd.setBoolean(7, c.isLowDeductible());
             ptsd.setBoolean(8, c.isDeliveryInsurance());
             ptsd.setString(9, c.getKmPrMonth().name());
-            ptsd.setString(10,c.getStartDate().format(DateTimeFormatter.ISO_DATE));
-            ptsd.setString(11,c.getContractStatus().name());
+            ptsd.setString(10, c.getStartDate().format(DateTimeFormatter.ISO_DATE));
+            ptsd.setString(11, c.getContractStatus().name());
 
             ptsd.executeUpdate();
 
@@ -218,9 +218,9 @@ public class ContractRepository implements IRepository {
 
         List<Contract> returnedCardsContracts = new ArrayList<>();
 
-        for (Car car: returnedCars) {
-            Contract contract = findOneContract("VIN",car.getVIN());
-            if (contract!=null) {
+        for (Car car : returnedCars) {
+            Contract contract = findOneContract("VIN", car.getVIN());
+            if (contract != null) {
                 returnedCardsContracts.add(contract);
             }
         }
@@ -228,18 +228,19 @@ public class ContractRepository implements IRepository {
 
     }
 
+    //Basma, Albert
     @Override
     public void updateSingle(Object conractID, String columnName, String columnCondition, String updateTo) {
 
         int contractID = (int) conractID;
 
 
-        String QUARY = "UPDATE contracts SET "+ columnName + " = "+ updateTo + " where "+ columnCondition + " =?";
+        String QUARY = "UPDATE contracts SET " + columnName + " = " + updateTo + " where " + columnCondition + " =?";
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY);
 
-            ptst.setInt(1,contractID);
+            ptst.setInt(1, contractID);
             ptst.executeUpdate();
 
         } catch (SQLException e) {

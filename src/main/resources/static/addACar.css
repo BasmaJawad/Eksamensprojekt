@@ -1,7 +1,8 @@
-#VIN{
+#VIN {
     width: 400px;
 }
-button{
+
+button {
     width: 170px;
 }
 
@@ -10,6 +11,6 @@ select {
     width: 425px;
 }
 
-h1{
+h1 {
     margin-bottom: 60px;
 }
