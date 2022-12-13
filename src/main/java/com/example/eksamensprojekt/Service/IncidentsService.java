@@ -10,11 +10,11 @@ import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.IncidentRepository;
 import org.springframework.web.context.request.WebRequest;
-import org.thymeleaf.context.WebEngineContext;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
@@ -48,13 +48,13 @@ public class IncidentsService {
     }
 
 
-    public void updateSingleCar(WebRequest req ){
+    public void updateSingleCar(WebRequest req) {
 
         carRepository.updateSingle(req.getParameter("sendVIN"), "carStatus", "VIN", "NOT_RENTED");
 
     }
 
-    public  Contract contract (int contractID){
+    public Contract contract(int contractID) {
         return contractRepository.findOneContract("contractID", contractID);
     }
 
@@ -72,12 +72,10 @@ public class IncidentsService {
     }
 
 
-
-    public IncidentReport getOneReport(int contractID){
-        return incidentRepo.readSingle( contractID);
+    public IncidentReport getOneReport(int contractID) {
+        return incidentRepo.readSingle(contractID);
 
     }
-
 
 
     public void createIncidentReport(int contractID) {
@@ -97,23 +95,22 @@ public class IncidentsService {
         String VIN = contractRepository.getVIN(contractID);
 
 
-
         return VIN;
     }
 
-    public List<Contract> getAllContracts(){
+    public List<Contract> getAllContracts() {
         return contractRepository.readMultiple();
     }
 
-    public List<Car> getSomeCars(List<Contract> contracts){
+    public List<Car> getSomeCars(List<Contract> contracts) {
 
         List<Car> cars = new ArrayList<>();
 
-        for (Contract contract: contracts) {
+        for (Contract contract : contracts) {
             cars.add(carRepository.readSingle(contract.getVIN()));
         }
 
-       return cars;
+        return cars;
     }
 
     public CarRepository getCarRepository() {
@@ -122,15 +119,15 @@ public class IncidentsService {
 
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
-        return contractRepository.returnedCarsContracts(setCarRepositoryInContractRepo());
+        return contractRepository.returnedCarsContracts(getReturnedCars());
     }
 
-    public List<Car> setCarRepositoryInContractRepo() {
+    public List<Car> getReturnedCars() {
 
         ArrayList<CarStatus> conditions = new ArrayList<>();
         conditions.add(CarStatus.RETURNED);
 
-        return carRepository.readMultiple(conditions,"carStatus");
+        return carRepository.readMultiple(conditions, "carStatus");
     }
 
     //Følgende 2 metoder undersøger om listen med returnerede biler har en incident report,
@@ -140,21 +137,58 @@ public class IncidentsService {
         List<Contract> contractsWreport = new ArrayList<>();
 
         for (Contract contract : contractList) {
-            if (incidentRepo.readSingle(contract.getContractID())!=null)
+            if (incidentRepo.readSingle(contract.getContractID()) != null)
                 contractsWreport.add(contract);
         }
 
         return contractsWreport;
     }
 
+    public HashMap<Contract, Car> oldReportsData() {
+        
+        HashMap<Contract,Car> map = new HashMap<>();
 
-   public List<Contract> contractsWITHOUTincidentRep() {
+        List<Contract> allContracts = getAllContracts();
+
+        List<Contract> allContractsWithIncidentRep = contractsWITHincidentRep(allContracts);
+
+        List<Car> cars = getSomeCars(allContractsWithIncidentRep);
+
+        for (Contract contract : allContractsWithIncidentRep) {
+            for (Car car : cars) {
+                if (contract.getVIN().equals(car.getVIN())) {
+                    map.put(contract, car);
+                }
+            }
+        }
+        return map;
+    }
+    public HashMap<Contract, Car> mapOfContractsWithoutIncidentReport(){
+
+        List<Contract> contracts = contractsWITHOUTincidentRep();
+
+        List<Car> cars = getReturnedCars();
+
+        HashMap<Contract,Car> map = new HashMap<>();
+
+        for (Contract contract : contracts) {
+            for (Car car : cars) {
+                if (contract.getVIN().equals(car.getVIN())) {
+                    map.put(contract, car);
+                }
+            }
+        }
+        return map;
+    }
+
+
+    public List<Contract> contractsWITHOUTincidentRep() {
 
         List<Contract> allReturnedCarsContracts = returnedCarsContracts();
         List<Contract> contractsWOreport = new ArrayList<>();
 
         for (Contract contract : allReturnedCarsContracts) {
-            if (incidentRepo.readSingle(contract.getContractID())==null)
+            if (incidentRepo.readSingle(contract.getContractID()) == null)
                 contractsWOreport.add(contract);
         }
 
