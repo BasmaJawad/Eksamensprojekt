@@ -37,6 +37,9 @@
 
 <h1>VÆLG BIL</h1>
 
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Bilmodel" style="margin-left: 30px"> <br>
+
+
 <table id="myTable" style="margin-left: 30px !important; margin-right:40px !important;">
     <tr class="header">
         <th style="width:30%;">BILMÆRKE</th>
@@ -50,7 +53,7 @@
         <td th:text="${car.getVIN()}">
         <td>
         <form action="/chooseCar">
-            <button id="moveOn" type="submit" name="car" th:value="${car.VIN}">Vælg</button>
+            <button id="moveOn" type="submit" name="car" th:value="${car.VIN}" style="width: 100px; border-radius: 7px">Vælg</button>
         </form>
         </td>
     </tr>
@@ -66,5 +69,30 @@
     </form>
     -->
 </table>
+
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>

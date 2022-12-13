@@ -178,7 +178,7 @@
             <form action="/updateCarStatus" method="post">
                 <input type="hidden" name="carStatus" value="RETURNED"/>
                 <input type="hidden" name="ContractStatus" value="'DEAD'"/>
-                <button class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
+                <button onclick="return confirm('Er du sikker');" class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
 
             </form>
 
@@ -186,7 +186,7 @@
 
                         <input type="hidden" name="carStatus" value="RETURNED"/>
                         <input type="hidden" name="ContractStatus" value="'CANCELLED'"/>
-                        <button class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
+                        <button onclick="return confirm('Er du sikker');"  class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
 
             </form>
              </span>
