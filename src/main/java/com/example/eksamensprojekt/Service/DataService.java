@@ -12,8 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.*;
 
 public class DataService {
 
@@ -76,14 +75,21 @@ public class DataService {
         carStatus.add(CarStatus.NOT_RENTED);
         return carRepository.readMultiple(carStatus, "carStatus");
     }
+    public HashMap<Contract,Car> getContractCarMap(){
 
-    public ArrayList<Contract> getAllContracts() {
+        HashMap<Contract,Car> contractCarMap = new HashMap<>();
 
-        return contractRepo.readMultiple();
-    }
+        ArrayList<Contract> contracts = contractRepo.readMultiple();
+        ArrayList<Car> cars = carRepository.readMultiple();
 
-    public CarRepository getCarRepository() {
-        return carRepository;
+        for (Car car : cars) {
+            for (Contract contract : contracts) {
+                if (contract.getVIN().equals(car.getVIN())) {
+                    contractCarMap.put(contract, car);
+                }
+            }
+        }
+        return contractCarMap;
     }
 
 

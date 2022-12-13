@@ -181,7 +181,4 @@ public class Contract {
         return customerID + "\n" + VIN  + "\n" + subLenght.toString();
     }
 
-
-
-
 }

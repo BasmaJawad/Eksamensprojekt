@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 public class BusinessController {
@@ -62,7 +63,7 @@ public class BusinessController {
     @GetMapping("/revenueBoard")
     public String revenueBoard(Model model) {
 
-        ArrayList<ContractPrice> list = bs.listOfPricesPrCar();
+        HashMap<String,ContractPrice> list = bs.listOfPricesPrCar();
         int totalRevenue = bs.totalRevenue();
 
         model.addAttribute("pricePrContract", list);

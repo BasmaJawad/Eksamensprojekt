@@ -13,6 +13,9 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeMap;
 
 @Controller
 public class DataController {
@@ -35,8 +38,9 @@ public class DataController {
     @GetMapping("/dataHomepage")
     public String dataHomepage(Model model) {
 
-        model.addAttribute("contracts", ds.getAllContracts());
-        model.addAttribute("carInContract", ds.getCarRepository());
+        HashMap<Contract, Car> contractCarHashMap = ds.getContractCarMap();
+
+        model.addAttribute("list",contractCarHashMap);
 
         return "/DataRegister/dataHomepage";
     }

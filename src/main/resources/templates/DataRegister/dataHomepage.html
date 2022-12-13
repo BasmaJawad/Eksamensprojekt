@@ -59,17 +59,17 @@
         <th style="width:20%;">LEJEAFTALE</th>
     </tr>
 
-    <tr th:each="contract :${contracts}">
-        <td th:text="${contract.getContractID}">
-        <td th:text="${contract.getVIN}">
-        <td> <span th:text="${carInContract.readSingle(contract.getVIN).getCarBrand()}"/> <br>
-        <span th:text="${carInContract.readSingle(contract.getVIN).getCarModel}"/>
+    <tr th:each="contract :${list}">
+        <td th:text="${contract.key.getContractID()}">
+        <td th:text="${contract.key.getVIN()}">
+        <td> <span th:text="${contract.value.getCarBrand()}"/> <br>
+        <span th:text="${contract.value.getCarModel()}"/>
     </td>
         <td>
-        <span th:text="${contract.getContractStatus}"/>
+        <span th:text="${contract.key.getContractStatus()}"/>
     </td>
         <td> <form action="/showcontract" method="post">
-            <button id="seeContract" type="submit" name="contractID" th:value="${contract.getContractID}"/>Lejeaftale
+            <button id="seeContract" type="submit" name="contractID" th:value="${contract.key.getContractID()}">Lejeaftale</button>
         </form> </td>
 
     </tr>
