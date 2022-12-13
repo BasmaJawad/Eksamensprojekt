@@ -178,7 +178,7 @@
             <form action="/updateCarStatus" method="post">
                 <input type="hidden" name="carStatus" value="RETURNED"/>
                 <input type="hidden" name="ContractStatus" value="'DEAD'"/>
-                <button class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
+                <button onclick="return confirm('Er du sikker');" class="buttons" id="submitCarStat" type="submit">Afslut lejeaftale</button>
 
             </form>
 
@@ -186,7 +186,7 @@
 
                         <input type="hidden" name="carStatus" value="RETURNED"/>
                         <input type="hidden" name="ContractStatus" value="'CANCELLED'"/>
-                        <button class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
+                        <button onclick="return confirm('Er du sikker');"  class="buttons" id="cancelContract" type="submit">Annuller lejeaftale</button>
 
             </form>
              </span>
@@ -219,7 +219,7 @@
                        readonly><br>
 
                 <label for="subLenght">Abonnement længde</label><br>
-                <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenght()}"
+                <input type="text" name="subLenght" class="form-control" th:value="${session.contract.getSubLenghtConverted()}"
                        readonly><br>
 
                 <label for="pickupDes">Afhentningssted</label><br>
@@ -228,7 +228,7 @@
 
                 <label for="kmPrMonth">Kilometer Pr. måned</label><br>
                 <input type="text" name="kmPrMonth" class="form-control"
-                       th:value="${session.contract.getKmPrMonth()}" readonly><br>
+                       th:value="${session.contract.getKmPrMonthConverted()}" readonly><br>
 
 
                 <div class="additionalInfoContract">

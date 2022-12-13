@@ -176,6 +176,64 @@ public class Contract {
 
     }
 
+    public String getSubLenghtConverted(){
+        switch (subLenght){
+            case THREE_MONTHS -> {
+                return "3 Måneder";
+            }
+            case SIX_MONTHS -> {
+                return "6 Måneder";
+            }
+            case TWELVE_MONTHS -> {
+                return "12 Måneder";
+            }
+            case TWENTYFOUR_MONTHS -> {
+                return "24 Måneder";
+            }
+            case THIRTYSIX_MONTHS -> {
+                return "36 Måneder";
+            }
+        }
+        return String.valueOf(subLenght);
+    }
+
+    public String getKmPrMonthConverted(){
+        switch (kmPrMonth){
+            case FIFTEEN_HUNDRED -> {
+                return "1500 km/måned";
+            }
+            case SEVENTEEN_HUNDRED_AND_FIFTY ->
+            {
+                return "1750 km/måned";
+            }
+            case TWO_THOUSAND ->
+            {
+                return "2000 km/måned";
+            }
+            case TWO_THOUSAND_FIVE_HUNDRED ->
+            {
+                return "2500 km/måned";
+            }
+            case THREE_THOUSAND->
+            {
+                return "3000 km/måned";
+            }
+            case THREE_THOUSAND_FIVE_HUNDRED->
+            {
+                return "3500 km/måned";
+            }
+            case FOUR_THOUSAND->
+            {
+                return "4000 km/måned";
+            }
+            case FOUR_THOUSAND_FIVE_HUNDRED->
+            {
+                return "4500 km/måned";
+            }
+        }
+        return String.valueOf(kmPrMonth);
+    }
+
     @Override
     public String toString() {
         return customerID + "\n" + VIN  + "\n" + subLenght.toString();

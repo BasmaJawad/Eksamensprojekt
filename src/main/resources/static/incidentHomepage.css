@@ -27,12 +27,24 @@ width: 100%;
 
 
 #myInput{
-    margin-top: 20px;
-    margin-left: 3.5%;
-    padding:15px;
-    border-radius: 10px;
+    margin-top: 0;
+    margin-left: 1%;
+    padding: 15px;
+    border-radius: 5px;
     position: center;
+    float: left;
+    height: 40px;
+    margin-bottom: 50px;
 
+}
+
+.dropdown {
+    float: left;
+    margin-left: 50px;
+}
+#dropdownMenuButton {
+    height: auto;
+    color: black;
 }
 
 input[type=text] {
@@ -41,6 +53,7 @@ input[type=text] {
     transition: width 0.15s ease-in-out;
     margin-bottom: 20px;
 }
+
 
 input[type=text]:focus {
     width: 50%;
@@ -75,11 +88,12 @@ tr.header{
 }
 
 button{
-    border-radius: 10px;
+    border-radius: 7px;
     border-color: #8ea2b0;
     height: 30px;
     background: linear-gradient(to right, #daeaed, #8ea2b0);
     color: black;
+    font-size: 15px;
 }
 
 
@@ -92,3 +106,8 @@ button.DoneButton{
 
     background-color: #f1f1f1;
 }*/
+
+h1 {
+    font-weight: bold;
+    margin: 50px 50px 80px;
+}
