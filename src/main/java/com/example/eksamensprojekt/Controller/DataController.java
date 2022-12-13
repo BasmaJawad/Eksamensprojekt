@@ -51,7 +51,6 @@ public class DataController {
     @GetMapping("/chooseCar")
     public String chooseCar(HttpSession httpSession, Model model, WebRequest req) {
 
-        System.out.println(ds.isElectricCar(model, httpSession, req));
         if (ds.isElectricCar(model, httpSession, req)) {
 
             return "/DataRegister/electricCarContract";
