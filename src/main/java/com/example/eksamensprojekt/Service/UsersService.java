@@ -10,14 +10,11 @@ public class UsersService {
 
     private UsersRepository userRepo = new UsersRepository();
 
-    public ArrayList<User> allUsers() {
-        return userRepo.readMultiple();
-    }
-
-
     public User validateUserLogin(WebRequest req) {
 
-        for (User user : allUsers()) {
+        ArrayList<User> allUsers = userRepo.readMultiple();
+
+        for (User user : allUsers) {
             if (req.getParameter("username").equals(user.getUsername()) &&
                     req.getParameter("password").equals(user.getPassword())) {
                 return user;

@@ -18,7 +18,6 @@ public class DataService {
 
     CarRepository carRepository = new CarRepository();
     ContractRepository contractRepo = new ContractRepository();
-
     CustomerRepository customerRepo = new CustomerRepository();
     PriceRepository priceRepo = new PriceRepository();
 
