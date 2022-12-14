@@ -184,11 +184,14 @@ public class IncidentsService {
     public List<Contract> contractsWITHOUTincidentRep() {
 
         List<Contract> allReturnedCarsContracts = returnedCarsContracts();
+        System.out.println("alle returned biler " + allReturnedCarsContracts.size());
+
         List<Contract> contractsWOreport = new ArrayList<>();
 
         for (Contract contract : allReturnedCarsContracts) {
-            if (incidentRepo.readSingle(contract.getContractID()) == null)
+            if (incidentRepo.readSingle(contract.getContractID()) == null) {
                 contractsWOreport.add(contract);
+            }
         }
 
         return contractsWOreport;
