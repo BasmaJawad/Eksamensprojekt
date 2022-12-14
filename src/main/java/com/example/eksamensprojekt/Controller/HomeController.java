@@ -27,6 +27,7 @@ public class HomeController {
 
     @PostMapping("/")
     public String validateLogin(HttpSession session, WebRequest req, Model model) {
+
         User user = us.validateUserLogin(req);
 
         if (user == null) {
@@ -48,6 +49,7 @@ public class HomeController {
 
         return "login";
     }
+
 
     @GetMapping("/logout") //bruges i login html pt
     public String logout(HttpSession session) {
