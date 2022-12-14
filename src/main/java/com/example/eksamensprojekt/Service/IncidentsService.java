@@ -40,10 +40,10 @@ public class IncidentsService {
 
     public List<CarDamage> findCarDamages(int contractID) {
 
-        IncidentReport inRep = incidentRepo.readSingle(contractID);
-        System.out.println(incidentRepo.readSingle(contractID).getReportID());
+        //IncidentReport inRep = incidentRepo.readSingle(contractID);
+        int incidentReportID = incidentRepo.getID(contractID);
 
-        return carDamageRepository.readDamagesInContract(inRep.getReportID());
+        return carDamageRepository.readDamagesInContract(incidentReportID);
 
     }
 
@@ -83,7 +83,6 @@ public class IncidentsService {
 
         IncidentReport report = new IncidentReport(
                 contractID,
-                getVIN(contractID),
                 LocalDate.now().format(df));
         // orden d
 
@@ -94,7 +93,6 @@ public class IncidentsService {
 
         String VIN = contractRepository.getVIN(contractID);
 
-
         return VIN;
     }
 
@@ -102,21 +100,9 @@ public class IncidentsService {
         return contractRepository.readMultiple();
     }
 
-    public List<Car> getSomeCars(List<Contract> contracts) {
-
-        List<Car> cars = new ArrayList<>();
-
-        for (Contract contract : contracts) {
-            cars.add(carRepository.readSingle(contract.getVIN()));
-        }
-
-        return cars;
+    public String getCarBrand(String VIN){
+        return carRepository.readSingle(VIN).getCarBrand();
     }
-
-    public CarRepository getCarRepository() {
-        return carRepository;
-    }
-
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
         return contractRepository.returnedCarsContracts(getReturnedCars());
@@ -143,6 +129,18 @@ public class IncidentsService {
 
         return contractsWreport;
     }
+
+    public List<Car> getSomeCars(List<Contract> contracts) {
+
+        List<Car> cars = new ArrayList<>();
+
+        for (Contract contract : contracts) {
+            cars.add(carRepository.readSingle(contract.getVIN()));
+        }
+
+        return cars;
+    }
+
 
     public HashMap<Contract, Car> oldReportsData() {
 

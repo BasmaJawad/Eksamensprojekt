@@ -41,13 +41,11 @@ public class IncidentController {
     //form i incidentHomepage
     @PostMapping("/addIncidentReport")
     public String sendIncidentHome(HttpSession session, WebRequest req) {
+
         // contractID skal sættes til være den som bliver hentet fra htmlen når man trykker på knappen tilføj
 
-        session.setAttribute("contractID", req.getParameter("contractID"));
-
-        System.out.println(req.getParameter("contractID"));
-
-        Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
+        int contractID = Integer.parseInt(req.getParameter("contractID"));
+       session.setAttribute("contractID", contractID);
 
         incidentsService.createIncidentReport(contractID);
 
@@ -75,24 +73,25 @@ public class IncidentController {
 
 
     @GetMapping("/incidentReport")
-    public String incidentReport(HttpSession session) {
+    public String incidentReport(HttpSession session, Model model) {
 
-        Integer contractID = Integer.parseInt(session.getAttribute("contractID").toString());
+        //Castes først til String før den kan parses som int,
+        // da den i session.addAtribute ikke har en defineret datatype
+        int contractID = Integer.parseInt((String) session.getAttribute("contractID"));
+        String VIN = incidentsService.getVIN(contractID);
 
         //Hent rapport her
-        session.setAttribute("report", incidentsService.getOneReport(contractID));
-
-
         IncidentReport incidentReport = incidentsService.getOneReport(contractID);
+        model.addAttribute("report", incidentReport);
 
-
-        session.setAttribute("VIN", incidentReport.getVIN());
-        session.setAttribute("Date", incidentReport.getDate());
-        session.setAttribute("car", incidentsService.getCarRepository().readSingle(incidentReport.getVIN()).getCarBrand());
+        //henter bil VIN fra contract med contractID
+        model.addAttribute("VIN", VIN);
+        model.addAttribute("Date", incidentReport.getDate());
+        model.addAttribute("car", incidentsService.getCarBrand(VIN));
         //Skaderne bliver hentet her
         List<CarDamage> carDamages = incidentsService.findCarDamages(contractID);
 
-        session.setAttribute("damages", carDamages);
+        model.addAttribute("damages", carDamages);
         return "/DamageRegister/incidentReport";
     }
 
@@ -146,7 +145,7 @@ public class IncidentController {
 
 
     @PostMapping("/endReport")
-    public String endReport(WebRequest req, HttpSession session) {
+    public String endReport(WebRequest req) {
 
         incidentsService.updateSingleCar(req);
 

@@ -48,7 +48,7 @@
                 </div>
                 <div class="reportInput">
                     <label>STELNUMMER <br>
-                        <input type="text" name="VIN" class="form-control" th:value="${session.VIN}"
+                        <input type="text" name="VIN" class="form-control" th:value="${VIN}"
                                readonly>
                         <br>
                     </label>
@@ -57,7 +57,7 @@
                 </div>
                 <div class="reportInput">
                     <label>DATO <br>
-                        <input type="text" name="contractID" class="form-control" th:value="${session.Date}"
+                        <input type="text" name="contractID" class="form-control" th:value="${Date}"
                                readonly>
                         <br>
                     </label>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="reportInput">
                     <label>BIL MODEL <br>
-                        <input type="text" name="car" class="form-control" th:value="${session.car}"
+                        <input type="text" name="car" class="form-control" th:value="${car}"
                                readonly>
                         <br>
                     </label>
@@ -84,7 +84,7 @@
                     <th style="width:20%;">PRIS</th>
                     <th style="width:20%;">BESKRIVELSE</th>
                 </tr>
-                <tr th:each="damage:${session.damages}">
+                <tr th:each="damage:${damages}">
                     <td th:text="${damage.getCost}">
                     <td th:text="${damage.getDesciption}">
                 </tr>
