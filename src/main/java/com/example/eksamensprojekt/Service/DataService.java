@@ -140,14 +140,14 @@ public class DataService {
 
         int price = 0;
         switch (kmPrMonth) {
-            case FIFTEEN_HUNDRED -> price = 0;
+            case FIFTEEN_HUNDRED ->             price = 0;
             case SEVENTEEN_HUNDRED_AND_FIFTY -> price = 300;
-            case TWO_THOUSAND -> price = 590;
-            case TWO_THOUSAND_FIVE_HUNDRED -> price = 1160;
-            case THREE_THOUSAND -> price = 1710;
+            case TWO_THOUSAND ->                price = 590;
+            case TWO_THOUSAND_FIVE_HUNDRED ->   price = 1160;
+            case THREE_THOUSAND ->              price = 1710;
             case THREE_THOUSAND_FIVE_HUNDRED -> price = 2240;
-            case FOUR_THOUSAND -> price = 2750;
-            case FOUR_THOUSAND_FIVE_HUNDRED -> price = 3240;
+            case FOUR_THOUSAND ->               price = 2750;
+            case FOUR_THOUSAND_FIVE_HUNDRED ->  price = 3240;
         }
         return price;
     }
