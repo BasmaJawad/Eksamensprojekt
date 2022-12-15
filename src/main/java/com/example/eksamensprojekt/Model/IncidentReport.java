@@ -1,14 +1,24 @@
 package com.example.eksamensprojekt.Model;
+
+import java.time.LocalDate;
+
 // Lavet af Basma og Jawaahir
 public class IncidentReport {
 
 
     private int contractID;
-    private String date;
+    private LocalDate date;
 
-    public IncidentReport(int contractID, String date) {
+    //bruges til at læse fra db
+    public IncidentReport(int contractID, LocalDate date) {
         this.contractID = contractID;
         this.date = date;
+    }
+
+    //bruges til at skrive til db
+    public IncidentReport(int contractID) {
+        this.contractID = contractID;
+        this.date = LocalDate.now();
     }
 
     public int getContractID() {
@@ -19,11 +29,11 @@ public class IncidentReport {
         this.contractID = contractID;
     }
 
-    public String getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

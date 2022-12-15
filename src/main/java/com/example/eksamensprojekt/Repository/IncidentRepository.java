@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class IncidentRepository implements IRepository{
             while (resultSet.next()) {
                 incidentReports.add(new IncidentReport(
                         resultSet.getInt("contractID"),
-                        resultSet.getString("date"))
+                        LocalDate.parse(resultSet.getString("date")))
                 );
 
             }
@@ -56,7 +58,7 @@ public class IncidentRepository implements IRepository{
 
                 incidentReport = new IncidentReport(
                         resultSet.getInt("contractID"),
-                        resultSet.getString("date")
+                        LocalDate.parse(resultSet.getString("date"))
                 );
 
             }
@@ -107,7 +109,7 @@ public class IncidentRepository implements IRepository{
         try {
             PreparedStatement psts = conn.prepareStatement("INSERT INTO incidentsreports(contractID, date) VALUES (?,?)");
             psts.setInt(1, incidentReport.getContractID());
-            psts.setString(2, incidentReport.getDate());
+            psts.setString(2, incidentReport.getDate().format(DateTimeFormatter.ISO_DATE));
 
             psts.executeUpdate();
 

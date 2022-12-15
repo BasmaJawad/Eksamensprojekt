@@ -79,12 +79,11 @@ public class IncidentsService {
 
 
     public void createIncidentReport(int contractID) {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("YYYY-MM-DD");
+
+        //sætter localdate i IncidentReport model
 
         IncidentReport report = new IncidentReport(
-                contractID,
-                LocalDate.now().format(df));
-        // orden d
+                contractID);
 
         incidentRepo.writeSingle(report);
     }
