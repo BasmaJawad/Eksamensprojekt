@@ -1,8 +1,4 @@
 package com.example.eksamensprojekt.Repository;
-
-import org.springframework.beans.factory.annotation.Required;
-
-import java.lang.invoke.VarHandle;
 import java.util.ArrayList;
 
 public interface IRepository<E> {
