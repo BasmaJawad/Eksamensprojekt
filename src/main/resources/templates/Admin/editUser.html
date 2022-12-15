@@ -19,6 +19,13 @@
                 <li><a href="/goToAddACarPage">Tilføj bil</a></li>
                 <li><a href="/users">Brugere</a></li>
                 <li><a href="/logout">Log af</a></li>
+                <li>
+                    <div id="user">
+                        <img src="https://icons.veryicon.com/png/o/internet--web/55-common-web-icons/person-4.png"
+                             id="icon">
+                        <span id="username" th:text="${session.user.getUsername()}"></span>
+                    </div>
+                </li>
             </ul>
         </nav>
     </div>
@@ -30,7 +37,7 @@
         <input id="usertype" style="display: none" type="text" th:value="${session.oldUserType}">
     </label>
     <label>Brugernavn:
-        <input  id="user" type="text" name="username" th:value="${username}">
+        <input  type="text" name="username" th:value="${username}">
     </label> <br>
     <label>Brugertype: <select name="userType">
         <option class="d" value="ADMIN">ADMIN</option>

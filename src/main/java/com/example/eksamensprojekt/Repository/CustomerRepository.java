@@ -13,11 +13,8 @@ public class CustomerRepository implements IRepository {
 
     private Connection conn = DCM.getConnection();
 
-    @Override
-    public Customer readSingle(Object param) {
-        return null;
-    }
 
+    //Basma
     public Customer findOneCustomer(String column, Object param) {
 
         Customer customer = null;
@@ -46,6 +43,7 @@ public class CustomerRepository implements IRepository {
         return customer;
     }
 
+    //William
     public int readID(Customer customer) {
 
         String QUARY = "SELECT cprNum, CustomerID FROM customer";
@@ -63,20 +61,12 @@ public class CustomerRepository implements IRepository {
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
+            throw new RuntimeException(e);
         }
         return -1;
     }
 
-    @Override
-    public ArrayList readMultiple(ArrayList conditions, String columnName) {
-        return null;
-    }
 
-    @Override
-    public ArrayList readMultiple() {
-        return null;
-    }
 
     //William, Albert
     @Override
@@ -102,6 +92,20 @@ public class CustomerRepository implements IRepository {
         }
     }
 
+    //Unused interface methods
+    @Override
+    public Customer readSingle(Object param) {
+        return null;
+    }
+    @Override
+    public ArrayList<Customer> readMultiple(Object param, String columnName) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<Customer> readMultiple() {
+        return null;
+    }
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {

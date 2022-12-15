@@ -10,6 +10,7 @@ public class UsersService {
 
     private UsersRepository userRepo = new UsersRepository();
 
+    //Basma, Jawaahir
     public User validateUserLogin(WebRequest req) {
 
         ArrayList<User> allUsers = userRepo.readMultiple();

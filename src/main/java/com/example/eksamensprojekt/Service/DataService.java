@@ -68,15 +68,6 @@ public class DataService {
         addPriceToDatabase(car, subLenght, contract);
     }
 
-
-    //Albert
-    public ArrayList<Car> getAllAvailableCars() {
-
-        ArrayList<CarStatus> carStatus = new ArrayList<>();
-        carStatus.add(CarStatus.NOT_RENTED);
-        return carRepository.readMultiple(carStatus, "carStatus");
-    }
-
     //Albert, Basma
     public HashMap<Contract, Car> getContractCarMap() {
 
@@ -94,6 +85,56 @@ public class DataService {
         }
         return contractCarMap;
     }
+
+
+
+    //Basma/Albert
+    public void updateSingle(WebRequest req, Car car) {
+
+        String contractStatus = req.getParameter("ContractStatus");
+
+        String updateTo = req.getParameter("carStatus");
+
+        //Updates carStatus
+        carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
+
+        //update contract to dead or cancelled
+        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()), "contractStatus", "contractID", contractStatus);
+    }
+
+    //William
+    public boolean isElectricCar(Model model, HttpSession httpSession, WebRequest req) {
+        Car car;
+        car = carRepository.readSingle(req.getParameter("car"));
+
+        httpSession.setAttribute("car", car);
+        model.addAttribute("car", car);
+        return car instanceof ElectricCar;
+    }
+
+
+    //                -----Get something-----
+    //Albert
+    public ArrayList<Car> getAllAvailableCars() {
+
+        return carRepository.readMultiple(CarStatus.NOT_RENTED, "carStatus");
+    }
+    //Basma
+    public Contract getOneContract(int contractID) {
+        return contractRepo.findOneContract("contractID", contractID);
+    }
+
+    //Basma
+    public Car getOnecar(Object param) {
+        return carRepository.readSingle(param);
+    }
+
+    //Basma
+    public Customer getOneCustomer(String column, Object val) {
+        return customerRepo.findOneCustomer(column, val);
+    }
+
+
 
     //William
     public void addPriceToDatabase(Car car, SubLenght subLength, Contract contract) {
@@ -150,43 +191,5 @@ public class DataService {
             case FOUR_THOUSAND_FIVE_HUNDRED ->  price = 3240;
         }
         return price;
-    }
-
-    public Contract getOneContract(int contractID) {
-        return contractRepo.findOneContract("contractID", contractID);
-    }
-
-    public Car getOnecar(Object param) {
-        return carRepository.readSingle(param);
-    }
-
-    public Customer getOneCustomer(String column, Object val) {
-        return customerRepo.findOneCustomer(column, val);
-    }
-
-
-    public void updateSingle(WebRequest req, Car car) {
-
-        String contractStatus = req.getParameter("ContractStatus");
-
-        String updateTo = req.getParameter("carStatus");
-
-        //Updates carStatus
-        carRepository.updateSingle(car.getVIN(), "carStatus", "VIN", updateTo);
-
-        //update contract to dead or cancelled
-        contractRepo.updateSingle(contractRepo.getContractID(car.getVIN()), "contractStatus", "contractID", contractStatus);
-    }
-
-
-    //William
-    public boolean isElectricCar(Model model, HttpSession httpSession, WebRequest req) {
-        Car car;
-        car = carRepository.readSingle(req.getParameter("car"));
-        System.out.println(car);
-
-        httpSession.setAttribute("car", car);
-        model.addAttribute("car", car);
-        return car instanceof ElectricCar;
     }
 }

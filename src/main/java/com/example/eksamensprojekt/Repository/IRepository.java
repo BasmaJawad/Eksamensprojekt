@@ -10,7 +10,7 @@ public interface IRepository<E> {
     //Read
     E readSingle(E param);
 
-    ArrayList<E> readMultiple(ArrayList<E> conditions, String columnName);
+    ArrayList<E> readMultiple(E param, String columnName);
 
     ArrayList<E> readMultiple();
 

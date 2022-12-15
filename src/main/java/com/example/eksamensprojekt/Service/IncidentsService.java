@@ -10,40 +10,23 @@ import com.example.eksamensprojekt.Repository.CarRepository;
 import com.example.eksamensprojekt.Repository.ContractRepository;
 import com.example.eksamensprojekt.Repository.IncidentRepository;
 import org.springframework.web.context.request.WebRequest;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
 
+// klasse Lavet af Basma og Jawaahir
 public class IncidentsService {
     private IncidentRepository incidentRepo = new IncidentRepository();
     private CarDamageRepository carDamageRepository = new CarDamageRepository();
     private ContractRepository contractRepository = new ContractRepository();
     private CarRepository carRepository = new CarRepository();
 
-    // Lavet af Basma og Jawaahir
-    public boolean verifyContractID(int ContractID) {
-
-        List<Contract> contracts = getAllContracts();
-
-        for (Contract contract : contracts) {
-            if (contract.getContractID() == ContractID)
-                return true;
-
-        }
-        return false;
-    }
 
     public List<CarDamage> findCarDamages(int contractID) {
 
-        //IncidentReport inRep = incidentRepo.readSingle(contractID);
-        int incidentReportID = incidentRepo.getID(contractID);
-
-        return carDamageRepository.readDamagesInContract(incidentReportID);
+        return carDamageRepository.readMultiple(incidentRepo.getID(contractID),null);
 
     }
 
@@ -72,11 +55,6 @@ public class IncidentsService {
     }
 
 
-    public IncidentReport getOneReport(int contractID) {
-        return incidentRepo.readSingle(contractID);
-
-    }
-
 
     public void createIncidentReport(int contractID) {
 
@@ -88,32 +66,14 @@ public class IncidentsService {
         incidentRepo.writeSingle(report);
     }
 
-    public String getVIN(int contractID) {
 
-        String VIN = contractRepository.getVIN(contractID);
 
-        return VIN;
-    }
-
-    public List<Contract> getAllContracts() {
-        return contractRepository.readMultiple();
-    }
-
-    public String getCarBrand(String VIN){
-        return carRepository.readSingle(VIN).getCarBrand();
-    }
     public List<Contract> returnedCarsContracts() {
         //Sender liste af cars til contractsRepository for at returnere liste af contracts med de returned biler
         return contractRepository.returnedCarsContracts(getReturnedCars());
     }
 
-    public List<Car> getReturnedCars() {
 
-        ArrayList<CarStatus> conditions = new ArrayList<>();
-        conditions.add(CarStatus.RETURNED);
-
-        return carRepository.readMultiple(conditions, "carStatus");
-    }
 
     //Følgende 2 metoder undersøger om listen med returnerede biler har en incident report,
     // ved at tjekke om contractIDen eksisterer i incidentReport tabellen
@@ -127,17 +87,6 @@ public class IncidentsService {
         }
 
         return contractsWreport;
-    }
-
-    public List<Car> getSomeCars(List<Contract> contracts) {
-
-        List<Car> cars = new ArrayList<>();
-
-        for (Contract contract : contracts) {
-            cars.add(carRepository.readSingle(contract.getVIN()));
-        }
-
-        return cars;
     }
 
 
@@ -183,7 +132,6 @@ public class IncidentsService {
     public List<Contract> contractsWITHOUTincidentRep() {
 
         List<Contract> allReturnedCarsContracts = returnedCarsContracts();
-        System.out.println("alle returned biler " + allReturnedCarsContracts.size());
 
         List<Contract> contractsWOreport = new ArrayList<>();
 
@@ -194,6 +142,46 @@ public class IncidentsService {
         }
 
         return contractsWOreport;
+    }
+
+
+
+    // ----- Get something -----
+
+    public String getVIN(int contractID) {
+
+        String VIN = contractRepository.getVIN(contractID);
+
+        return VIN;
+    }
+
+    public List<Contract> getAllContracts() {
+        return contractRepository.readMultiple();
+    }
+
+    public String getCarBrand(String VIN){
+        return carRepository.readSingle(VIN).getCarBrand();
+    }
+
+    public List<Car> getReturnedCars() {
+
+        return carRepository.readMultiple(CarStatus.RETURNED, "carStatus");
+    }
+
+    public List<Car> getSomeCars(List<Contract> contracts) {
+
+        List<Car> cars = new ArrayList<>();
+
+        for (Contract contract : contracts) {
+            cars.add(carRepository.readSingle(contract.getVIN()));
+        }
+
+        return cars;
+    }
+
+    public IncidentReport getOneReport(int contractID) {
+        return incidentRepo.readSingle(contractID);
+
     }
 
 

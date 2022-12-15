@@ -15,7 +15,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ContractRepository implements IRepository {
@@ -28,6 +27,7 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
+    //Jawaahir
     public String getVIN(int contractID) {
         String QUARY = "SELECT VIN from contracts where contractID = ?";
 
@@ -36,8 +36,7 @@ public class ContractRepository implements IRepository {
             ptst.setInt(1, contractID);
             ResultSet resultSet = ptst.executeQuery();
 
-            while (resultSet.next()) {
-
+            if (resultSet.next()) {
                 return resultSet.getString(1);
             }
 
@@ -48,6 +47,7 @@ public class ContractRepository implements IRepository {
         return null;
     }
 
+    //albert, William
     public int getContractID(String VIN) {
 
         String QUARY = "SELECT MAX(contractID) from contracts where VIN = ?";
@@ -57,7 +57,7 @@ public class ContractRepository implements IRepository {
             ptst.setString(1, VIN);
             ResultSet resultSet = ptst.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
 
                 return resultSet.getInt(1);
             }
@@ -69,6 +69,7 @@ public class ContractRepository implements IRepository {
         return -1;
     }
 
+    //Basma, Jawaahir
     public Contract findOneContract(String column, Object num) {
 
         String QUARY = "SELECT * FROM data.contracts where " + column + "=?";
@@ -106,18 +107,21 @@ public class ContractRepository implements IRepository {
 
     }
 
+    //William, Albert
     //Reads contracts based on something
     @Override
-    public ArrayList<Contract> readMultiple(ArrayList conditions, String columnName) {
+    public ArrayList<Contract> readMultiple(Object param, String columnName) {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-        String QUARY = "SELECT * FROM data.contracts where " + columnName + "=? ORDER BY contractStatus ASC";
+        String contractStatusCondition = String.valueOf(param);
+
+        String QUARY = "SELECT * FROM data.contracts where " + columnName + "=? ORDER BY contractStatus";
 
         try {
 
             PreparedStatement ptsd = conn.prepareStatement(QUARY);
-            ptsd.setString(1, String.valueOf(conditions.get(0)));
+            ptsd.setString(1, contractStatusCondition);
 
             ResultSet resultSet = ptsd.executeQuery();
 
@@ -146,13 +150,14 @@ public class ContractRepository implements IRepository {
         return contracts;
     }
 
+    //William, albert
     //Reads all contracts in database
     @Override
     public ArrayList<Contract> readMultiple() {
 
         ArrayList<Contract> contracts = new ArrayList<>();
 
-        String QUARY = "SELECT * FROM data.contracts ORDER BY contractStatus ASC ";
+        String QUARY = "SELECT * FROM data.contracts ORDER BY contractStatus";
 
         try {
 
@@ -214,6 +219,7 @@ public class ContractRepository implements IRepository {
 
     }
 
+    //Basma
     public List<Contract> returnedCarsContracts(List<Car> returnedCars) {
 
         List<Contract> returnedCardsContracts = new ArrayList<>();
@@ -248,7 +254,7 @@ public class ContractRepository implements IRepository {
         }
     }
 
-
+    //Unused interface method
     @Override
     public void deleteSingle(Object param) {
 

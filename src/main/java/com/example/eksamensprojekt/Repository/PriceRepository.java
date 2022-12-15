@@ -26,7 +26,7 @@ public class PriceRepository implements IRepository {
             ptst.setInt(1, contractID);
             ResultSet resultSet = ptst.executeQuery();
 
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 return new ContractPrice(
                         resultSet.getInt(1),
                         resultSet.getInt(2),
@@ -43,15 +43,7 @@ public class PriceRepository implements IRepository {
         return null;
     }
 
-    @Override
-    public ArrayList readMultiple(ArrayList conditions, String columnName) {
-        return null;
-    }
 
-    @Override
-    public ArrayList readMultiple() {
-        return null;
-    }
 
 
     //William, Albert
@@ -86,6 +78,16 @@ public class PriceRepository implements IRepository {
         }
     }
 
+    //Unused interface methods
+    @Override
+    public ArrayList<ContractPrice> readMultiple(Object param, String columnName) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<ContractPrice> readMultiple() {
+        return null;
+    }
 
     @Override
     public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {

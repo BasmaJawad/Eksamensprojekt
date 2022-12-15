@@ -24,11 +24,9 @@ public class IncidentReport {
     public int getContractID() {
         return contractID;
     }
-
     public void setContractID(int contractID) {
         this.contractID = contractID;
     }
-
     public LocalDate getDate() {
         return date;
     }

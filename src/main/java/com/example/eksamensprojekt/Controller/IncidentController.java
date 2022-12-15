@@ -26,6 +26,7 @@ public class IncidentController {
 
     IncidentsService incidentsService = new IncidentsService();
 
+    //Basma, Jawaahir
     // STARTSIDE
     @GetMapping("/incidentsHomepage")
     public String incidentHome(Model model) {
@@ -38,6 +39,7 @@ public class IncidentController {
     }
 
 
+    //Jawaahir, Basma
     //form i incidentHomepage
     @PostMapping("/addIncidentReport")
     public String sendIncidentHome(HttpSession session, WebRequest req) {
@@ -54,7 +56,7 @@ public class IncidentController {
     }
 
     //Find gamle skaderapporter
-
+    //Basma, Jawaahir
     @GetMapping("/oldIncidentReports")
     public String findOldReport(Model model) {
 
@@ -63,6 +65,7 @@ public class IncidentController {
         return "/DamageRegister/oldIncidentReports";
     }
 
+    //Jawaahir
     @PostMapping("/clickIncidentReport") // Når man klikker på se rapport
     public String clickIncidentReport(WebRequest req, HttpSession session) {
 
@@ -71,7 +74,7 @@ public class IncidentController {
         return "redirect:/incidentReport";
     }
 
-
+    //Jawaahir, Basma
     @GetMapping("/incidentReport")
     public String incidentReport(HttpSession session, Model model) {
 
@@ -96,30 +99,7 @@ public class IncidentController {
     }
 
 
-    // LAV RAPPORT ... Skal muligvis slettes
-    /*
-    @GetMapping("createReport")
-    public String createReport() {
-        return "/DamageRegister/createReport";
-    }
-
-
-    @PostMapping("/createReport")
-    public String createReport(WebRequest req, Model model) {
-
-        model.addAttribute("contractID",req.getParameter("contractID"));
-
-        int ContractID = Integer.parseInt(req.getParameter("contractID"));
-
-        boolean validID = incidentsService.verifyContractID(ContractID);
-        if (validID) { // alt herfra indsættes i incidentPostMapping
-            incidentsService.createIncidentReport(ContractID);
-            return "/DamageRegister/DamagePopup";
-        }
-        return "/DamageRegister/NoContractError";
-    }
-    */
-
+    //Jawaahir
     // INDTAST SKADE
     @GetMapping("/DamagePopup")
     public String inputDamage(Model model, HttpSession session) {
@@ -132,6 +112,7 @@ public class IncidentController {
         return "/DamageRegister/DamagePopup";
     }
 
+    //Jawaahir
     @PostMapping("/addDamage")
     public String writeDamage(WebRequest req, Model model) {
 
@@ -143,7 +124,7 @@ public class IncidentController {
         return "redirect:/DamagePopup";
     }
 
-
+    //Jawaahir, basma
     @PostMapping("/endReport")
     public String endReport(WebRequest req) {
 

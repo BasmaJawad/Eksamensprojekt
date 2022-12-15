@@ -3,18 +3,15 @@ package com.example.eksamensprojekt.Repository;
 import com.example.eksamensprojekt.Misc.DCM;
 import com.example.eksamensprojekt.Model.User;
 import com.example.eksamensprojekt.Model.Enums.UserType;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class UsersRepository implements IRepository {
 
     private Connection conn = DCM.getConnection();
-
 
     //Albert
     public void update(Object p, Object old) {
@@ -36,17 +33,8 @@ public class UsersRepository implements IRepository {
         }
     }
 
-    @Override
-    public Object readSingle(Object param) {
-        return null;
-    }
 
-    @Override
-    public ArrayList<User> readMultiple(ArrayList conditions, String columnName) {
-
-        return null;
-    }
-
+    //Basma, Albert
     @Override
     public ArrayList<User> readMultiple() {
 
@@ -75,6 +63,7 @@ public class UsersRepository implements IRepository {
 
     }
 
+    //Albert
     @Override
     public void writeSingle(Object param) {
 
@@ -96,12 +85,9 @@ public class UsersRepository implements IRepository {
         }
     }
 
-    @Override
-    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
-
-    }
 
 
+    //albert
     @Override
     public void deleteSingle(Object param) {
 
@@ -118,6 +104,24 @@ public class UsersRepository implements IRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    //Unused interface methods
+
+    @Override
+    public Object readSingle(Object param) {
+        return null;
+    }
+
+    @Override
+    public ArrayList<User> readMultiple(Object param, String columnName) {
+
+        return null;
+    }
+
+    @Override
+    public void updateSingle(Object param, String columnName, String columnCondition, String updateTo) {
+
     }
 
 }

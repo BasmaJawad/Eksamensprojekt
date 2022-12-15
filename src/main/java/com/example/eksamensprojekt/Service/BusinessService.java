@@ -20,15 +20,6 @@ public class BusinessService {
     PriceRepository priceRepo = new PriceRepository();
 
 
-    //Albert
-    public ArrayList<Car> getRentedCars() {
-
-        ArrayList<CarStatus> conditions = new ArrayList<>();
-
-        conditions.add(CarStatus.RENTED);
-
-        return carRepo.readMultiple(conditions, "carStatus");
-    }
 
     //Albert
     public ArrayList<Integer> amountOfCarsPrModel() {
@@ -36,8 +27,6 @@ public class BusinessService {
         ArrayList<Car> notRentedCars = getNotRentedCars();
 
         Collections.sort(notRentedCars);
-
-        System.out.println(notRentedCars);
 
         ArrayList<Integer> amount = new ArrayList<>();
 
@@ -69,23 +58,7 @@ public class BusinessService {
     }
 
 
-    public ArrayList<Car> getNotRentedCars() {
 
-        ArrayList<CarStatus> conditions = new ArrayList<>();
-
-        conditions.add(CarStatus.NOT_RENTED);
-
-        return carRepo.readMultiple(conditions, "carStatus");
-    }
-
-    public ArrayList<Car> getReturnedCars() {
-
-        ArrayList<CarStatus> conditions = new ArrayList<>();
-
-        conditions.add(CarStatus.RETURNED);
-
-        return carRepo.readMultiple(conditions, "carStatus");
-    }
 
     //Albert
     public HashMap<String, ContractPrice> listOfPricesPrCar() {
@@ -95,11 +68,8 @@ public class BusinessService {
         //List with rented cars only
         ArrayList<Car> rentedCars = getRentedCars();
 
-        ArrayList<ContractStatus> condition = new ArrayList<>();
-        condition.add(ContractStatus.LIVE);
-
         //Finds only active contracts
-        ArrayList<Contract> contracts = contractRepo.readMultiple(condition, "contractStatus");
+        ArrayList<Contract> contracts = contractRepo.readMultiple(ContractStatus.LIVE, "contractStatus");
 
         //Iterates through contract, If VIN is identical to a rented car VIN, get price
         for (Contract contract : contracts) {
@@ -113,17 +83,9 @@ public class BusinessService {
         return hashmap;
     }
 
-    public List<Contract> getAllcontracts() {
-        return contractRepo.readMultiple();
-    }
 
-    public List<Contract> getContracts(ContractStatus status) {
-        ArrayList<ContractStatus> condition = new ArrayList<>();
-        condition.add(status);
 
-        return contractRepo.readMultiple(condition, "contractStatus");
-    }
-
+    //Basma
     public int signedContractsDayOrMonth(String dayOrMonth) {
 
         List<Contract> contracts = getAllcontracts();
@@ -132,7 +94,6 @@ public class BusinessService {
 
         if (dayOrMonth.equalsIgnoreCase("day")) {
             for (Contract contract : contracts) {
-                System.out.println(contract.getStartDate() + " og" + LocalDate.now());
                 if (contract.getStartDate().equals(LocalDate.now()))
                     countContractsSignedToday++;
 
@@ -151,6 +112,7 @@ public class BusinessService {
         return countContractsSignedToday;
     }
 
+    //Basma
     public int endedContractsToday() {
 
         List<Contract> contracts = getContracts(ContractStatus.DEAD);
@@ -166,6 +128,7 @@ public class BusinessService {
         return countContractsSignedToday;
     }
 
+    //Basma
     public int cancelledContractsMonth() {
 
         List<Contract> contracts = getContracts(ContractStatus.CANCELLED);
@@ -231,6 +194,50 @@ public class BusinessService {
         return mostPopCarModel;
     }
 
+
+    //Basma
+    public int percentageOfNotAvailableCars() {
+
+        int allContracts = getAllcontracts().size();
+
+        int notRented = getNotRentedCars().size();
+
+
+        return (100 / allContracts) * (allContracts - notRented);
+    }
+
+
+
+    //Albert
+    public ArrayList<Car> getRentedCars() {
+
+        return carRepo.readMultiple(CarStatus.RENTED, "carStatus");
+    }
+
+    //Albert/Basma
+    public ArrayList<Car> getNotRentedCars() {
+
+        return carRepo.readMultiple(CarStatus.NOT_RENTED, "carStatus");
+    }
+
+    //Basma
+    public ArrayList<Car> getReturnedCars() {
+
+
+        return carRepo.readMultiple(CarStatus.RETURNED, "carStatus");
+    }
+
+    //Basma
+    public List<Contract> getAllcontracts() {
+        return contractRepo.readMultiple();
+    }
+
+    //Basma
+    public List<Contract> getContracts(ContractStatus status) {
+
+        return contractRepo.readMultiple(status, "contractStatus");
+    }
+
     //Albert
     public String getCarImg(String carModel) {
 
@@ -256,16 +263,5 @@ public class BusinessService {
 
 
         return filePath;
-    }
-
-    public int percentageOfNotAvailableCars() {
-
-        int allContracts = getAllcontracts().size();
-
-        int notRented = getNotRentedCars().size();
-
-
-        int percentageThatIsNotAvailable = (100 / allContracts) * (allContracts - notRented);
-        return percentageThatIsNotAvailable;
     }
 }

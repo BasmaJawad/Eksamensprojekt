@@ -20,11 +20,13 @@ public class HomeController {
 
     UsersService us = new UsersService();
 
+    //Basma, Jawaahir
     @GetMapping("/")
     public String index() {
         return "login";
     }
 
+    //Basma, Jawaahir
     @PostMapping("/")
     public String validateLogin(HttpSession session, WebRequest req, Model model) {
 
@@ -50,7 +52,7 @@ public class HomeController {
         return "login";
     }
 
-
+    //Basma
     @GetMapping("/logout") //bruges i login html pt
     public String logout(HttpSession session) {
 

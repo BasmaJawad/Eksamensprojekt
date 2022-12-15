@@ -67,108 +67,6 @@ public class Contract {
         return price;
     }
 
-    public void setContractStatus(ContractStatus contractStatus) {
-        this.contractStatus = contractStatus;
-    }
-
-    public ContractStatus getContractStatus() {
-        return contractStatus;
-    }
-
-
-    public int getContractID() {
-        return contractID;
-    }
-
-    public void setContractID(int contractID) {
-        this.contractID = contractID;
-    }
-
-    public String getVIN() {
-        return VIN;
-    }
-
-    public void setVIN(String VIN) {
-        this.VIN = VIN;
-    }
-
-    public SubLenght getSubLenght() {
-        return subLenght;
-    }
-
-    public void setSubLenght(SubLenght subLenght) {
-        this.subLenght = subLenght;
-    }
-
-    public int getFinalPrice() {
-        return finalPrice;
-    }
-
-    public void setFinalPrice(int finalPrice) {
-        this.finalPrice = finalPrice;
-    }
-
-    public int getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomer(int customerID) {
-        this.customerID = customerID;
-    }
-
-
-    public PickupDestination getPickupDestination() {
-        return pickupDestination;
-    }
-
-    public void setPickupDestination(PickupDestination pickupDestination) {
-        this.pickupDestination = pickupDestination;
-    }
-
-    public boolean isVikingHelp() {
-        return vikingHelp;
-    }
-
-    public void setVikingHelp(boolean vikingHelp) {
-        this.vikingHelp = vikingHelp;
-    }
-
-    public boolean isDeliveryInsurance() {
-        return deliveryInsurance;
-    }
-
-    public void setDeliveryInsurance(boolean deliveryInsurance) {
-        this.deliveryInsurance = deliveryInsurance;
-    }
-
-    public boolean isLowDeductible() {
-        return lowDeductible;
-    }
-
-    public void setLowDeductible(boolean lowDeductible) {
-        this.lowDeductible = lowDeductible;
-    }
-
-    public boolean isWinterTires() {
-        return winterTires;
-    }
-
-    public void setWinterTires(boolean winterTires) {
-        this.winterTires = winterTires;
-    }
-
-    public KmPrMonth getKmPrMonth() {
-        return this.kmPrMonth;
-    }
-
-    public LocalDate getStartDate() {
-        return this.startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
     private void setEndDate() {
 
         switch (subLenght) {
@@ -232,9 +130,90 @@ public class Contract {
         return String.valueOf(kmPrMonth);
     }
 
+    public ContractStatus getContractStatus() {
+        return contractStatus;
+    }
+    public int getContractID() {
+        return contractID;
+    }
+    public void setContractID(int contractID) {
+        this.contractID = contractID;
+    }
+    public String getVIN() {
+        return VIN;
+    }
+    public void setVIN(String VIN) {
+        this.VIN = VIN;
+    }
+    public SubLenght getSubLenght() {
+        return subLenght;
+    }
+    public int getCustomerID() {
+        return customerID;
+    }
+    public PickupDestination getPickupDestination() {
+        return pickupDestination;
+    }
+    public boolean isVikingHelp() {
+        return vikingHelp;
+    }
+    public boolean isDeliveryInsurance() {
+        return deliveryInsurance;
+    }
+    public boolean isLowDeductible() {
+        return lowDeductible;
+    }
+    public boolean isWinterTires() {
+        return winterTires;
+    }
+    public KmPrMonth getKmPrMonth() {
+        return this.kmPrMonth;
+    }
+
+    public LocalDate getStartDate() {
+        return this.startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+
+
     @Override
     public String toString() {
         return customerID + "\n" + VIN + "\n" + subLenght.toString();
+    }
+
+    public void setWinterTires(boolean winterTires) {
+        this.winterTires = winterTires;
+    }
+    public void setLowDeductible(boolean lowDeductible) {
+        this.lowDeductible = lowDeductible;
+    }
+    public void setDeliveryInsurance(boolean deliveryInsurance) {
+        this.deliveryInsurance = deliveryInsurance;
+    }
+    public void setVikingHelp(boolean vikingHelp) {
+        this.vikingHelp = vikingHelp;
+    }
+    public void setContractStatus(ContractStatus contractStatus) {
+        this.contractStatus = contractStatus;
+    }
+    public void setSubLenght(SubLenght subLenght) {
+        this.subLenght = subLenght;
+    }
+    public int getFinalPrice() {
+        return finalPrice;
+    }
+    public void setFinalPrice(int finalPrice) {
+        this.finalPrice = finalPrice;
+    }
+    public void setCustomer(int customerID) {
+        this.customerID = customerID;
+    }
+    public void setPickupDestination(PickupDestination pickupDestination) {
+        this.pickupDestination = pickupDestination;
     }
 
 }

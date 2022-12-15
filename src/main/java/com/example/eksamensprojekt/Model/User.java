@@ -7,13 +7,11 @@ public class User implements Comparable<User> {
     private String username, password;
     private UserType userType;
 
-
     public User(String username, String password, UserType userType) {
         this.username = username;
         this.password = password;
         this.userType = userType;
     }
-
 
     public String getUsername() {
         return username;

@@ -80,9 +80,9 @@ public class CarRepository implements IRepository {
     //reads all cars based on CarStatus
     //Albert
     @Override
-    public ArrayList<Car> readMultiple(ArrayList conditions, String columnName) {
+    public ArrayList<Car> readMultiple(Object param, String columnName) {
 
-        ArrayList<CarStatus> carStatus = (ArrayList<CarStatus>) conditions;
+        String carStatus = String.valueOf(param);
 
         ArrayList<Car> cars = new ArrayList<>();
 
@@ -90,7 +90,7 @@ public class CarRepository implements IRepository {
 
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_GAS);
-            ptst.setString(1, String.valueOf(carStatus.get(0)));
+            ptst.setString(1, carStatus);
 
             ResultSet resultSet = ptst.executeQuery();
 
@@ -113,7 +113,7 @@ public class CarRepository implements IRepository {
         try {
             PreparedStatement ptst = conn.prepareStatement(QUARY_ELECTRIC);
 
-            ptst.setString(1, String.valueOf(carStatus.get(0)));
+            ptst.setString(1, carStatus);
 
             ResultSet resultSet = ptst.executeQuery();
 
@@ -136,6 +136,7 @@ public class CarRepository implements IRepository {
     }
 
 
+    //Albert, William
     //Reads ALL cars
     @Override
     public ArrayList<Car> readMultiple() {
@@ -273,6 +274,7 @@ public class CarRepository implements IRepository {
         }
     }
 
+    //Unused interface methods
     @Override
     public void deleteSingle(Object param) {
 

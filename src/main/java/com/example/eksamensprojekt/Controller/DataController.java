@@ -1,7 +1,6 @@
 package com.example.eksamensprojekt.Controller;
 
 import com.example.eksamensprojekt.Model.Cars.Car;
-import com.example.eksamensprojekt.Model.Cars.GasCar;
 import com.example.eksamensprojekt.Model.Contract;
 import com.example.eksamensprojekt.Model.Customer;
 import com.example.eksamensprojekt.Service.DataService;
@@ -25,6 +24,7 @@ public class DataController {
     DataService ds = new DataService();
 
 
+    //Basma, Jawaahir
     @GetMapping("/dataHomepage")
     public String dataHomepage(Model model) {
 
@@ -75,7 +75,7 @@ public class DataController {
         return "redirect:/dataHomepage";
     }
 
-
+    //Basma
     @GetMapping("/showcontract")
     public String showContract(HttpSession session) {
 
@@ -91,7 +91,7 @@ public class DataController {
         return "/DataRegister/ShowContract";
     }
 
-
+    //Basma
     //Form i dataHomepage
     @PostMapping("/showcontract")
     public String showContract(WebRequest req, HttpSession session) {
@@ -114,12 +114,12 @@ public class DataController {
         session.setAttribute("customer", customer);
         session.setAttribute("date", contract.getStartDate());
         session.setAttribute("endDate", contract.getEndDate());
-        System.out.println(contract.getContractStatus());
 
         return "/DataRegister/ShowContract";
 
     }
 
+    //Basma
     //form i ShowContract
     @PostMapping("/updateCarStatus")
     public String updateCarStatus(WebRequest req, HttpSession session) {
