@@ -39,7 +39,7 @@ public class IncidentController {
     }
 
 
-    //Jawaahir, Basma
+    //Jawaahir
     //form i incidentHomepage
     @PostMapping("/addIncidentReport")
     public String sendIncidentHome(HttpSession session, WebRequest req) {
@@ -74,7 +74,7 @@ public class IncidentController {
         return "redirect:/incidentReport";
     }
 
-    //Jawaahir, Basma
+    //Jawaahir
     @GetMapping("/incidentReport")
     public String incidentReport(HttpSession session, Model model) {
 
@@ -124,7 +124,7 @@ public class IncidentController {
         return "redirect:/DamagePopup";
     }
 
-    //Jawaahir, basma
+    //Jawaahir
     @PostMapping("/endReport")
     public String endReport(WebRequest req) {
 
